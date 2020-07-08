@@ -1,0 +1,992 @@
+fileFormatVersion: 2
+guid: 89aca94355371b145a5d0dffdb3b1db6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1903672223919429875
+    second: Moss_Giant_Attack_0
+  - first:
+      213: 885066989130785602
+    second: Moss_Giant_Attack_1
+  - first:
+      213: -8895601373955547053
+    second: Moss_Giant_Attack_2
+  - first:
+      213: 590462230088817120
+    second: Moss_Giant_Attack_3
+  - first:
+      213: 9185977859553562034
+    second: Moss_Giant_Attack_4
+  - first:
+      213: -6820248513215824023
+    second: Moss_Giant_Attack_5
+  - first:
+      213: 7799061112675470860
+    second: Moss_Giant_Attack_6
+  - first:
+      213: 4435653638412302466
+    second: Moss_Giant_Attack_7
+  - first:
+      213: 1841739893291566235
+    second: Moss_Giant_Attack_8
+  - first:
+      213: 7669927044728561126
+    second: Moss_Giant_Attack_9
+  - first:
+      213: 284917083934468436
+    second: Moss_Giant_Attack_10
+  - first:
+      213: 1044200810968105304
+    second: Moss_Giant_Attack_11
+  - first:
+      213: 695892839477706834
+    second: Moss_Giant_Attack_12
+  - first:
+      213: 3821729607967089682
+    second: Moss_Giant_Attack_13
+  - first:
+      213: -2248829063167967721
+    second: Moss_Giant_Attack_14
+  - first:
+      213: -925850944518745546
+    second: Moss_Giant_Attack_15
+  - first:
+      213: 866535545751282946
+    second: Giant_Attack_0
+  - first:
+      213: 3295011726749303396
+    second: Giant_Attack_1
+  - first:
+      213: -7711309894646207194
+    second: Giant_Attack_2
+  - first:
+      213: -6642831962447707316
+    second: Giant_Attack_3
+  - first:
+      213: -8528236451857622911
+    second: Giant_Attack_4
+  - first:
+      213: -2178736245919289499
+    second: Giant_Attack_5
+  - first:
+      213: 4642191896576625494
+    second: Giant_Attack_6
+  - first:
+      213: -2163353058865276254
+    second: Giant_Attack_7
+  - first:
+      213: -3544214400990932308
+    second: Giant_Attack_8
+  - first:
+      213: -1652542216388852944
+    second: Giant_Attack_9
+  - first:
+      213: -9049568829599846012
+    second: Giant_Attack_10
+  - first:
+      213: 7316961242492360498
+    second: Giant_Attack_11
+  - first:
+      213: 9157345117102207266
+    second: Giant_Attack_12
+  - first:
+      213: 1916486688499161690
+    second: Giant_Attack_13
+  - first:
+      213: -1595906335636445097
+    second: Giant_Attack_14
+  - first:
+      213: -829536819824406946
+    second: Giant_Attack_15
+  - first:
+      213: 6316413655729225009
+    second: Giant_Attack_16
+  - first:
+      213: -2905435633549012348
+    second: Giant_Attack_17
+  - first:
+      213: -893819887843951552
+    second: Giant_Attack_18
+  - first:
+      213: -2825686417206019749
+    second: Giant_Attack_19
+  - first:
+      213: -3491370047319671732
+    second: Giant_Attack_20
+  - first:
+      213: 7524185627088787354
+    second: Giant_Attack_21
+  - first:
+      213: -1017618247598166191
+    second: Giant_Attack_0
+  - first:
+      213: -8966422149406915534
+    second: Giant_Attack_1
+  - first:
+      213: 334566547062001017
+    second: Giant_Attack_2
+  - first:
+      213: -4206048416980789119
+    second: Giant_Attack_3
+  - first:
+      213: 2987011159636271124
+    second: Giant_Attack_4
+  - first:
+      213: -8998803267581673695
+    second: Giant_Attack_5
+  - first:
+      213: -44143694439828242
+    second: Giant_Attack_6
+  - first:
+      213: -704461180940582151
+    second: Giant_Attack_7
+  - first:
+      213: -6350674041686667078
+    second: Giant_Attack_8
+  - first:
+      213: 182616651261448891
+    second: Giant_Attack_9
+  - first:
+      213: -7294743552756082049
+    second: Giant_Attack_10
+  - first:
+      213: 7415126199675071225
+    second: Giant_Attack_11
+  - first:
+      213: 9018308486215344670
+    second: Giant_Attack_12
+  - first:
+      213: 7841075509106841838
+    second: Giant_Attack_13
+  - first:
+      213: 7162287565929718057
+    second: Giant_Attack_14
+  - first:
+      213: -9002880576852461117
+    second: Giant_Attack_15
+  - first:
+      213: -2186001387044329664
+    second: Giant_Attack_16
+  - first:
+      213: -6066151046281337813
+    second: Giant_Attack_17
+  - first:
+      213: 8619632878965194827
+    second: Giant_Attack_18
+  - first:
+      213: -5231137314693702086
+    second: Giant_Attack_19
+  - first:
+      213: -2576084011234650698
+    second: Giant_Attack_20
+  - first:
+      213: 2835611047915614925
+    second: Giant_Attack_21
+  - first:
+      213: 8322930457019979271
+    second: Giant_Attack_22
+  - first:
+      213: -642813448096738436
+    second: Giant_Attack_23
+  - first:
+      213: -8350950064217563643
+    second: Giant_Attack_24
+  - first:
+      213: -5408513720901134956
+    second: Giant_Attack_25
+  - first:
+      213: 3147556547241293089
+    second: Giant_Attack_26
+  - first:
+      213: 6655954359522190279
+    second: Giant_Attack_27
+  - first:
+      213: -883123328945431560
+    second: Giant_Attack_28
+  - first:
+      213: 2442714950735035191
+    second: Giant_Attack_29
+  - first:
+      213: 7602779636101646356
+    second: Giant_Attack_30
+  - first:
+      213: -8628485627532427298
+    second: Giant_Attack_31
+  - first:
+      213: 7451140698598070248
+    second: Giant_Attack_32
+  - first:
+      213: 9207876392512002931
+    second: Giant_Attack_33
+  - first:
+      213: 3602396786979034454
+    second: Giant_Attack_34
+  - first:
+      213: 2787828293180280078
+    second: Giant_Attack_35
+  - first:
+      213: 5389221154017365006
+    second: Giant_Attack_36
+  - first:
+      213: -7690966543842890708
+    second: Giant_Attack_37
+  - first:
+      213: 8384958571028905426
+    second: Giant_Attack_38
+  - first:
+      213: 7902677026561993981
+    second: Giant_Attack_39
+  - first:
+      213: 7543574520566906628
+    second: Giant_Attack_40
+  - first:
+      213: -3453827182707228814
+    second: Giant_Attack_41
+  - first:
+      213: -2672235403827254576
+    second: Giant_Attack_42
+  - first:
+      213: -4799851997259847502
+    second: Giant_Attack_43
+  - first:
+      213: 3989155834823605637
+    second: Giant_Attack_44
+  - first:
+      213: -6051124829240131509
+    second: Giant_Attack_45
+  - first:
+      213: 4972934700259101265
+    second: Giant_Attack_46
+  - first:
+      213: -6874532588479816418
+    second: Giant_Attack_47
+  - first:
+      213: -1688090097375010468
+    second: Giant_Attack_48
+  - first:
+      213: -6701547433258025201
+    second: Giant_Attack_49
+  - first:
+      213: 3854795689343150387
+    second: Giant_Attack_50
+  - first:
+      213: 2065793472976013526
+    second: Giant_Attack_51
+  - first:
+      213: -6699075766188934625
+    second: Giant_Attack_52
+  - first:
+      213: -6809081213595800845
+    second: Giant_Attack_53
+  - first:
+      213: -6744551973809623454
+    second: Giant_Attack_54
+  - first:
+      213: -8433952421137333336
+    second: Giant_Attack_55
+  - first:
+      213: -752536601407175400
+    second: Giant_Attack_56
+  - first:
+      213: -6501101543604642494
+    second: Giant_Attack_57
+  - first:
+      213: 2111931752742706505
+    second: Giant_Attack_58
+  - first:
+      213: -737504573231130699
+    second: Giant_Attack_59
+  - first:
+      213: -5347986831889889108
+    second: Giant_Attack_60
+  - first:
+      213: 7609509041567366864
+    second: Giant_Attack_61
+  - first:
+      213: -6148091978815595783
+    second: Giant_Attack_62
+  - first:
+      213: -3337380418313533006
+    second: Giant_Attack_63
+  - first:
+      213: 4151215400621091316
+    second: Giant_Attack_64
+  - first:
+      213: 7198757155718074059
+    second: Giant_Attack_65
+  - first:
+      213: 197698439154895088
+    second: Giant_Attack_66
+  - first:
+      213: -1423387434255514277
+    second: Giant_Attack_67
+  - first:
+      213: -6046420702324568111
+    second: Giant_Attack_68
+  - first:
+      213: 6790875435665308953
+    second: Giant_Attack_69
+  - first:
+      213: -3036364797459818146
+    second: Giant_Attack_70
+  - first:
+      213: 1466846938996360102
+    second: Giant_Attack_71
+  - first:
+      213: 3803622959446374759
+    second: Giant_Attack_72
+  - first:
+      213: 5742196418698720741
+    second: Giant_Attack_73
+  - first:
+      213: 5633529272050472881
+    second: Giant_Attack_74
+  - first:
+      213: -5144108191336761284
+    second: Giant_Attack_75
+  - first:
+      213: 2039354151727725048
+    second: Giant_Attack_76
+  - first:
+      213: 5332225478793617968
+    second: Giant_Attack_77
+  - first:
+      213: 6184341017592894720
+    second: Giant_Attack_78
+  - first:
+      213: 5605135701550904329
+    second: Giant_Attack_79
+  - first:
+      213: -3266590244309578704
+    second: Giant_Attack_80
+  - first:
+      213: 8608243716892769488
+    second: Giant_Attack_81
+  - first:
+      213: -30320449746169161
+    second: Giant_Attack_82
+  - first:
+      213: 2647087565571274561
+    second: Giant_Attack_83
+  - first:
+      213: 1346893465920410112
+    second: Giant_Attack_84
+  - first:
+      213: -5199477060985638801
+    second: Giant_Attack_85
+  - first:
+      213: 5322759605093446641
+    second: Giant_Attack_86
+  - first:
+      213: -8399714862737514639
+    second: Giant_Attack_87
+  - first:
+      213: 5048046020272062040
+    second: Giant_Attack_88
+  - first:
+      213: 4903915967229077539
+    second: Giant_Attack_89
+  - first:
+      213: -5761048418895329422
+    second: Giant_Attack_90
+  - first:
+      213: 591904661786150879
+    second: Giant_Attack_91
+  - first:
+      213: 2488132719575553237
+    second: Giant_Attack_92
+  - first:
+      213: 954452939861459717
+    second: Giant_Attack_93
+  - first:
+      213: -7995144489943626665
+    second: Giant_Attack_94
+  - first:
+      213: 4679668101134568203
+    second: Giant_Attack_95
+  - first:
+      213: -4549330828929166534
+    second: Giant_Attack_96
+  - first:
+      213: -8198700728796202943
+    second: Giant_Attack_97
+  - first:
+      213: -7246764715647925747
+    second: Giant_Attack_98
+  - first:
+      213: -1068284936453418872
+    second: Giant_Attack_99
+  - first:
+      213: -4282814571557475793
+    second: Giant_Attack_100
+  - first:
+      213: -5308345769772231999
+    second: Giant_Attack_101
+  - first:
+      213: 1813799852952343340
+    second: Giant_Attack_102
+  - first:
+      213: -1689957458993011944
+    second: Giant_Attack_103
+  - first:
+      213: 6684129710225441779
+    second: Giant_Attack_104
+  - first:
+      213: -5620461945072113629
+    second: Giant_Attack_105
+  - first:
+      213: 6991983218958329022
+    second: Giant_Attack_106
+  - first:
+      213: 2250526206683352389
+    second: Giant_Attack_107
+  - first:
+      213: -647878861448584424
+    second: Giant_Attack_108
+  - first:
+      213: 7045926446405645969
+    second: Giant_Attack_109
+  - first:
+      213: 5810379063760940385
+    second: Giant_Attack_110
+  - first:
+      213: 8190444552040536208
+    second: Giant_Attack_111
+  - first:
+      213: -6946889815356420293
+    second: Giant_Attack_112
+  - first:
+      213: 312900479600393289
+    second: Giant_Attack_113
+  - first:
+      213: 4684450496688460775
+    second: Giant_Attack_114
+  - first:
+      213: 2370558874279371909
+    second: Giant_Attack_115
+  - first:
+      213: 8176791953737990695
+    second: Giant_Attack_116
+  - first:
+      213: -5617306101183818889
+    second: Giant_Attack_117
+  - first:
+      213: 1459919184210816793
+    second: Giant_Attack_118
+  - first:
+      213: -1409305137470298814
+    second: Giant_Attack_119
+  - first:
+      213: 3128359692624670494
+    second: Giant_Attack_120
+  - first:
+      213: -8427882157522691480
+    second: Giant_Attack_121
+  - first:
+      213: -1915790100701227565
+    second: Giant_Attack_122
+  - first:
+      213: -8126017054399457219
+    second: Giant_Attack_123
+  - first:
+      213: 4362398494814439414
+    second: Giant_Attack_124
+  - first:
+      213: -8868553052828673612
+    second: Giant_Attack_125
+  - first:
+      213: -8931948555702592881
+    second: Giant_Attack_126
+  - first:
+      213: 9188204918206640778
+    second: Giant_Attack_127
+  - first:
+      213: 8354528858954970691
+    second: Giant_Attack_128
+  - first:
+      213: -4140309471953859184
+    second: Giant_Attack_129
+  - first:
+      213: 1826864354023954675
+    second: Giant_Attack_130
+  - first:
+      213: -7790136156482147892
+    second: Giant_Attack_131
+  - first:
+      213: -9009919523319148695
+    second: Giant_Attack_132
+  - first:
+      213: 8676401517685504985
+    second: Giant_Attack_133
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Giant_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15fa4fa6891b0e1f0800000000000000
+      internalID: -1017618247598166191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 234086eaf8ed09380800000000000000
+      internalID: -8966422149406915534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d0c5f708e94a400800000000000000
+      internalID: 334566547062001017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18814c5df3d11a5c0800000000000000
+      internalID: -4206048416980789119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4106f36e2def37920800000000000000
+      internalID: 2987011159636271124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f7b281b14dd1380800000000000000
+      internalID: -8998803267581673695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee437d53b8b236ff0800000000000000
+      internalID: -44143694439828242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f20cffc9404936f0800000000000000
+      internalID: -704461180940582151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0d8fc3b9fddd7a0800000000000000
+      internalID: -6350674041686667078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2928470e8c88200800000000000000
+      internalID: 182616651261448891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a1762536dd3ca90800000000000000
+      internalID: -7294743552756082049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fa2358ddf1d7e660800000000000000
+      internalID: 7415126199675071225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e12a1c389c7772d70800000000000000
+      internalID: 9018308486215344670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee81459b1a811dc60800000000000000
+      internalID: 7841075509106841838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9212072089e856360800000000000000
+      internalID: 7162287565929718057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Giant_Attack_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c9f17d80d75f0380800000000000000
+      internalID: -9002880576852461117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 1fbc4901e10fa01408f5ef9fefea5ea6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

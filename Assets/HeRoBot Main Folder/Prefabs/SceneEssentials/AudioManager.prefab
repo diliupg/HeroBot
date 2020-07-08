@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3603194498077253043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3603194498077253041}
+  - component: {fileID: 3603194498077253042}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3603194498077253041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603194498077253043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.157482, y: 0.50414085, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3603194498077253042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603194498077253043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d152ba9755df50c43b83866ec9d2ae51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNormalStep1: {fileID: 8300000, guid: fcfa6ff176ed79744accdb03ddb36a95, type: 3}
+  PlayerNormalStep2: {fileID: 8300000, guid: db657f5a7d49a0b4e81bf65cd145d17e, type: 3}
+  PlayerMetalStep1: {fileID: 8300000, guid: 3a4502ce086c21f43a502b2bca0982f6, type: 3}
+  PlayerMetalStep2: {fileID: 8300000, guid: 52466d9b9c6a6d84893c11c3273c8f6e, type: 3}
+  PlayerJump: {fileID: 8300000, guid: a07bb3b4aab722940929d930a2a19be1, type: 3}
+  PlayerFallOnGround: {fileID: 8300000, guid: 6369d179e972f8446bce242badab5757, type: 3}
+  PlayerFallOnMetalPlat: {fileID: 8300000, guid: 024d14a3114a587438af9dfd1a82d7c1,
+    type: 3}
+  PlayerFallInWater: {fileID: 8300000, guid: 47da6e6c4bced3347897424d557eabd1, type: 3}
+  PlayerLandOnCollapsePlatform: {fileID: 8300000, guid: 756b5ba25db1f654280c463e75903dc6,
+    type: 3}
+  PlayerFireLazer: {fileID: 8300000, guid: f146ff90bdc480d4893b7c321144c432, type: 3}
+  PlayerExplode: {fileID: 8300000, guid: b890e3fb60439d8419d15ddc2616fb0b, type: 3}
+  PlayerHurt: {fileID: 8300000, guid: 3905fe790f8d37a428d61c508df6d2d2, type: 3}
+  SpawnPlayer: {fileID: 8300000, guid: 9e1a261970d54b441b2be637f21e5a46, type: 3}
+  PlayerTeleport: {fileID: 8300000, guid: 7633ccc65f5db1041beb5dc86823d619, type: 3}
+  GlobShoot: {fileID: 8300000, guid: 365263df3f11dc24f99ce884c0d049a2, type: 3}
+  GlobHit: {fileID: 8300000, guid: fce17d8145e026946a59b7185fa08fe5, type: 3}
+  GlobDie: {fileID: 8300000, guid: f98513bee8259bc4ab25104fdee22653, type: 3}
+  GiantShoot: {fileID: 8300000, guid: fa32871206c41aa4ca02064532100277, type: 3}
+  GiantHit: {fileID: 8300000, guid: 04594506dd6f82d4ea84f279dbf06c4c, type: 3}
+  GiantDie: {fileID: 8300000, guid: a9c4ea11a2cfe7d45bc9ff4ede3db510, type: 3}
+  SkeletonShoot: {fileID: 8300000, guid: ac21d003a12e0b643b495bc46306c021, type: 3}
+  SkeletonHit: {fileID: 8300000, guid: b6938e80012aec94b94820f52c72319d, type: 3}
+  SkeletonDie: {fileID: 8300000, guid: b5e10e7a26808824abdf9ee6df289b31, type: 3}
+  BarrelExplode: {fileID: 8300000, guid: 1ecbaf167f7f21a458afbc648a4222cf, type: 3}
+  SwitchOn: {fileID: 8300000, guid: e0791777e03964948af4c4422c5ad131, type: 3}
+  GateOpen: {fileID: 8300000, guid: 2c6f76bc2019f734696fec36955369ce, type: 3}
+  Teleport: {fileID: 8300000, guid: a6c5842984e220f4283f0537a2178f68, type: 3}
+  portalSound: {fileID: 8300000, guid: 1e0eb82f9410dbe49b7ec79161827d5a, type: 3}
+  BarrelHitGround: {fileID: 8300000, guid: 92dac408836b52a4faf17f67ffcbdfcd, type: 3}
+  LevelCompleteMusic: {fileID: 8300000, guid: f737cfee08197214a80d1adf02232641, type: 3}
+  GameOverMusic: {fileID: 8300000, guid: 7d59584ee8554914d9352c5124f06730, type: 3}
+  Level1Music: {fileID: 8300000, guid: e942a28eb1b4a8345845226527d66cf7, type: 3}

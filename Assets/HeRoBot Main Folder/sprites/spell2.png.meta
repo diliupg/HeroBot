@@ -1,0 +1,895 @@
+fileFormatVersion: 2
+guid: 82e8654c6cda1e84c9a74f0b0625d8c3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5909110762723698244
+    second: spell2_0
+  - first:
+      213: -2598457632531532776
+    second: spell2_1
+  - first:
+      213: 8704328131042297674
+    second: spell2_2
+  - first:
+      213: 3224467982200926741
+    second: spell2_3
+  - first:
+      213: 4384896889376259375
+    second: spell2_4
+  - first:
+      213: 3637175004379586461
+    second: spell2_5
+  - first:
+      213: 950156714360867277
+    second: spell2_6
+  - first:
+      213: -3205116961021858678
+    second: spell2_7
+  - first:
+      213: -4260990513161680849
+    second: spell2_8
+  - first:
+      213: 1276699978112344437
+    second: spell2_9
+  - first:
+      213: 1456217794320853045
+    second: spell2_10
+  - first:
+      213: -3657576684006874904
+    second: spell2_11
+  - first:
+      213: -3866977949922127933
+    second: spell2_12
+  - first:
+      213: 6097938581430926779
+    second: spell2_13
+  - first:
+      213: 4169253136949469925
+    second: spell2_14
+  - first:
+      213: 1883487327212576424
+    second: spell2_15
+  - first:
+      213: -4127104088182275951
+    second: spell2_16
+  - first:
+      213: 5640286658366274742
+    second: spell2_17
+  - first:
+      213: 6792765257953184629
+    second: spell2_18
+  - first:
+      213: -7697300467587738555
+    second: spell2_19
+  - first:
+      213: 6406062310646783466
+    second: spell2_20
+  - first:
+      213: 9053465076146243574
+    second: spell2_21
+  - first:
+      213: 1743143753423976446
+    second: spell2_22
+  - first:
+      213: -6638740421922107626
+    second: spell2_23
+  - first:
+      213: 5372305766514049998
+    second: spell2_24
+  - first:
+      213: 7161427006624183154
+    second: spell2_25
+  - first:
+      213: -376966056386632005
+    second: spell2_26
+  - first:
+      213: 1011811143565402603
+    second: spell2_27
+  - first:
+      213: 2585078486522028450
+    second: spell2_28
+  - first:
+      213: 3374394833094660659
+    second: spell2_29
+  - first:
+      213: -3443506259706932418
+    second: spell2_30
+  - first:
+      213: 2303684301658003674
+    second: spell2_31
+  - first:
+      213: -972273305985840207
+    second: spell2_32
+  - first:
+      213: 6929527417375020196
+    second: spell2_33
+  - first:
+      213: 1670202019908522292
+    second: spell2_34
+  - first:
+      213: -6407545865851749749
+    second: spell2_35
+  - first:
+      213: 6244373786053605598
+    second: spell2_36
+  - first:
+      213: 7826638287106693077
+    second: spell2_37
+  - first:
+      213: 8929937738737940242
+    second: spell2_38
+  - first:
+      213: 6289099209742775038
+    second: spell2_39
+  - first:
+      213: -1973086110605490709
+    second: spell2_40
+  - first:
+      213: -5480619640398668039
+    second: spell2_41
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: spell2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 962
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb99a61b11f9efda0800000000000000
+      internalID: -5909110762723698244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 962
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8143e09ec8c60fbd0800000000000000
+      internalID: -2598457632531532776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_2
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 962
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a474733515cfbc870800000000000000
+      internalID: 8704328131042297674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_3
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 962
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512f4bcbb8c9fbc20800000000000000
+      internalID: 3224467982200926741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_4
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 962
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2dbcfb1d784adc30800000000000000
+      internalID: 4384896889376259375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 772
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f99f95567d97230800000000000000
+      internalID: 3637175004379586461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_6
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 772
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc98e606f72af2d00800000000000000
+      internalID: 950156714360867277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_7
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 772
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c66bafa132583d0800000000000000
+      internalID: -3205116961021858678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_8
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 772
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2840b734bbedd4c0800000000000000
+      internalID: -4260990513161680849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_9
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 772
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571a228addfb7b110800000000000000
+      internalID: 1276699978112344437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 582
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 538e81a5e56853410800000000000000
+      internalID: 1456217794320853045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_11
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 582
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e0e403726dad3dc0800000000000000
+      internalID: -3657576684006874904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_12
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 582
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf8f9cea0cb55ac0800000000000000
+      internalID: -3866977949922127933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_13
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 582
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbdf650e4da30a450800000000000000
+      internalID: 6097938581430926779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_14
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 582
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e26e8e63a92cd930800000000000000
+      internalID: 4169253136949469925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ae9475bebd732a10800000000000000
+      internalID: 1883487327212576424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_16
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 392
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19045d8b2b499b6c0800000000000000
+      internalID: -4127104088182275951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_17
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 392
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcfb4f05d2564e40800000000000000
+      internalID: 5640286658366274742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_18
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 392
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b0ae23300c44e50800000000000000
+      internalID: 6792765257953184629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 392
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5441cfbb102bd2590800000000000000
+      internalID: -7697300467587738555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 202
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed9e131bb7e6e850800000000000000
+      internalID: 6406062310646783466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_21
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 202
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f70a1af48e54ad70800000000000000
+      internalID: 9053465076146243574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_22
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 202
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7f6471204e03810800000000000000
+      internalID: 1743143753423976446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_23
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 202
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61f4e4382c47ed3a0800000000000000
+      internalID: -6638740421922107626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_24
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 202
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec34ad581a34e8a40800000000000000
+      internalID: 5372305766514049998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27339be6bef726360800000000000000
+      internalID: 7161427006624183154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_26
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 12
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6e1b47e5fb4caf0800000000000000
+      internalID: -376966056386632005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_27
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 12
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be16fffcfdcaa0e00800000000000000
+      internalID: 1011811143565402603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_28
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 12
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a166a9ef2b00e320800000000000000
+      internalID: 2585078486522028450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spell2_29
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 12
+        width: 190
+        height: 190
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332558ee83244de20800000000000000
+      internalID: 3374394833094660659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 62d44bf1efdfb64469c07f438fcc2ae2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
