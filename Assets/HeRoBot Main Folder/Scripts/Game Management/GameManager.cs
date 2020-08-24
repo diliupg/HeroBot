@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour
     private ResetOnRespawn [] objectsToReset;
 
     public Stats stats;
-
-    public float health = 1;
+   
     public int lives = 4;
+    public float health = 1;
     public int wealth = 0;
     public int weapons = 1;
     public int level = 1;
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         LoadGameData ( );
 
-        if ( fileExsists ) // this is not the first run of the game so lad the stats
+        if ( fileExsists ) // this is not the first run of the game so load the stats
         {
             GetStats ( );
             //print ( "Not the first time" );
@@ -396,13 +396,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void InitStats ( ) // first time the game is player
+    public void InitStats ( ) // first time the game is played
     {
         stats.health = health;
         stats.lives = lives;
         stats.wealth = wealth;
         stats.weapons = weapons;
         stats.level = level;
+
         //stats.myPos.x = gameObject.transform.position.x;
         //stats.myPos.y = gameObject.transform.position.y;
         //stats.myPos.z = gameObject.transform.position.z;
@@ -415,6 +416,7 @@ public class GameManager : MonoBehaviour
         wealth = stats.wealth;
         weapons = stats.weapons;
         level = stats.level;
+
         //gameObject.transform.position = stats.myPos.GetPos ( );
     }
 
@@ -425,6 +427,7 @@ public class GameManager : MonoBehaviour
         stats.wealth = wealth;
         stats.weapons = weapons;
         stats.level = level;
+
         //stats.myPos.x = gameObject.transform.position.x;
         //stats.myPos.y = gameObject.transform.position.y;
         //stats.myPos.z = gameObject.transform.position.z;
