@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 115188802}
   - component: {fileID: 115188803}
   m_Layer: 0
-  m_Name: --- Wall Lamps ---
+  m_Name: === --- WALL LAMPS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 264762429}
   - component: {fileID: 264762430}
   m_Layer: 0
-  m_Name: --- Fire ---
+  m_Name: === --- FIRE --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 297824139}
   - component: {fileID: 297824140}
   m_Layer: 0
-  m_Name: --- Globbers ---
+  m_Name: === --- GLOBBERS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 403980750}
   - component: {fileID: 403980749}
   m_Layer: 0
-  m_Name: --- Lights ---
+  m_Name: === --- LIGHTS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1843,7 +1843,7 @@ GameObject:
   - component: {fileID: 527778664}
   - component: {fileID: 527778665}
   m_Layer: 0
-  m_Name: --- Teleporters ---
+  m_Name: === --- TELEPORTERS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2131,7 +2131,7 @@ GameObject:
   - component: {fileID: 726424213}
   - component: {fileID: 726424212}
   m_Layer: 0
-  m_Name: --- World Objects ---
+  m_Name: === --- WORLD OBJECTS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2594,7 +2594,7 @@ GameObject:
   - component: {fileID: 963136244}
   - component: {fileID: 963136245}
   m_Layer: 0
-  m_Name: --- Falling Barrels ---
+  m_Name: === --- FALLING BARRELS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4443,7 +4443,7 @@ GameObject:
   - component: {fileID: 1559372196}
   - component: {fileID: 1559372197}
   m_Layer: 0
-  m_Name: --- miscellaneous ---
+  m_Name: === --- MISCELLANEOUS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,7 +4790,7 @@ GameObject:
   - component: {fileID: 1750973896}
   - component: {fileID: 1750973897}
   m_Layer: 0
-  m_Name: --- Collapsible Plats ---
+  m_Name: === --- COLLAPSIBLE PLATS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5178,7 +5178,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.714
   m_Color: {r: 0.6415094, g: 0.53615296, b: 0.030259874, a: 1}
-  m_Intensity: 7.04
+  m_Intensity: 4.83
   m_LightVolumeOpacity: 0.366
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -5228,7 +5228,7 @@ GameObject:
   - component: {fileID: 1974642744}
   - component: {fileID: 1974642745}
   m_Layer: 0
-  m_Name: --- Moving Plats ---
+  m_Name: === --- MOVING PLATS --- ===
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38986,7 +38986,7 @@ PrefabInstance:
     - target: {fileID: 3515225746836140359, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6999993
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 3515225746836140359, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
@@ -39001,7 +39001,7 @@ PrefabInstance:
     - target: {fileID: 4201121271476541445, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6999993
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 4201121271476541445, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}

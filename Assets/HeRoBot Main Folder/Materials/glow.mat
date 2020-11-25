@@ -122,10 +122,11 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_207CF4A: {r: 33.882355, g: 12.54902, b: 47.937256, a: 1}
+    - Color_207CF4A: {r: 28.441298, g: 0, b: 46.490566, a: 0.16470589}
     - _BaseColor: {r: 0, g: 1, b: 0.08991337, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 4.5729003, g: 51.377876, b: 11.835741, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+  m_BuildTextureStacks: []
