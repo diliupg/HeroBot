@@ -38983,6 +38983,11 @@ PrefabInstance:
       propertyPath: m_BlendStyleIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140358, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: field of view
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3515225746836140359, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38998,6 +39003,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 7922049473265457540}
+    - target: {fileID: 4201121271476541444, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 4201121271476541445, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_LocalPosition.x
