@@ -30,12 +30,12 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable ( )
     {
-        PlayerController.UpOrDownPressed += CameraLook;
+        //PlayerController.UpOrDownPressed += CameraLook;
     }
 
     private void OnDisable ( )
     {
-        PlayerController.UpOrDownPressed -= CameraLook;
+        //PlayerController.UpOrDownPressed -= CameraLook;
     }
 
     void CameraLook ( float value )

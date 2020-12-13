@@ -201,8 +201,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         {
             directionLR = input.directionLR;
 
-
-
             if ( !playerRaycast.isHanging )
                 FlipPlayer ( );
 
