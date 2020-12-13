@@ -97,29 +97,63 @@ public class InputManager : MonoBehaviour
         pausedPressed = Input.GetButtonDown ( "Pause" );
     }
 
-    //void ProcessTouchInputs ( )
-    //{
-    //    //If this isn't a mobile platform AND we aren't testing in editor, exit
-    //    if ( !Application.isMobilePlatform && !testTouchControlsInEditor )
-    //        return;
+    void ProcessTouchInputs ( )
+    {
+        ////If this isn't a mobile platform AND we aren't testing in editor, exit
+        //if ( !Application.isMobilePlatform && !testTouchControlsInEditor )
+        //    return;
 
-    //    //Record inputs from screen thumbstick
-    //    Vector2 thumbstickInput = thumbstick.GetDirection();
+        ////Record inputs from screen thumbstick
+        //Vector2 thumbstickInput = thumbstick.GetDirection ( );
 
-    //    //Accumulate horizontal input
-    //    directionLR += thumbstickInput.x;
+        ////Accumulate horizontal input
+        //directionLR += thumbstickInput.x;
 
-    //    //Accumulate jump button input
-    //    jumpPressed = jumpPressed || jumpButton.GetButtonDown ( );
-    //    jumpHeld = jumpHeld || jumpButton.GetButton ( );
+        ////Accumulate jump button input
+        //jumpPressed = jumpPressed || jumpButton.GetButtonDown ( );
+        //jumpHeld = jumpHeld || jumpButton.GetButton ( );
 
-    //    //Using thumbstick, accumulate crouch input
-    //    bool dPadCrouch = thumbstickInput.y <= -verticalDPadThreshold;
-    //    crouchPressed = crouchPressed || ( dPadCrouch && !dPadCrouchPrev );
-    //    crouchHeld = crouchHeld || dPadCrouch;
+        ////Using thumbstick, accumulate crouch input
+        //bool dPadCrouch = thumbstickInput.y <= -verticalDPadThreshold;
+        //crouchPressed = crouchPressed || ( dPadCrouch && !dPadCrouchPrev );
+        //crouchHeld = crouchHeld || dPadCrouch;
 
-    //    //Record whether or not playing is crouching this frame (used for determining
-    //    //if button is pressed for first time or held
-    //    dPadCrouchPrev = dPadCrouch;
-    //}
+        ////Record whether or not playing is crouching this frame (used for determining
+        ////if button is pressed for first time or held
+        //dPadCrouchPrev = dPadCrouch;
+    }
+
+    void MobileInputs()
+    {
+        var fingers = Lean.Touch.LeanTouch.GetFingers ( true, false );
+        var delta = Lean.Touch.LeanGesture.GetScaledDelta ( fingers );
+
+        if ( delta != Vector2.zero )
+        {
+            // Horizontal
+            if ( Mathf.Abs ( delta.x ) > Mathf.Abs ( delta.y ) )
+            {
+                // Right
+                if ( delta.x > 0.0f )
+                {
+                }
+                // Left
+                else
+                {
+                }
+            }
+            // Vertical
+            else
+            {
+                // Up
+                if ( delta.y > 0.0f )
+                {
+                }
+                // Down
+                else
+                {
+                }
+            }
+        }
+    }
 }
