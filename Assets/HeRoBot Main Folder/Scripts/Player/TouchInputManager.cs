@@ -6,50 +6,28 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
+using Lean.Touch;
 
-using UnityEngine.EventSystems;
-
-public class ClickDetector : MonoBehaviour, IPointerDownHandler, IPointerClickHandler,
-    IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler,
-    IBeginDragHandler, IDragHandler, IEndDragHandler
+public class TouchInputManager : MonoBehaviour
 {
-    public void OnBeginDrag ( PointerEventData eventData )
+    #region Public Fields
+	
+	
+    #endregion
+	
+    void Start()
     {
-        Debug.Log ( "Drag Begin" );
+        
     }
 
-    public void OnDrag ( PointerEventData eventData )
+
+    void Update()
     {
-        Debug.Log ( "Dragging" );
+        
     }
 
-    public void OnEndDrag ( PointerEventData eventData )
+    void MoveRight()
     {
-        Debug.Log ( "Drag Ended" );
-    }
-
-    public void OnPointerClick ( PointerEventData eventData )
-    {
-        Debug.Log ( "Clicked: " + eventData.pointerCurrentRaycast.gameObject.name );
-    }
-
-    public void OnPointerDown ( PointerEventData eventData )
-    {
-        Debug.Log ( "Mouse Down: " + eventData.pointerCurrentRaycast.gameObject.name );
-    }
-
-    public void OnPointerEnter ( PointerEventData eventData )
-    {
-        Debug.Log ( "Mouse Enter" );
-    }
-
-    public void OnPointerExit ( PointerEventData eventData )
-    {
-        Debug.Log ( "Mouse Exit" );
-    }
-
-    public void OnPointerUp ( PointerEventData eventData )
-    {
-        Debug.Log ( "Mouse Up" );
+  
     }
 }
