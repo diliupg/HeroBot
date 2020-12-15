@@ -167,4 +167,15 @@ public class InputManager : MonoBehaviour
 
         pausedPressed = Input.GetButtonDown ( "Pause" );
     }
+
+    public void Right()
+    {
+        Debug.Log ( "right" );
+        directionLR = 1;
+    }
+    public void Left ( )
+    {
+        Debug.Log ( "left" );
+        directionLR = -1;
+    }
 }

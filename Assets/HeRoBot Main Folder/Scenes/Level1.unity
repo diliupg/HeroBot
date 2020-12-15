@@ -123,18 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &10026056 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6190577943231838483, guid: 6cbd82298be20774d9086cfa38ec3761,
-    type: 3}
-  m_PrefabInstance: {fileID: 2110512238}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc98219a83dff145947365dc914d06e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &57014146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2180,18 @@ Transform:
   m_Father: {fileID: 403980750}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -203.9}
+--- !u!114 &507540983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7922049472711691991, guid: f4bd3058f03889d4892aaf6444eb2b90,
+    type: 3}
+  m_PrefabInstance: {fileID: 104219004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1831f03151b8b44b326e81d1dcdfe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &515006108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2370,9 +2370,7 @@ GameObject:
   - component: {fileID: 595648448}
   - component: {fileID: 595648447}
   - component: {fileID: 595648446}
-  - component: {fileID: 595648445}
   - component: {fileID: 595648444}
-  - component: {fileID: 595648443}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -2399,21 +2397,6 @@ RectTransform:
   m_AnchoredPosition: {x: 106, y: -350}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &595648443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595648441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a45146ec471801c4dbce44f8dd62608f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutoGetDefaultColor: 0
-  DefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  SelectedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!212 &595648444
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2465,34 +2448,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &595648445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595648441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
 --- !u!58 &595648446
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2552,16 +2507,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10026056}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
-        m_MethodName: SendMessage
-        m_Mode: 5
+      - m_Target: {fileID: 507540983}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Left
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: left
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &595648448
@@ -6500,9 +6455,7 @@ GameObject:
   - component: {fileID: 1806950848}
   - component: {fileID: 1806950847}
   - component: {fileID: 1806950846}
-  - component: {fileID: 1806950845}
   - component: {fileID: 1806950844}
-  - component: {fileID: 1806950843}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -6529,21 +6482,6 @@ RectTransform:
   m_AnchoredPosition: {x: 271, y: -350}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1806950843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806950841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a45146ec471801c4dbce44f8dd62608f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutoGetDefaultColor: 0
-  DefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  SelectedColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!212 &1806950844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6595,34 +6533,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1806950845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806950841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
 --- !u!58 &1806950846
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6682,16 +6592,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 10026056}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
-        m_MethodName: SendMessage
-        m_Mode: 5
+      - m_Target: {fileID: 507540983}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Right
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: right
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1806950848
