@@ -39,6 +39,8 @@ public class InputManager : MonoBehaviour
         //Process keyboard, mouse, gamepad (etc) inputs
         ProcessInputs ( );
 
+        //MobileInputs ( );
+
         directionLR = Mathf.Clamp ( directionLR, -1f, 1f );
 
         directionUD = Mathf.Clamp ( directionUD, -1f, 1f );
@@ -73,6 +75,75 @@ public class InputManager : MonoBehaviour
 
     }
 
+
+    //void ProcessTouchInputs ( )
+    //{
+    //    //If this isn't a mobile platform AND we aren't testing in editor, exit
+    //    if ( !Application.isMobilePlatform && !testTouchControlsInEditor )
+    //        return;
+
+    //    //Record inputs from screen thumbstick
+    //    Vector2 thumbstickInput = thumbstick.GetDirection ( );
+
+    //    //Accumulate horizontal input
+    //    directionLR += thumbstickInput.x;
+
+    //    //Accumulate jump button input
+    //    jumpPressed = jumpPressed || jumpButton.GetButtonDown ( );
+    //    jumpHeld = jumpHeld || jumpButton.GetButton ( );
+
+    //    //Using thumbstick, accumulate crouch input
+    //    bool dPadCrouch = thumbstickInput.y <= -verticalDPadThreshold;
+    //    crouchPressed = crouchPressed || ( dPadCrouch && !dPadCrouchPrev );
+    //    crouchHeld = crouchHeld || dPadCrouch;
+
+    //    //Record whether or not playing is crouching this frame (used for determining
+    //    //if button is pressed for first time or held
+    //    dPadCrouchPrev = dPadCrouch;
+    //}
+
+    //void MobileInputs()
+    //{
+    //    var fingers = Lean.Touch.LeanTouch.GetFingers ( true, false );
+    //    var delta = Lean.Touch.LeanGesture.GetScaledDelta ( fingers );
+
+    //    if ( delta != Vector2.zero )
+    //    {
+    //        // Horizontal
+    //        if ( Mathf.Abs ( delta.x ) > Mathf.Abs ( delta.y ) )
+    //        {
+    //            // Right
+    //            if ( delta.x > 0.0f )
+    //            {
+    //                Debug.Log ( "RIGHT" );
+    //                directionLR = 1;
+    //            }
+    //            // Left
+    //            else
+    //            {
+    //                Debug.Log ( "LEFT" );
+    //                directionLR = -1;
+    //            }
+    //        }
+    //        // Vertical
+    //        else
+    //        {
+    //            // Up
+    //            if ( delta.y > 0.0f )
+    //            {
+    //                Debug.Log ( "UP" );
+    //                directionUD = 1;
+    //            }
+    //            // Down
+    //            else
+    //            {
+    //                Debug.Log ( "DOWN" );
+    //                directionUD = -1;
+    //            }
+    //        }
+    //    }
+    //}
+
     void ProcessInputs ( )
     {
         //Accumulate horizontal axis input
@@ -95,65 +166,5 @@ public class InputManager : MonoBehaviour
         torchPressed = Input.GetButtonDown ( "Torch" );
 
         pausedPressed = Input.GetButtonDown ( "Pause" );
-    }
-
-    void ProcessTouchInputs ( )
-    {
-        ////If this isn't a mobile platform AND we aren't testing in editor, exit
-        //if ( !Application.isMobilePlatform && !testTouchControlsInEditor )
-        //    return;
-
-        ////Record inputs from screen thumbstick
-        //Vector2 thumbstickInput = thumbstick.GetDirection ( );
-
-        ////Accumulate horizontal input
-        //directionLR += thumbstickInput.x;
-
-        ////Accumulate jump button input
-        //jumpPressed = jumpPressed || jumpButton.GetButtonDown ( );
-        //jumpHeld = jumpHeld || jumpButton.GetButton ( );
-
-        ////Using thumbstick, accumulate crouch input
-        //bool dPadCrouch = thumbstickInput.y <= -verticalDPadThreshold;
-        //crouchPressed = crouchPressed || ( dPadCrouch && !dPadCrouchPrev );
-        //crouchHeld = crouchHeld || dPadCrouch;
-
-        ////Record whether or not playing is crouching this frame (used for determining
-        ////if button is pressed for first time or held
-        //dPadCrouchPrev = dPadCrouch;
-    }
-
-    void MobileInputs()
-    {
-        var fingers = Lean.Touch.LeanTouch.GetFingers ( true, false );
-        var delta = Lean.Touch.LeanGesture.GetScaledDelta ( fingers );
-
-        if ( delta != Vector2.zero )
-        {
-            // Horizontal
-            if ( Mathf.Abs ( delta.x ) > Mathf.Abs ( delta.y ) )
-            {
-                // Right
-                if ( delta.x > 0.0f )
-                {
-                }
-                // Left
-                else
-                {
-                }
-            }
-            // Vertical
-            else
-            {
-                // Up
-                if ( delta.y > 0.0f )
-                {
-                }
-                // Down
-                else
-                {
-                }
-            }
-        }
     }
 }
