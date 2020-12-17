@@ -79,13 +79,15 @@ namespace Lean.Touch
 		/// <summary>This method allows you to rotate around AxisA, with the specified angle in degrees.</summary>
 		public void RotateA(float delta)
 		{
-			RotateAB(new Vector2(delta, 0.0f));
+			//RotateAB(new Vector2(delta, 0.0f));
+			transform.Translate ( new Vector3 ( delta, 0, 0 ) );
 		}
 
 		/// <summary>This method allows you to rotate around AxisB, with the specified angle in degrees.</summary>
 		public void RotateB(float delta)
 		{
-			RotateAB(new Vector2(0.0f, delta));
+			//RotateAB(new Vector2(0.0f, delta));
+			transform.Translate ( new Vector3 ( 0, delta, 0 ) );
 		}
 
 		/// <summary>This method allows you to rotate around AxisA and AxisB, with the specified angles in degrees.</summary>
