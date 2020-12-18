@@ -44,6 +44,8 @@ public class InputManager : MonoBehaviour
         directionLR = Mathf.Clamp ( directionLR, -1f, 1f );
 
         directionUD = Mathf.Clamp ( directionUD, -1f, 1f );
+        //Debug.Log ( directionLR );
+        //Debug.Log ( directionUD );
     }
 
     private void FixedUpdate ( )
