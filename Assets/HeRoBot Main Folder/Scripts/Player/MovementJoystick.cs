@@ -24,7 +24,7 @@ public class MovementJoystick : MonoBehaviour
     void Start()
     {
         joystickOriginalPos = joystickBG.transform.position;
-        joystickRadius = joystickBG.GetComponent<RectTransform> ( ).sizeDelta.y / 4;
+        joystickRadius = joystickBG.GetComponent<RectTransform> ( ).sizeDelta.y / 8;
     }
 
     public void PointerDown()
@@ -39,7 +39,7 @@ public class MovementJoystick : MonoBehaviour
         PointerEventData pointerEventData = baseEventData as PointerEventData;
         Vector2 dragPos = pointerEventData.position;
         joystickVector = ( dragPos - joystickTouchPos ).normalized;
-
+        Debug.Log ( joystickVector );
         float joystickDist = Vector2.Distance ( dragPos, joystickTouchPos );
 
         if(joystickDist < joystickRadius)
