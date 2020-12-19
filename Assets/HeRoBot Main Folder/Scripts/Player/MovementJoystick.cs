@@ -35,7 +35,8 @@ public class MovementJoystick : MonoBehaviour
     [HideInInspector] public bool torchPressed;    //Bool that stores torch pressed
     [HideInInspector] public bool pausedPressed;    //Bool that stores escape pressed
 
-
+    private bool jumpButPressed;
+    private bool torchButPressed;
 
     #endregion
 
@@ -50,7 +51,10 @@ public class MovementJoystick : MonoBehaviour
         joyS.transform.position = Input.mousePosition;
         joySBorder.transform.position = Input.mousePosition;
         joySTouchPos = Input.mousePosition;
-        butStatus.text ="finger Down "+ gameObject.name;
+
+        SetPressed ( );
+
+        butStatus.text = ("crouch pressed  "+ crouchPressed+ " crouchHeld"+crouchHeld);
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -69,7 +73,18 @@ public class MovementJoystick : MonoBehaviour
         {
             joyS.transform.position = joySTouchPos + joySVec2 * joySRadius;
         }
-        butStatus.text = ( "joys. vec " + joySVec2 + " player Move dir " + joySVec2.x );
+
+        if ( joySVec2.x < 0 )
+            directionLR = -1;
+        else if ( joySVec2.x > 0 )
+            directionLR = 1;
+
+        if ( joySVec2.y < 0 )
+            directionUD = -1;
+        else if ( joySVec2.y > 0 )
+            directionUD = 1;
+
+        butStatus.text = ( "joys. vec " + joySVec2 + " player Move X dir " + directionLR + " player Move Y dir " + directionUD );
     }
 
     public void PointerUP()
@@ -77,6 +92,7 @@ public class MovementJoystick : MonoBehaviour
         joySVec2 = Vector2.zero;
         joyS.transform.position = joySStartPos;
         joySBorder.transform.position = joySStartPos;
+        ClearPressed ( );
         butStatus.text = ( "finger Up "+ gameObject.name );
     }
 
@@ -87,14 +103,16 @@ public class MovementJoystick : MonoBehaviour
             shootPressed = true;
         }
         
-        else if( gameObject.name == "Jump" )
+        else if( gameObject.name == "Jump" && !jumpPressed && !jumpButPressed )
         {
+            jumpButPressed = true;
             jumpPressed = true;
         }
 
         else if ( gameObject.name == "Crouch" )
         {
-            crouchPressed = true;
+            crouchPressed = !crouchPressed;
+            crouchHeld = !crouchHeld;
         }
 
         else if ( gameObject.name == "Dash" )
@@ -103,15 +121,11 @@ public class MovementJoystick : MonoBehaviour
             dashPressed = true;
         }
 
-        else if ( gameObject.name == "Torch" && !torchPressed )
+        else if ( gameObject.name == "Torch" )
         {
-            torchPressed = true;
+            torchPressed = !torchPressed;
         }
-        else if( gameObject.name == "Torch" && torchPressed )
-        {
-            torchPressed = false;
-        }
-
+ 
         else if ( gameObject.name == "Pause" )
         {
             pausedPressed = true;
@@ -127,11 +141,17 @@ public class MovementJoystick : MonoBehaviour
             shootPressed = false;
         }
 
-        else if ( gameObject.name == "Crouch" )
+        else if ( gameObject.name == "Jump" && jumpButPressed)
         {
-            crouchPressed = false;
+            jumpButPressed = false;
+            jumpPressed = false;           
         }
 
+        directionLR = directionUD = 0;
+        jumpButPressed = false;
+        jumpPressed = false;
+        jumpHeld = false;
+        
         boolStatus.text = gameObject.name + " released";
     }
 

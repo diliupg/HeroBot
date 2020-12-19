@@ -12,6 +12,18 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     [HideInInspector] public Rigidbody2D playerRb;
     [HideInInspector] public BoxCollider2D bodyCollider;
 
+    [SerializeField] private ParticleSystem gunFlash;
+    [SerializeField] private ParticleSystem dustOnLand;
+    [SerializeField] private ParticleSystem runDust;
+
+    [SerializeField] private MovementJoystick joystick;
+    [SerializeField] private MovementJoystick jumpBut;
+    [SerializeField] private MovementJoystick crouchBut;
+    [SerializeField] private MovementJoystick fireBut;
+    [SerializeField] private MovementJoystick pauseBut;
+    [SerializeField] private MovementJoystick torchBut;
+    [SerializeField] private MovementJoystick speedBut;
+
     [HideInInspector] public bool isDashing;
     [HideInInspector] public bool lazerspriteFlipped;
 
@@ -27,9 +39,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     public Light2D torch;
 
-    public ParticleSystem gunFlash;
-    public ParticleSystem dustOnLand;
-    public ParticleSystem runDust;
+
     #endregion
 
     public LayerMask whatIsGround;
@@ -92,16 +102,16 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     #region Ints
     public int playerFacingRignt;            // direction player is facing used in playerRaycast.cs
 
-    private int damageVal;
-    private int length;
-    private int speedParamID;                // ID of the speed paramter in the Animator
-    private int isGroundedParamID;           // ID of the ground paramter in the Animator
-    private int fallParamID;                 // ID of the fall paramter in the Animator
-    private int isCrouchingParamID;          // ID of the croucn paramter in the Animator
-    private int iSShootingParamID;           // ID of the shoot paramter in the Animator
-    private int isDashingParamID;            // ID of the jump paramter in the Animator
-    private int isJumpingParamID;            // ID of the isJumping paramter in the Animator
-    private int isHangingParamID;            // ID of the grabWall parameter in the Animator
+    //private int damageVal;
+    //private int length;
+    //private int speedParamID;                // ID of the speed paramter in the Animator
+    //private int isGroundedParamID;           // ID of the ground paramter in the Animator
+    //private int fallParamID;                 // ID of the fall paramter in the Animator
+    //private int isCrouchingParamID;          // ID of the croucn paramter in the Animator
+    //private int iSShootingParamID;           // ID of the shoot paramter in the Animator
+    //private int isDashingParamID;            // ID of the jump paramter in the Animator
+    //private int isJumpingParamID;            // ID of the isJumping paramter in the Animator
+    //private int isHangingParamID;            // ID of the grabWall parameter in the Animator
 
     private Vector3 scale;
     #endregion
@@ -142,6 +152,8 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         playerAnimations = GetComponent<PlayerAnimations> ( );
         playerRaycast = GetComponent<PlayerRaycast> ( );
         bodyCollider = GetComponent<BoxCollider2D> ( );
+
+        //input = GetComponent<InputManager> ( );
         input = GetComponent<InputManager> ( );
 
         respawnPosition = transform.position;
@@ -177,10 +189,10 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         else
             canMove = true;
 
-        if ( input.pausedPressed )
+        if ( pauseBut.pausedPressed )
             EscapePressed ( );
 
-        directionUD = input.directionUD;
+        directionUD = joystick.directionUD;
 
         if ( playerInWater )
         {
@@ -199,7 +211,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     {
         if ( playerHealth.knockBackCounter <= 0 && canMove && playerHealth.isAlive && playerHealth.shield )
         {
-            directionLR = input.directionLR;
+            directionLR = joystick.directionLR;
 
             if ( !playerRaycast.isHanging )
                 FlipPlayer ( );
@@ -212,7 +224,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
             GetGun ( );
 
-            if ( input.shootPressed && !playerRaycast.isHanging && canShoot )
+            if ( fireBut.shootPressed && !playerRaycast.isHanging && canShoot )
             {
                 StartCoroutine ( Fire ( FireLazerWaitTime ) );
             }
@@ -300,11 +312,11 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
         #region Crouching Stuff
         //Handle crouching input. If holding the crouch button but not crouching, crouch
-        if ( input.crouchHeld && !isCrouching && !isJumping )
+        if ( crouchBut.crouchHeld && !isCrouching && !isJumping )
             Crouch ( );
 
         //Otherwise, if not holding crouch but currently crouching, stand up
-        else if ( !input.crouchHeld && isCrouching )
+        else if ( !crouchBut.crouchHeld && isCrouching )
             StandUp ( );
 
         //Otherwise, if crouching and no longer on the ground, stand up
@@ -312,7 +324,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
             StandUp ( );
 
         //Calculate the desired velocity based on inputs
-        float xVelocity = speed * input.directionLR;
+        float xVelocity = speed * joystick.directionLR;
 
         //If the player is crouching, reduce the velocity
         if ( isCrouching )
@@ -323,12 +335,11 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         #endregion
 
         #region Dash Stuff
-        if ( input.dashPressed && !canDash )
+        if ( speedBut.dashPressed && !canDash )
         {
             isDashing = true;
             canDash = true;
         }
-
 
         if ( isDashing && isOnGround && canDash )
         {
@@ -393,7 +404,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         {
             #region IsHanging Faling
             //If crouch is pressed...
-            if ( input.crouchPressed )
+            if ( crouchBut.crouchPressed )
             {
                 //...let go...
                 playerRaycast.isHanging = false;
@@ -406,7 +417,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
             #region isHanging Jumping
             //If jump is pressed...
-            if ( input.jumpPressed )
+            if ( jumpBut.jumpPressed )
             {
                 //...let go...
                 playerRaycast.isHanging = false;
@@ -425,7 +436,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         #region Jump stuff
         //If the jump key is pressed AND the player isn't already jumping AND EITHER
         //the player is on the ground or within the coyote time window...
-        if ( input.jumpPressed && !isJumping && ( (isOnGround || playerInWater) || coyoteTime > Time.time ) )
+        if ( jumpBut.jumpPressed && !isJumping && ( (isOnGround || playerInWater) || coyoteTime > Time.time ) )
         {
             transform.rotation = Quaternion.identity; // rotate player to normal in case he is swimming when he jumps
 
@@ -452,7 +463,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         else if ( isJumping )
         {
             //...and the jump button is held, apply an incremental force to the rigidbody...
-            if ( input.jumpHeld )
+            if ( jumpBut.jumpHeld )
             {
                 playerRb.AddForce ( new Vector2 ( 0f, jumpHoldForce ), ForceMode2D.Impulse );
             }
@@ -598,7 +609,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     void EscapePressed()
     {
-        if(input.pausedPressed)
+        if(pauseBut.pausedPressed)
         {
             if ( OnEscapePressed != null )
                 OnEscapePressed ( );
@@ -607,8 +618,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     private void OnTriggerEnter2D ( Collider2D collision )
     {
-
-
         if ( collision.CompareTag ( "CheckPoint" ) )
         {
             respawnPosition = collision.transform.position;
@@ -628,9 +637,9 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     void TorchOnOff ( )
     {
-        if ( input.torchPressed )
+        if ( torchBut.torchPressed )
         {
-            torch.enabled = !torch.enabled;
+            torch.enabled = true;
         }
     }
 

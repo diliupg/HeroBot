@@ -295,6 +295,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 1013008146}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: jumpBut
+      value: 
+      objectReference: {fileID: 1923121590}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: crouchBut
+      value: 
+      objectReference: {fileID: 1623004891}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: fireBut
+      value: 
+      objectReference: {fileID: 215137789}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: pauseBut
+      value: 
+      objectReference: {fileID: 1029080825}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: torchBut
+      value: 
+      objectReference: {fileID: 1517068276}
+    - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: speedBut
+      value: 
+      objectReference: {fileID: 677359401}
     - target: {fileID: 7922049472711691996, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
       propertyPath: m_Name
@@ -887,6 +922,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 194959787}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &215137789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8345583394228100983, guid: fca585b7784f45a4d93315d42896ec1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 515006108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &230234781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1344959414067782907, guid: b7c334eef379a1548b4756f7a531134f,
@@ -1636,18 +1683,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7c334eef379a1548b4756f7a531134f, type: 3}
---- !u!114 &413486119 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 413486119, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &421314556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1819,47 +1854,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1029080825}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MovementJoystick, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PointerDown
-      objectReference: {fileID: 0}
-    - target: {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1350614875730578640, guid: fca585b7784f45a4d93315d42896ec1a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -3.800293
-      objectReference: {fileID: 0}
     - target: {fileID: 1350614876156440294, guid: fca585b7784f45a4d93315d42896ec1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1970,22 +1964,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8748852062654483251, guid: fca585b7784f45a4d93315d42896ec1a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -3.800293
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104116631247143485, guid: fca585b7784f45a4d93315d42896ec1a,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 4.000244
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 753509899, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-    - {fileID: 753509900, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-    - {fileID: 753509901, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-    - {fileID: 753509902, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
-    - {fileID: 753509903, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
 --- !u!1 &527778663
 GameObject:
@@ -2189,53 +2168,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5caa7363831fae74c9b13d8a2e7e3971, type: 3}
---- !u!1 &677359399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 998299922, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &677359401 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 677359401, guid: fca585b7784f45a4d93315d42896ec1a,
     type: 3}
   m_PrefabInstance: {fileID: 515006108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677359399}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &677359402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677359399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 677359401}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!4 &678378295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6587435457839236088, guid: 962faa1226b68894d9f62d6c612f13e9,
@@ -3087,90 +3031,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 307ddbd6d5f033f48bc903d6a6a37460, type: 3}
+--- !u!114 &1013008146 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1013008146, guid: fca585b7784f45a4d93315d42896ec1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 515006108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1022784785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1344959414067782907, guid: b7c334eef379a1548b4756f7a531134f,
     type: 3}
   m_PrefabInstance: {fileID: 856845538}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1029080823 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 753509897, guid: fca585b7784f45a4d93315d42896ec1a,
+--- !u!114 &1029080825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1029080825, guid: fca585b7784f45a4d93315d42896ec1a,
     type: 3}
   m_PrefabInstance: {fileID: 515006108}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1029080824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029080823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1029080825}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
---- !u!114 &1029080825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029080823}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joyS: {fileID: 1029080823}
-  joySBorder: {fileID: 1029080823}
-  butStatus: {fileID: 1253658608}
-  boolStatus: {fileID: 413486119}
-  joySVec2: {x: 0, y: 0}
-  joySTouchPos: {x: 0, y: 0}
-  joySStartPos: {x: 0, y: 0}
-  joySRadius: 0
-  directionLR: 0
-  directionUD: 0
-  jumpHeld: 0
-  jumpPressed: 0
-  crouchHeld: 0
-  crouchPressed: 0
-  shootPressed: 0
-  dashPressed: 0
-  torchPressed: 0
-  pausedPressed: 0
---- !u!114 &1029080826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029080823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!213 &1046531121
 Sprite:
   m_ObjectHideFlags: 0
@@ -3804,18 +3694,6 @@ Transform:
   m_Father: {fileID: 1559372196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1253658608 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1253658608, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1273759801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,53 +4425,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1428156378}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1517068274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2092727718, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1517068276 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1517068276, guid: fca585b7784f45a4d93315d42896ec1a,
     type: 3}
   m_PrefabInstance: {fileID: 515006108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517068274}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1517068277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517068274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1517068276}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1521779128
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,69 +4734,18 @@ Transform:
   m_Father: {fileID: 403980750}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -182.1}
---- !u!1 &1623004889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1261333306, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1623004891 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1623004891, guid: fca585b7784f45a4d93315d42896ec1a,
     type: 3}
   m_PrefabInstance: {fileID: 515006108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623004889}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1623004892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623004889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1623004891}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerUP
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1623004891}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1668784294
 GameObject:
   m_ObjectHideFlags: 0
@@ -5547,53 +5339,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 412431036}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1923121588 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1990703433, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1923121590 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1923121590, guid: fca585b7784f45a4d93315d42896ec1a,
     type: 3}
   m_PrefabInstance: {fileID: 515006108}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923121588}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 489342dd7df827b4daf5a789ddeddd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1923121591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923121588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1923121590}
-          m_TargetAssemblyTypeName: MovementJoystick, Assembly-CSharp
-          m_MethodName: PointerDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1932402896
 GameObject:
   m_ObjectHideFlags: 0
