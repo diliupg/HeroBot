@@ -6,8 +6,8 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public CinemachineVirtualCamera NormalVCam;
-    public CinemachineVirtualCamera ZoomUpVCam;
-    public CinemachineVirtualCamera ZoomDownVCam;
+    //public CinemachineVirtualCamera ZoomUpVCam;
+   // public CinemachineVirtualCamera ZoomDownVCam;
 
     private int camNormal = 1;
     private int camUp = -1;
@@ -22,8 +22,8 @@ public class CameraManager : MonoBehaviour
         GameManager.RegisterCameraManager ( this );
 
         NormalVCam.Priority = camNormal;
-        ZoomUpVCam.Priority = camUp;
-        ZoomDownVCam.Priority = camDown;
+        //ZoomUpVCam.Priority = camUp;
+        //ZoomDownVCam.Priority = camDown;
         centered = true;
 
     }
@@ -49,7 +49,7 @@ public class CameraManager : MonoBehaviour
             centered = true;
             down = false;
 
-            SetCamPriority ( );
+            //SetCamPriority ( );
         }
         else if(value > 0 && !up )
         {
@@ -60,7 +60,7 @@ public class CameraManager : MonoBehaviour
             down = false;
             centered = false;
 
-            SetCamPriority ( );
+            //SetCamPriority ( );
 
         }
         else if ( value < 0 && !down )
@@ -72,14 +72,14 @@ public class CameraManager : MonoBehaviour
             down = true;
             centered = false;
 
-            SetCamPriority ( );
+            //SetCamPriority ( );
         }
     }
 
-    void SetCamPriority()
-    {
-        ZoomUpVCam.Priority = camUp;
-        ZoomDownVCam.Priority = camDown;
-    }
+    //void SetCamPriority()
+    //{
+    //    //ZoomUpVCam.Priority = camUp;
+    //    //ZoomDownVCam.Priority = camDown;
+    //}
 
 }

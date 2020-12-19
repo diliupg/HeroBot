@@ -69,9 +69,13 @@ public class MovementJoystick : MonoBehaviour
         if ( joySVec2.y < 0 )
             directionUD = -1;
         else if ( joySVec2.y > 0 )
+        {
             directionUD = 1;
 
-        butStatus.text = ( "joys. vec " + joySVec2 + " player Move X dir " + directionLR + " player Move Y dir " + directionUD );
+        }
+            
+
+        //butStatus.text = ( "joys. vec " + joySVec2 + " player Move X dir " + directionLR + " player Move Y dir " + directionUD );
     }
 
     public void PointerUP()
@@ -82,6 +86,6 @@ public class MovementJoystick : MonoBehaviour
 
         directionLR = directionUD = 0;
 
-        butStatus.text = ( "finger Up "+ gameObject.name );
+        //butStatus.text = ( "finger Up "+ gameObject.name );
     }
 }
