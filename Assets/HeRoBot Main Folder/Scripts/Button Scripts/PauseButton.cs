@@ -6,22 +6,20 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
+using Lean.Touch;
 
 public class PauseButton : MonoBehaviour
 {
-    #region Public Fields
-	
-	
-    #endregion
-	
-    void Start()
-    {
-        
-    }
+	#region Public Fields
+
+	public bool pausePressed;
+
+	#endregion
 
 
-    void Update()
-    {
-        
-    }
+	public void PauseGame (  )
+	{
+		pausePressed = true;
+	}
+
 }

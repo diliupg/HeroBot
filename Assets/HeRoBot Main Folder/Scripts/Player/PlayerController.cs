@@ -17,12 +17,12 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     [SerializeField] private ParticleSystem runDust;
 
     [SerializeField] private MovementJoystick joystick;
-    [SerializeField] private MovementJoystick jumpBut;
-    [SerializeField] private MovementJoystick crouchBut;
-    [SerializeField] private MovementJoystick fireBut;
-    [SerializeField] private MovementJoystick pauseBut;
-    [SerializeField] private MovementJoystick torchBut;
-    [SerializeField] private MovementJoystick speedBut;
+    [SerializeField] private JumpButton jumpBut;
+    [SerializeField] private CrouchButton crouchBut;
+    [SerializeField] private ShootButton fireBut;
+    [SerializeField] private PauseButton pauseBut;
+    [SerializeField] private TorchButton torchBut;
+    [SerializeField] private SpeedButton speedBut;
 
     [HideInInspector] public bool isDashing;
     [HideInInspector] public bool lazerspriteFlipped;
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         else
             canMove = true;
 
-        if ( pauseBut.pausedPressed )
+        if ( pauseBut.pausePressed )
             EscapePressed ( );
 
         directionUD = joystick.directionUD;
@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         #endregion
 
         #region Dash Stuff
-        if ( speedBut.dashPressed && !canDash )
+        if ( speedBut.speedPressed && !canDash )
         {
             isDashing = true;
             canDash = true;
@@ -471,6 +471,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
             if ( jumpTime <= Time.time )
             {
                 isJumping = false;
+                jumpBut.jumpPressed = false;
             }
         }
         #endregion
@@ -545,6 +546,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         canDash = true;
         yield return new WaitForSeconds ( dashTimerWait );
         canDash = false;
+        speedBut.speedPressed = false;
     }
 
     void StompEm ( )
@@ -609,8 +611,9 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     void EscapePressed()
     {
-        if(pauseBut.pausedPressed)
+        if(pauseBut.pausePressed)
         {
+            pauseBut.pausePressed = false;
             if ( OnEscapePressed != null )
                 OnEscapePressed ( );
         }
@@ -641,6 +644,8 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         {
             torch.enabled = true;
         }
+        else
+            torch.enabled = false;
     }
 
     void SetPlayerCanShoot()

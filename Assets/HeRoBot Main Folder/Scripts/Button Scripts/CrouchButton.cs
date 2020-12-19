@@ -6,22 +6,21 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
+using Lean.Touch;
 
 public class CrouchButton : MonoBehaviour
 {
-    #region Public Fields
-	
-	
-    #endregion
-	
-    void Start()
-    {
-        
-    }
+	#region Public Fields
 
+	public bool crouchPressed;
+	public bool crouchHeld;
 
-    void Update()
+	#endregion
+
+	public void SetCrouch()
     {
-        
-    }
+		crouchPressed = !crouchPressed;
+		crouchHeld = !crouchHeld;
+	}
+
 }

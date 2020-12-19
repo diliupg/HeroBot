@@ -6,22 +6,19 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
+using Lean.Touch;
 
 public class JumpButton : MonoBehaviour
 {
-    #region Public Fields
-	
-	
-    #endregion
-	
-    void Start()
-    {
-        
-    }
+	#region Public Fields
 
+	public bool jumpPressed;
+	public bool jumpHeld;
 
-    void Update()
+	#endregion
+
+	public void SetJump()
     {
-        
+		jumpPressed = true;
     }
 }
