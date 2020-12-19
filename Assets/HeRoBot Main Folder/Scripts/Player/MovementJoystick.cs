@@ -7,6 +7,7 @@ Copyright (c) Diliupg 2020
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MovementJoystick : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class MovementJoystick : MonoBehaviour
 
     public GameObject joyS;
     public GameObject joySBorder;
+    [SerializeField] private Text text;
+
     public Vector2 joySVec2;
     public Vector2 joySTouchPos;
     public Vector2 joySStartPos;
     public float joySRadius;
+
+    
 
     #endregion
 	
@@ -32,7 +37,7 @@ public class MovementJoystick : MonoBehaviour
         joyS.transform.position = Input.mousePosition;
         joySBorder.transform.position = Input.mousePosition;
         joySTouchPos = Input.mousePosition;
-        Debug.Log ( "finger Down" );
+        text.text ="finger Down";
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -51,7 +56,7 @@ public class MovementJoystick : MonoBehaviour
         {
             joyS.transform.position = joySTouchPos + joySVec2 * joySRadius;
         }
-        Debug.Log ( "joystick trans. Pos "+joyS.transform.position );
+        text.text = ( "joystick trans. Pos "+joyS.transform.position );
     }
 
     public void PointerUP()
@@ -59,6 +64,6 @@ public class MovementJoystick : MonoBehaviour
         joySVec2 = Vector2.zero;
         joyS.transform.position = joySStartPos;
         joySBorder.transform.position = joySStartPos;
-        Debug.Log ( "finger Up" );
+        text.text = ( "finger Up" );
     }
 }
