@@ -69,7 +69,7 @@ public class MovementJoystick : MonoBehaviour
         {
             joyS.transform.position = joySTouchPos + joySVec2 * joySRadius;
         }
-        butStatus.text = ( "joystick vector " + joySVec2 );
+        butStatus.text = ( "joys. vec " + joySVec2 + " player Move dir " + joySVec2.x );
     }
 
     public void PointerUP()
