@@ -39,6 +39,7 @@ public class MovementJoystick : MonoBehaviour
 
     public void PointerDown()
     {
+        var d = Input.t
         joyS.transform.position = Input.mousePosition;
         joySBorder.transform.position = Input.mousePosition;
         joySTouchPos = Input.mousePosition;
