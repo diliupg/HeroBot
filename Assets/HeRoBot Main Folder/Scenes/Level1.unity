@@ -1919,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1261333307, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 103.870026
+      value: 103.87012
       objectReference: {fileID: 0}
     - target: {fileID: 1261333307, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1988,6 +1988,14 @@ PrefabInstance:
     - target: {fileID: 1990703440, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_Color.b
       value: 0.5982089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092727719, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -387.2798
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092727719, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 103.87012
       objectReference: {fileID: 0}
     - target: {fileID: 2092727725, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_Color.a
@@ -2873,6 +2881,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &939926273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4201121271476541447, guid: 52fd471084884fb4ba97653b45a887a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4201121270926149782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &939926276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939926273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &963136243
 GameObject:
   m_ObjectHideFlags: 0
@@ -39405,7 +39450,17 @@ PrefabInstance:
     - target: {fileID: 3515225746836140358, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: field of view
-      value: 64
+      value: 70.43519
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140358, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140358, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_FocalLength
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3515225746836140359, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
@@ -39416,6 +39471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.59999955
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140363, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4201121271476541444, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
@@ -39425,7 +39485,7 @@ PrefabInstance:
     - target: {fileID: 4201121271476541444, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 64
+      value: 70.43519
       objectReference: {fileID: 0}
     - target: {fileID: 4201121271476541445, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
@@ -39436,6 +39496,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.59999955
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201121271476541447, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4201121271776304897, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
