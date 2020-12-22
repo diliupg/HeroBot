@@ -104,48 +104,48 @@ public class InputManager : MonoBehaviour
     //    dPadCrouchPrev = dPadCrouch;
     //}
 
-    void MobileInputs ( )
-    {
-        var fingers = Lean.Touch.LeanTouch.GetFingers ( true, false );
+    //void MobileInputs ( )
+    //{
+    //    var fingers = Lean.Touch.LeanTouch.GetFingers ( true, false );
         
-        var delta = Lean.Touch.LeanGesture.GetScaledDelta ( fingers );
+    //    var delta = Lean.Touch.LeanGesture.GetScaledDelta ( fingers );
 
-        if ( delta != Vector2.zero )
-        {
-            // Horizontal
-            if ( Mathf.Abs ( delta.x ) > Mathf.Abs ( delta.y ) )
-            {
-                // Right
-                if ( delta.x > 0.0f )
-                {
-                    Debug.Log ( "RIGHT" );
-                    directionLR = 1;
-                }
-                // Left
-                else
-                {
-                    Debug.Log ( "LEFT" );
-                    directionLR = -1;
-                }
-            }
-            // Vertical
-            else
-            {
-                // Up
-                if ( delta.y > 0.0f )
-                {
-                    Debug.Log ( "UP" );
-                    directionUD = 1;
-                }
-                // Down
-                else
-                {
-                    Debug.Log ( "DOWN" );
-                    directionUD = -1;
-                }
-            }
-        }
-    }
+    //    if ( delta != Vector2.zero )
+    //    {
+    //        // Horizontal
+    //        if ( Mathf.Abs ( delta.x ) > Mathf.Abs ( delta.y ) )
+    //        {
+    //            // Right
+    //            if ( delta.x > 0.0f )
+    //            {
+    //                Debug.Log ( "RIGHT" );
+    //                directionLR = 1;
+    //            }
+    //            // Left
+    //            else
+    //            {
+    //                Debug.Log ( "LEFT" );
+    //                directionLR = -1;
+    //            }
+    //        }
+    //        // Vertical
+    //        else
+    //        {
+    //            // Up
+    //            if ( delta.y > 0.0f )
+    //            {
+    //                Debug.Log ( "UP" );
+    //                directionUD = 1;
+    //            }
+    //            // Down
+    //            else
+    //            {
+    //                Debug.Log ( "DOWN" );
+    //                directionUD = -1;
+    //            }
+    //        }
+    //    }
+    //}
 
     void ProcessInputs ( )
     {

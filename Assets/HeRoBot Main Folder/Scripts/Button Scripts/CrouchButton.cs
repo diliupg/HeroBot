@@ -6,12 +6,16 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
-using Lean.Touch;
+using UnityEngine.EventSystems;
 
-public class CrouchButton : MonoBehaviour
+public class CrouchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
 
+	[HideInInspector]
+	public bool Pressed;
+
+	private bool touched;
 	public bool crouchPressed;
 	public bool crouchHeld;
 
@@ -19,8 +23,22 @@ public class CrouchButton : MonoBehaviour
 
 	public void SetCrouch()
     {
-		crouchPressed = !crouchPressed;
-		crouchHeld = !crouchHeld;
+		if(Pressed && !touched)
+        {
+			crouchPressed = !crouchPressed;
+			crouchHeld = !crouchHeld;
+			touched = true;
+		}
 	}
 
+	public void OnPointerDown ( PointerEventData eventData )
+	{
+		Pressed = true;
+	}
+
+	public void OnPointerUp ( PointerEventData eventData )
+	{
+		Pressed = false;
+		touched = false;
+	}
 }

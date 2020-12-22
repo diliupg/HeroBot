@@ -13,24 +13,36 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
-using Lean.Touch;
+using UnityEngine.EventSystems;
 
-public class ShootButton : MonoBehaviour
+public class ShootButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
 
+	[HideInInspector]
+	public bool Pressed;
 	public bool shootPressed;
 
 	#endregion
 
 	public void FireLazer (  )
 	{
-		shootPressed = true;
+		shootPressed = Pressed;
 	}
 
 	public void StopFiring()
     {
-		shootPressed = false;
+		shootPressed = Pressed;
     }
+
+	public void OnPointerDown ( PointerEventData eventData )
+	{
+		Pressed = true;
+	}
+
+	public void OnPointerUp ( PointerEventData eventData )
+	{
+		Pressed = false;
+	}
 
 }

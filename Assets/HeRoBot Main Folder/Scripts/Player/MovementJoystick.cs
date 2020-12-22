@@ -39,7 +39,6 @@ public class MovementJoystick : MonoBehaviour
 
     public void PointerDown()
     {
-        var d = Input.t
         joyS.transform.position = Input.mousePosition;
         joySBorder.transform.position = Input.mousePosition;
         joySTouchPos = Input.mousePosition;
@@ -86,7 +85,7 @@ public class MovementJoystick : MonoBehaviour
         joySBorder.transform.position = joySStartPos;
 
         directionLR = directionUD = 0;
-
-        //butStatus.text = ( "finger Up "+ gameObject.name );
     }
+
+   
 }

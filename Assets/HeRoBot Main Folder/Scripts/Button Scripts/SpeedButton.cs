@@ -13,18 +13,36 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
-using Lean.Touch;
+using UnityEngine.EventSystems;
 
-public class SpeedButton : MonoBehaviour
+public class SpeedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
-
+	private bool touched;
 	public bool speedPressed;
+
+	[HideInInspector]
+	public bool Pressed;
 
 	#endregion
 
 	public void SpeedBurst (  )
 	{
-		speedPressed = true;
+		if(Pressed && !touched)
+        {
+			speedPressed = true;
+			touched = true;
+		}		
+	}
+
+	public void OnPointerDown ( PointerEventData eventData )
+	{
+		Pressed = true;
+	}
+
+	public void OnPointerUp ( PointerEventData eventData )
+	{
+		Pressed = false;
+		touched = false;
 	}
 }

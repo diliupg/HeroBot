@@ -6,12 +6,15 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
-using Lean.Touch;
+using UnityEngine.EventSystems;
 
-public class JumpButton : MonoBehaviour
+public class JumpButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
 
+	[HideInInspector]
+	public bool Pressed;
+	private bool touched;
 	public bool jumpPressed;
 	public bool jumpHeld;
 
@@ -19,6 +22,21 @@ public class JumpButton : MonoBehaviour
 
 	public void SetJump()
     {
-		jumpPressed = true;
+		if(Pressed && !touched)
+        {
+			jumpPressed = true;
+			touched = true;
+		}		
     }
+
+	public void OnPointerDown ( PointerEventData eventData )
+	{
+		Pressed = true;
+	}
+
+	public void OnPointerUp ( PointerEventData eventData )
+	{
+		Pressed = false;
+		touched = false;
+	}
 }

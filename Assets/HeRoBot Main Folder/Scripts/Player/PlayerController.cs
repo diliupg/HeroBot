@@ -190,7 +190,11 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
             canMove = true;
 
         if ( pauseBut.pausePressed )
+        {
             EscapePressed ( );
+            Debug.Log ( "PausePressed" );
+        }
+           
 
         directionUD = joystick.directionUD;
 
@@ -613,6 +617,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     {
         if(pauseBut.pausePressed)
         {
+            Debug.Log ( "EscapePressed" );
             pauseBut.pausePressed = false;
             if ( OnEscapePressed != null )
                 OnEscapePressed ( );
