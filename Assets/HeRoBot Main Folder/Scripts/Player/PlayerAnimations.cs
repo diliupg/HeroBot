@@ -59,12 +59,14 @@ public class PlayerAnimations : MonoBehaviour
 
     void Update()
     {
+        if(playerController.canShoot == true)
+            Debug.Log ( playerController.canShoot );
         playerAnimator.SetFloat ( speedParamID, Mathf.Abs ( playerController.directionLR ) );
         playerAnimator.SetFloat ( fallParamID, playerRb.velocity.y );
         playerAnimator.SetBool ( isHangingParamID, playerRaycast.isHanging );
         playerAnimator.SetBool ( isGroundedParamID, playerRaycast.isOnGround );
         playerAnimator.SetBool ( isCrouchingParamID, playerController.isCrouching );
-        playerAnimator.SetBool ( iSShootingParamID, input.shootPressed );
+        playerAnimator.SetBool ( iSShootingParamID, playerController.canShoot );
         playerAnimator.SetBool ( isDashingParamID, playerController.isDashing );
         playerAnimator.SetBool ( isJumpingParamID, playerController.isJumping );
         playerAnimator.SetBool ( isSwimmingParamID, playerController.MoveinWater );

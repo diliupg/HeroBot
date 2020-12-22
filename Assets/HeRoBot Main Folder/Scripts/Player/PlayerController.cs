@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     [SerializeField] private ParticleSystem dustOnLand;
     [SerializeField] private ParticleSystem runDust;
 
-    [SerializeField] private MovementJoystick joystick;
+    [SerializeField] private Joystick joystick;
     [SerializeField] private JumpButton jumpBut;
     [SerializeField] private CrouchButton crouchBut;
     [SerializeField] private ShootButton fireBut;
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         canDash = false;
         isDashing = false;
         lazerspriteFlipped = false;
-        canShoot = true;
+        canShoot = false;
         torch.enabled = false;
         #endregion
 
