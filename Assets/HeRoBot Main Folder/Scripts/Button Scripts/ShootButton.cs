@@ -28,12 +28,14 @@ public class ShootButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	public void FireLazer (  )
 	{
 		shootPressed = Pressed;
+		Debug.Log ( shootPressed );
 	}
 
 	public void StopFiring()
     {
 		shootPressed = Pressed;
-    }
+		Debug.Log ( shootPressed );
+	}
 
 	public void OnPointerDown ( PointerEventData eventData )
 	{
@@ -44,5 +46,4 @@ public class ShootButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	{
 		Pressed = false;
 	}
-
 }
