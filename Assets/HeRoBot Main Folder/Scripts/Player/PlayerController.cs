@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     public bool playerInWater;
     public bool MoveinWater;
     //public bool invincible;                 // when on player stays invincible till turned off
-
+    public bool isShooting;
     private bool torchOnOff;
 
     [HideInInspector]
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         canDash = false;
         isDashing = false;
         lazerspriteFlipped = false;
-        canShoot = false;
+        canShoot = true;
         torch.enabled = false;
         #endregion
 
@@ -230,8 +230,16 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
             if ( fireBut.shootPressed && !playerRaycast.isHanging && canShoot )
             {
+                isShooting = true;
+
                 StartCoroutine ( Fire ( FireLazerWaitTime ) );
             }
+             else if (!fireBut.shootPressed)
+            {
+                isShooting = false;
+            }
+                
+
         }
 
         if ( !reduceLife && playerHealth.isAlive && playerRb.bodyType != RigidbodyType2D.Static )
