@@ -6,13 +6,12 @@ Copyright (c) Diliupg 2020
 */
 
 using UnityEngine;
-using UnityEngine.EventSystems;
+//using UnityEngine.EventSystems;
 
-public class ButtonManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class ButtonManager : MonoBehaviour
 {
 	#region Public Fields
 
-		[HideInInspector]
 	public bool Pressed;
 
 	public bool shootPressed;
@@ -26,61 +25,59 @@ public class ButtonManager : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
 
 	public bool torchPressed;
 
+
+	public bool jumpPressed;
+	public bool jumpHeld;
+
 	#endregion
 
 	public void SetCrouch ( )
 	{
-		if ( Pressed )
-		{
-			crouchPressed = !crouchPressed;
-			crouchHeld = !crouchHeld;
-		}
+		crouchPressed = !crouchPressed;
+		crouchHeld = !crouchHeld;
 	}
 
 	public void FireLazer ( )
 	{
-		shootPressed = Pressed;
+		shootPressed = true;
 
 	}
 
 	public void StopFiring ( )
 	{
-		shootPressed = Pressed;
+		shootPressed = false;
 
 	}
 
 	public void SpeedBurst ( )
 	{
-		if ( Pressed )
-		{
-			speedPressed = true;
-		}
+		speedPressed = true;
 	}
 
 	public void PauseGame ( )
 	{
-		if ( Pressed )
-		{
-			pausePressed = !pausePressed;
-		}
+		pausePressed = !pausePressed;
 	}
 
 	public void TorchOnOff ( )
 	{
-		if ( Pressed )
-		{
-			torchPressed = !torchPressed;
-		}
+		torchPressed = !torchPressed;
 	}
 
-	public void OnPointerDown ( PointerEventData eventData )
+    public void SetJump ( )
 	{
-		Pressed = true;
+		jumpPressed = true;
 	}
 
-	public void OnPointerUp ( PointerEventData eventData )
-	{
-		Pressed = false;
-		//touched = false;
-	}
+	//public void OnPointerDown ( PointerEventData eventData )
+	//{
+	//	Pressed = true;
+	//	Debug.Log ( "from ButtonScript: pressed" );
+	//}
+
+	//public void OnPointerUp ( PointerEventData eventData )
+	//{
+	//	Pressed = false;
+	//	Debug.Log ( "from ButtonScript: released" );
+	//}
 }

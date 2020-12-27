@@ -14,7 +14,7 @@ public class JumpButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
 	[HideInInspector]
 	public bool Pressed;
-	private bool touched;
+
 	public bool jumpPressed;
 	public bool jumpHeld;
 
@@ -22,10 +22,9 @@ public class JumpButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
 	public void SetJump()
     {
-		if(Pressed && !touched)
+		if( Pressed )
         {
 			jumpPressed = true;
-			touched = true;
 		}		
     }
 
@@ -37,6 +36,6 @@ public class JumpButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	public void OnPointerUp ( PointerEventData eventData )
 	{
 		Pressed = false;
-		touched = false;
+
 	}
 }

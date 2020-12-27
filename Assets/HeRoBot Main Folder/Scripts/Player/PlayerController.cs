@@ -17,12 +17,12 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     [SerializeField] private ParticleSystem runDust;
 
     [SerializeField] private Joystick joystick;
-    [SerializeField] private JumpButton jumpBut;
-    [SerializeField] private CrouchButton crouchBut;
-    [SerializeField] private ShootButton fireBut;
-    [SerializeField] private PauseButton pauseBut;
-    [SerializeField] private TorchButton torchBut;
-    [SerializeField] private SpeedButton speedBut;
+    [SerializeField] private ButtonManager jumpBut;
+    [SerializeField] private ButtonManager crouchBut;
+    [SerializeField] private ButtonManager fireBut;
+    [SerializeField] private ButtonManager pauseBut;
+    [SerializeField] private ButtonManager torchBut;
+    [SerializeField] private ButtonManager speedBut;
 
     [HideInInspector] public bool isDashing;
     [HideInInspector] public bool lazerspriteFlipped;
@@ -192,7 +192,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         if ( pauseBut.pausePressed )
         {
             EscapePressed ( );
-            Debug.Log ( "PausePressed" );
         }
            
 
@@ -625,7 +624,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     {
         if(pauseBut.pausePressed)
         {
-            Debug.Log ( "EscapePressed" );
             pauseBut.pausePressed = false;
             if ( OnEscapePressed != null )
                 OnEscapePressed ( );
