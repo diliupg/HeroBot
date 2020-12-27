@@ -31,14 +31,12 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     private PlayerAnimations playerAnimations;
     private PlayerRaycast playerRaycast;
 
-    private InputManager input;          //The current inputs for the player
     private Transform gun;
     private ObjectPooler objectPooler;
 
     public GameObject stompBox;
 
     public Light2D torch;
-
 
     #endregion
 
@@ -102,17 +100,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     #region Ints
     public int playerFacingRignt;            // direction player is facing used in playerRaycast.cs
 
-    //private int damageVal;
-    //private int length;
-    //private int speedParamID;                // ID of the speed paramter in the Animator
-    //private int isGroundedParamID;           // ID of the ground paramter in the Animator
-    //private int fallParamID;                 // ID of the fall paramter in the Animator
-    //private int isCrouchingParamID;          // ID of the croucn paramter in the Animator
-    //private int iSShootingParamID;           // ID of the shoot paramter in the Animator
-    //private int isDashingParamID;            // ID of the jump paramter in the Animator
-    //private int isJumpingParamID;            // ID of the isJumping paramter in the Animator
-    //private int isHangingParamID;            // ID of the grabWall parameter in the Animator
-
     private Vector3 scale;
     #endregion
 
@@ -153,9 +140,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         playerRaycast = GetComponent<PlayerRaycast> ( );
         bodyCollider = GetComponent<BoxCollider2D> ( );
 
-        //input = GetComponent<InputManager> ( );
-        input = GetComponent<InputManager> ( );
-
         respawnPosition = transform.position;
 
         lastMoveDirection = 1; // start with the direction as Right
@@ -194,7 +178,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
             EscapePressed ( );
         }
            
-
         directionUD = joystick.directionUD;
 
         if ( playerInWater )
@@ -206,7 +189,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         {
             UpOrDownPressed ( directionUD );
         }
-
 
     }
 
@@ -291,7 +273,6 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
                 Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
                 transform.rotation = Quaternion.Lerp ( transform.rotation, q, 4f * Time.deltaTime );
-
             }
             else
             {
@@ -302,18 +283,15 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
             if (directionUD != 0 )
             {
-                float yVelocity = ( speed / 2 ) * ( input.directionUD / 0.8f );
+                float yVelocity = ( speed / 2 ) * ( directionUD / 0.8f );
                 playerRb.velocity = new Vector2 ( playerRb.velocity.x, yVelocity );
             }
-
         }
         else
         {
             gameObject.transform.rotation = Quaternion.identity;
             MoveinWater = false;
         }
-
-
     }
 
     void GroundMovement ( )
@@ -668,6 +646,5 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     {
         this.transform.position = respawnPosition;
     }
-
 }
 

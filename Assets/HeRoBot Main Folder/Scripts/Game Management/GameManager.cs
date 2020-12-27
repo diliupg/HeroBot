@@ -19,7 +19,11 @@ public class GameManager : MonoBehaviour
     public SoundEffect soundEffects;
 
     [HideInInspector]
-    public PlayerController player { get; private set; }
+    public PlayerController player;
+
+    [SerializeField] private Text fpsDisplay;
+    [SerializeField] private float hudRefreshRate = 1f;
+    private float timer;
 
     public PlayerHealth playerHealth;
 
@@ -145,8 +149,6 @@ public class GameManager : MonoBehaviour
         uiManager.LevelCompleteOff ( );
         uiManager.GameCompleteOff ( );
 
-
-
         uiManager.playerLives = lives;
         uiManager.playerHealth = health;
         //print ( health );
@@ -162,6 +164,13 @@ public class GameManager : MonoBehaviour
         if ( !isPlayerAlive && isGameOver )
         {
             StartCoroutine ( WaitAndGameOver ( ) );
+        }
+
+        if ( Time.unscaledTime > timer )
+        {
+            int fps = ( int ) ( 1f / Time.unscaledDeltaTime );
+            fpsDisplay.text = fps + " FPS";
+            timer = Time.unscaledTime + hudRefreshRate;
         }
     }
 

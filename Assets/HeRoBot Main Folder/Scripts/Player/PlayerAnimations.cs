@@ -4,7 +4,7 @@
 public class PlayerAnimations : MonoBehaviour
 {
     private Rigidbody2D playerRb;
-    private InputManager input;          //The current inputs for the player
+    //private InputManager input;          //The current inputs for the player
     private Animator playerAnimator;
     private PlayerController playerController;
     private PlayerRaycast playerRaycast;
@@ -30,7 +30,7 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D> ( );
-        input = GetComponent<InputManager> ( );
+        //input = GetComponent<InputManager> ( );
         playerAnimator = GetComponent<Animator> ( );
         playerController = GetComponent<PlayerController> ( );
         playerRaycast = GetComponent<PlayerRaycast> ( );
@@ -49,7 +49,7 @@ public class PlayerAnimations : MonoBehaviour
         #endregion
 
         //If any of the needed components don't exist...
-        if ( playerController == null || playerRb == null || input == null || playerAnimator == null )
+        if ( playerController == null || playerRb == null || playerAnimator == null )
         {
             //...log an error and then remove this component
             Debug.LogError ( "A needed component is missing from the player" );
