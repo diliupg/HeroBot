@@ -112,7 +112,7 @@ RectTransform:
   m_Children:
   - {fileID: 1025502601}
   m_Father: {fileID: 1350614876156440294}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -477,7 +477,7 @@ RectTransform:
   m_Children:
   - {fileID: 1246728122}
   m_Father: {fileID: 1350614876156440294}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -765,7 +765,7 @@ RectTransform:
   m_Children:
   - {fileID: 1814155980}
   m_Father: {fileID: 1350614876156440294}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -971,7 +971,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1350614876156440294}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1371,13 +1371,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 119201994017825775}
-  - {fileID: 8248461327589898891}
-  - {fileID: 998299923}
-  - {fileID: 700484087071422772}
   - {fileID: 1990703434}
+  - {fileID: 8248461327589898891}
   - {fileID: 2092727719}
+  - {fileID: 700484087071422772}
+  - {fileID: 998299923}
   - {fileID: 1261333307}
+  - {fileID: 119201994017825775}
   - {fileID: 1350614875076464926}
   - {fileID: 1350614874536738542}
   - {fileID: 1350614875918549742}
@@ -4339,33 +4339,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoystickController
       objectReference: {fileID: 0}
-    - target: {fileID: 114520448885796166, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.3764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 114520448885796166, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 79f357efe455ac14cbcc22e7b3f49203,
-        type: 3}
-    - target: {fileID: 114520448885796166, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578627103131290, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.4745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 114578627103131290, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6c775b277e64c634ca5da4f5697c27c5,
-        type: 3}
     - target: {fileID: 224555817415181320, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4404,7 +4377,7 @@ PrefabInstance:
     - target: {fileID: 224555817415181320, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224555817415181320, guid: f54d86303dfb37f4bbaa9a13b72b2aba,
         type: 3}
