@@ -11,7 +11,7 @@ using UnityEngine.EventSystems;
 public class TorchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
-	private bool touched;
+
 	public bool torchPressed;
 
 	[HideInInspector]
@@ -21,10 +21,9 @@ public class TorchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
 	public void TorchOnOff()
     {
-		if(Pressed && !touched)
+		if( Pressed )
         {
 			torchPressed = !torchPressed;
-			touched = true;
 		}		
 	}
 
@@ -36,6 +35,5 @@ public class TorchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	public void OnPointerUp ( PointerEventData eventData )
 	{
 		Pressed = false;
-		touched = false;
 	}
 }

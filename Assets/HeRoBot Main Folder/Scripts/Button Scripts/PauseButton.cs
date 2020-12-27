@@ -11,7 +11,7 @@ using UnityEngine.EventSystems;
 public class PauseButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
-	private bool touched;
+
 	public bool pausePressed;
 
 	[HideInInspector]
@@ -21,10 +21,9 @@ public class PauseButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
 	public void PauseGame (  )
 	{
-		if(Pressed && !touched)
+		if( Pressed )
         {
 			pausePressed = !pausePressed;
-			touched = true;
 		}		
 	}
 
@@ -36,6 +35,5 @@ public class PauseButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	public void OnPointerUp ( PointerEventData eventData )
 	{
 		Pressed = false;
-		touched = false;
 	}
 }

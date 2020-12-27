@@ -18,7 +18,7 @@ using UnityEngine.EventSystems;
 public class SpeedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
 	#region Public Fields
-	private bool touched;
+
 	public bool speedPressed;
 
 	[HideInInspector]
@@ -28,10 +28,9 @@ public class SpeedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
 	public void SpeedBurst (  )
 	{
-		if(Pressed && !touched)
+		if( Pressed )
         {
 			speedPressed = true;
-			touched = true;
 		}		
 	}
 
@@ -43,6 +42,5 @@ public class SpeedButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 	public void OnPointerUp ( PointerEventData eventData )
 	{
 		Pressed = false;
-		touched = false;
 	}
 }

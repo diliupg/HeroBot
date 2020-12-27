@@ -15,7 +15,6 @@ public class CrouchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 	[HideInInspector]
 	public bool Pressed;
 
-	private bool touched;
 	public bool crouchPressed;
 	public bool crouchHeld;
 
@@ -23,11 +22,10 @@ public class CrouchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 
 	public void SetCrouch()
     {
-		if(Pressed && !touched)
+		if(Pressed )
         {
 			crouchPressed = !crouchPressed;
 			crouchHeld = !crouchHeld;
-			touched = true;
 		}
 	}
 
@@ -39,6 +37,5 @@ public class CrouchButton : MonoBehaviour, IPointerUpHandler, IPointerDownHandle
 	public void OnPointerUp ( PointerEventData eventData )
 	{
 		Pressed = false;
-		touched = false;
 	}
 }
