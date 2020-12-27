@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         if ( Time.unscaledTime > timer )
         {
             int fps = ( int ) ( 1f / Time.unscaledDeltaTime );
-            fpsDisplay.text = fps + " FPS";
+            fpsDisplay.text = ""+fps;
             timer = Time.unscaledTime + hudRefreshRate;
         }
     }
