@@ -22,20 +22,9 @@ public class CameraManager : MonoBehaviour
         GameManager.RegisterCameraManager ( this );
 
         NormalVCam.Priority = camNormal;
-        //ZoomUpVCam.Priority = camUp;
-        //ZoomDownVCam.Priority = camDown;
+ 
         centered = true;
 
-    }
-
-    private void OnEnable ( )
-    {
-        //PlayerController.UpOrDownPressed += CameraLook;
-    }
-
-    private void OnDisable ( )
-    {
-        //PlayerController.UpOrDownPressed -= CameraLook;
     }
 
     void CameraLook ( float value )
@@ -75,11 +64,4 @@ public class CameraManager : MonoBehaviour
             //SetCamPriority ( );
         }
     }
-
-    //void SetCamPriority()
-    //{
-    //    //ZoomUpVCam.Priority = camUp;
-    //    //ZoomDownVCam.Priority = camDown;
-    //}
-
 }
