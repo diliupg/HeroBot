@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable ( )
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         // subscribe to the event Action -> response to the event(delegaate)
         LevelExit.PlayerLevelComplete += OnPlayerLevelComplete;
