@@ -127,6 +127,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -281,6 +282,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -385,6 +387,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -664,6 +667,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -840,6 +844,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -953,6 +958,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1416,6 +1422,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1572,6 +1579,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1686,7 +1694,6 @@ GameObject:
   - component: {fileID: 7922049472711691992}
   - component: {fileID: 7922049472711691997}
   - component: {fileID: 7922049472711691988}
-  - component: {fileID: 7922049472711691991}
   - component: {fileID: 7922049472711691995}
   - component: {fileID: 1082967276820753811}
   - component: {fileID: 1814497170671651325}
@@ -1840,32 +1847,6 @@ MonoBehaviour:
   bodyCollider: {fileID: 7922049472711691997}
   rigidBody: {fileID: 7922049472711691992}
   tagTypes: 0
---- !u!114 &7922049472711691991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7922049472711691996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f1831f03151b8b44b326e81d1dcdfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testTouchControlsInEditor: 0
-  verticalDPadThreshold: 0.5
-  thumbstick: {fileID: 0}
-  jumpButton: {fileID: 0}
-  directionLR: 0
-  directionUD: 0
-  jumpHeld: 0
-  jumpPressed: 0
-  crouchHeld: 0
-  crouchPressed: 0
-  shootPressed: 0
-  dashPressed: 0
-  torchPressed: 0
-  pausedPressed: 0
 --- !u!114 &7922049472711691995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1881,13 +1862,20 @@ MonoBehaviour:
   drawDebugRaycasts: 1
   playerRb: {fileID: 7922049472711691992}
   bodyCollider: {fileID: 7922049472711691997}
+  gunFlash: {fileID: 7922049473361683338}
+  dustOnLand: {fileID: 7922049472336495374}
+  runDust: {fileID: 7922049471517100291}
+  joystick: {fileID: 0}
+  jumpBut: {fileID: 0}
+  crouchBut: {fileID: 0}
+  fireBut: {fileID: 0}
+  pauseBut: {fileID: 0}
+  torchBut: {fileID: 0}
+  speedBut: {fileID: 0}
   isDashing: 0
   lazerspriteFlipped: 0
   stompBox: {fileID: 7922049472498002467}
   torch: {fileID: 7922049472060159182}
-  gunFlash: {fileID: 7922049473361683338}
-  dustOnLand: {fileID: 7922049472336495374}
-  runDust: {fileID: 7922049471517100291}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2304
@@ -1920,6 +1908,7 @@ MonoBehaviour:
   isHeadBlocked: 0
   playerInWater: 0
   MoveinWater: 0
+  isShooting: 0
   reduceLife: 0
   playerFacingRignt: 0
 --- !u!114 &1082967276820753811
@@ -2384,6 +2373,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2489,6 +2479,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4745,6 +4736,62 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+  LifetimeByEmitterSpeedModule:
+    enabled: 0
+    m_Curve:
+      serializedVersion: 2
+      minMaxState: 1
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: -0.8
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0.2
+          inSlope: -0.8
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    m_Range: {x: 0, y: 1}
   ForceModule:
     enabled: 0
     x:
@@ -7326,6 +7373,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7368,6 +7416,8 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
+  m_FreeformStretching: 0
+  m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}

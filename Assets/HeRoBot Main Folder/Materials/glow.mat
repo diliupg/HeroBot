@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: glow
-  m_Shader: {fileID: -6465566751694194690, guid: 8bf17d58e716b4f44ab008cf368d5e54,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _EMISSION _GLOSSYREFLECTIONS_OFF _METALLICSPECGLOSSMAP
     _NORMALMAP _OCCLUSIONMAP _RECEIVE_SHADOWS_OFF _SPECGLOSSMAP _SPECULARHIGHLIGHTS_OFF
     _SPECULAR_SETUP
@@ -69,10 +68,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9082de2b64b36c147ac3561ee0076a65, type: 3}
+        m_Texture: {fileID: 2800000, guid: 33c32f1a9fa6d9f4bbb5bcf5f194983f, type: 3}
         m_Scale: {x: 0.1, y: 0.1}
         m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
