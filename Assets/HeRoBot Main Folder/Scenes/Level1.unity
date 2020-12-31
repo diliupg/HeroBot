@@ -1991,10 +1991,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1996739167, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_Text
-      value: wwwwww
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1996739167, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
       propertyPath: m_FontData.m_RichText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996739167, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
+      propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2092727719, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
