@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     public GameObject stompBox;
 
-    public Light2D torch;
+    //public Light2D torch;
 
     #endregion
 
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         isDashing = false;
         lazerspriteFlipped = false;
         canShoot = true;
-        torch.enabled = false;
+        //torch.enabled = false;
         #endregion
 
         scale = transform.localScale;
@@ -163,10 +163,10 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
 
     void Update ( )
     {
-        if ( playerHealth.isAlive || !playerHealth.exploding )
-        {
-            TorchOnOff ( );
-        }
+        //if ( playerHealth.isAlive || !playerHealth.exploding )
+        //{
+        //    TorchOnOff ( );
+        //}
 
         if ( playerHealth.exploding )
             canMove = false;
@@ -627,15 +627,15 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
             runDust.Play ( );
     }
 
-    void TorchOnOff ( )
-    {
-        if ( torchBut.torchPressed )
-        {
-            torch.enabled = true;
-        }
-        else
-            torch.enabled = false;
-    }
+    //void TorchOnOff ( )
+    //{
+    //    if ( torchBut.torchPressed )
+    //    {
+    //        torch.enabled = true;
+    //    }
+    //    else
+    //        torch.enabled = false;
+    //}
 
     void SetPlayerCanShoot()
     {

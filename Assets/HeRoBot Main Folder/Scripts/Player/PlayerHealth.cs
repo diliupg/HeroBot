@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerDamage
 {
     public GameObject playerExplode;
     public GameObject player;
-    public Light2D bodyGlow;
+    //public Light2D bodyGlow;
 
     public Anima2D.SpriteMeshInstance[] spriteMeshInstance;
 
@@ -276,7 +276,7 @@ public class PlayerHealth : MonoBehaviour, IPlayerDamage
         shield = true;
         criticalHealth = false;
         criticalHealthWarning = false;
-        bodyGlow.enabled = true;
+        //bodyGlow.enabled = true;
         exploding = false;
 
         PlayerNormalColour ( );
