@@ -47,20 +47,16 @@ MonoBehaviour:
   - tag: LazerFire1
     projectile: {fileID: 5151068814935616064, guid: 05dd23b2ee72f4d43b0e11ebed265377,
       type: 3}
-    size: 10
+    size: 30
   - tag: GlobberShoot
     projectile: {fileID: 6343388728295068725, guid: c8171496a52f63d4292c950b202b0dd0,
       type: 3}
-    size: 10
+    size: 20
   - tag: GiantShoot
     projectile: {fileID: 6343388728295068725, guid: 240d25fba28209e4a83531b43afcb0d8,
       type: 3}
-    size: 10
+    size: 20
   - tag: SkeletonShoot
     projectile: {fileID: 3669219318281361312, guid: 15f31546eebf17649b1c93fd42f77778,
       type: 3}
-    size: 10
-  - tag: PlayerExplode
-    projectile: {fileID: 291613961393960634, guid: 113692a08e37ac0429289cf1cf37efa2,
-      type: 3}
-    size: 2
+    size: 20

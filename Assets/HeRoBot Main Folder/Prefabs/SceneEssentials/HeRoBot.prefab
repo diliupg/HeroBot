@@ -743,7 +743,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049472060159216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -1794,7 +1794,6 @@ MonoBehaviour:
   isDashing: 0
   lazerspriteFlipped: 0
   stompBox: {fileID: 7922049472498002467}
-  torch: {fileID: 7922049472060159182}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 2304
@@ -1864,7 +1863,6 @@ MonoBehaviour:
   playerExplode: {fileID: 291613961393960634, guid: 113692a08e37ac0429289cf1cf37efa2,
     type: 3}
   player: {fileID: 0}
-  bodyGlow: {fileID: 0}
   spriteMeshInstance:
   - {fileID: 7922049473265196964}
   - {fileID: 7922049472604953286}
