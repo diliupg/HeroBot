@@ -296,6 +296,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7922049473265196967, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7922049473268939750, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
       propertyPath: m_Mesh
@@ -4103,7 +4108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1373966439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4870,11 +4875,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObjectPooler
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[0].size
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74745da813ada844d882fd1c4f4e9d55, type: 3}
@@ -39092,6 +39092,16 @@ PrefabInstance:
     - target: {fileID: 668139330, guid: 52fd471084884fb4ba97653b45a887a3, type: 3}
       propertyPath: m_Color.b
       value: 0.57509017
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140356, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_Antialiasing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515225746836140356, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_RenderShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3515225746836140358, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
