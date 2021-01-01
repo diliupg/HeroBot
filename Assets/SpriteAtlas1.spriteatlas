@@ -49,14 +49,15 @@ SpriteAtlas:
     - {fileID: 2800000, guid: b4027f396bfbe69428e4f38dcc0519a9, type: 3}
     - {fileID: 2800000, guid: 06017068f271cb843a53465e7b3ae2bf, type: 3}
     - {fileID: 2800000, guid: c3bfa0a921124574191d406e6aec308f, type: 3}
-    - {fileID: 102900000, guid: 6fa961e876df8634a881a7ab2b3b2450, type: 3}
+    - {fileID: 2800000, guid: bc809a5cb170ea949bbb0ba3e88b442f, type: 3}
     - {fileID: 102900000, guid: fb1e98ed33ba45348b9f1aa28dece4be, type: 3}
     - {fileID: 102900000, guid: 8e0cc80c4a38f164cbd2da368a3164aa, type: 3}
     - {fileID: 102900000, guid: 93fa95799f212e9458557673e7443093, type: 3}
     - {fileID: 102900000, guid: 982662a9ebf8a1b419ffdf9e1d2b03ff, type: 3}
     - {fileID: 2800000, guid: bf886fe2c89270b4a845d5c26ad1ba5b, type: 3}
-    - {fileID: 2800000, guid: bc809a5cb170ea949bbb0ba3e88b442f, type: 3}
-    totalSpriteSurfaceArea: 24114025
+    - {fileID: 102900000, guid: 98cd173316fdc1d4bb752be03001869e, type: 3}
+    - {fileID: 102900000, guid: 7a5c4c03b5970eb43a1825b2ec92c2ce, type: 3}
+    totalSpriteSurfaceArea: 24032105
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -105,7 +106,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 36a6a024930ac7b4597a1b8bb659bd18, type: 3}
   - {fileID: 21300000, guid: e1aef924c7f459c42b39b575569868f5, type: 3}
   - {fileID: 21300000, guid: 8f3dc43499fa9e54f85d5437262983a8, type: 3}
-  - {fileID: 21300000, guid: dcc0c6643d2b19e409c80762c6f4e61e, type: 3}
   - {fileID: 21300000, guid: 37c233a4bda8b064caa0381f20902647, type: 3}
   - {fileID: 21300000, guid: 8af33ca4ee5c93b48afc3ae2f0346931, type: 3}
   - {fileID: 21300000, guid: fadc82c4c7b256f4bb58e7787413f50d, type: 3}
@@ -182,7 +182,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f69b6efabffc4bf44b86531e49cd71eb, type: 3}
   - {fileID: 21300000, guid: 6d498b1bd62a05a4fa6d5143c06a7595, type: 3}
   - {fileID: 21300000, guid: 79a1222be4c7af74f9eb64f60729483e, type: 3}
-  - {fileID: 21300000, guid: 65ee293b9d973b34795f82801eea7e39, type: 3}
   - {fileID: 21300000, guid: 0688427b6263ab54b87bb429c32b75bc, type: 3}
   - {fileID: 21300000, guid: cb974daba0107d741b15af06b1f592ce, type: 3}
   - {fileID: 21300000, guid: 01595fbb39c436a4fa10cc763e1fafb9, type: 3}
@@ -278,7 +277,6 @@ SpriteAtlas:
   - object_001
   - explosion02-frame005
   - JSout
-  - Spike256
   - explosion02-frame055
   - explosion02-frame042
   - Plat_003
@@ -355,7 +353,6 @@ SpriteAtlas:
   - explosion02-frame047
   - explosion02-frame100
   - explosion02-frame044
-  - spikes128
   - explosion02-frame060
   - explosion02-frame012
   - explosion02-frame004

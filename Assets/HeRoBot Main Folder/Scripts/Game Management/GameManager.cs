@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public PlayerController player;
 
-    [SerializeField] private Text fpsDisplay;
-    [SerializeField] private float hudRefreshRate = 1f;
     private float timer;
 
     public PlayerHealth playerHealth;
@@ -164,13 +162,6 @@ public class GameManager : MonoBehaviour
         if ( !isPlayerAlive && isGameOver )
         {
             StartCoroutine ( WaitAndGameOver ( ) );
-        }
-
-        if ( Time.unscaledTime > timer )
-        {
-            int fps = ( int ) ( 1f / Time.unscaledDeltaTime );
-            fpsDisplay.text = fps + " FPS";
-            timer = Time.unscaledTime + hudRefreshRate;
         }
     }
 
