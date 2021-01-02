@@ -1862,6 +1862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerExplode: {fileID: 291613961393960634, guid: 113692a08e37ac0429289cf1cf37efa2,
     type: 3}
+  objPoo: {fileID: 0}
   player: {fileID: 0}
   spriteMeshInstance:
   - {fileID: 7922049473265196964}
@@ -1999,7 +2000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 0.4011736, g: 0.9622642, b: 0.3994304, a: 0.2784314}
-  m_Length: 0.24000013
+  m_Length: 0.24000025
   m_ChildTransform: {fileID: 7922049472707905490}
   m_AttachedIK: {fileID: 7922049471952024829}
 --- !u!1 &7922049472949185976
@@ -2458,7 +2459,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049473287880490}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7729957, w: 0.63441133}
+  m_LocalRotation: {x: 0, y: 0, z: 0.77299577, w: 0.6344112}
   m_LocalPosition: {x: 0.29000017, y: -0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
