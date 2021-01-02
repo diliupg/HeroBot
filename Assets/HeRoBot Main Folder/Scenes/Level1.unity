@@ -4541,47 +4541,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectPooler
       objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[0].size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[4].tag
-      value: playerExplode
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[4].projectile
-      value: 
-      objectReference: {fileID: 738829173361189684, guid: 89b3c962895f601429b3a2547e82a4f3,
-        type: 3}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[4].size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[1].size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[2].size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7350364812357648735, guid: 74745da813ada844d882fd1c4f4e9d55,
-        type: 3}
-      propertyPath: pools.Array.data[3].size
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74745da813ada844d882fd1c4f4e9d55, type: 3}
 --- !u!1 &1731454000
