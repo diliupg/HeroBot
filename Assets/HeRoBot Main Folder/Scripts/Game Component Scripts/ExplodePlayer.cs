@@ -11,8 +11,8 @@ public class ExplodePlayer : MonoBehaviour
 
         foreach(Rigidbody2D child in gibs)
         {
-            Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            child.AddForce ( randomVector * 800f );
+            Vector2 randomVector = new Vector2(Random.Range(1f,4f), Random.Range(1f, 3f));
+            child.AddForce ( randomVector * 10000f );
         }
     }
 }

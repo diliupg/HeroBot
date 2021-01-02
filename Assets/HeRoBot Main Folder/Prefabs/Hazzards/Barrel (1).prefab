@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 894773277829699691}
   - component: {fileID: 894773277829699692}
   - component: {fileID: 894773277829699693}
+  - component: {fileID: 1931907443}
   m_Layer: 18
   m_Name: Barrel (1)
   m_TagString: Untagged
@@ -49,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -145,6 +147,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 5393125369498284939, guid: 51e0d62ecbf7a4e4682f8d653b5be101,
     type: 3}
-  minDamage: 0
-  maxDamage: 0
-  distanceToPlayer: 2
+  minDamage: 20
+  maxDamage: 45
+  distanceToPlayer: 2.5
+--- !u!114 &1931907443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894773277829699694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6b88d425f7234aae309cb9a973743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 1
+  MaximumStress: 0.7
+  Range: 55

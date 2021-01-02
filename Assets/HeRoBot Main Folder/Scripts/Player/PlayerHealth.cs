@@ -7,6 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class PlayerHealth : MonoBehaviour, IPlayerDamage
 {
     public GameObject playerExplode;
+    public ObjectPooler objPoo;
     public GameObject player;
     //public Light2D bodyGlow;
 
@@ -249,14 +250,15 @@ public class PlayerHealth : MonoBehaviour, IPlayerDamage
 
     public IEnumerator ExplodePlayerAndRespawn ( )
     {
-        GameObject inst = Instantiate ( playerExplode, player.transform.position, player.transform.rotation );
+        GameObject playerExp = objPoo.SpawnFromPool ( "playerExplode", transform.position );
 
         if ( OnExplodeThePlayer != null )
             OnExplodeThePlayer ( );
 
-        yield return new WaitForSeconds ( 2f );
+        yield return new WaitForSeconds ( 4f );
 
-        Destroy ( inst );
+        //Destroy ( inst );
+        playerExp.SetActive ( false );
 
         if ( !isAlive )
             GameManager.SetGameOver ( );
