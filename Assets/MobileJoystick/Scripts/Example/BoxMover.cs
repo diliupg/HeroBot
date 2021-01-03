@@ -5,14 +5,14 @@ namespace DitzeGames.MobileJoystick.Example
 {
     public class BoxMover : MonoBehaviour {
 
-    protected Joystick Joystick;
+    protected JoystickController Joystick;
     protected Button Button;
     protected TouchField TouchField;
 
     // Use this for initialization
     void Awake ()
     {
-        Joystick = FindObjectOfType<Joystick>();
+        Joystick = FindObjectOfType<JoystickController>();
         Button = FindObjectOfType<Button>();
         TouchField = FindObjectOfType<TouchField>();
     }

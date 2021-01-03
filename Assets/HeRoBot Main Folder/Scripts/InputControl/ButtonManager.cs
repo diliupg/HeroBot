@@ -29,9 +29,28 @@ public class ButtonManager : MonoBehaviour
 	public bool jumpPressed;
 	public bool jumpHeld;
 
-	#endregion
+    #endregion
 
-	public void SetCrouch ( )
+    private void OnEnable(  )
+    {
+		KeyboardController.OnFirePressed += FireLazer;
+		KeyboardController.OnFireReleased += StopFiring;
+		KeyboardController.OnDashPressed += SpeedBurst;
+		KeyboardController.OnJumpPressed += SetJump;
+		KeyboardController.OnCrouchPressed += SetCrouch;
+		KeyboardController.OnPausePressed += PauseGame;
+	}
+    private void OnDisable ( )
+    {
+		KeyboardController.OnFirePressed -= FireLazer;
+		KeyboardController.OnFireReleased -= StopFiring;
+		KeyboardController.OnDashPressed -= SpeedBurst;
+		KeyboardController.OnJumpPressed -= SetJump;
+		KeyboardController.OnCrouchPressed -= SetCrouch;
+		KeyboardController.OnPausePressed -= PauseGame;
+	}
+
+    public void SetCrouch ( )
 	{
 		crouchPressed = !crouchPressed;
 		crouchHeld = !crouchHeld;

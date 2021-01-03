@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     [SerializeField] private ParticleSystem dustOnLand;
     [SerializeField] private ParticleSystem runDust;
 
-    [SerializeField] private Joystick joystick;
+    [SerializeField] private JoystickController joystick;
     [SerializeField] private ButtonManager jumpBut;
     [SerializeField] private ButtonManager crouchBut;
     [SerializeField] private ButtonManager fireBut;

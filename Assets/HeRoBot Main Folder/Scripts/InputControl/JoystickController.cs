@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Put it on any Image UI Element
 /// </summary>
-public class Joystick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 {
     protected RectTransform Background;
     protected bool Pressed;
@@ -21,6 +21,16 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
 
     public Vector2 AxisNormalized { get { return InputVector.magnitude > 0.25f ? InputVector.normalized : ( InputVector.magnitude < 0.01f ? Vector2.zero : InputVector * 4f ); } }
 
+    void OnEnable ( )
+    {
+        KeyboardController.OnPlayerHorizontal += PlayerHorizontalMove;
+    }
+    void OnDisable ( )
+    {
+        KeyboardController.OnPlayerHorizontal -= PlayerHorizontalMove;
+    }
+
+#if UNITY_ANDROID
     void Start ( )
     {
         if ( Handle == null )
@@ -62,5 +72,11 @@ public class Joystick : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
         InputVector = Vector2.zero;
         Handle.anchoredPosition = Vector2.zero;
         directionLR = directionUD = 0;
+    }
+
+#endif
+    void PlayerHorizontalMove( int v)
+    {
+        directionLR = v;
     }
 }
