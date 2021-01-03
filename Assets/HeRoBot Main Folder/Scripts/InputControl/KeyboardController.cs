@@ -53,12 +53,12 @@ public class KeyboardController : ButtonManager
         //    if ( OnDashPressed != null )
         //        OnDashPressed ( false );
         //}
-        if ( Input.GetKey ( KeyCode.C ) || Input.GetMouseButtonDown(0) )
+        if ( Input.GetKey ( KeyCode.C ) || Input.GetKey ( KeyCode.LeftShift ) )
         {
             if ( OnFirePressed != null )
                 OnFirePressed (  );
         }
-        if ( Input.GetKeyUp ( KeyCode.C ) || Input.GetMouseButtonUp ( 0 ) )
+        if ( Input.GetKeyUp ( KeyCode.C ) || Input.GetKeyUp ( KeyCode.LeftShift ) )
         {
             if ( OnFireReleased != null )
                 OnFireReleased (  );
