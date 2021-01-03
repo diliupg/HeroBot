@@ -19,7 +19,7 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
 
     [HideInInspector] public Vector2 InputVector = Vector2.zero;
 
-    public Vector2 AxisNormalized { get { return InputVector.magnitude > 0.25f ? InputVector.normalized : ( InputVector.magnitude < 0.01f ? Vector2.zero : InputVector * 4f ); } }
+    //public Vector2 AxisNormalized { get { return InputVector.magnitude > 0.25f ? InputVector.normalized : ( InputVector.magnitude < 0.01f ? Vector2.zero : InputVector * 4f ); } }
 
     void OnEnable ( )
     {
@@ -33,10 +33,10 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
 #if UNITY_ANDROID
     void Start ( )
     {
-        if ( Handle == null )
-            Handle = transform.GetChild ( 0 ).GetComponent<RectTransform> ( );
-        Background = GetComponent<RectTransform> ( );
-        Background.pivot = new Vector2 ( 0.5f, 0.5f );
+        //if ( Handle == null )
+        //    Handle = transform.GetChild ( 0 ).GetComponent<RectTransform> ( );
+        //Background = GetComponent<RectTransform> ( );
+        //Background.pivot = new Vector2 ( 0.5f, 0.5f );
         Pressed = false;
     }
 
@@ -71,7 +71,8 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
         Pressed = false;
         InputVector = Vector2.zero;
         Handle.anchoredPosition = Vector2.zero;
-        directionLR = directionUD = 0;
+        directionLR = 0;
+        directionUD = 0;
     }
 
 #endif

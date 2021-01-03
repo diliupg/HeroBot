@@ -153,6 +153,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1292649646}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &97827675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7922049472711691996, guid: f4bd3058f03889d4892aaf6444eb2b90,
+    type: 3}
+  m_PrefabInstance: {fileID: 104219004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104219004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,6 +171,17 @@ PrefabInstance:
       propertyPath: objPoo
       value: 
       objectReference: {fileID: 10257271}
+    - target: {fileID: 1814497170671651325, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 97827675}
+    - target: {fileID: 1814497170671651325, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: playerExplode
+      value: 
+      objectReference: {fileID: 738829173361189684, guid: 89b3c962895f601429b3a2547e82a4f3,
+        type: 3}
     - target: {fileID: 7922049471532715589, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
       propertyPath: m_Mesh
@@ -179,6 +196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922049471988962809, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.090065196
       objectReference: {fileID: 0}
     - target: {fileID: 7922049472048290133, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
@@ -205,11 +227,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7922049472711691988, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: drawDebugRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 1884560867}
+      objectReference: {fileID: 264785019}
     - target: {fileID: 7922049472711691995, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
       propertyPath: jumpBut
@@ -254,6 +281,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922049473287880491, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.77299577
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922049473287880491, guid: f4bd3058f03889d4892aaf6444eb2b90,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6344112
       objectReference: {fileID: 0}
     - target: {fileID: 7922049473301747960, guid: f4bd3058f03889d4892aaf6444eb2b90,
         type: 3}
@@ -408,7 +445,7 @@ GameObject:
   - component: {fileID: 115188802}
   - component: {fileID: 115188803}
   m_Layer: 0
-  m_Name: === --- === --- === --- WALL LAMPS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- WALL LAMPS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +705,7 @@ GameObject:
   - component: {fileID: 264762429}
   - component: {fileID: 264762430}
   m_Layer: 0
-  m_Name: === --- === --- === --- FIRE --- === --- === --- ===
+  m_Name: --- === --- === --- === --- FIRE --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -706,6 +743,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a986e817300de88499b25c6dd04ca872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &264785015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 197832524735113889, guid: fca585b7784f45a4d93315d42896ec1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 515006108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &264785019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264785015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e39965646399c24eb1e92ba235acc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Handle: {fileID: 2138744415}
+  HandleRange: 1
+  directionLR: 0
+  directionUD: 0
+  InputVector: {x: 0, y: 0}
 --- !u!4 &275883317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5967054014758535852, guid: 4e55c81092a311f458871ff158d3f798,
@@ -817,7 +877,7 @@ GameObject:
   - component: {fileID: 297824139}
   - component: {fileID: 297824140}
   m_Layer: 0
-  m_Name: === --- === --- === --- GLOBBERS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- GLOBBERS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1238,7 +1298,7 @@ GameObject:
   - component: {fileID: 403980750}
   - component: {fileID: 403980749}
   m_Layer: 0
-  m_Name: === --- === --- === --- LIGHTS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- LIGHTS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1574,7 +1634,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 229597657138933337, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fca585b7784f45a4d93315d42896ec1a, type: 3}
 --- !u!1 &527778663
 GameObject:
@@ -1587,7 +1648,7 @@ GameObject:
   - component: {fileID: 527778664}
   - component: {fileID: 527778665}
   m_Layer: 0
-  m_Name: === --- === --- === --- TELEPORTERS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- TELEPORTERS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2256,7 +2317,7 @@ GameObject:
   - component: {fileID: 726424213}
   - component: {fileID: 726424212}
   m_Layer: 0
-  m_Name: === --- === --- === --- WORLD OBJECTS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- WORLD OBJECTS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2725,7 +2786,7 @@ GameObject:
   - component: {fileID: 963136244}
   - component: {fileID: 963136245}
   m_Layer: 0
-  m_Name: === --- === --- === --- FALLING BARRELS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- FALLING BARRELS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4255,7 +4316,7 @@ GameObject:
   - component: {fileID: 1559372196}
   - component: {fileID: 1559372197}
   m_Layer: 0
-  m_Name: === --- === --- === --- MISCELLANEOUS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- MISCELLANEOUS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4494,7 +4555,7 @@ GameObject:
   - component: {fileID: 1750973896}
   - component: {fileID: 1750973897}
   m_Layer: 0
-  m_Name: === --- === --- === --- COLLAPSIBLE PLATS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- COLLAPSIBLE PLATS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4789,18 +4850,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 412431036}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1884560867 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 229597657138933337, guid: fca585b7784f45a4d93315d42896ec1a,
-    type: 3}
-  m_PrefabInstance: {fileID: 515006108}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7f640f8e1849154b9c093385220d314, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1957035361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 894773277829699694, guid: 307ddbd6d5f033f48bc903d6a6a37460,
@@ -4833,7 +4882,7 @@ GameObject:
   - component: {fileID: 1974642744}
   - component: {fileID: 1974642745}
   m_Layer: 0
-  m_Name: === --- === --- === --- MOVING PLATS --- === --- === --- ===
+  m_Name: --- === --- === --- === --- MOVING PLATS --- === --- === --- === ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5430,6 +5479,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe2b7679d7e4f0943b2e2b672bc7f656, type: 3}
+--- !u!224 &2138744415 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 118888994593250113, guid: fca585b7784f45a4d93315d42896ec1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 515006108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &929052382532705121
 Transform:
   m_ObjectHideFlags: 0
@@ -38601,11 +38656,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3515225746836140359, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4201121271476541444, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 7922049473265457540}
+    - target: {fileID: 4201121271476541445, guid: 52fd471084884fb4ba97653b45a887a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4201121272320577421, guid: 52fd471084884fb4ba97653b45a887a3,
         type: 3}
       propertyPath: m_LocalPosition.x

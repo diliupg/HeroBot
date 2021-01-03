@@ -12,22 +12,22 @@ public class ButtonManager : MonoBehaviour
 {
 	#region Public Fields
 
-	public bool Pressed;
+	[HideInInspector] public bool Pressed;
 
-	public bool shootPressed;
+	[HideInInspector] public bool shootPressed;
 
-	public bool crouchPressed;
-	public bool crouchHeld;
+	[HideInInspector] public bool crouchPressed;
+	[HideInInspector] public bool crouchHeld;
 
-	public bool speedPressed;
+	[HideInInspector] public bool speedPressed;
 
-    public bool pausePressed;
+	[HideInInspector] public bool pausePressed;
 
-	public bool torchPressed;
+	[HideInInspector] public bool torchPressed;
 
 
-	public bool jumpPressed;
-	public bool jumpHeld;
+	[HideInInspector] public bool jumpPressed;
+	[HideInInspector] public bool jumpHeld;
 
     #endregion
 
