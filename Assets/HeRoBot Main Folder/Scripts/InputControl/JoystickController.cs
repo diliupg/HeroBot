@@ -30,7 +30,7 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
         KeyboardController.OnPlayerHorizontal -= PlayerHorizontalMove;
     }
 
-#if UNITY_ANDROID
+
     void Start ( )
     {
         if ( Handle == null )
@@ -75,7 +75,6 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
         directionUD = 0;
     }
 
-#endif
     void PlayerHorizontalMove( int v)
     {
         directionLR = v;

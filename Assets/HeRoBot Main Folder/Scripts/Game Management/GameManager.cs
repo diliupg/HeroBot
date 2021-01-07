@@ -23,11 +23,14 @@ public class GameManager : MonoBehaviour
 
     private float timer;
 
-    public PlayerHealth playerHealth;
+    [SerializeField]
+    private GameObject playerObj;
+
+    [SerializeField]
+    private PlayerHealth playerHealth;
 
     private UIManager uiManager;
-
-    GameObject playerObj;
+    
 
     GameObject playerExplosion;
 
@@ -121,7 +124,7 @@ public class GameManager : MonoBehaviour
 
         soundEffects = GetComponent<SoundEffect> ( );
 
-        playerObj = GameObject.FindGameObjectWithTag ( "Player" );
+        //playerObj = GameObject.FindGameObjectWithTag ( "Player" );
 
         LoadGameData ( );
 
