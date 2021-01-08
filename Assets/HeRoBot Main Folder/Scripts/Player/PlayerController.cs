@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         yield return new WaitForSeconds ( waitTime );
         // turn on shooting
         canShoot = true;
-        gunFlash.Stop ( );
+        //gunFlash.Stop ( );
     }
 
     void FireLazer ( )
@@ -504,7 +504,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
         //    OnLaserFire ( );
         OnLaserFire?.Invoke ( ); // simplified way of writing above
 
-        gunFlash.Play ( );
+        //gunFlash.Play ( );
     }
 
     void GetGun ( )
