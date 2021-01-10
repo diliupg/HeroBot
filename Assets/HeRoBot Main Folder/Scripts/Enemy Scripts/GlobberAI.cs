@@ -15,6 +15,5 @@ public class GlobberAI : EnemyAI
     public override void Update ( )
     {
         base.Update ( );
-
     }
 }

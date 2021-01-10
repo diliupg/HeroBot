@@ -204,7 +204,7 @@ public class EnemyAI : MonoBehaviour, IDamageble
         animator.SetBool ( "Walk", false );
         patrolEnabled = false;
 
-        yield return new WaitForSeconds ( 2f );
+        yield return new WaitForSeconds ( 1.4f );
 
         FacingDirection ( directionLR ); // turn
 
