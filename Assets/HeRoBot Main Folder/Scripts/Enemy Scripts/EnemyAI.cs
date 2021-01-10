@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamageble
     protected AudioManager audioManager;
     protected AudioSource audioSource;
     protected ObjectPooler objectPooler;
-    protected BoxCollider2D boxCollider2D;
+    protected BoxCollider2D boxCol2D;
 
     protected bool isGrounded;
     protected bool isAlive;
@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour, IDamageble
 
         animator = GetComponentInChildren<Animator> ( );
         rb = GetComponent<Rigidbody2D> ( );
-        boxCollider2D = GetComponent<BoxCollider2D> ( );
+        boxCol2D = GetComponent<BoxCollider2D> ( );
         playerHealth = player.GetComponent<PlayerHealth> ( );
         audioSource = GetComponent<AudioSource> ( );
         objectPooler = ObjectPooler.Instance;
@@ -92,12 +92,12 @@ public class EnemyAI : MonoBehaviour, IDamageble
 
     private void OnEnable ( )
     {
-        ShootTrigger.fire += LaunchActualProjectile;
+        ShootTrigger.fire += LaunchProjectile;
     }
 
     private void OnDisable ( )
     {
-        ShootTrigger.fire -= LaunchActualProjectile;
+        ShootTrigger.fire -= LaunchProjectile;
     }
 
     void Start ( )
@@ -255,6 +255,7 @@ public class EnemyAI : MonoBehaviour, IDamageble
             animator.SetTrigger ( "Attack" );
 
             timeBetweenShots = startTimeBetweenShots;
+            LaunchProjectile ( );
         }
         else
             timeBetweenShots -= Time.deltaTime;
@@ -305,9 +306,9 @@ public class EnemyAI : MonoBehaviour, IDamageble
         canJump = true;
     }
 
-    void LaunchActualProjectile ()
+    void LaunchProjectile ()
     {
-        GameObject obj = objectPooler.SpawnFromPool(projectile.name, shootPoint.position);
+        GameObject obj = objectPooler.SpawnFromPool(projectile.name, this.shootPoint.position);
 
         if ( targetOnLeft )
             obj.transform.Rotate ( 0f, 180f, 0f );
@@ -343,8 +344,12 @@ public class EnemyAI : MonoBehaviour, IDamageble
     IEnumerator DieAndEnd ( )
     {
         animator.SetTrigger ( "Die" );
+        boxCol2D.enabled = false;
+        rb.gravityScale = 0;
         audioManager.EnemyDeath ( audioManager.GlobDie );
         yield return new WaitForSeconds ( 3f );
         gameObject.SetActive ( false );
+        boxCol2D.enabled = true;
+        rb.gravityScale = 1;
     }
 }

@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 6973302473749289320}
   - component: {fileID: 6973302473749289323}
   - component: {fileID: 6973302473749289322}
-  - component: {fileID: 6973302473749289315}
+  - component: {fileID: 143269474}
   m_Layer: 18
   m_Name: Globber
   m_TagString: Untagged
@@ -386,7 +386,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6973302473749289315
+--- !u!114 &143269474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,24 +395,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6973302473749289316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57edc8441723c414a986cd32e9a19312, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d04ecac97ad58f499173033c05c3c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 6343388728295068725, guid: c8171496a52f63d4292c950b202b0dd0,
     type: 3}
   left: {fileID: 3519134574746162889}
   right: {fileID: 3519134576066578586}
-  speed: 3
-  stoppingDistance: 4
+  speed: 4
+  stoppingDistance: 3
   playerSightedDistance: 8
   startTimeBetweenShots: 2
-  addForce: 8.6
-  jumpDelay: 2.6
-  health: 7
-  damagePlayer: 15
+  addForce: 9
+  jumpDelay: 2.2
+  health: 6
+  damagePlayer: 12
   walkEnabled: 0
   jumpEnabled: 0
   patrolEnabled: 1
-  directionLR: 1
-  timeBetweenShots: 0.5
+  directionLR: 0
+  timeBetweenShots: 0
   moveToTarget: {fileID: 0}
