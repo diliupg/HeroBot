@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/HeRoBot Main Folder/Scenes/MainMenu.unity
     guid: 1b7b7ad84c7ee63468e02ad8bfd96028
   - enabled: 1
+    path: Assets/HeRoBot Main Folder/Scenes/Level02.unity
+    guid: 3006fa5fe22900f4092f6f59273c193d
+  - enabled: 1
     path: Assets/HeRoBot Main Folder/Scenes/Level1.unity
     guid: 5dbd72295e5295841ae86f7fb354c2de
   - enabled: 1
