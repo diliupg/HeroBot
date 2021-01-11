@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         //Persit this object between scene reloads
-        DontDestroyOnLoad ( gameObject );
+        //DontDestroyOnLoad ( gameObject );
 
         soundEffects = GetComponent<SoundEffect> ( );
 
