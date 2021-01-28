@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     private void Start ( )
     {
-        Application.targetFrameRate = 100;
+        //Application.targetFrameRate = 100;
 
         uiManager = UIManager.Instance;
         audioManager = AudioManager.Instance;

@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour //IPlayerDamage
     public Vector3 respawnPosition;
 
     #region Floats
-    [Header("Misalaneous Properties")]
+    [Header( "miscellaneous Properties" )]
     public float knockBackForce;
     public float groundCheckRadius;
     public float onPlatSpeedModifier;

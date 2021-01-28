@@ -43,7 +43,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f7a721d6694e0c94f8b90921143ce8b5, type: 3}
-    totalSpriteSurfaceArea: 24182784
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -111,7 +110,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b6c277f04f4d1b24880174b50fe07e1e, type: 3}
   - {fileID: 21300000, guid: 621db3113ddeb4e5891180a1eab2d4e6, type: 3}
   - {fileID: 21300000, guid: d0007472f54b80f48ab175a6e9e26471, type: 3}
-  - {fileID: 21300000, guid: a3f091c390650ff46bef91c5d1953106, type: 3}
+  - {fileID: 21300000, guid: a29acd03d4d83f7449d1ee9200dd29c1, type: 3}
   - {fileID: 21300076, guid: 413d16f3d34c0014aa1b9665a56cdcf0, type: 3}
   - {fileID: 21300078, guid: 413d16f3d34c0014aa1b9665a56cdcf0, type: 3}
   - {fileID: 21300116, guid: 413d16f3d34c0014aa1b9665a56cdcf0, type: 3}
@@ -172,6 +171,7 @@ SpriteAtlas:
   - {fileID: 21300020, guid: 413d16f3d34c0014aa1b9665a56cdcf0, type: 3}
   - {fileID: 21300022, guid: 413d16f3d34c0014aa1b9665a56cdcf0, type: 3}
   - {fileID: 21300000, guid: daa7e714a80586c4aa25a60c4f1705bd, type: 3}
+  - {fileID: 21300000, guid: 429da9e4854f9e6439e17aa364f77229, type: 3}
   - {fileID: 21300000, guid: 57989105b5c5b5847993cd47ec462092, type: 3}
   - {fileID: 21300000, guid: 4d709095a3c11b141b7b21d3cbcddb9f, type: 3}
   - {fileID: 21300016, guid: e388dfb5fc2dbf846816008821140121, type: 3}
@@ -374,6 +374,10 @@ SpriteAtlas:
   - {fileID: 21300030, guid: 166db34841ed4454985726b5f89324cc, type: 3}
   - {fileID: 21300032, guid: 166db34841ed4454985726b5f89324cc, type: 3}
   - {fileID: 21300034, guid: 166db34841ed4454985726b5f89324cc, type: 3}
+  - {fileID: 21300000, guid: 2fa9ca78a4fe7634380e7c898e1e9a18, type: 3}
+  - {fileID: 21300000, guid: 35d1df78cd16e8445954ee6ac094dffc, type: 3}
+  - {fileID: 21300000, guid: 572fa298e17055d469a732c8020c0f1a, type: 3}
+  - {fileID: 21300000, guid: 81fe5ad82164d4341865d49bb33544db, type: 3}
   - {fileID: 21300000, guid: 9ee4ec79d8debdd42942e824bc7cb63d, type: 3}
   - {fileID: 21300030, guid: aa799cea6ac955749bb0902b76321781, type: 3}
   - {fileID: 21300028, guid: aa799cea6ac955749bb0902b76321781, type: 3}
@@ -411,8 +415,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7c4b506b7c548a54aaca54f1879db34c, type: 3}
   - {fileID: 21300000, guid: 583cc26b855cf5049a925888d1aafbf3, type: 3}
   - {fileID: 21300000, guid: c54ed17bc148e57458c99129b299e9f7, type: 3}
+  - {fileID: 21300000, guid: cfe1041cffdc552488f32a14e00cd16c, type: 3}
   - {fileID: 21300000, guid: 5127018c59f9cbb43937ea21ac43a3ac, type: 3}
-  - {fileID: 21300000, guid: 2a19484d64bf15243a203c89ea5d643e, type: 3}
   - {fileID: 21300020, guid: a428de0ec49bbc64cbeec16ca98e4574, type: 3}
   - {fileID: 21300022, guid: a428de0ec49bbc64cbeec16ca98e4574, type: 3}
   - {fileID: 21300024, guid: a428de0ec49bbc64cbeec16ca98e4574, type: 3}
@@ -429,6 +433,7 @@ SpriteAtlas:
   - {fileID: 21300018, guid: a428de0ec49bbc64cbeec16ca98e4574, type: 3}
   - {fileID: 21300016, guid: a428de0ec49bbc64cbeec16ca98e4574, type: 3}
   - {fileID: 21300000, guid: 7e457a7ea8d25c7489e56e1728f1b07f, type: 3}
+  - {fileID: 21300000, guid: d36655ce4e642314f9658c6167ed2ec9, type: 3}
   - {fileID: -4766448020237632065, guid: 01de934f9f74a7646a99097b571a57ce, type: 3}
   - {fileID: -1282171034835465867, guid: 01de934f9f74a7646a99097b571a57ce, type: 3}
   - {fileID: 1148780780641288870, guid: 01de934f9f74a7646a99097b571a57ce, type: 3}
@@ -748,7 +753,7 @@ SpriteAtlas:
   - Black_Overlay_3_0
   - Gate
   - smoothRightCornerGrey
-  - Black_Cavern
+  - Bricks_Grey_s
   - Grey_Cavern_38
   - Grey_Cavern_39
   - Grey_Cavern_58
@@ -809,6 +814,7 @@ SpriteAtlas:
   - Grey_Cavern_10
   - Grey_Cavern_11
   - cave_0001_mid
+  - Bricks_Blue_n
   - smoothRightCornerBrown
   - smoothLeftCornerBrown
   - Black_Overlay_8
@@ -1011,6 +1017,10 @@ SpriteAtlas:
   - Level_Sprites_15
   - Level_Sprites_16
   - Level_Sprites_17
+  - Bricks_Blue_p
+  - Bricks_Grey_o
+  - Bricks_Grey_p
+  - Bricks_Blue_s
   - Black_Overlay_2_0
   - Vegetation_15
   - Vegetation_14
@@ -1048,8 +1058,8 @@ SpriteAtlas:
   - Black
   - smoothLeftCornerGrey
   - cave_0002_back
+  - Bricks_Blue_o
   - Bricks_Grey
-  - Cave_Details
   - Foreground_Elements_10
   - Foreground_Elements_11
   - Foreground_Elements_12
@@ -1066,6 +1076,7 @@ SpriteAtlas:
   - Foreground_Elements_9
   - Foreground_Elements_8
   - Ground_o
+  - Bricks_Grey_n
   - Far_Cavern_160
   - Far_Cavern_161
   - Far_Cavern_162
