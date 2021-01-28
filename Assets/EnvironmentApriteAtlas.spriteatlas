@@ -297,7 +297,6 @@ SpriteAtlas:
   - {fileID: 3343387850881847038, guid: 87c06346226bc2e49b4b6ebcf4a42985, type: 3}
   - {fileID: -6403828000780820444, guid: 87c06346226bc2e49b4b6ebcf4a42985, type: 3}
   - {fileID: 21300000, guid: c3a46e86626555440850e5bdd65e2e54, type: 3}
-  - {fileID: 21300000, guid: 571cc6c640e36d64a801c29e9a6a80ee, type: 3}
   - {fileID: -5930158604282628446, guid: 8fda69977e707404287078a45a0d9d56, type: 3}
   - {fileID: -4970410492042351176, guid: 8fda69977e707404287078a45a0d9d56, type: 3}
   - {fileID: -562605217060080129, guid: 8fda69977e707404287078a45a0d9d56, type: 3}
@@ -940,7 +939,6 @@ SpriteAtlas:
   - Column_Arches_9
   - Column_Arches_8
   - cave_0000_front
-  - Kalugal512
   - Ground_3
   - Ground_2
   - Ground_1
