@@ -576,7 +576,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049471988962808}
-  m_LocalRotation: {x: 0, y: 0, z: -0.09006521, w: 0.9959359}
+  m_LocalRotation: {x: 0, y: 0, z: -0.09006493, w: 0.9959359}
   m_LocalPosition: {x: 0.3737156, y: -0.31199077, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2001,7 +2001,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049472852672151}
-  m_LocalRotation: {x: 0, y: 0, z: -0.99857527, w: 0.05336141}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9985753, w: 0.053360816}
   m_LocalPosition: {x: 0.0015489312, y: -0.14265127, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2110,7 +2110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049473097752262}
-  m_LocalRotation: {x: 0, y: 0, z: -0.97289, w: -0.23126826}
+  m_LocalRotation: {x: 0, y: 0, z: -0.97289026, w: -0.23126745}
   m_LocalPosition: {x: 0.37339053, y: 0.29038203, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2481,7 +2481,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049473287880490}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7729957, w: 0.63441133}
+  m_LocalRotation: {x: 0, y: 0, z: 0.77299535, w: 0.6344117}
   m_LocalPosition: {x: 0.29000017, y: -0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2590,7 +2590,7 @@ ParticleSystem:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049473361683343}
-  serializedVersion: 6
+  serializedVersion: 7
   lengthInSec: 0.4
   simulationSpeed: 1
   stopAction: 0
@@ -6162,19 +6162,20 @@ ParticleSystem:
     range: {x: 0, y: 1}
   CollisionModule:
     enabled: 0
-    serializedVersion: 3
+    serializedVersion: 4
     type: 0
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    plane0: {fileID: 0}
-    plane1: {fileID: 0}
-    plane2: {fileID: 0}
-    plane3: {fileID: 0}
-    plane4: {fileID: 0}
-    plane5: {fileID: 0}
+    m_Planes:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -6348,17 +6349,20 @@ ParticleSystem:
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
-    collisionShape0: {fileID: 0}
-    collisionShape1: {fileID: 0}
-    collisionShape2: {fileID: 0}
-    collisionShape3: {fileID: 0}
-    collisionShape4: {fileID: 0}
-    collisionShape5: {fileID: 0}
+    serializedVersion: 2
     inside: 1
     outside: 0
     enter: 0
     exit: 0
+    colliderQueryMode: 0
     radiusScale: 1
+    primitives:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -7483,7 +7487,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7922049473607886557}
-  m_LocalRotation: {x: 0, y: 0, z: -0.9992975, w: 0.037477016}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9992975, w: 0.037476778}
   m_LocalPosition: {x: 0.001548961, y: 0.14450763, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
