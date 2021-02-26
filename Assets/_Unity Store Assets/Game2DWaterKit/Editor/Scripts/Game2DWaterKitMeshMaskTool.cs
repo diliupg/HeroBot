@@ -75,6 +75,9 @@
             private static bool _updateEdgeColliderPreviewShape;
             private static bool _updatePolygonColliderPreviewShape;
 
+            public static int snapMode = 0; // 0 -> Grid ; 1 -> Closest Point
+            public static Vector2 snapToGridStepSize = Vector2.one * 0.5f;
+
             #endregion
 
             internal static void Initialize(Object targetObject, System.Action repaintInspector)
@@ -111,7 +114,7 @@
 
                 EditorGUI.BeginChangeCheck();
 
-                if(Event.current.type == EventType.Layout)
+                if (Event.current.type == EventType.Layout)
                     UpdateCachedVariables();
 
                 BeginBoxGroup(false);
@@ -120,7 +123,7 @@
 
                 int colinearVerticesRemovedNumber = ((_meshMask.Subdivisions + 1) * _meshMask.ControlPoints.Count) - _meshMask.Vertices.Length;
 
-                if(colinearVerticesRemovedNumber > 0)
+                if (colinearVerticesRemovedNumber > 0)
                     EditorGUILayout.HelpBox(string.Format("The mask mesh has {0} vertices. {1} colinear vertices were removed.", _meshMask.Vertices.Length, colinearVerticesRemovedNumber), MessageType.None);
                 else
                     EditorGUILayout.HelpBox(string.Format("The mask mesh has {0} vertices.", _meshMask.Vertices.Length), MessageType.None);
@@ -139,12 +142,23 @@
                 {
                     BeginBoxGroup(false);
 
+                    snapMode = EditorGUILayout.Popup(snapMode, new[] { "Snap To Grid (Shift)", "Snap To Control Points (Shift)" });
+                    if (snapMode == 0)
+                    {
+                        EditorGUI.BeginChangeCheck();
+                        snapToGridStepSize = EditorGUILayout.Vector2Field("Step Size", snapToGridStepSize);
+                        if (EditorGUI.EndChangeCheck())
+                            snapToGridStepSize = new Vector2(Mathf.Clamp01(snapToGridStepSize.x), Mathf.Clamp01(snapToGridStepSize.y));
+                    }
+
+                    EditorGUILayout.Space();
+
                     EditorGUI.BeginChangeCheck();
                     DrawInsertRemoveControlPointsButtons();
                     if (EditorGUI.EndChangeCheck())
                         _selectedControlPointIndex = _selectedSegmentIndex = -1;
 
-                    if (_selectedSegmentIndex > -1 && GUILayout.Button("Make the selected segment a straight-line (Shift + L)"))
+                    if (_selectedSegmentIndex > -1 && GUILayout.Button("Make the selected segment a straight-line (Shift + S)"))
                         MakeSelectedSegmentStraightLine();
 
                     if (_selectedControlPointIndex > -1)
@@ -264,7 +278,7 @@
                     }
                 }
 
-                if (!_editEdgeCollider && !_editPolygonCollider && e.type == EventType.KeyDown && _selectedSegmentIndex > -1 && e.shift && e.keyCode == KeyCode.L)
+                if (!_editEdgeCollider && !_editPolygonCollider && e.type == EventType.KeyDown && _selectedSegmentIndex > -1 && e.shift && e.keyCode == KeyCode.S)
                     MakeSelectedSegmentStraightLine();
 
                 // Draw edge collider preview - from start point to (candidate) end point
@@ -397,9 +411,9 @@
                             EditorGUILayout.HelpBox("Step 3/3: Please set how much you would like to match the edge collider to the mask outline, and then validate the edge collider.", MessageType.None);
 
                             _edgeColliderMatchMaskOutline = EditorGUILayout.Slider("Match Mask Outline", _edgeColliderMatchMaskOutline, 0.01f, 1f);
-                            
+
                             UpdateEdgeColliderPreviewShapeIfRequired();
-                            EditorGUILayout.HelpBox(string.Format("The edge collider will have {0} points. Any colinear points are removed.",_edgeColliderPreviewShape.Length), MessageType.Info);
+                            EditorGUILayout.HelpBox(string.Format("The edge collider will have {0} points. Any colinear points are removed.", _edgeColliderPreviewShape.Length), MessageType.Info);
 
                             if (GUILayout.Button("Validate Edge Collider"))
                                 ValidateEdgeCollider();
@@ -486,7 +500,7 @@
                         }
                         else
                         {
-                            EditorGUILayout.HelpBox(string.Format("Step 2/2: Please set how much you would like to match the polygon collider to the mask outline. The algorithm computes the convex hulls of the computed {0} polygons, so the polygon collider might not match the mask outline exactly even when \"Match Mask Shape\" is set to 1.", getInsideMask ? "intersection" : "difference"), MessageType.None);
+                            EditorGUILayout.HelpBox(string.Format("Step 2/2: Please set how much you would like to match the polygon collider to the mask shape. The algorithm computes the convex hulls of the computed {0} polygons, so the polygon collider might not match the mask shape exactly even when \"Match Mask Shape\" is set to 1.", getInsideMask ? "intersection" : "difference"), MessageType.None);
 
                             _polygonColliderMatchMaskOutline = EditorGUILayout.Slider("Match Mask Shape", _polygonColliderMatchMaskOutline, 0.01f, 1f);
 
@@ -774,6 +788,43 @@
                                     break;
                             }
 
+                            if (isSelected && e.shift && snapMode > 0)
+                            {
+                                Vector2 controlPointPosition = _controlPointsWorldSpace[index].anchorPointPosition;
+
+                                float distanceToClosestControlPointX = Mathf.Infinity;
+                                float distanceToClosestControlPointY = Mathf.Infinity;
+                                int closestControlPointIndexX = -1;
+                                int closestControlPointIndexY = -1;
+                                for (int i = 0, imax = _controlPointsWorldSpace.Count; i < imax; i++)
+                                {
+                                    if (i == index)
+                                        continue;
+
+                                    float distX = Mathf.Abs(_controlPointsWorldSpace[i].anchorPointPosition.x - controlPointPosition.x);
+                                    float distY = Mathf.Abs(_controlPointsWorldSpace[i].anchorPointPosition.y - controlPointPosition.y);
+                                    if (distX < distanceToClosestControlPointX)
+                                    {
+                                        distanceToClosestControlPointX = distX;
+                                        closestControlPointIndexX = i;
+                                    }
+                                    if (distY < distanceToClosestControlPointY)
+                                    {
+                                        distanceToClosestControlPointY = distY;
+                                        closestControlPointIndexY = i;
+                                    }
+                                }
+
+                                float closestControlPointPositionX = _controlPointsWorldSpace[closestControlPointIndexX].anchorPointPosition.x;
+                                float closestControlPointPositionY = _controlPointsWorldSpace[closestControlPointIndexY].anchorPointPosition.y;
+
+                                if (distanceToClosestControlPointX < 0.15f)
+                                    DrawSnapLine(new Vector2(closestControlPointPositionX, 0f), true);
+
+                                if (distanceToClosestControlPointY < 0.15f)
+                                    DrawSnapLine(new Vector2(0f, closestControlPointPositionY), false);
+                            }
+
                             if (e.alt || _removeControlPoints)
                                 DrawDot(controlPoint.anchorPointPosition, _anchorPointRadius, controlPointTexture, _controlPointsWorldSpace.Count > 3 ? (isHovered ? Game2DWaterKitStyles.MeshMaskToolRemoveControlPointHoveredColor : Game2DWaterKitStyles.MeshMaskToolRemoveControlPointColor) : Game2DWaterKitStyles.MeshMaskToolDefaultControlPointDisabledColor);
                             else if (e.control || _insertControlPoints)
@@ -823,7 +874,7 @@
                                 _removeControlPoints = false;
                                 _shouldRepaintInspector = true;
 
-                                if(_editEdgeCollider)
+                                if (_editEdgeCollider)
                                 {
                                     if (_edgeColliderEndPoint < 0 && _edgeColliderStartPoint > -1)
                                         _edgeColliderEndPoint = index;
@@ -850,6 +901,52 @@
                             if (e.delta != Vector2.zero)
                             {
                                 Vector2 mousePosition = HandleUtility.GUIPointToWorldRay(e.mousePosition).origin;
+
+                                if (e.shift)
+                                {
+                                    if (snapMode == 0)
+                                    {
+                                        float xFrac = Mathf.Abs(mousePosition.x) % 1;
+                                        float yFrac = Mathf.Abs(mousePosition.y) % 1;
+
+                                        mousePosition.x = (int)mousePosition.x + Mathf.Sign(mousePosition.x) * (Mathf.Round(xFrac / snapToGridStepSize.x) * snapToGridStepSize.x);
+                                        mousePosition.y = (int)mousePosition.y + Mathf.Sign(mousePosition.y) * (Mathf.Round(yFrac / snapToGridStepSize.y) * snapToGridStepSize.y);
+                                    }
+                                    else
+                                    {
+                                        float distanceToClosestControlPointX = Mathf.Infinity;
+                                        float distanceToClosestControlPointY = Mathf.Infinity;
+                                        int closestControlPointIndexX = -1;
+                                        int closestControlPointIndexY = -1;
+                                        for (int i = 0, imax = _controlPointsWorldSpace.Count; i < imax; i++)
+                                        {
+                                            if (i == index)
+                                                continue;
+
+                                            float distX = Mathf.Abs(_controlPointsWorldSpace[i].anchorPointPosition.x - mousePosition.x);
+                                            if (distX < distanceToClosestControlPointX)
+                                            {
+                                                distanceToClosestControlPointX = distX;
+                                                closestControlPointIndexX = i;
+                                            }
+
+                                            float distY = Mathf.Abs(_controlPointsWorldSpace[i].anchorPointPosition.y - mousePosition.y);
+                                            if (distY < distanceToClosestControlPointY)
+                                            {
+                                                distanceToClosestControlPointY = distY;
+                                                closestControlPointIndexY = i;
+                                            }
+                                        }
+
+                                        float closestControlPointPositionX = _controlPointsWorldSpace[closestControlPointIndexX].anchorPointPosition.x;
+                                        if (distanceToClosestControlPointX < 0.15f)
+                                            mousePosition.x = closestControlPointPositionX;
+
+                                        float closestControlPointPositionY = _controlPointsWorldSpace[closestControlPointIndexY].anchorPointPosition.y;
+                                        if (distanceToClosestControlPointY < 0.15f)
+                                            mousePosition.y = closestControlPointPositionY;
+                                    }
+                                }
 
                                 Vector2 deltaWorldSpace = mousePosition - controlPoint.anchorPointPosition;
 
@@ -879,6 +976,16 @@
                 }
 
                 return hasRemovedPoint;
+            }
+
+            private static void DrawSnapLine(Vector2 pointOnLine, bool isSnappingX)
+            {
+                Handles.color = Color.green;
+
+                if (isSnappingX)
+                    Handles.DrawDottedLine(new Vector3(pointOnLine.x, -99999f), new Vector3(pointOnLine.x, 99999f), 3f);
+                else
+                    Handles.DrawDottedLine(new Vector3(-99999f, pointOnLine.y), new Vector3(99999f, pointOnLine.y), 3f);
             }
 
             private static void DrawControlPointHandle(int index, bool isFirstHandleCurrent)
@@ -1226,7 +1333,7 @@
                 var solutionPolygons = new List<List<ClipperLib.IntPoint>>();
 
                 ClipperLib.Clipper clipper = new ClipperLib.Clipper();
-                
+
                 clipper.AddPath(maskPoints, ClipperLib.PolyType.ptClip, true);
                 clipper.AddPath(waterOrWaterfallPoints, ClipperLib.PolyType.ptSubject, true);
                 clipper.Execute(getInsideMaskPolygons ? ClipperLib.ClipType.ctIntersection : ClipperLib.ClipType.ctDifference, solutionPolygons, ClipperLib.PolyFillType.pftEvenOdd, ClipperLib.PolyFillType.pftEvenOdd);

@@ -29,6 +29,7 @@
             _waterObject = waterObject;
 
             ReflectionZOffset = parameters.ReflectionZOffset;
+            ReflectionYOffset = parameters.ReflectionYOffset;
 
             Refraction = new WaterRenderingMode(parameters.RefractionParameters, isReflectionMode: false);
             RefractionPartiallySubmergedObjects = new WaterRenderingMode(parameters.RefractionPartiallySubmergedObjectsParameters, isReflectionMode: false);
@@ -42,6 +43,7 @@
         public WaterRenderingMode Reflection { get; private set; }
         public WaterRenderingMode ReflectionPartiallySubmergedObjects { get; private set; }
         public float ReflectionZOffset { get; set; }
+        public float ReflectionYOffset { get; set; }
         #endregion
 
         #region Methods
@@ -138,8 +140,14 @@
             bool isUsingOpaqueRenderQueue = _materialModule.RenderQueue == 2000;
 
             if ((renderRefraction || fakePerspective) && !isUsingOpaqueRenderQueue)
-                SetupRefractionMask();
+            {
+                var refractionRenderingProperties = renderRefraction ? _wholeWaterVisibleArea.RefractionProperties : _surfaceVisibleArea.RefractionProperties;
 
+                Vector3 maskPosition = refractionRenderingProperties.Position;
+                maskPosition.z += refractionRenderingProperties.NearClipPlane + 0.001f;
+
+                SetupRefractionMask(maskPosition);
+            }
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
             _renderingContext = context;
 #endif
@@ -287,7 +295,7 @@
             bool isFakePerspectiveEnabled = materialModule.IsFakePerspectiveEnabled;
 
             bool computePixelSize = !Refraction.RenderTextureUseFixedSize || !(isFakePerspectiveEnabled ? RefractionPartiallySubmergedObjects.RenderTextureUseFixedSize : Reflection.RenderTextureUseFixedSize);
-            _wholeWaterVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, computePixelSize, _farClipPlane, true, isReflectionEnabled && !isFakePerspectiveEnabled, ReflectionZOffset, reflectionAxis: -waterBoundsMin.y, reflectionFrustumHeightScalingFactor: Reflection.ViewingFrustumHeightScalingFactor);
+            _wholeWaterVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, computePixelSize, _farClipPlane, true, isReflectionEnabled && !isFakePerspectiveEnabled, reflectionYOffset: ReflectionYOffset, reflectionZOffset: ReflectionZOffset, reflectionAxis: -waterBoundsMin.y, reflectionFrustumHeightScalingFactor: Reflection.ViewingFrustumHeightScalingFactor);
 
             if (isFakePerspectiveEnabled)
             {
@@ -300,11 +308,11 @@
 
                 //Finding visible Surface Area
                 isRenderingCameraFullyContainedInWaterBox &= WaterUtility.ClipPointsAgainstAABBEdge(_clipeePoints, isBottomOrTopEdge: true, isBottomOrLeftEdge: true, edgePosition: surfaceLevel);
-                _surfaceVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, !Reflection.RenderTextureUseFixedSize, _farClipPlane, computeRefractionProperties, isReflectionEnabled, ReflectionZOffset, reflectionAxis: waterBoundsMax.y, reflectionFrustumHeightScalingFactor: Reflection.ViewingFrustumHeightScalingFactor);
+                _surfaceVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, !Reflection.RenderTextureUseFixedSize, _farClipPlane, computeRefractionProperties, isReflectionEnabled, reflectionYOffset: ReflectionYOffset, reflectionZOffset: ReflectionZOffset, reflectionAxis: waterBoundsMax.y, reflectionFrustumHeightScalingFactor: Reflection.ViewingFrustumHeightScalingFactor);
 
                 //Finding visible Surface Area below submerge level
                 isRenderingCameraFullyContainedInWaterBox &= WaterUtility.ClipPointsAgainstAABBEdge(_clipeePoints, isBottomOrTopEdge: true, isBottomOrLeftEdge: false, edgePosition: submergeLevel);
-                _surfaceBelowSubmergeLevelVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, !ReflectionPartiallySubmergedObjects.RenderTextureUseFixedSize, _farClipPlane, false, isReflectionEnabled, ReflectionZOffset, reflectionAxis: submergeLevel, reflectionFrustumHeightScalingFactor: ReflectionPartiallySubmergedObjects.ViewingFrustumHeightScalingFactor);
+                _surfaceBelowSubmergeLevelVisibleArea.UpdateArea(_clipeePoints, _renderingCameraFrustum, isRenderingCameraFullyContainedInWaterBox, !ReflectionPartiallySubmergedObjects.RenderTextureUseFixedSize, _farClipPlane, false, isReflectionEnabled, reflectionYOffset: ReflectionYOffset, reflectionZOffset: ReflectionZOffset, reflectionAxis: submergeLevel, reflectionFrustumHeightScalingFactor: ReflectionPartiallySubmergedObjects.ViewingFrustumHeightScalingFactor);
             }
         }
 
@@ -390,6 +398,7 @@
             SortingLayerID = parameters.SortingLayerID;
             SortingOrder = parameters.SortingOrder;
             ReflectionZOffset = parameters.ReflectionZOffset;
+            ReflectionYOffset = parameters.ReflectionYOffset;
 
             MeshMask.Validate(parameters.MeshMaskParameters);
         }
@@ -406,6 +415,7 @@
         public WaterRenderingModeParameters ReflectionParameters;
         public WaterRenderingModeParameters ReflectionPartiallySubmergedObjectsParameters;
         public float ReflectionZOffset;
+        public float ReflectionYOffset;
         public float FarClipPlane;
         public bool RenderPixelLights;
         public bool AllowMSAA;

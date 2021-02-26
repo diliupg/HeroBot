@@ -1,0 +1,2092 @@
+Using pre-set license
+Built from '2020.2/release' branch; Version is '2020.2.2f1 (068178b99f32) revision 426360'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.804; Version 2009; 64bit' Language: 'en' Physical Memory: 32704 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\2020.2.2f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+F:/UNITY PROJECTS/Unity-2020/Herobot
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+6016
+Successfully changed project path to: F:/UNITY PROJECTS/Unity-2020/Herobot
+F:/UNITY PROJECTS/Unity-2020/Herobot
+Using Asset Import Pipeline V2.
+Default GameObject BitMask: Water already registered
+
+Refreshing native plugins compatible for Editor in 70.42 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.2.2f1 (068178b99f32)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/2020.2.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path F:/UNITY PROJECTS/Unity-2020/Herobot/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 (ID=0x1f82)
+    Vendor:   
+    VRAM:     3962 MB
+    Driver:   27.21.14.6140
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/2020.2.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/2020.2.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56348
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002178 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 71.66 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.511 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001934 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 79.29 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.892 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Default GameObject BitMask: Water already registered
+
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.12 seconds
+Refreshing native plugins compatible for Editor in 1.64 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3567 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 160.3 MB.
+System memory in use after: 160.2 MB.
+
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 4023.
+Total: 2.622500 ms (FindLiveObjects: 0.370600 ms CreateObjectMapping: 0.090800 ms MarkObjects: 1.816300 ms  DeleteObjects: 0.343200 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Render Settings/New 2D Renderer Data.asset
+  artifactKey: Guid(21aabed0fbf5f8043b9c696a043ab75e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Render Settings/New 2D Renderer Data.asset using Guid(21aabed0fbf5f8043b9c696a043ab75e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa463f030fff89dde2192e33aa2ecf49') in 0.031780 seconds
+  Import took 0.037353 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 104.069062 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/KOCHCHI GAMES logo 2.png
+  artifactKey: Guid(2f62687e2f5024c4b9c29b35d1ef2621) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/KOCHCHI GAMES logo 2.png using Guid(2f62687e2f5024c4b9c29b35d1ef2621) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '286619615d714ec617e4c9cdf3a1a0b5') in 0.106858 seconds
+  Import took 0.112231 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004449 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/KOCHCHI GAMES logo 2.png
+  artifactKey: Guid(2f62687e2f5024c4b9c29b35d1ef2621) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/KOCHCHI GAMES logo 2.png using Guid(2f62687e2f5024c4b9c29b35d1ef2621) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '286619615d714ec617e4c9cdf3a1a0b5') in 0.029323 seconds
+  Import took 0.034652 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002502 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.95 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.859 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 150.8 MB.
+System memory in use after: 150.7 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4032.
+Total: 3.211200 ms (FindLiveObjects: 0.488300 ms CreateObjectMapping: 0.110500 ms MarkObjects: 2.237200 ms  DeleteObjects: 0.374000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 355.994302 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level2.unity
+  artifactKey: Guid(ed022a0e3ba365f41806d48825d0c5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level2.unity using Guid(ed022a0e3ba365f41806d48825d0c5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ac6705a0d6555cebe37b9cf3ea63c28') in 0.016201 seconds
+  Import took 0.021837 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002372 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.28 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.873 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 150.9 MB.
+System memory in use after: 150.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4035.
+Total: 3.226200 ms (FindLiveObjects: 0.544900 ms CreateObjectMapping: 0.177600 ms MarkObjects: 2.097700 ms  DeleteObjects: 0.404800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 180.697530 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level3.unity
+  artifactKey: Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level3.unity using Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a3732850930ec9e86ab59854ad3aac5') in 0.011494 seconds
+  Import took 0.037201 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002295 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.21 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.895 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.99 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.0 MB.
+System memory in use after: 150.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4038.
+Total: 3.444800 ms (FindLiveObjects: 0.578500 ms CreateObjectMapping: 0.133600 ms MarkObjects: 2.287600 ms  DeleteObjects: 0.444300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002109 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.948 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.03 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.1 MB.
+System memory in use after: 150.9 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4041.
+Total: 3.083000 ms (FindLiveObjects: 0.386000 ms CreateObjectMapping: 0.090400 ms MarkObjects: 2.146000 ms  DeleteObjects: 0.459600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.003824 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.04 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.926 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.41 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.1 MB.
+System memory in use after: 151.0 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4044.
+Total: 3.623900 ms (FindLiveObjects: 0.617000 ms CreateObjectMapping: 0.098400 ms MarkObjects: 2.422300 ms  DeleteObjects: 0.485000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002285 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.930 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.2 MB.
+System memory in use after: 151.1 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4047.
+Total: 3.007000 ms (FindLiveObjects: 0.366400 ms CreateObjectMapping: 0.089900 ms MarkObjects: 2.111000 ms  DeleteObjects: 0.438600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 218.326019 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Materials/SpikesNew.mat
+  artifactKey: Guid(44a7caf0cab5f5c4dbb57f7c3050eaaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Materials/SpikesNew.mat using Guid(44a7caf0cab5f5c4dbb57f7c3050eaaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92cf5b886b7deebae48fffe79b77cc76') in 0.223968 seconds
+  Import took 0.229323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/swayingPlants.mat
+  artifactKey: Guid(8083d8941c94e1a469e125c383bea3b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/swayingPlants.mat using Guid(8083d8941c94e1a469e125c383bea3b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48c9586ea84536995f07dbd15614aa60') in 0.315169 seconds
+  Import took 0.319653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000229 seconds.
+  path: Assets/Foliage2D/Example/Materials/Windmill_body.mat
+  artifactKey: Guid(e11ef0a4f3809c94080051b39a6660b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Windmill_body.mat using Guid(e11ef0a4f3809c94080051b39a6660b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f1646188092a6f9452392491473f076') in 0.207243 seconds
+  Import took 0.211548 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/Jiggly Bubble Free/Materials/WaterSplash.mat
+  artifactKey: Guid(8c73fb66c002c44409eaf38a06119e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Jiggly Bubble Free/Materials/WaterSplash.mat using Guid(8c73fb66c002c44409eaf38a06119e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31ef3c01ba85d963f956db4c55bf2f4a') in 0.160176 seconds
+  Import took 0.164532 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/WallTileMap.mat
+  artifactKey: Guid(853b1d132dba8e348b168dcad7a3f84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/WallTileMap.mat using Guid(853b1d132dba8e348b168dcad7a3f84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48b7ea78b29b9cbb9f540af763151ff1') in 0.104600 seconds
+  Import took 0.108982 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/Foliage2D/Example/Materials/Windmill_arms.mat
+  artifactKey: Guid(6a9a9843f64dc9d4bad4084f1e2ceaba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Windmill_arms.mat using Guid(6a9a9843f64dc9d4bad4084f1e2ceaba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fc815148b16ed3e4f1d8da9954a8c00') in 0.166775 seconds
+  Import took 0.171302 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/ToJ Assets/Camera Fit/Samples/Yellow Material.mat
+  artifactKey: Guid(3cd8ebebe99211c47a7d6267ae86634a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ToJ Assets/Camera Fit/Samples/Yellow Material.mat using Guid(3cd8ebebe99211c47a7d6267ae86634a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29507a680f2a25cf0d02070763b71ff4') in 0.110713 seconds
+  Import took 0.115176 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/WallTileMap 2.mat
+  artifactKey: Guid(6e554e798f528d149ac25dbb5b37c517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/WallTileMap 2.mat using Guid(6e554e798f528d149ac25dbb5b37c517) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3e949ecf0b0d4af5f371a0cc87daa4f') in 0.069707 seconds
+  Import took 0.074106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.445384 seconds.
+  path: Assets/Foliage2D/Example/Materials/Sky.mat
+  artifactKey: Guid(dded8823f19fafa4e821f46bcb323ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Sky.mat using Guid(dded8823f19fafa4e821f46bcb323ff4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dc4ab6a746b4653b875676979afa655') in 0.375677 seconds
+  Import took 0.381479 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Factory Tiles/Materials/pipe_002.mat
+  artifactKey: Guid(2c2b822030b02254eb6a42888f226c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Factory Tiles/Materials/pipe_002.mat using Guid(2c2b822030b02254eb6a42888f226c00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97a2ee24dbf2cb4651cbc5b23cd49edd') in 0.035607 seconds
+  Import took 0.040035 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Foliage2D/Example/Materials/Player.mat
+  artifactKey: Guid(a247238476cca314b8da4311e1acd0d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Player.mat using Guid(a247238476cca314b8da4311e1acd0d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5634ef41c86adf15d70e13d8aeee22f') in 0.068577 seconds
+  Import took 0.072891 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/New Material 1.mat
+  artifactKey: Guid(16a6da612eaa0454fb9d9cb0d4fe3e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/New Material 1.mat using Guid(16a6da612eaa0454fb9d9cb0d4fe3e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '436e201f55a45e10d09df98036c596eb') in 0.026653 seconds
+  Import took 0.031100 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/Foliage2D/Example/Materials/Mountain_02.mat
+  artifactKey: Guid(060f5659b3421c2408b9192bb8ba81e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Mountain_02.mat using Guid(060f5659b3421c2408b9192bb8ba81e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26dfd53547334c804a349b402680f7b9') in 0.317727 seconds
+  Import took 0.353793 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/New Material.mat
+  artifactKey: Guid(ed640fc6a86a1634bb79eb21097ddac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/New Material.mat using Guid(ed640fc6a86a1634bb79eb21097ddac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96db538178f1dcf04f48d6e6a129357d') in 0.006389 seconds
+  Import took 0.010728 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000440 seconds.
+  path: Assets/Foliage2D/Example/Materials/Mountain_fill.mat
+  artifactKey: Guid(d4a2eb79c43a6a644b82d0f608fff246) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Mountain_fill.mat using Guid(d4a2eb79c43a6a644b82d0f608fff246) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e54bb37752023cf3c587d7df416f4c87') in 0.048315 seconds
+  Import took 0.053040 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Spikes.mat
+  artifactKey: Guid(b89891b296d710a428fd04e42f353a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Spikes.mat using Guid(b89891b296d710a428fd04e42f353a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2406471c428516330988568f40cdd0e7') in 0.184511 seconds
+  Import took 0.188881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Factory Tiles/Materials/pipe_004.mat
+  artifactKey: Guid(c29358bb20d6767438ac3935c7bba365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Factory Tiles/Materials/pipe_004.mat using Guid(c29358bb20d6767438ac3935c7bba365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f32701a4cd52663bd96a1bd9c0ebbc5') in 0.028574 seconds
+  Import took 0.032980 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000229 seconds.
+  path: Assets/Foliage2D/Example/Materials/Mountain_01.mat
+  artifactKey: Guid(2fdbafc2a3eaf00409840ef863e48879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Mountain_01.mat using Guid(2fdbafc2a3eaf00409840ef863e48879) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '180945a0064fc015f3e8624a0d40f65d') in 0.405556 seconds
+  Import took 0.410650 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000268 seconds.
+  path: Assets/CameraShakeFX/Demo/Particles/Materials/SmokeDark.mat
+  artifactKey: Guid(698a8134f4ebbbd4e848648685f68067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CameraShakeFX/Demo/Particles/Materials/SmokeDark.mat using Guid(698a8134f4ebbbd4e848648685f68067) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '336ab9aa746230d17404f72ad0667836') in 0.347301 seconds
+  Import took 0.351639 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/CameraShakeFX/Demo/Particles/Materials/SandParticle.mat
+  artifactKey: Guid(4ea8613283885aa45a5c6eb29a50bdb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CameraShakeFX/Demo/Particles/Materials/SandParticle.mat using Guid(4ea8613283885aa45a5c6eb29a50bdb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3d31bcf328abf5ec7aa05cab6e0903c') in 0.199265 seconds
+  Import took 0.203581 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/MovingSpike.mat
+  artifactKey: Guid(bf104085a8f7a4c4d911af64b865f087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/MovingSpike.mat using Guid(bf104085a8f7a4c4d911af64b865f087) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a65594c3fb963bfef8a57cb8480e8473') in 0.019485 seconds
+  Import took 0.024097 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000365 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Particles/runDust.mat
+  artifactKey: Guid(8cfd435838b402e4897ff577c335493d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Particles/runDust.mat using Guid(8cfd435838b402e4897ff577c335493d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73d9560553ddea881b4f0a3e4c965697') in 0.014647 seconds
+  Import took 0.019655 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000406 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Spikes.mat
+  artifactKey: Guid(1b7abd73b5fe8524abc0ceb94975dda2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Spikes.mat using Guid(1b7abd73b5fe8524abc0ceb94975dda2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25dd6c3f87dcb5ebcfb146bef4638e9f') in 0.021178 seconds
+  Import took 0.026110 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000256 seconds.
+  path: Assets/HeRoBot Main Folder/ParticleSystems/Materials/Material_Particles_Sparks_Lit.mat
+  artifactKey: Guid(932a03b963a65024290c68638965a10d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/ParticleSystems/Materials/Material_Particles_Sparks_Lit.mat using Guid(932a03b963a65024290c68638965a10d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edef64fe6b2e87ccb88d9e6e1fd7244d') in 0.223764 seconds
+  Import took 0.228512 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.443978 seconds.
+  path: Assets/Foliage2D/Example/Materials/Hill_02.mat
+  artifactKey: Guid(ec13bb01f418d0342b726c3890f83d3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Hill_02.mat using Guid(ec13bb01f418d0342b726c3890f83d3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3bd3c16ca89339b497843ee6b41c95a3') in 0.183392 seconds
+  Import took 0.188748 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000274 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX4_AuraBubble ADD.mat
+  artifactKey: Guid(b701c416ffd5db94eab6dbfe25b8247e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX4_AuraBubble ADD.mat using Guid(b701c416ffd5db94eab6dbfe25b8247e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f12270a07b8137ce5b0a3f3fecd5d8df') in 0.182036 seconds
+  Import took 0.186848 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000338 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke ABP.mat
+  artifactKey: Guid(c2b6d89793f7f774ca8040eb59feb250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke ABP.mat using Guid(c2b6d89793f7f774ca8040eb59feb250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b785f4e8ba456b6a74cd5fda7b6b711e') in 0.187470 seconds
+  Import took 0.191982 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_SmokePuff AB.mat
+  artifactKey: Guid(4948758f8ede2fb4aa764ecac592172d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_SmokePuff AB.mat using Guid(4948758f8ede2fb4aa764ecac592172d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '449a84e2ad857d170c42d8b0b3649775') in 0.079335 seconds
+  Import took 0.083688 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowDot MULT.mat
+  artifactKey: Guid(0e9094c1cb53cc44595d77cdcf14b8d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowDot MULT.mat using Guid(0e9094c1cb53cc44595d77cdcf14b8d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ff0fb02505cc91793d8ff1b3257ff36') in 0.037607 seconds
+  Import took 0.041924 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GroundMap.mat
+  artifactKey: Guid(0a599c93a9f8e764ca72915e84cff91a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GroundMap.mat using Guid(0a599c93a9f8e764ca72915e84cff91a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f9db39ded7c5ce833fc0a07de2f9ba7') in 0.070759 seconds
+  Import took 0.075235 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Foliage2D/Example/Materials/Grass/Grass_02.mat
+  artifactKey: Guid(34865499658502f409b60fdde5ad8883) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Grass/Grass_02.mat using Guid(34865499658502f409b60fdde5ad8883) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a25ba57c1bb3faa7c4f1d809f87b457') in 0.052791 seconds
+  Import took 0.057086 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_BrokenHeart Add.mat
+  artifactKey: Guid(53d0980ae6a0d2f4290706eb595fa872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_BrokenHeart Add.mat using Guid(53d0980ae6a0d2f4290706eb595fa872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b98cd0467f6f18e191bee885f94b0335') in 0.052189 seconds
+  Import took 0.056531 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Diamond Add.mat
+  artifactKey: Guid(a9b550a3d81ca7845b9fb15672984986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Diamond Add.mat using Guid(a9b550a3d81ca7845b9fb15672984986) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f75985a2cf6ea342a8358aa1aec7d514') in 0.043159 seconds
+  Import took 0.047532 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Kalugal_WallTileMap.mat
+  artifactKey: Guid(053b3692c15d33a4e97fb90f9c65c34a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Kalugal_WallTileMap.mat using Guid(053b3692c15d33a4e97fb90f9c65c34a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bf74de2d16b37b373b0e424bd46f201') in 0.017592 seconds
+  Import took 0.022028 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000332 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Water/CFX4_BubbleSubtle AddA8.mat
+  artifactKey: Guid(ae4bd2bfbe5feee409f42cd62343a844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Water/CFX4_BubbleSubtle AddA8.mat using Guid(ae4bd2bfbe5feee409f42cd62343a844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5109762dde76166518b6ecf03c74149') in 0.059263 seconds
+  Import took 0.063803 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_GroundDebris AB.mat
+  artifactKey: Guid(5e70183c9ec77be4895f6316c0695983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_GroundDebris AB.mat using Guid(5e70183c9ec77be4895f6316c0695983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c8a114e7bf5a8881c0912b1faffc61d') in 0.114096 seconds
+  Import took 0.118519 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000241 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Diamond Outline Add.mat
+  artifactKey: Guid(116dd40afacd54e45a3e276d2c361ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Diamond Outline Add.mat using Guid(116dd40afacd54e45a3e276d2c361ef6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9b35bf8b8a90d4e43957a46985c4f8a') in 0.133817 seconds
+  Import took 0.138073 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GreyGroundTiles.mat
+  artifactKey: Guid(32cebc7bad489f34dbbd5a3797383aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GreyGroundTiles.mat using Guid(32cebc7bad489f34dbbd5a3797383aab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '560951bceee0aa316003ea1f3258fa3a') in 0.128387 seconds
+  Import took 0.132859 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/Foliage2D/Example/Materials/Fog_02.mat
+  artifactKey: Guid(c6140abec03b231479e4a04e0233bb0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Fog_02.mat using Guid(c6140abec03b231479e4a04e0233bb0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adfa1c0a175d793dbc16c612cb65dc18') in 0.267074 seconds
+  Import took 0.271988 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/MobileJoystick/Material/Ground.mat
+  artifactKey: Guid(99bb8bbcc45619a4c92b774b9b37a47a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MobileJoystick/Material/Ground.mat using Guid(99bb8bbcc45619a4c92b774b9b37a47a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6ed13104d43e80f9b9343d626c24796') in 0.014616 seconds
+  Import took 0.019160 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000297 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_HeartBrokenSlice.mat
+  artifactKey: Guid(6573156ff7aedbe49b6d60c015d0a67a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_HeartBrokenSlice.mat using Guid(6573156ff7aedbe49b6d60c015d0a67a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e59bc6fc89e5adfbfb2ddf038aa72e9') in 0.051638 seconds
+  Import took 0.056419 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_AuraRunic ADD.mat
+  artifactKey: Guid(5bf91ad953f78d54baebb31d5f5ae4a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_AuraRunic ADD.mat using Guid(5bf91ad953f78d54baebb31d5f5ae4a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b7187d2627cf11c46674aba60aac4ac') in 0.177985 seconds
+  Import took 0.182329 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000271 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_ShinyStar Add.mat
+  artifactKey: Guid(c1b09b1ca8ba05d4682ccf6db6b1102d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_ShinyStar Add.mat using Guid(c1b09b1ca8ba05d4682ccf6db6b1102d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3bc42a851e2972fd9071ba704e26627') in 0.205314 seconds
+  Import took 0.209597 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_AuraRays MULT.mat
+  artifactKey: Guid(63729df9e952c1f4b8fe34b9cd435a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_AuraRays MULT.mat using Guid(63729df9e952c1f4b8fe34b9cd435a79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51e5b784651d20e9a26ef86c18c2e41c') in 0.038516 seconds
+  Import took 0.042867 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Star Add.mat
+  artifactKey: Guid(08192a9c1c42061469892514fe447db9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Star Add.mat using Guid(08192a9c1c42061469892514fe447db9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72b45f4e2b1557dea19256b9e4e150b4') in 0.038159 seconds
+  Import took 0.042488 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/HeRoBot Main Folder/Prefabs/Water/Game2D Water.mat
+  artifactKey: Guid(edf0bc75e659b244d8830803d4fc76d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Prefabs/Water/Game2D Water.mat using Guid(edf0bc75e659b244d8830803d4fc76d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fbf2eaa5e6ffe48ac3ccebe3806bee0') in 0.073961 seconds
+  Import took 0.078351 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000242 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WhiteCircle AB.mat
+  artifactKey: Guid(7c9d6983f275678479ebf019a670f9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WhiteCircle AB.mat using Guid(7c9d6983f275678479ebf019a670f9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '508d4407754970aee093f24fafad64a9') in 0.013848 seconds
+  Import took 0.018477 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000335 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Smiley Outline Add.mat
+  artifactKey: Guid(afceefb437defc544be0dd8865016f1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Smiley Outline Add.mat using Guid(afceefb437defc544be0dd8865016f1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '135d67d6c1e3a14f5358ceb814470d31') in 0.139284 seconds
+  Import took 0.150890 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Background_Tilemap.mat
+  artifactKey: Guid(c672a5402f4db174ea9758cefdc0138f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Background_Tilemap.mat using Guid(c672a5402f4db174ea9758cefdc0138f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '641bd967ea5b31f1b55dea3cb0606a4c') in 0.035841 seconds
+  Import took 0.040203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Foliage2D/Example/Materials/Flowers/FlowerM_04.mat
+  artifactKey: Guid(a4b53c23478b9e14398327ee66c2ca08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Flowers/FlowerM_04.mat using Guid(a4b53c23478b9e14398327ee66c2ca08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84553b2d3c0c328729cf9415e5f80802') in 0.179964 seconds
+  Import took 0.184379 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Particles/fire.mat
+  artifactKey: Guid(d8e1370fb6008c24b9d85116e4021bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Particles/fire.mat using Guid(d8e1370fb6008c24b9d85116e4021bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5b36d9e7e3efddbe823544d7db32bc6') in 0.112393 seconds
+  Import took 0.116750 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Gate Material.mat
+  artifactKey: Guid(dd117b9e652917b489b268326a53a88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Gate Material.mat using Guid(dd117b9e652917b489b268326a53a88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f09ec7bf50826c7601836e2e88d9141a') in 0.018605 seconds
+  Import took 0.023138 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Animated/CFX2_Anim_Bat Multiply.mat
+  artifactKey: Guid(653d8478f72eda9478f558c843ccb9f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Animated/CFX2_Anim_Bat Multiply.mat using Guid(653d8478f72eda9478f558c843ccb9f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '648d24e010cc20fab73c254d73d9430d') in 0.061983 seconds
+  Import took 0.066763 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/TileSets/Materials/CavesFG01.mat
+  artifactKey: Guid(9ec547fbb8eb11d43bcba5348b259784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/TileSets/Materials/CavesFG01.mat using Guid(9ec547fbb8eb11d43bcba5348b259784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a801b254bbee08c129ab702ac7d20ad5') in 0.270380 seconds
+  Import took 0.286567 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000229 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_Anim_WiggleLine Add.mat
+  artifactKey: Guid(399e2b3ed7a51a34aa2171ddcc535cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_Anim_WiggleLine Add.mat using Guid(399e2b3ed7a51a34aa2171ddcc535cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '724b86a7e76c740130351b1209db6d40') in 0.139601 seconds
+  Import took 0.144040 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Smiley Add.mat
+  artifactKey: Guid(ca6271d0f0946624484298cc419a1a9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Smiley Add.mat using Guid(ca6271d0f0946624484298cc419a1a9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '160791381ab783bd3e57b1be1ace82d1') in 0.040330 seconds
+  Import took 0.044695 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000322 seconds.
+  path: Assets/Jiggly Bubble Free/Materials/bubble cubemap skybox.mat
+  artifactKey: Guid(f955a97081915034a98a5885275adb9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Jiggly Bubble Free/Materials/bubble cubemap skybox.mat using Guid(f955a97081915034a98a5885275adb9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05a08887a2158e0eb4fea9f6847160ff') in 0.071088 seconds
+  Import took 0.075550 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Irr_Weak_Rim_Strong.mat
+  artifactKey: Guid(287708eaa95cb43bcaaeb28d0a9d5c4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Irr_Weak_Rim_Strong.mat using Guid(287708eaa95cb43bcaaeb28d0a9d5c4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f312f1c05b99898035a1bd6c33a73554') in 0.056941 seconds
+  Import took 0.061350 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Blood/CFX2_Blood AB.mat
+  artifactKey: Guid(cfeb0e44c6f4bc34086102e1a7ace033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Blood/CFX2_Blood AB.mat using Guid(cfeb0e44c6f4bc34086102e1a7ace033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bc490fc0a7f42e888202d1251855a38') in 0.057423 seconds
+  Import took 0.061854 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Foliage2D/Example/Materials/Hill_01.mat
+  artifactKey: Guid(876eb0aaed7e8a04ea6fcf21895bce4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Hill_01.mat using Guid(876eb0aaed7e8a04ea6fcf21895bce4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f825a31bfee826c963233f999c419f01') in 0.240696 seconds
+  Import took 0.244964 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX3_Skull ADDSOFT.mat
+  artifactKey: Guid(30db71c1add78bc42a3d83af298a4f5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX3_Skull ADDSOFT.mat using Guid(30db71c1add78bc42a3d83af298a4f5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e334c1003c5b62d2e1a3550699890db') in 0.125302 seconds
+  Import took 0.129865 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Irr_Weak_Rim_Weak.mat
+  artifactKey: Guid(cd11f899a1c6445c7b616b0d4d27aeaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Irr_Weak_Rim_Weak.mat using Guid(cd11f899a1c6445c7b616b0d4d27aeaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '741ce9a5bf688e8a0481ddf288f19f90') in 0.069553 seconds
+  Import took 0.074587 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/HeRoBot Main Folder/Fonts/ObelixPro-cyr.ttf
+  artifactKey: Guid(b33082a2a303a9a469305e664abe613e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Fonts/ObelixPro-cyr.ttf using Guid(b33082a2a303a9a469305e664abe613e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e05a5d64d821812765a29418e647bd7e') in 0.028938 seconds
+  Import took 0.033231 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000236 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX3_FireBulk ADD.mat
+  artifactKey: Guid(67c3db2f0d5b4aa4eaa1d7aec0699d15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX3_FireBulk ADD.mat using Guid(67c3db2f0d5b4aa4eaa1d7aec0699d15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e823e986e564dde262071d143440c2a') in 0.091657 seconds
+  Import took 0.095947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Rim_Weak.mat
+  artifactKey: Guid(ee1e64946a501435280fe71579e5243b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Rim_Weak.mat using Guid(ee1e64946a501435280fe71579e5243b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e23c8285598a9fce632c29113e7f917') in 0.007032 seconds
+  Import took 0.011563 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_HollowCircle ADD.mat
+  artifactKey: Guid(0438adcdefc12d349a285d0ec6295fc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_HollowCircle ADD.mat using Guid(0438adcdefc12d349a285d0ec6295fc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02f667664920267708bd1a3337472f1b') in 0.149679 seconds
+  Import took 0.154340 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/Foliage2D/Example/Materials/Flowers/FlowerM_03.mat
+  artifactKey: Guid(e095bf504a979e849a80d6be87412d44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Flowers/FlowerM_03.mat using Guid(e095bf504a979e849a80d6be87412d44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73d0b3e7804f86f6195f74a34c7ebedd') in 0.145158 seconds
+  Import took 0.149601 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_CircleSoft ADDSOFT.mat
+  artifactKey: Guid(c26f3dc2706e5764eb5100c273a349d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_CircleSoft ADDSOFT.mat using Guid(c26f3dc2706e5764eb5100c273a349d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '025b6f30bf23c00c866077b2532711f1') in 0.127761 seconds
+  Import took 0.132156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000279 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_PowHit AB.mat
+  artifactKey: Guid(390795f53e0c5594da28f6e60382c43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_PowHit AB.mat using Guid(390795f53e0c5594da28f6e60382c43b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bf7c3b5670f4091533ca40155815ec0') in 0.042698 seconds
+  Import took 0.047191 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_RayStraight ADD.mat
+  artifactKey: Guid(695873166113ab64997efed81c2426c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_RayStraight ADD.mat using Guid(695873166113ab64997efed81c2426c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '954a504d6d01c8d65bb0d80712353d4e') in 0.050689 seconds
+  Import took 0.054989 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX4_FireBulk AddSoft.mat
+  artifactKey: Guid(53e601bdd2cb5434e96ec915a4e30792) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX4_FireBulk AddSoft.mat using Guid(53e601bdd2cb5434e96ec915a4e30792) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f17717747877b88d771fb015b7c66e5') in 0.128633 seconds
+  Import took 0.133180 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke AB.mat
+  artifactKey: Guid(b4763647fd335254fb87da94740402ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke AB.mat using Guid(b4763647fd335254fb87da94740402ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf5d3cfa07fe6f3f7f002af0a2afc5d8') in 0.169631 seconds
+  Import took 0.174249 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/glow.mat
+  artifactKey: Guid(3f4523e1224a1c64c8a9583a2e01bd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/glow.mat using Guid(3f4523e1224a1c64c8a9583a2e01bd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '348f4addfdaa3aa4004039e034389a37') in 0.006991 seconds
+  Import took 0.011440 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000262 seconds.
+  path: Assets/Jiggly Bubble Free/Materials/bubble_sheet.mat
+  artifactKey: Guid(57f73b2c859446646ab31ce06c104c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Jiggly Bubble Free/Materials/bubble_sheet.mat using Guid(57f73b2c859446646ab31ce06c104c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21bf4688d11ebc7e504c9dbda60066ba') in 0.191608 seconds
+  Import took 0.196244 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_SkullStretched Add.mat
+  artifactKey: Guid(219882489a1df4042823f03b5b903103) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_SkullStretched Add.mat using Guid(219882489a1df4042823f03b5b903103) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd11c9dd0d27acb705983dfb6b138598') in 0.052744 seconds
+  Import took 0.064695 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000279 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Stretched/CFX2_Faded Ray.mat
+  artifactKey: Guid(628acb7f048d3594fa40568f2a69c3e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Stretched/CFX2_Faded Ray.mat using Guid(628acb7f048d3594fa40568f2a69c3e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '501527292ece15148a5ca08dffb74cf7') in 0.067869 seconds
+  Import took 0.072479 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_PaintHit AB.mat
+  artifactKey: Guid(27dd61234320b5449a30b298b41751ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_PaintHit AB.mat using Guid(27dd61234320b5449a30b298b41751ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '290180f8b4a7e962559374f1e111436f') in 0.071939 seconds
+  Import took 0.076557 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000373 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GroundTiles.mat
+  artifactKey: Guid(77de4fc2b821d9e4c9cbc9f3ad037d44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/GroundTiles.mat using Guid(77de4fc2b821d9e4c9cbc9f3ad037d44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1317be1a559ca88b69425602471ce80d') in 0.037768 seconds
+  Import took 0.042121 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Rim_Strong.mat
+  artifactKey: Guid(4b29fc8b91f3a431c929414fa83c693d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Rim_Strong.mat using Guid(4b29fc8b91f3a431c929414fa83c693d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '488860c4f11b336b105ef09c512844f5') in 0.111528 seconds
+  Import took 0.115938 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Glow Soft.mat
+  artifactKey: Guid(b6a4ebddb006a4a4bb0bea6365c7512a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Glow Soft.mat using Guid(b6a4ebddb006a4a4bb0bea6365c7512a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b500ee354ac82ba6179223b6c96e3513') in 0.086887 seconds
+  Import took 0.091312 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/Foliage2D/Example/Materials/Ground_02.mat
+  artifactKey: Guid(bcf63fe704606bc468d22b65535161d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Ground_02.mat using Guid(bcf63fe704606bc468d22b65535161d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4669a8b9ff6e88cc7f6b28b2bf123a1f') in 0.069607 seconds
+  Import took 0.074236 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000290 seconds.
+  path: Assets/Foliage2D/Example/Materials/Flowers/FlowerM_01.mat
+  artifactKey: Guid(136449090ad882c478f5fd70b76b8160) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Flowers/FlowerM_01.mat using Guid(136449090ad882c478f5fd70b76b8160) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '593a72e83e4c3e3799f0f745f7130ae2') in 0.104782 seconds
+  Import took 0.110174 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000287 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Heart Outline Add.mat
+  artifactKey: Guid(749ea6f567709834fbe474b44674e1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Heart Outline Add.mat using Guid(749ea6f567709834fbe474b44674e1ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '357edce03d3d2a616e07d704da7a3911') in 0.135062 seconds
+  Import took 0.139953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000263 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_Circle AB.mat
+  artifactKey: Guid(4487b6501f1381549872ae22738916a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX4_Circle AB.mat using Guid(4487b6501f1381549872ae22738916a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fb93b378e14417118ab3edb5f7b18da') in 0.069051 seconds
+  Import took 0.074097 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Water/CFX4_Foam AddA8.mat
+  artifactKey: Guid(14526eb0dd765e145bfbb4c0755525e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Water/CFX4_Foam AddA8.mat using Guid(14526eb0dd765e145bfbb4c0755525e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69afb7fe0ed0467c2146a6aba2e94a66') in 0.078554 seconds
+  Import took 0.082946 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Irr_Strong_Rim_Strong.mat
+  artifactKey: Guid(326060a37e6b14e97926f5baf4fecfd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Irr_Strong_Rim_Strong.mat using Guid(326060a37e6b14e97926f5baf4fecfd0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c13ba71d2fa66950abfe9ba4c5f9450') in 0.055282 seconds
+  Import took 0.059605 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/CameraShakeFX/Demo/Particles/Materials/fireball.mat
+  artifactKey: Guid(3349fc02d104e2b458470ec533f51c16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CameraShakeFX/Demo/Particles/Materials/fireball.mat using Guid(3349fc02d104e2b458470ec533f51c16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09350749f7dc1a82340de3b90d9aa370') in 0.407576 seconds
+  Import took 0.412203 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/Jiggly Bubble Free/Materials/bubble cubemap.mat
+  artifactKey: Guid(45ef1c220d547b848854241c81d513f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Jiggly Bubble Free/Materials/bubble cubemap.mat using Guid(45ef1c220d547b848854241c81d513f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e5169198d3ed81fded037a1f45cd031') in 0.052055 seconds
+  Import took 0.056548 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX3_FireSparkle ADD.mat
+  artifactKey: Guid(c9386fd37103dcb479f09e942849a1ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX3_FireSparkle ADD.mat using Guid(c9386fd37103dcb479f09e942849a1ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4779912e54e03344ba5d4c616b94018') in 0.007311 seconds
+  Import took 0.012114 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000294 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/globMat.mat
+  artifactKey: Guid(43fdc8bef47485044a81402e1f2e8d80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/globMat.mat using Guid(43fdc8bef47485044a81402e1f2e8d80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8640050a1d6eb087be27ca2f583d6ed') in 0.028853 seconds
+  Import took 0.033800 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/TileSets/Materials/CavesFG03.mat
+  artifactKey: Guid(caae4b5377972f14eb8e0becc823e8a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/TileSets/Materials/CavesFG03.mat using Guid(caae4b5377972f14eb8e0becc823e8a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58a86756f08d4911bb05b718a06bb180') in 0.065519 seconds
+  Import took 0.069864 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/Foliage2D/Example/Materials/Flowers/FlowerM_02.mat
+  artifactKey: Guid(0b925c128ba9f3343b5cb031c13dda41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Flowers/FlowerM_02.mat using Guid(0b925c128ba9f3343b5cb031c13dda41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a52143b8533c58dbcfa271fe67d3a49') in 0.051007 seconds
+  Import took 0.055366 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/lightReflect.mat
+  artifactKey: Guid(d8aa5ebfcf7a51846864e586ae06e0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/lightReflect.mat using Guid(d8aa5ebfcf7a51846864e586ae06e0da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9437d5bd86d19bd1a94eec92c787fe7e') in 0.006200 seconds
+  Import took 0.010680 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000293 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowDot ADDSOFT.mat
+  artifactKey: Guid(b692d0ba979c41946bbe57f2baba17eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowDot ADDSOFT.mat using Guid(b692d0ba979c41946bbe57f2baba17eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d487498cff16d7f4630a2b92ad1407c') in 0.080732 seconds
+  Import took 0.085466 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Gate/Materials/Gate.mat
+  artifactKey: Guid(a508e9525b586b54fabd66cf4c6098fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Gate/Materials/Gate.mat using Guid(a508e9525b586b54fabd66cf4c6098fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6a970a60e9f62c4cfda18614e47f0cf') in 0.007489 seconds
+  Import took 0.011983 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Jiggly Bubble Free/Materials/bubble.mat
+  artifactKey: Guid(cec0b2c714b441240b98d7c904818225) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Jiggly Bubble Free/Materials/bubble.mat using Guid(cec0b2c714b441240b98d7c904818225) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '085ae0841bcba7ae8a74d2cef27e26f0') in 0.014213 seconds
+  Import took 0.018822 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000266 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Heart Add.mat
+  artifactKey: Guid(c6c72eb3fd1471c489daf719f70f62aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Heart Add.mat using Guid(c6c72eb3fd1471c489daf719f70f62aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f84e9d3e66569e4ad7d050a2f8116842') in 0.119272 seconds
+  Import took 0.124023 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000273 seconds.
+  path: Assets/particles - bubbles/materials/Bubble_Burst.mat
+  artifactKey: Guid(7c5f3ab1b5e334aa7bd77d4a706d2d49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/particles - bubbles/materials/Bubble_Burst.mat using Guid(7c5f3ab1b5e334aa7bd77d4a706d2d49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd373886ff59f89c03a3e8a14e4d6315') in 0.015019 seconds
+  Import took 0.019973 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000293 seconds.
+  path: Assets/CameraShakeFX/Demo/Particles/Materials/FireExplosion.mat
+  artifactKey: Guid(7a306caa8f9f7ed40a5361ce411cdf1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CameraShakeFX/Demo/Particles/Materials/FireExplosion.mat using Guid(7a306caa8f9f7ed40a5361ce411cdf1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7de17b149a867ff1fc9f17e9683468c') in 0.207825 seconds
+  Import took 0.213099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX3_SmokePuff MULT.mat
+  artifactKey: Guid(25cbaca39ac0e3f47b4db172e11cb9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX3_SmokePuff MULT.mat using Guid(25cbaca39ac0e3f47b4db172e11cb9aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4222705a81b8e0f243ce74a50c091694') in 0.053741 seconds
+  Import took 0.058091 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Star Outline Add.mat
+  artifactKey: Guid(b125e76401a407444b8a9c9491a660eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Symbols/CFX2_Star Outline Add.mat using Guid(b125e76401a407444b8a9c9491a660eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89182bc3319c8baf0102711b3bc654c7') in 0.037099 seconds
+  Import took 0.041447 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000259 seconds.
+  path: Assets/Foliage2D/Example/Materials/Ground.mat
+  artifactKey: Guid(f5dbb68ab3f0200449ba94769a5f12d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Ground.mat using Guid(f5dbb68ab3f0200449ba94769a5f12d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ae0437cb73703d5cb484b8ea1c0ca85') in 0.080134 seconds
+  Import took 0.084553 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Stretched/CFX3_Ray MULT.mat
+  artifactKey: Guid(118c317da13d42a458832f85960e9081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Stretched/CFX3_Ray MULT.mat using Guid(118c317da13d42a458832f85960e9081) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7acafd01a42423bf6ffeb3b8d6299fc7') in 0.044888 seconds
+  Import took 0.049264 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Glow.mat
+  artifactKey: Guid(b479681f08574fd4188237f92866cbac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Glow.mat using Guid(b479681f08574fd4188237f92866cbac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9031716068a6f033be5fe05406c80a6') in 0.062293 seconds
+  Import took 0.066792 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/HeRoBot Main Folder/ParticleSystems/Materials/Material_Particles_Fire_Unlit.mat
+  artifactKey: Guid(41332ea5a79890046a824e6a68384056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/ParticleSystems/Materials/Material_Particles_Fire_Unlit.mat using Guid(41332ea5a79890046a824e6a68384056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bae4feb2b0fd5f78b545dcc6fb48eb2f') in 0.359162 seconds
+  Import took 0.363629 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowStar ADD.mat
+  artifactKey: Guid(6b22999712355474795091cef25021b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowStar ADD.mat using Guid(6b22999712355474795091cef25021b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '068948c2fbb60b1bd5c44685ae6b0db3') in 0.113505 seconds
+  Import took 0.117811 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowSpike ADD.mat
+  artifactKey: Guid(1de66e5f4e86e2e4cb564890916f7a9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_GlowSpike ADD.mat using Guid(1de66e5f4e86e2e4cb564890916f7a9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a542462a32575820573ba1d5b1067336') in 0.051628 seconds
+  Import took 0.056207 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/Foliage2D/Example/Materials/Grass/Grass_01.mat
+  artifactKey: Guid(f84c2a64cdbe8044cb2e1df353f049db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Grass/Grass_01.mat using Guid(f84c2a64cdbe8044cb2e1df353f049db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47b47f826868561549dcfb19e5fa0085') in 0.017895 seconds
+  Import took 0.022435 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/Foliage2D/Example/Materials/Fog_01.mat
+  artifactKey: Guid(45ab4335a14129c46b398a8833ce1af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Materials/Fog_01.mat using Guid(45ab4335a14129c46b398a8833ce1af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e7e310fa144eabf7b5110b6f81f64c5') in 0.148731 seconds
+  Import took 0.246514 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX3_SmokePuff ADDSOFT.mat
+  artifactKey: Guid(f12d680b3c37c3c4fae5c220798d9977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX3_SmokePuff ADDSOFT.mat using Guid(f12d680b3c37c3c4fae5c220798d9977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82a5f25a22d6109df05dd204f679f709') in 0.069265 seconds
+  Import took 0.073658 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/MobileJoystick/Material/Box.mat
+  artifactKey: Guid(11b594921001cf04cb609799d98788aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/MobileJoystick/Material/Box.mat using Guid(11b594921001cf04cb609799d98788aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662d3610e1e2905deed74e19bd817d78') in 0.017764 seconds
+  Import took 0.022129 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Backwall.mat
+  artifactKey: Guid(97a1179f56451ce4ca7fa516311e7fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials/Backwall.mat using Guid(97a1179f56451ce4ca7fa516311e7fe3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af1af404054598d32c9435097edfea9d') in 0.019192 seconds
+  Import took 0.023822 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_SmallRay ADDSOFT.mat
+  artifactKey: Guid(d9f8ab332ba6f4a45bd1913a9ff33b10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Light/CFX3_SmallRay ADDSOFT.mat using Guid(d9f8ab332ba6f4a45bd1913a9ff33b10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e64fb07240170d307f4878eaf9937b90') in 0.094835 seconds
+  Import took 0.099396 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX4_FireSoft AddSoft.mat
+  artifactKey: Guid(d37187939248a4d4ab8284eca155b745) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Fire/CFX4_FireSoft AddSoft.mat using Guid(d37187939248a4d4ab8284eca155b745) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88f0ddea1979fd6d8f0676b9d6a728c4') in 0.294918 seconds
+  Import took 0.299333 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000274 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Debris_SmallRocks AB 4Frames.mat
+  artifactKey: Guid(d5510d53a0740714d8094e9574e424fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_Debris_SmallRocks AB 4Frames.mat using Guid(d5510d53a0740714d8094e9574e424fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30030e544d73979f2778b619c333d88c') in 0.042860 seconds
+  Import took 0.047667 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000243 seconds.
+  path: Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke2 AB.mat
+  artifactKey: Guid(2971af36b69b5924fb0f74d572a91646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/JMO Assets/Cartoon FX/Materials/Misc/CFX2_WWSmoke2 AB.mat using Guid(2971af36b69b5924fb0f74d572a91646) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '090bb7d4b4fb27fe1a20ad0ec381a6fe') in 0.194031 seconds
+  Import took 0.198345 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.983865 seconds.
+  path: Assets/HeRoBot Main Folder/Materials/Tilemap-Materials
+  artifactKey: Guid(9c626f7fc58b7254b97c29ac1fc7efba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Materials/Tilemap-Materials using Guid(9c626f7fc58b7254b97c29ac1fc7efba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7fea606f689636b34f86667981b7e167') in 0.002125 seconds
+  Import took 0.007351 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002403 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.95 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.951 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.86 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3406 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 155.5 MB.
+System memory in use after: 155.4 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 4131.
+Total: 3.159500 ms (FindLiveObjects: 0.391400 ms CreateObjectMapping: 0.096200 ms MarkObjects: 2.232700 ms  DeleteObjects: 0.437600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 61.822981 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Giant/Giant_Walk.png
+  artifactKey: Guid(e15a0012050dfbd478a232a52a8fa10a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Giant/Giant_Walk.png using Guid(e15a0012050dfbd478a232a52a8fa10a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d45ad8e29aebfd8a2e5647708d317f1') in 0.096062 seconds
+  Import took 0.118580 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_n.png
+  artifactKey: Guid(43b181a0770add7459aa02eff7c3e6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_n.png using Guid(43b181a0770add7459aa02eff7c3e6fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c24d2bfffffda1f26fa2896ac8f1590b') in 0.006751 seconds
+  Import took 0.011121 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000261 seconds.
+  path: Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointCusp.png
+  artifactKey: Guid(1ea6c275ad6d0de46a3f87d9edcdb786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointCusp.png using Guid(1ea6c275ad6d0de46a3f87d9edcdb786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47118491d31181e2f59a51bd8740c259') in 0.043602 seconds
+  Import took 0.048452 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000257 seconds.
+  path: Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointSmooth.png
+  artifactKey: Guid(6a1e47c58d8261f4fa8e11abcf6f86d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointSmooth.png using Guid(6a1e47c58d8261f4fa8e11abcf6f86d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c6f896539fc10109f7a8b6cd33c01a8') in 0.051786 seconds
+  Import took 0.056332 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000298 seconds.
+  path: Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top.png
+  artifactKey: Guid(a4fef30bb3ca5463a9c33c123a81604a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top.png using Guid(a4fef30bb3ca5463a9c33c123a81604a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b1a6c67d61ed62f9a1e09710e9a2159') in 0.078667 seconds
+  Import took 0.083306 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointNew.png
+  artifactKey: Guid(c9cd8fa4353862c49989d13b601f9a64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointNew.png using Guid(c9cd8fa4353862c49989d13b601f9a64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9cb3d0bb7c82c997007796e3da90db8') in 0.042964 seconds
+  Import took 0.047215 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointSymetric.png
+  artifactKey: Guid(4357f617e166f84498995c95253e0594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointSymetric.png using Guid(4357f617e166f84498995c95253e0594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd3da4de0d3dc04ea9111a2aed71130b') in 0.037579 seconds
+  Import took 0.041896 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/HeRoBot Main Folder/HUD/HealthBorder 1.png
+  artifactKey: Guid(6ba30c54fec08044b95e87f96ae49da0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/HUD/HealthBorder 1.png using Guid(6ba30c54fec08044b95e87f96ae49da0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2943e2fd8ab49b49db1a9a8881b20fb1') in 0.019120 seconds
+  Import took 0.023621 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000233 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/greenshot.png
+  artifactKey: Guid(24f918fea500b1248bce157efe892e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/greenshot.png using Guid(24f918fea500b1248bce157efe892e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd384a83488b76ef6bc5c5c83b33f342a') in 0.168281 seconds
+  Import took 0.229099 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern.png
+  artifactKey: Guid(747f25e5b4f0ed34781b3364c07ef750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern.png using Guid(747f25e5b4f0ed34781b3364c07ef750) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd45cf8684573a090e6c858ce139c12eb') in 0.102396 seconds
+  Import took 0.108364 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Outline.png
+  artifactKey: Guid(8a213466b4b3642faa34dd7853586d96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Outline.png using Guid(8a213466b4b3642faa34dd7853586d96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd29aee517d6999e14148e465ae33627f') in 0.046474 seconds
+  Import took 0.051675 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000247 seconds.
+  path: Assets/Foliage2D/Example/Textures/GrassTextures/Grass_01.png
+  artifactKey: Guid(0f1ccf04ac666ed44b8bc66c113c35e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Textures/GrassTextures/Grass_01.png using Guid(0f1ccf04ac666ed44b8bc66c113c35e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4055b9417f711918b9d0f4fd53e71409') in 0.006659 seconds
+  Import took 0.012126 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000336 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_s.png
+  artifactKey: Guid(d26e220c718705d49b70c4def8c7afc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_s.png using Guid(d26e220c718705d49b70c4def8c7afc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9bd3f8f75cdbad8c1245c4173d83874a') in 0.085544 seconds
+  Import took 0.091412 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/Foliage2D/Example/Textures/Ground_01.png
+  artifactKey: Guid(a839dbca549bc2a459b1eafde0741d82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Textures/Ground_01.png using Guid(a839dbca549bc2a459b1eafde0741d82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '755cfd3d0d1b146c4cdda6c6fba3dee9') in 0.005190 seconds
+  Import took 0.010357 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/HeRoBot Main Folder/Player/HeRoBotParts/headHappy.png
+  artifactKey: Guid(3ef500bf5a116c249a14137aed56247f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Player/HeRoBotParts/headHappy.png using Guid(3ef500bf5a116c249a14137aed56247f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1eba1f46d257a8d2bb8ff9ab3e42a66a') in 0.009274 seconds
+  Import took 0.015086 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000288 seconds.
+  path: Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointHandle.png
+  artifactKey: Guid(769fd159bcdeae545bf5a0aa40153a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Unity Store Assets/Game2DWaterKit/Editor/Resources/Images/h_meshMaskControlPointHandle.png using Guid(769fd159bcdeae545bf5a0aa40153a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74f0b295a2e39c8bbb9bc7499ba2744a') in 0.067554 seconds
+  Import took 0.073280 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000233 seconds.
+  path: Assets/Foliage2D/Example/Textures/GrassTextures/Grass_02.png
+  artifactKey: Guid(2ab2dcd93cbe4fc42b5892c5af285f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Textures/GrassTextures/Grass_02.png using Guid(2ab2dcd93cbe4fc42b5892c5af285f28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd56102933147ab1286d49501b528d88b') in 0.006815 seconds
+  Import took 0.012197 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000381 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Displacement.png
+  artifactKey: Guid(f38c0b5f4c29807478caf98583073b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Displacement.png using Guid(f38c0b5f4c29807478caf98583073b82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6d5e1c6e342c2a64f4d306edb2064c8') in 0.065347 seconds
+  Import took 0.071357 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/Foliage2D/Example/Textures/Ground_02.png
+  artifactKey: Guid(3cbdcc647285aa545ba7ccac862e6154) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Foliage2D/Example/Textures/Ground_02.png using Guid(3cbdcc647285aa545ba7ccac862e6154) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f40db69506cbaffa7537ff78c25a57bc') in 0.008313 seconds
+  Import took 0.013807 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000289 seconds.
+  path: Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top - With Small Rocks.png
+  artifactKey: Guid(edb6cf28f071342d7bbc2a3b3d8ab101) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top - With Small Rocks.png using Guid(edb6cf28f071342d7bbc2a3b3d8ab101) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b6dbf45ff50a518b52c6cc360bdcd2f') in 0.049380 seconds
+  Import took 0.055361 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/HeRoBot Main Folder/Player/HeRoBotParts/headAngry.png
+  artifactKey: Guid(86c360562b59b2341bba09747bdebbab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Player/HeRoBotParts/headAngry.png using Guid(86c360562b59b2341bba09747bdebbab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ce1cff2e7f926de2f5e96359c7da21b') in 0.007947 seconds
+  Import took 0.032482 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_o.png
+  artifactKey: Guid(7e457a7ea8d25c7489e56e1728f1b07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground_o.png using Guid(7e457a7ea8d25c7489e56e1728f1b07f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af87cdced46f66891d8f552109af5548') in 0.035883 seconds
+  Import took 0.041210 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000354 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/greyBut.png
+  artifactKey: Guid(bc809a5cb170ea949bbb0ba3e88b442f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/greyBut.png using Guid(bc809a5cb170ea949bbb0ba3e88b442f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ce046d1c600f8d13ad4d7dbe42078b5') in 0.007123 seconds
+  Import took 0.013093 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000269 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground.png
+  artifactKey: Guid(8fda69977e707404287078a45a0d9d56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Level/Ground.png using Guid(8fda69977e707404287078a45a0d9d56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce0639f6a8e307061fc14fc0282562c2') in 0.090944 seconds
+  Import took 0.096803 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000251 seconds.
+  path: Assets/CameraShakeFX/Demo/Materials/Grid.png
+  artifactKey: Guid(9470468fda72f4773a90a0306decbf0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/CameraShakeFX/Demo/Materials/Grid.png using Guid(9470468fda72f4773a90a0306decbf0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b75b302b226b74ce419cc4480ad6da2f') in 0.044373 seconds
+  Import took 0.049743 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Strip.png
+  artifactKey: Guid(4f39beab6f36e4012aa0112a3a02828d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Strip.png using Guid(4f39beab6f36e4012aa0112a3a02828d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0c6ed5576563f501dec8cacac5d3d0c') in 0.072195 seconds
+  Import took 0.077398 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Normal.png
+  artifactKey: Guid(e55eee17c868fdf4cb39ca809e276c0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Normal.png using Guid(e55eee17c868fdf4cb39ca809e276c0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c6a5611a9f8ddbb878e88ceed59012f') in 0.019158 seconds
+  Import took 0.024633 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top - With Flowers.png
+  artifactKey: Guid(715d5c70d2ef94e2b87c9ba60ec550b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Samples/2D SpriteShape/3.0.9/Sprite Shape Samples/Sprites/Grass Top - With Flowers.png using Guid(715d5c70d2ef94e2b87c9ba60ec550b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e47e519746c522d2e1afe9225a367ebb') in 0.060865 seconds
+  Import took 0.066642 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Specular.png
+  artifactKey: Guid(4273ad18339e05d48a52b981c051f823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/sprites/Cave Stuff/Grey_Cavern/Grey_Cavern_Specular.png using Guid(4273ad18339e05d48a52b981c051f823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afcfa07f97748ab9a1b6e0de227bba53') in 0.189770 seconds
+  Import took 0.195081 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002280 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.931 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.6 MB.
+System memory in use after: 161.4 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 4805.
+Total: 3.451600 ms (FindLiveObjects: 0.531600 ms CreateObjectMapping: 0.124100 ms MarkObjects: 2.407200 ms  DeleteObjects: 0.387200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002232 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.924 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.6 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4808.
+Total: 4.162900 ms (FindLiveObjects: 0.757800 ms CreateObjectMapping: 0.335100 ms MarkObjects: 2.608100 ms  DeleteObjects: 0.460600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002140 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.946 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.04 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.8 MB.
+System memory in use after: 161.6 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4811.
+Total: 3.925000 ms (FindLiveObjects: 0.585200 ms CreateObjectMapping: 0.244900 ms MarkObjects: 2.595100 ms  DeleteObjects: 0.498300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002409 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.935 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.9 MB.
+System memory in use after: 161.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4814.
+Total: 3.895800 ms (FindLiveObjects: 0.704100 ms CreateObjectMapping: 0.234000 ms MarkObjects: 2.507900 ms  DeleteObjects: 0.448700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 159.860136 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level2.unity
+  artifactKey: Guid(ed022a0e3ba365f41806d48825d0c5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level2.unity using Guid(ed022a0e3ba365f41806d48825d0c5e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04c2b8ad245b6d2d8b737840907751be') in 0.011979 seconds
+  Import took 0.018290 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 27.517604 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level3.unity
+  artifactKey: Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level3.unity using Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84482a66f9755a62382fff1f4c354a12') in 0.002758 seconds
+  Import took 0.009033 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003852 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level3.unity
+  artifactKey: Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level3.unity using Guid(ec6352b47c39c2e4192d5a178570747f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84482a66f9755a62382fff1f4c354a12') in 0.002384 seconds
+  Import took 0.008921 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002219 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.938 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.99 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 162.0 MB.
+System memory in use after: 161.9 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4817.
+Total: 3.314400 ms (FindLiveObjects: 0.437600 ms CreateObjectMapping: 0.101700 ms MarkObjects: 2.294900 ms  DeleteObjects: 0.479300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002260 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.980 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.91 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.2 MB.
+System memory in use after: 161.1 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4820.
+Total: 4.015900 ms (FindLiveObjects: 0.560000 ms CreateObjectMapping: 0.281100 ms MarkObjects: 2.687200 ms  DeleteObjects: 0.486000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 379.911183 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level4.unity
+  artifactKey: Guid(ff67155c58341654bbc58548020e11c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level4.unity using Guid(ff67155c58341654bbc58548020e11c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a96f671b216fa3ed90b46e7825a3e31') in 0.011422 seconds
+  Import took 0.017690 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002535 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.017 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.4 MB.
+System memory in use after: 161.2 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4823.
+Total: 3.516600 ms (FindLiveObjects: 0.430100 ms CreateObjectMapping: 0.112900 ms MarkObjects: 2.495200 ms  DeleteObjects: 0.477200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002584 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.00 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.041 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.99 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.5 MB.
+System memory in use after: 161.4 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4826.
+Total: 4.046600 ms (FindLiveObjects: 0.676500 ms CreateObjectMapping: 0.271200 ms MarkObjects: 2.580600 ms  DeleteObjects: 0.516800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002293 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.03 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.014 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.18 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.7 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4829.
+Total: 3.563600 ms (FindLiveObjects: 0.500400 ms CreateObjectMapping: 0.118400 ms MarkObjects: 2.467000 ms  DeleteObjects: 0.476500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002275 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.008 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.8 MB.
+System memory in use after: 161.7 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4832.
+Total: 4.028600 ms (FindLiveObjects: 0.613000 ms CreateObjectMapping: 0.242300 ms MarkObjects: 2.583900 ms  DeleteObjects: 0.588200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002301 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.052 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.08 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 162.0 MB.
+System memory in use after: 161.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4835.
+Total: 4.032500 ms (FindLiveObjects: 0.718100 ms CreateObjectMapping: 0.152200 ms MarkObjects: 2.627100 ms  DeleteObjects: 0.533900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 207.388709 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level5.unity
+  artifactKey: Guid(811fe6a8727ac97489ab2a721cdb4cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level5.unity using Guid(811fe6a8727ac97489ab2a721cdb4cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53c3176d0cf617d8c78cdedf66cf9f1a') in 0.010832 seconds
+  Import took 0.016894 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.111057 seconds.
+  path: Assets/HeRoBot Main Folder/Scripts/Player/PlayerController.cs
+  artifactKey: Guid(a4c284dda4a44ce409f2cc7b25d10984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scripts/Player/PlayerController.cs using Guid(a4c284dda4a44ce409f2cc7b25d10984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3151d6a5c410eee62b3fbe62a7a52be1') in 0.009919 seconds
+  Import took 0.015831 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000663 seconds.
+  path: Assets/HeRoBot Main Folder/Scripts/Player/PlayerController.cs
+  artifactKey: Guid(a4c284dda4a44ce409f2cc7b25d10984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scripts/Player/PlayerController.cs using Guid(a4c284dda4a44ce409f2cc7b25d10984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3151d6a5c410eee62b3fbe62a7a52be1') in 0.002174 seconds
+  Import took 0.007977 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002249 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.009 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.97 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 162.1 MB.
+System memory in use after: 162.0 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4838.
+Total: 3.491600 ms (FindLiveObjects: 0.468700 ms CreateObjectMapping: 0.107700 ms MarkObjects: 2.357300 ms  DeleteObjects: 0.485900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002235 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.012 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.3 MB.
+System memory in use after: 161.1 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4841.
+Total: 3.458800 ms (FindLiveObjects: 0.416500 ms CreateObjectMapping: 0.102100 ms MarkObjects: 2.433100 ms  DeleteObjects: 0.505400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002371 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.10 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.027 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.10 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.4 MB.
+System memory in use after: 161.3 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4844.
+Total: 3.669700 ms (FindLiveObjects: 0.509600 ms CreateObjectMapping: 0.102100 ms MarkObjects: 2.560800 ms  DeleteObjects: 0.494600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002308 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.92 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.045 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.16 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.6 MB.
+System memory in use after: 161.4 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4847.
+Total: 4.002300 ms (FindLiveObjects: 0.690200 ms CreateObjectMapping: 0.156100 ms MarkObjects: 2.645900 ms  DeleteObjects: 0.509100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002550 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.99 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.054 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.90 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.7 MB.
+System memory in use after: 161.5 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4850.
+Total: 3.616200 ms (FindLiveObjects: 0.480500 ms CreateObjectMapping: 0.113500 ms MarkObjects: 2.508200 ms  DeleteObjects: 0.511900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002377 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.19 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.138 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.03 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 161.8 MB.
+System memory in use after: 161.7 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4853.
+Total: 3.754300 ms (FindLiveObjects: 0.522700 ms CreateObjectMapping: 0.143500 ms MarkObjects: 2.569500 ms  DeleteObjects: 0.517300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 588.781668 seconds.
+  path: Assets/HeRoBot Main Folder/Scenes/Level0.unity
+  artifactKey: Guid(3006fa5fe22900f4092f6f59273c193d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/HeRoBot Main Folder/Scenes/Level0.unity using Guid(3006fa5fe22900f4092f6f59273c193d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a65cd1662c3bf0603da5886264fbac4') in 0.012643 seconds
+  Import took 0.018873 seconds .
+
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Registering precompiled user dll's ...
+Registered in 0.002271 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.22 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.077 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(65536) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.04 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3403 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 162.0 MB.
+System memory in use after: 161.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4856.
+Total: 3.465600 ms (FindLiveObjects: 0.443700 ms CreateObjectMapping: 0.104200 ms MarkObjects: 2.403000 ms  DeleteObjects: 0.513300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Default GameObject BitMask: Water already registered
+
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 2.34 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 97.7 MB.
+System memory in use after: 97.5 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 4856.
+Total: 3.664600 ms (FindLiveObjects: 0.549600 ms CreateObjectMapping: 0.123300 ms MarkObjects: 2.506900 ms  DeleteObjects: 0.483500 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

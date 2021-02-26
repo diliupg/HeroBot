@@ -2,19 +2,14 @@
 {
     using Game2DWaterKit.Simulation;
     using UnityEngine;
-    using System;
 
     public class WaterMeshModule : MeshModule
     {
         private Game2DWater _waterObject;
 
         private WaterSimulationModule _simulationModule;
-        private Vector3[] _vertices;
         private int _subdivisionsPerUnit;
         private int _surfaceVerticesCount;
-        private bool _updateMeshData;
-
-        internal event Action OnRecomputeMesh;
 
         public WaterMeshModule(Game2DWater waterObject, int subdivisionsPerUnit)
         {
@@ -36,7 +31,6 @@
                 }
             }
         }
-        public Vector3[] Vertices { get { return _vertices; } }
         public int SurfaceVerticesCount { get { return _surfaceVerticesCount; } }
         #endregion
 
@@ -50,27 +44,7 @@
             base.Initialize();
         }
 
-        internal void UpdateMeshData()
-        {
-            _updateMeshData = true;
-        }
-
-        internal void Update()
-        {
-            if (_recomputeMeshData)
-            {
-                RecomputeMesh();
-                return;
-            }
-            
-            if (!_mainModule.IsVisible)
-                return;
-            
-            if (_updateMeshData)
-                UpdateMesh();
-        }
-
-        override protected void RecomputeMesh()
+        protected override void RecomputeMesh()
         {
             if (_simulationModule.IsUsingCustomBoundaries)
                 _surfaceVerticesCount = 4 + Mathf.RoundToInt(_subdivisionsPerUnit * (_simulationModule.RightCustomBoundary - _simulationModule.LeftCustomBoundary));
@@ -84,11 +58,20 @@
             Mesh.RecalculateNormals();
             Mesh.bounds = _bounds = new Bounds(Vector3.zero, new Vector3(_mainModule.Width, _mainModule.Height));
 
-            if (OnRecomputeMesh != null)
-                OnRecomputeMesh.Invoke();
+            base.RecomputeMesh();
+        }
 
-            _updateMeshData = false;
-            _recomputeMeshData = false;
+        protected override void UpdateMesh()
+        {
+            // updating mesh bounds
+
+            float waterSurfaceHeighestPoint = _simulationModule.SurfaceHeighestPoint;
+            float waterBottom = _mainModule.Height * -0.5f;
+            Vector3 center = new Vector3(0f, (waterSurfaceHeighestPoint + waterBottom) * 0.5f, 0f);
+            Vector3 size = new Vector3(_mainModule.Width, waterSurfaceHeighestPoint - waterBottom, 0f);
+            _bounds = new Bounds(center, size);
+
+            base.UpdateMesh();
         }
 
         private Vector3[] ComputeVertices()
@@ -168,22 +151,6 @@
             }
 
             return triangles;
-        }
-
-        private void UpdateMesh()
-        {
-            Mesh mesh = Mesh;
-
-            mesh.vertices = _vertices;
-
-            //Calculating mesh bounds
-            float waterSurfaceHeighestPoint = _simulationModule.SurfaceHeighestPoint;
-            float waterBottom = _mainModule.Height * -0.5f;
-            Vector3 center = new Vector3(0f, (waterSurfaceHeighestPoint + waterBottom) * 0.5f, 0f);
-            Vector3 size = new Vector3(_mainModule.Width, waterSurfaceHeighestPoint - waterBottom, 0f);
-            mesh.bounds = _bounds = new Bounds(center, size);
-
-            _updateMeshData = false;
         }
 
 #if UNITY_EDITOR

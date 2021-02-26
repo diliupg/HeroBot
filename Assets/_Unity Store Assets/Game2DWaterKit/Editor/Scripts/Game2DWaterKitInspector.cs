@@ -66,6 +66,8 @@
                 return;
 #endif
 
+            LoadSettings();
+
             Game2DWaterKitObjectResizeTool.RepaintInspector = Repaint;
             _foldoutsAnimBoolsCallback += Repaint;
             _isMultiEditing = targets.Length > 1;
@@ -74,8 +76,8 @@
 
             Initiliaze();
 
-            EditorApplication.playModeStateChanged -= SaveFoldoutsStates;
-            EditorApplication.playModeStateChanged += SaveFoldoutsStates;
+            EditorApplication.playModeStateChanged -= SaveSettings;
+            EditorApplication.playModeStateChanged += SaveSettings;
 
             if (_isEditingMeshMask && _isInSimulationMode)
             {
@@ -92,6 +94,8 @@
         {
             _foldoutsAnimBoolsCallback -= Repaint;
             Tools.hidden = false;
+
+            SaveSettings();
         }
 
         public override void OnInspectorGUI()
@@ -107,16 +111,20 @@
             if (!Game2DWaterKitStyles.IsInitialized)
                 Game2DWaterKitStyles.Initialize();
 
-            if(_meshRendererSerializedObject == null)
+            if (_meshRendererSerializedObject == null)
             {
-                _meshRendererSerializedObject = new SerializedObject(Selection.gameObjects.Select(go => go.GetComponent<Renderer>()).ToArray());
+                if (Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Game2DWaterKitObject>() != null)
+                    _meshRendererSerializedObject = new SerializedObject(Selection.gameObjects.Select(go => go.GetComponent<Renderer>()).ToArray());
+                else
+                    _meshRendererSerializedObject = new SerializedObject((target as Game2DWaterKitObject).GetComponent<Renderer>());
+
                 _materialProperty = _meshRendererSerializedObject.FindProperty("m_Materials.Array.data[0]");
             }
 
             serializedObject.Update();
             _meshRendererSerializedObject.Update();
 
-            if (Game2DWaterKitManagerWindow.HasActionRequired())
+            if (!EditorApplication.isPlayingOrWillChangePlaymode && Game2DWaterKitManagerWindow.HasActionRequired())
             {
                 BeginBoxGroup(true);
                 EditorGUILayout.HelpBox("Action is required! " + Game2DWaterKitManagerWindow.ActionRequiredMessage, MessageType.Error);
@@ -142,7 +150,7 @@
             }
 
             EditorGUI.BeginDisabledGroup(Game2DWaterKitManagerWindow.IsOpen);
-            if(GUILayout.Button("Show Asset Manager Window"))
+            if (GUILayout.Button("Show Asset Manager Window"))
                 Game2DWaterKitManagerWindow.ShowWindow();
             EditorGUI.EndDisabledGroup();
 
@@ -313,12 +321,16 @@
             EditorGUI.BeginDisabledGroup(_isMultiEditing && sizeProperty.hasMultipleDifferentValues);
 
             Vector3 scale = (target as MonoBehaviour).transform.localScale;
-            Vector2 size = Vector2.Scale(sizeProperty.vector2Value, scale);
+            Vector2 size = Game2DWaterKitObjectResizeTool.IsResizing ? Vector2.Scale(sizeProperty.vector2Value, scale) : sizeProperty.vector2Value;
 
-            if(!Game2DWaterKitObjectResizeTool.IsResizing && scale != Vector3.one)
+            if (!Game2DWaterKitObjectResizeTool.IsResizing && scale != Vector3.one)
             {
-                sizeProperty.vector2Value = size;
-                (target as MonoBehaviour).transform.localScale = Vector3.one;
+                EditorGUILayout.HelpBox("For consistent water behavior, please make sure that the scale is set to (1,1,1). You need tweak the size property instead.", MessageType.Warning);
+                if (GUILayout.Button("Fix Scale"))
+                {
+                    sizeProperty.vector2Value = Vector2.Scale(sizeProperty.vector2Value, scale);
+                    (target as MonoBehaviour).transform.localScale = Vector3.one;
+                }
             }
 
             var rect = EditorGUILayout.GetControlRect();
@@ -435,6 +447,9 @@
 
                 int maskInteractionIndex = mat.GetInt("_SpriteMaskInteraction");
 
+                if (maskInteractionIndex == 8)
+                    maskInteractionIndex = 0;
+
                 string maskInteractionDisplayName;
                 if (maskInteractionIndex == 0)
                     maskInteractionDisplayName = "None";
@@ -527,19 +542,19 @@
             EndPropertiesGroup();
         }
 
-        protected void DrawProperty(string propertyName, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false)
+        protected void DrawProperty(string propertyName, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false, bool forceLabelWidth = false)
         {
-            DrawProperty(serializedObject.FindProperty(propertyName), propertyLabel, delayedField);
+            DrawProperty(serializedObject.FindProperty(propertyName), propertyLabel, delayedField, forceLabelWidth);
         }
 
-        protected void DrawProperty(Rect rect, string propertyName, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false)
+        protected void DrawProperty(Rect rect, string propertyName, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false, bool forceLabelWidth = false)
         {
-            DrawProperty(rect, serializedObject.FindProperty(propertyName), propertyLabel, delayedField);
+            DrawProperty(rect, serializedObject.FindProperty(propertyName), propertyLabel, delayedField, forceLabelWidth);
         }
 
-        protected static void DrawProperty(Rect rect, SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false)
+        protected static void DrawProperty(Rect rect, SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false, bool forceLabelWidth = false)
         {
-            SetEditorGUIUtilityLabelWidth(property, propertyLabel);
+            SetEditorGUIUtilityLabelWidth(property, propertyLabel, forceLabelWidth);
 
             if (delayedField && property.propertyType == SerializedPropertyType.Float)
                 EditorGUI.DelayedFloatField(rect, property, propertyLabel.Content);
@@ -547,14 +562,29 @@
                 EditorGUI.PropertyField(rect, property, propertyLabel.Content, true);
         }
 
-        protected static void DrawProperty(SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false)
+        protected static void DrawProperty(SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool delayedField = false, bool forceLabelWidth = false)
         {
-            SetEditorGUIUtilityLabelWidth(property, propertyLabel);
+            SetEditorGUIUtilityLabelWidth(property, propertyLabel, forceLabelWidth);
 
             if (delayedField && property.propertyType == SerializedPropertyType.Float)
                 EditorGUILayout.DelayedFloatField(property, propertyLabel.Content);
             else
                 EditorGUILayout.PropertyField(property, propertyLabel.Content, true);
+        }
+
+        protected void DrawPropertyLeftToggle(string propertyName, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool forceLabelWidth = false)
+        {
+            DrawPropertyLeftToggle(serializedObject.FindProperty(propertyName), propertyLabel, forceLabelWidth);
+        }
+
+        protected static void DrawPropertyLeftToggle(SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool forceLabelWidth = false)
+        {
+            SetEditorGUIUtilityLabelWidth(property, propertyLabel, forceLabelWidth);
+
+            EditorGUI.BeginChangeCheck();
+            bool value = EditorGUILayout.ToggleLeft(propertyLabel.Content, property.boolValue);
+            if (EditorGUI.EndChangeCheck())
+                property.boolValue = value;
         }
 
         protected static bool DrawPropertyWithPreviewButton(SerializedProperty property, Game2DWaterKitStyles.Game2DWaterKitPropertyLabel propertyLabel, bool previewState, bool isPreviewButtonEnabled = true)
@@ -706,15 +736,19 @@
             return hasChangedGroupToggleState;
         }
 
-        protected static void DrawPropertiesGroup(System.Action DoPropertiesLayout, bool useHelpBoxStyle = false, string groupName = null, SerializedProperty groupToggleProperty = null)
+        protected static bool DrawPropertiesGroup(System.Action DoPropertiesLayout, bool useHelpBoxStyle = false, string groupName = null, SerializedProperty groupToggleProperty = null)
         {
-            BeginPropertiesGroup(useHelpBoxStyle, groupName, groupToggleProperty);
+            bool hasToggleStateChanged = BeginPropertiesGroup(useHelpBoxStyle, groupName, groupToggleProperty);
             DoPropertiesLayout.Invoke();
             EndPropertiesGroup();
+
+            return hasToggleStateChanged;
         }
 
-        protected static void BeginPropertiesGroup(bool useHelpBoxStyle = false, string groupName = null, SerializedProperty groupToggleProperty = null)
+        protected static bool BeginPropertiesGroup(bool useHelpBoxStyle = false, string groupName = null, SerializedProperty groupToggleProperty = null)
         {
+            bool hasToggleStateChanges = false;
+
             if (!string.IsNullOrEmpty(groupName))
             {
                 Rect labelRect = EditorGUILayout.GetControlRect();
@@ -728,10 +762,12 @@
                 if (groupToggleProperty == null)
                     EditorGUI.LabelField(labelRect, RemovePropertyID(groupName), EditorStyles.boldLabel);
                 else
-                    DrawGroupToggle(labelRect, groupToggleProperty, Game2DWaterKitStyles.GetTempLabel(RemovePropertyID(groupName)), true);
+                    hasToggleStateChanges = DrawGroupToggle(labelRect, groupToggleProperty, Game2DWaterKitStyles.GetTempLabel(RemovePropertyID(groupName)), true);
             }
 
             BeginBoxGroup(useHelpBoxStyle);
+
+            return hasToggleStateChanges;
         }
 
         protected static void EndPropertiesGroup()
@@ -885,16 +921,23 @@
             return hashIndex == -1 ? groupName : groupName.Substring(0, hashIndex);
         }
 
-        private static void DrawGroupToggle(Rect rect, SerializedProperty groupToggleProperty, GUIContent label, bool boldLabel = false)
+        private static bool DrawGroupToggle(Rect rect, SerializedProperty groupToggleProperty, GUIContent label, bool boldLabel = false)
         {
+            bool hasToggleStateChanged = false;
+
             EditorGUI.showMixedValue = groupToggleProperty.hasMultipleDifferentValues;
 
             EditorGUI.BeginChangeCheck();
             bool isEnabled = EditorGUI.ToggleLeft(rect, label, groupToggleProperty.boolValue, boldLabel ? EditorStyles.boldLabel : EditorStyles.label);
             if (EditorGUI.EndChangeCheck())
+            {
                 groupToggleProperty.boolValue = isEnabled;
+                hasToggleStateChanged = true;
+            }
 
             EditorGUI.showMixedValue = false;
+
+            return hasToggleStateChanged;
         }
 
         private static string GetValidAssetFileName(string prefabsPath, string assetName, string assetExtension, System.Type assetType)
@@ -986,13 +1029,29 @@
             }
         }
 
-        private static void SaveFoldoutsStates(PlayModeStateChange playModeStateChange)
+        private static void SaveSettings(PlayModeStateChange playModeStateChange)
+        {
+            SaveSettings();
+        }
+
+        private static void SaveSettings()
         {
             foreach (var foldoutState in _foldoutsAnimBools)
             {
                 if (foldoutState.Value.value)
                     EditorPrefs.SetBool(foldoutState.Key, foldoutState.Value.value);
             }
+
+            EditorPrefs.SetInt("Water2D_MeshMaskEditor_SnapMode", Game2DWaterKitMeshMaskTool.snapMode);
+            EditorPrefs.SetFloat("Water2D_MeshMaskEditor_SnapToGridStepSizeX", Game2DWaterKitMeshMaskTool.snapToGridStepSize.x);
+            EditorPrefs.SetFloat("Water2D_MeshMaskEditor_SnapToGridStepSizeY", Game2DWaterKitMeshMaskTool.snapToGridStepSize.y);
+        }
+
+        private static void LoadSettings()
+        {
+            Game2DWaterKitMeshMaskTool.snapMode = EditorPrefs.GetInt("Water2D_MeshMaskEditor_SnapMode", 0);
+            Game2DWaterKitMeshMaskTool.snapToGridStepSize.x = EditorPrefs.GetFloat("Water2D_MeshMaskEditor_SnapToGridStepSizeX", 0.5f);
+            Game2DWaterKitMeshMaskTool.snapToGridStepSize.y = EditorPrefs.GetFloat("Water2D_MeshMaskEditor_SnapToGridStepSizeY", 0.5f);
         }
 
         private void DrawPrefabUtility()

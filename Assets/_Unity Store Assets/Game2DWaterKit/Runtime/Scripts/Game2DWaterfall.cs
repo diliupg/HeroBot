@@ -5,7 +5,8 @@
     using Game2DWaterKit.Material;
     using Game2DWaterKit.Rendering;
     using Game2DWaterKit.Ripples;
-    using Game2DWaterKit.Utils;
+    using Game2DWaterKit.Animation;
+    using Game2DWaterKit.AttachedComponents;
 
     using System.Collections.Generic;
 
@@ -42,6 +43,8 @@
         [SerializeField] private float _ripplesModuleMinimumTimeInterval = 0.5f;
         [SerializeField] private float _ripplesModuleMaximumTimeInterval = 1.0f;
         [SerializeField] private List<WaterfallAffectedWaterObjet> _ripplesModuleAffectedWaterObjects = new List<WaterfallAffectedWaterObjet>();
+        
+        [SerializeField] private Vector2 _meshModuleTopBottomEdgesRelativeLength = new Vector2(1f, 0f); // x = relative width (0->1) , y == 0 => bottom , y == 1 => top
         #endregion
 
         private WaterfallMainModule _mainModule;
@@ -49,6 +52,8 @@
         private WaterfallMeshModule _meshModule;
         private WaterfallMaterialModule _materialModule;
         private WaterfallRipplesModule _ripplesModule;
+        private WaterfallAnimationModule _animationModule;
+        private WaterfallAttachedComponentsModule _attachedComponentsModule;
         #endregion
 
         #region Properties
@@ -57,6 +62,8 @@
         public WaterfallMeshModule MeshModule { get { return _meshModule; } }
         public WaterfallMaterialModule MaterialModule { get { return _materialModule; } }
         public WaterfallRipplesModule RipplesModule { get { return _ripplesModule; } }
+        public WaterfallAnimationModule AnimationModule { get { return _animationModule; } }
+        public WaterfallAttachedComponentsModule AttachedComponentsModule { get { return _attachedComponentsModule; } }
         #endregion
 
         public override void InitializeModules()
@@ -66,15 +73,19 @@
 
             _mainModule = new WaterfallMainModule(this, _size);
             _renderingModule = new WaterfallRenderingModule(this, GetRenderingModuleParameters());
-            _meshModule = new WaterfallMeshModule(this);
+            _meshModule = new WaterfallMeshModule(this, _meshModuleTopBottomEdgesRelativeLength);
             _materialModule = new WaterfallMaterialModule(this);
             _ripplesModule = new WaterfallRipplesModule(this, GetRipplesModuleParameters());
-
+            _animationModule = new WaterfallAnimationModule(this);
+            _attachedComponentsModule = new WaterfallAttachedComponentsModule(this);
+            
             _mainModule.Initialize();
             _meshModule.Initialize();
             _materialModule.Initialize();
             _renderingModule.Initialize();
             _ripplesModule.Initialize();
+            _animationModule.Initialze();
+            _attachedComponentsModule.Initialize();
 
             _areModulesInitialized = true;
         }
@@ -96,7 +107,12 @@
 
         protected override void RegularUpdate()
         {
+            if (_attachedComponentsModule.HasAnimatorAttached)
+                _animationModule.SyncAnimatableVariables(_size);
+
+            _animationModule.Update();
             _mainModule.Update();
+            _meshModule.Update();
 
 #if UNITY_EDITOR
             _renderingModule.Update();
@@ -105,7 +121,7 @@
 
         protected override void PhysicsUpdate()
         {
-            _ripplesModule.PhysicsUpdate(Time.fixedDeltaTime);
+            _ripplesModule.PhysicsUpdate(Time.fixedDeltaTime * Game2DWaterKitObject.TimeScale);
         }
 
         protected override void Cleanup()
@@ -169,9 +185,10 @@
                 return;
 
             _mainModule.Validate(_size);
-            _meshModule.Validate();
+            _meshModule.Validate(_meshModuleTopBottomEdgesRelativeLength);
             _renderingModule.Validate(GetRenderingModuleParameters());
             _ripplesModule.Validate(GetRipplesModuleParameters());
+            _attachedComponentsModule.Validate();
         }
 
         protected override void ResetProperties()
@@ -198,6 +215,8 @@
             _ripplesModuleMinimumTimeInterval = 0.5f;
             _ripplesModuleMaximumTimeInterval = 1.0f;
             _ripplesModuleAffectedWaterObjects = new List<WaterfallAffectedWaterObjet>();
+
+            _meshModuleTopBottomEdgesRelativeLength = new Vector2(1f, 0f);
 
             //Reset modules!
             _areModulesInitialized = false;

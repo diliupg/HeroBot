@@ -5,6 +5,8 @@
 
     public class Game2DWaterfallShaderGUI : Game2DWaterKitShaderGUI
     {
+        private static string[] _absoluteRelativePopupLabels = new[] { "Relative", "Absolute" };
+
         protected override void DrawMaterialProperties()
         {
             MaterialProperty topBottomEdgesKeywordState = FindProperty("_Waterfall2D_IsTopBottomEdgesEnabled", _materialProperties);
@@ -53,9 +55,37 @@
             bool isDrawingLeftRightEdgesProperties = firstEdgeName == "Left";
 
             BeginPropertiesSubGroup();
-            MaterialProperty edgesThickness = FindProperty("_" + firstEdgeName + secondEdgeName + "EdgesThickness", _materialProperties);
-            bool isFirstEdgeEnabled = DrawEdgeToggleWithThicknessSlider(firstEdgeName, edgesThickness);
-            bool isSecondEdgeEnabled = DrawEdgeToggleWithThicknessSlider(secondEdgeName, edgesThickness);
+
+            MaterialProperty firstEdgeKeywordState = FindProperty("_Waterfall2D_Is" + firstEdgeName + "EdgeEnabled", _materialProperties);
+            MaterialProperty secondEdgeKeywordState = FindProperty("_Waterfall2D_Is" + secondEdgeName + "EdgeEnabled", _materialProperties);
+            MaterialProperty useAbsoluteValuesKeywordState = FindProperty("_Waterfall2D_Is" + firstEdgeName + secondEdgeName + "EdgesAbsoluteThicknessAndOffsetEnabled", _materialProperties);
+            MaterialProperty edgesThicknessProperty = FindProperty("_" + firstEdgeName + secondEdgeName + "EdgesThickness", _materialProperties);
+            MaterialProperty edgesOffsetProperty = FindProperty("_" + firstEdgeName + secondEdgeName + "EdgesOffset", _materialProperties);
+
+            DrawShaderKeywordPropertyToggle(EditorGUILayout.GetControlRect(), firstEdgeKeywordState, firstEdgeName + " Edge", true, false);
+            DrawShaderKeywordPropertyToggle(EditorGUILayout.GetControlRect(), secondEdgeKeywordState, secondEdgeName + " Edge", true, false);
+            EditorGUILayout.Space();
+            DrawEdgesAbsoluteRelativeValuesPopup(useAbsoluteValuesKeywordState, edgesThicknessProperty, edgesOffsetProperty);
+
+            bool isFirstEdgeEnabled = firstEdgeKeywordState.floatValue == 1f;
+            bool isSecondEdgeEnabled = secondEdgeKeywordState.floatValue == 1f;
+            bool useAbsoluteValues = useAbsoluteValuesKeywordState.floatValue == 1f;
+            EditorGUILayout.Space();
+
+            EditorGUI.BeginDisabledGroup(!isFirstEdgeEnabled);
+            EditorGUILayout.LabelField(firstEdgeName + " Edge", EditorStyles.miniBoldLabel);
+            DrawEdgeThicknessProperties(firstEdgeName, edgesThicknessProperty, useAbsoluteValues);
+            DrawEdgeOffsetProperties(firstEdgeName, edgesOffsetProperty, useAbsoluteValues);
+            EditorGUI.EndDisabledGroup();
+
+            EditorGUILayout.Space();
+
+            EditorGUI.BeginDisabledGroup(!isSecondEdgeEnabled);
+            EditorGUILayout.LabelField(secondEdgeName + " Edge", EditorStyles.miniBoldLabel);
+            DrawEdgeThicknessProperties(secondEdgeName, edgesThicknessProperty, useAbsoluteValues);
+            DrawEdgeOffsetProperties(secondEdgeName, edgesOffsetProperty, useAbsoluteValues);
+            EditorGUI.EndDisabledGroup();
+
             EndPropertiesSubGroup();
 
             bool useSameTexture = false;
@@ -186,18 +216,8 @@
             EditorGUI.EndDisabledGroup();
         }
 
-        private bool DrawEdgeToggleWithThicknessSlider(string edgeName, MaterialProperty edgesThicknessProperty)
+        private void DrawEdgeThicknessProperties(string edgeName, MaterialProperty edgesThicknessProperty, bool useAbsoluteValues)
         {
-            MaterialProperty edgeKeywordState = FindProperty("_Waterfall2D_Is" + edgeName + "EdgeEnabled", _materialProperties);
-
-            var rect = EditorGUILayout.GetControlRect();
-            float rectXmax = rect.xMax;
-
-            rect.xMax = rect.xMin + 95f;
-            DrawShaderKeywordPropertyToggle(rect, edgeKeywordState, edgeName + " Edge", true);
-
-            bool isEdgeEnabled = edgeKeywordState.floatValue == 1f;
-
             var edgesThickness = edgesThicknessProperty.vectorValue;
 
             float currentEdgeThickness;
@@ -207,12 +227,19 @@
             else
                 currentEdgeThickness = edgesThickness.z;
 
-            rect.xMax = rectXmax;
-            rect.xMin += 95f;
-            EditorGUI.BeginDisabledGroup(!isEdgeEnabled);
+            var rect = EditorGUILayout.GetControlRect();
+            float rectXmax = rect.xMax;
+
             EditorGUI.showMixedValue = edgesThicknessProperty.hasMixedValue;
             EditorGUI.BeginChangeCheck();
-            currentEdgeThickness = EditorGUI.Slider(rect, currentEdgeThickness, 0f, 1f);
+
+            EditorGUIUtility.labelWidth = 65f;
+
+            if (useAbsoluteValues)
+                currentEdgeThickness = EditorGUI.FloatField(rect, "Thickness", currentEdgeThickness);
+            else
+                currentEdgeThickness = EditorGUI.Slider(rect, "Thickness", currentEdgeThickness, 0f, 1f);
+
             if (EditorGUI.EndChangeCheck())
             {
                 if (edgeName == "Top" || edgeName == "Left")
@@ -229,9 +256,80 @@
                 edgesThicknessProperty.vectorValue = edgesThickness;
             }
             EditorGUI.showMixedValue = false;
-            EditorGUI.EndDisabledGroup();
+        }
 
-            return isEdgeEnabled;
+        private void DrawEdgeOffsetProperties(string edgeName, MaterialProperty edgesOffsetProperty, bool useAbsoluteValues)
+        {
+            var edgesOffset = edgesOffsetProperty.vectorValue;
+
+            float currentEdgeOffset;
+
+            if (edgeName == "Top" || edgeName == "Left")
+                currentEdgeOffset = edgesOffset.x;
+            else
+                currentEdgeOffset = edgesOffset.z;
+
+            var rect = EditorGUILayout.GetControlRect();
+            float rectXmax = rect.xMax;
+
+            EditorGUI.showMixedValue = edgesOffsetProperty.hasMixedValue;
+            EditorGUI.BeginChangeCheck();
+
+            EditorGUIUtility.labelWidth = 65f;
+
+            bool isBottomOrLeftEdge = edgeName == "Bottom" || edgeName == "Left";
+
+            if (useAbsoluteValues)
+                currentEdgeOffset = EditorGUI.FloatField(rect, "Offset", isBottomOrLeftEdge ? currentEdgeOffset : -currentEdgeOffset);
+            else
+                currentEdgeOffset = EditorGUI.Slider(rect, "Offset", isBottomOrLeftEdge ? currentEdgeOffset : -currentEdgeOffset, isBottomOrLeftEdge ? 0f : -1f, isBottomOrLeftEdge ? 1f : 0f);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                if (!isBottomOrLeftEdge)
+                    currentEdgeOffset *= -1;
+
+                if (edgeName == "Top" || edgeName == "Left")
+                {
+                    edgesOffset.x = currentEdgeOffset;
+                    edgesOffset.y = 1f / currentEdgeOffset;
+                }
+                else
+                {
+                    edgesOffset.z = currentEdgeOffset;
+                    edgesOffset.w = 1f / currentEdgeOffset;
+                }
+
+                edgesOffsetProperty.vectorValue = edgesOffset;
+            }
+            EditorGUI.showMixedValue = false;
+        }
+
+        private void DrawEdgesAbsoluteRelativeValuesPopup(MaterialProperty useAbsoluteValuesKeywordState, MaterialProperty edgesThicknessProperty, MaterialProperty edgesOffsetProperty)
+        {
+            EditorGUI.BeginChangeCheck();
+            bool useAbsoluteValues = EditorGUILayout.Popup((int)useAbsoluteValuesKeywordState.floatValue, _absoluteRelativePopupLabels) == 1;
+            if (EditorGUI.EndChangeCheck())
+            {
+                useAbsoluteValuesKeywordState.floatValue = useAbsoluteValues ? 1f : 0f;
+
+                Vector4 thickness = edgesThicknessProperty.vectorValue;
+                Vector4 offset = edgesOffsetProperty.vectorValue;
+
+                if (useAbsoluteValues) // relative to absolute
+                {
+                    thickness = Vector4.one;
+                    offset = Vector4.zero;
+                }
+                else // absolute to relative
+                {
+                    thickness = new Vector4(0.2f, 5f, 0.2f, 5f);
+                    offset = Vector4.zero;
+                }
+
+                edgesThicknessProperty.vectorValue = thickness;
+                edgesOffsetProperty.vectorValue = offset;
+            }
         }
 
         private void DrawRefractionProperties()
@@ -337,6 +435,7 @@
             Vector4 textureFlippingParametes = material.GetVector("_" + firstEdgeName + secondEdgeName + "EdgesTextureFlipParameters");
             bool isTextureFlippingEnabled = textureFlippingParametes.x == 1f;
             bool isTextureFlippingFirstEdge = textureFlippingParametes.y == 1f;
+            bool isFirstSecondEdgesAbsoluteThicknessAndOffsetAbsolute = material.GetInt("_Waterfall2D_Is" + firstEdgeName + secondEdgeName + "EdgesAbsoluteThicknessAndOffsetEnabled") == 1;
             
             SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesSameTexture", areFirstSecondEdgesEnabled && isFirstEdgeEnabled && isSecondEdgeEnabled && areFirstSecondEdgesUsingSameTexture && !isFirstSecondEdgesTextureSheetEnabled && !(isFirstSecondEdgesTextureSheetEnabled && isFirstSecondEdgesTextureSheetLerpEnabled));
             SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesSameTextureSheet", areFirstSecondEdgesEnabled && isFirstEdgeEnabled && isSecondEdgeEnabled && areFirstSecondEdgesUsingSameTexture && isFirstSecondEdgesTextureSheetEnabled && !isFirstSecondEdgesTextureSheetLerpEnabled);
@@ -359,6 +458,7 @@
             SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesTextureStretchAutoY", areFirstSecondEdgesEnabled && isFirstEdgeEnabled && isSecondEdgeEnabled && areFirstSecondEdgesUsingSameTexture && isFirstSecondEdgesTextureTilingModeSetToStretch && isFirstSecondEdgesTextureStretchTilingModeKeepAspect && !isFirstSecondEdgesTextureStretchTilingModeAutoX);
             SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesFlip" + firstEdgeName + "Edge" + (isSettingTopBottomEdgesKeywords ? "Y" : "X"), areFirstSecondEdgesEnabled && isFirstEdgeEnabled && isSecondEdgeEnabled && areFirstSecondEdgesUsingSameTexture && isTextureFlippingEnabled && isTextureFlippingFirstEdge);
             SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesFlip" + secondEdgeName + "Edge" + (isSettingTopBottomEdgesKeywords ? "Y" : "X"), areFirstSecondEdgesEnabled && isFirstEdgeEnabled && isSecondEdgeEnabled && areFirstSecondEdgesUsingSameTexture && isTextureFlippingEnabled && !isTextureFlippingFirstEdge);
+            SetKeywordState(material, "Waterfall2D_" + firstEdgeName + secondEdgeName + "EdgesAbsoluteThicknessAndOffset", areFirstSecondEdgesEnabled && (isFirstEdgeEnabled || isSecondEdgeEnabled) && isFirstSecondEdgesAbsoluteThicknessAndOffsetAbsolute);
 
             if (!isSettingTopBottomEdgesKeywords)
             {

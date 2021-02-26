@@ -44,6 +44,14 @@
 		[HideInInspector] _SurfaceTextureSheetFramesCount("Surface Texture Sheet Frames Count",float) = 1.0
 		[HideInInspector] _SurfaceTextureSheetInverseColumns("Surface Texture Sheet Inverse of Columns",float) = 1.0
 		[HideInInspector] _SurfaceTextureSheetInverseRows("Surface Texture Sheet Inverse of Rows",float) = 1.0
+		
+		// Outlines Properties
+		[HideInInspector] _TopEdgeLineColor("Top Edge Line Color", color) = (1.0,1.0,1.0,1.0)
+		[HideInInspector] _SurfaceLevelEdgeLineColor("Surface Level Edge Line Color", color) = (1.0,1.0,1.0,1.0)
+		[HideInInspector] _SubmergeLevelEdgeLineColor("Submerge Level Edge Line Color", color) = (1.0,1.0,1.0,1.0)
+		[HideInInspector] _TopEdgeLineThickness("Top Edge Line Color", float) = 0.1
+		[HideInInspector] _SurfaceLevelEdgeLineThickness("Surface Level Edge Line Thickness", float) = 0.1
+		[HideInInspector] _SubmergeLevelEdgeLineThickness("Submerge Level Edge Line Thickness", float) = 0.1
 
 		//Lighting Properties
 		[HideInInspector] _WaterEmissionColor("Water Emission Color",color) = (1.0,1.0,1.0,0.0)
@@ -72,9 +80,9 @@
 		[HideInInspector] _RefractionTexturePartiallySubmergedObjects("Refraction Texture For Partially Submerged Objects", 2D) = "black" {}
 		[HideInInspector] _ReflectionTexture ("Reflection Texture",2D) = "black" {}
 		[HideInInspector] _ReflectionTexturePartiallySubmergedObjects("Reflection Texture For Partially Submerged Objects",2D) = "black" {}
-
+		
 		// Sprite Mask (Stencil) Options
-		[HideInInspector] [Enum(None,0,Visible Inside Mask,4,Visible Outside Mask,5)] _SpriteMaskInteraction("Sprite Mask Interaction", Int) = 0
+		[HideInInspector] [Enum(None,8,Visible Inside Mask,4,Visible Outside Mask,5)] _SpriteMaskInteraction("Sprite Mask Interaction", Int) = 8
 		[HideInInspector] _SpriteMaskInteractionRef("Sprite Mask Interaction Ref", Int) = 1
 
 		// Other properties
@@ -98,6 +106,9 @@
 		[HideInInspector] _Water2D_IsSurfaceColorGradientEnabled ("Surface Color Mode",float) = 0.0
 		[HideInInspector] _Water2D_IsEmissionColorEnabled("Emission Toggle",float) = 0.0
 		[HideInInspector] _Water2D_IsApplyTintColorOnTopOfTextureEnabled("Apply Tint Color On Top Of Texture Toggle", float) = 1.0
+		[HideInInspector] _Water2D_IsTopEdgeLineEnabled("Has Top Edge Line", float) = 0.0
+		[HideInInspector] _Water2D_IsSurfaceLevelEdgeLineEnabled("Has Surface Level Edge Line", float) = 0.0
+		[HideInInspector] _Water2D_IsSubmergeLevelEdgeLineEnabled("Has Submerge Level Edge Line", float) = 0.0
 
 		[HideInInspector] _Game2DWaterKit_MaterialType("__type", float) = 0.0 // 0 -> water material / 1 -> waterfall material
 	}
@@ -105,24 +116,27 @@
     HLSLINCLUDE
     #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 	
-	#pragma multi_compile _ Water2D_FakePerspective
-	#pragma multi_compile _ Water2D_Refraction
-	#pragma multi_compile _ Water2D_Reflection
-	#pragma shader_feature _ Water2D_ReflectionFadeLinear Water2D_ReflectionFadeExponentialTwo Water2D_ReflectionFadeExponentialThree Water2D_ReflectionFadeExponentialFour
-	#pragma shader_feature _ Water2D_WaterTexture Water2D_WaterTextureSheet Water2D_WaterTextureSheetWithLerp
-	#pragma shader_feature _ Water2D_WaterTextureScroll
-	#pragma shader_feature _ Water2D_WaterTextureStretch Water2D_WaterTextureStretchAutoX Water2D_WaterTextureStretchAutoY
-	#pragma shader_feature Water2D_WaterNoise
-	#pragma shader_feature Water2D_Surface
-	#pragma shader_feature Water2D_SurfaceHasAbsoluteThickness
-	#pragma shader_feature Water2D_SurfaceColorGradient
-	#pragma shader_feature _ Water2D_SurfaceTexture Water2D_SurfaceTextureSheet Water2D_SurfaceTextureSheetWithLerp
-	#pragma shader_feature _ Water2D_SurfaceTextureScroll
-	#pragma shader_feature _ Water2D_SurfaceTextureStretch Water2D_SurfaceTextureStretchAutoX Water2D_SurfaceTextureStretchAutoY
-	#pragma shader_feature Water2D_SurfaceNoise
-	#pragma shader_feature Water2D_ColorGradient
-	#pragma shader_feature Water2D_ApplyEmissionColor
-	#pragma shader_feature _ Water2D_ApplyTintColorBeforeTexture
+	#pragma multi_compile_local _ Water2D_FakePerspective
+	#pragma multi_compile_local _ Water2D_Refraction
+	#pragma multi_compile_local _ Water2D_Reflection
+	#pragma shader_feature_local _ Water2D_ReflectionFadeLinear Water2D_ReflectionFadeExponentialTwo Water2D_ReflectionFadeExponentialThree Water2D_ReflectionFadeExponentialFour
+	#pragma shader_feature_local _ Water2D_WaterTexture Water2D_WaterTextureSheet Water2D_WaterTextureSheetWithLerp
+	#pragma shader_feature_local _ Water2D_WaterTextureScroll
+	#pragma shader_feature_local _ Water2D_WaterTextureStretch Water2D_WaterTextureStretchAutoX Water2D_WaterTextureStretchAutoY
+	#pragma shader_feature_local Water2D_WaterNoise
+	#pragma shader_feature_local Water2D_Surface
+	#pragma shader_feature_local Water2D_SurfaceHasAbsoluteThickness
+	#pragma shader_feature_local Water2D_SurfaceColorGradient
+	#pragma shader_feature_local _ Water2D_SurfaceTexture Water2D_SurfaceTextureSheet Water2D_SurfaceTextureSheetWithLerp
+	#pragma shader_feature_local _ Water2D_SurfaceTextureScroll
+	#pragma shader_feature_local _ Water2D_SurfaceTextureStretch Water2D_SurfaceTextureStretchAutoX Water2D_SurfaceTextureStretchAutoY
+	#pragma shader_feature_local Water2D_SurfaceNoise
+	#pragma shader_feature_local Water2D_ColorGradient
+	#pragma shader_feature_local Water2D_ApplyEmissionColor
+	#pragma shader_feature_local _ Water2D_ApplyTintColorBeforeTexture
+	#pragma shader_feature_local _ Water2D_TopEdgeLine
+	#pragma shader_feature_local _ Water2D_SurfaceLevelEdgeLine
+	#pragma shader_feature_local _ Water2D_SubmergeLevelEdgeLine
     ENDHLSL
 
 	SubShader
@@ -153,7 +167,7 @@
 			#pragma prefer_hlslcc gles
 			#pragma vertex vert
 			#pragma fragment frag
-
+			
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_0 __
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_1 __
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_2 __
@@ -205,10 +219,10 @@
 					c.rgb += c.rgb * _WaterEmissionColor * _WaterEmissionColorIntensity;
 				#endif
 
-				c = CombinedShapeLightShared(c, 0, i.lightingUV);
+				c = CombinedShapeLightShared(c, 1.0, i.lightingUV);
 				
 				#if Is_Water2D_FakePerspective_Enabled
-					c.rgb += partiallySubmergedObjectsColor.a * (partiallySubmergedObjectsColor.rgb - c.rgb);
+					c.rgb += partiallySubmergedObjectsColor.rgb - c.rgb * partiallySubmergedObjectsColor.a;
 				#endif
 				
 				return c;

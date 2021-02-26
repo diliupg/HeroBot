@@ -3,19 +3,22 @@
     using Game2DWaterKit.Main;
     using Game2DWaterKit.Simulation;
     using UnityEngine;
+    using System.Collections.Generic;
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     using UnityEditor;
-    #endif
+#endif
 
     [AddComponentMenu("Game 2D Water Kit/Large Water Area Manager")]
     public class LargeWaterAreaManager : MonoBehaviour
     {
-        [SerializeField] private Camera _mainCamera;
-        [SerializeField] private Game2DWater _waterObject;
+        [SerializeField] private Camera _mainCamera = null;
+        [SerializeField] private Game2DWater _waterObject = null;
         [SerializeField] private int _waterObjectCount = 3;
+        [SerializeField] private bool _isConstrained = false;
+        [SerializeField] private float _constrainedRegionXMin = 0f;
+        [SerializeField] private float _constrainedRegionXMax = 0f;
 
-        private float _cameraLastXPosition;
         private WaterSimulationModule _leftMostWaterSimulationModule;
         private WaterSimulationModule _rightMostWaterSimulationModule;
         private float _waterSurfaceHeighestPoint;
@@ -24,36 +27,30 @@
         private int _frameCount;
         private int _lastRenderedFrame;
         private Camera _lastRenderedFrameCamera;
+        private HashSet<Collider2D> _inWaterColliders = new HashSet<Collider2D>();
 
         #region Properties
 
         public Camera MainCamera { get { return _mainCamera; } set { _mainCamera = value; } }
         public Game2DWater WaterObject { get { return _waterObject; } set { _waterObject = value; } }
-        public int WaterObjectCount { get { return _waterObjectCount; } set { _waterObjectCount = Mathf.Clamp(value, 0, int.MaxValue); } }
+        public int WaterObjectCount { get { return _waterObjectCount; } set { _waterObjectCount = Mathf.Clamp(value, 2, int.MaxValue); } }
+        public bool IsConstrained { get { return _isConstrained; } }
+        public float ConstrainedRegionXMin { get { return _constrainedRegionXMin; } }
+        public float ConstrainedRegionXMax { get { return _constrainedRegionXMax; } }
 
-        private Camera Camera
-        {
-            get
-            {
-                if (_mainCamera != null)
-                    return _mainCamera;
-                else
-                    return Camera.main;
-            }
-        }
-        
         internal Matrix4x4 ProjectionMatrix { get; set; }
         internal Matrix4x4 WorlToVisibleAreaMatrix { get; set; }
         internal RenderTexture ReflectionRenderTexture { get; set; }
         internal RenderTexture RefractionPartiallySubmergedObjectsRenderTexture { get; set; }
         internal RenderTexture ReflectionPartiallySubmergedObjectsRenderTexture { get; set; }
         internal RenderTexture RefractionRenderTexture { get; set; }
+        internal HashSet<Collider2D> InWaterColliders { get { return _inWaterColliders; } }
 
         #endregion
 
         #region Unity Callbacks
 
-        private void Awake()
+        private void Start()
         {
             if (_waterObject == null)
                 return;
@@ -73,7 +70,7 @@
 
                 var buoyancyEffector2D = gameObject.AddComponent<BuoyancyEffector2D>();
 
-                buoyancyEffector2D.surfaceLevel = _waterObject.transform.position.y - transform.position.y + waterObjectBuoyancyEffector2D.surfaceLevel;
+                buoyancyEffector2D.surfaceLevel = _waterObject.MainModule.Position.y - transform.position.y + waterObjectBuoyancyEffector2D.surfaceLevel;
                 buoyancyEffector2D.density = waterObjectBuoyancyEffector2D.density;
                 buoyancyEffector2D.flowAngle = waterObjectBuoyancyEffector2D.flowAngle;
                 buoyancyEffector2D.flowMagnitude = waterObjectBuoyancyEffector2D.flowMagnitude;
@@ -86,24 +83,34 @@
                 buoyancyEffector2D.hideFlags |= HideFlags.HideInInspector;
             }
 
-            var rigidbody2D = gameObject.AddComponent<Rigidbody2D>(); //required by the composite collider
-            rigidbody2D.isKinematic = true;
-            rigidbody2D.hideFlags |= HideFlags.HideInInspector;
+            if (!_isConstrained)
+            {
+                var rigidbody2D = gameObject.AddComponent<Rigidbody2D>(); //required by the composite collider
+                rigidbody2D.isKinematic = true;
+                rigidbody2D.hideFlags |= HideFlags.HideInInspector;
 
-            var compositeCollider2D = gameObject.AddComponent<CompositeCollider2D>();
-            compositeCollider2D.geometryType = CompositeCollider2D.GeometryType.Polygons;
-            compositeCollider2D.isTrigger = true;
-            compositeCollider2D.usedByEffector = true;
-            compositeCollider2D.hideFlags |= HideFlags.HideInInspector;
-        }
+                var compositeCollider2D = gameObject.AddComponent<CompositeCollider2D>();
+                compositeCollider2D.geometryType = CompositeCollider2D.GeometryType.Polygons;
+                compositeCollider2D.isTrigger = true;
+                compositeCollider2D.usedByEffector = true;
+                compositeCollider2D.hideFlags |= HideFlags.HideInInspector;
+            }
+            else
+            {
+                if(waterObjectBoxCollider2D != null)
+                {
+                    waterObjectBoxCollider2D.enabled = false;
 
-        private void Start()
-        {
-            if (Camera != null)
-                _cameraLastXPosition = Camera.transform.position.x;
-
-            if (_waterObject != null)
-                InstantiateWaterObjects();
+                    var boxCollider2D = gameObject.AddComponent<BoxCollider2D>();
+                    boxCollider2D.size = new Vector2(_constrainedRegionXMax - _constrainedRegionXMin, _waterObject.MainModule.Height);
+                    boxCollider2D.offset = new Vector2((_constrainedRegionXMin + _constrainedRegionXMax) * 0.5f - transform.position.x, 0f);
+                    boxCollider2D.isTrigger = true;
+                    boxCollider2D.usedByEffector = true;
+                    boxCollider2D.hideFlags |= HideFlags.HideInInspector;
+                }
+            }
+            
+            InstantiateWaterObjects();
 
             _waterSurfaceHeighestPoint = _waterObject.MainModule.Height * 0.5f;
         }
@@ -112,7 +119,7 @@
         {
             if (_waterObject != null)
                 CheckWaterObjectsPositions();
-
+            
             //in the editor, we'll rely on EditorApplication.update callback to increment the frame count
             //because this callback is invoked even when the editor application is paused (see OnValidate () mehod on line 284)
             #if !UNITY_EDITOR
@@ -122,7 +129,7 @@
 
         private void FixedUpdate()
         {
-            float deltaTime = Time.fixedDeltaTime;
+            float deltaTime = Time.fixedDeltaTime * Game2DWaterKitObject.TimeScale;
 
             WaterSimulationModule currentSimulationModule = _leftMostWaterSimulationModule;
             while (currentSimulationModule != null)
@@ -140,7 +147,12 @@
             var waterObject = GetWaterObjectLocatedAt(collider.transform.position.x);
 
             if (waterObject != null)
-                waterObject.OnCollisonRipplesModule.ResolveCollision(collider, isObjectEnteringWater: true);
+            {
+                bool isValidCollision = waterObject.OnCollisonRipplesModule.ResolveCollision(collider, isObjectEnteringWater: true);
+
+                if(isValidCollision)
+                    _inWaterColliders.Add(collider);
+            }
         }
 
         private void OnTriggerExit2D(Collider2D collider)
@@ -148,7 +160,12 @@
             var waterObject = GetWaterObjectLocatedAt(collider.transform.position.x);
 
             if (waterObject != null)
-                waterObject.OnCollisonRipplesModule.ResolveCollision(collider, isObjectEnteringWater: false);
+            {
+                bool isValidCollision = waterObject.OnCollisonRipplesModule.ResolveCollision(collider, isObjectEnteringWater: false);
+                
+                if(isValidCollision)
+                    _inWaterColliders.Remove(collider);
+            }
         }
 
         #endregion
@@ -200,14 +217,37 @@
 
         private void InstantiateWaterObjects()
         {
+            var waterSize = _waterObject.MainModule.WaterSize;
+            var shouldResizeWater = ValidateWaterSize(ref waterSize);
+
+            if (shouldResizeWater)
+                _waterObject.MainModule.SetSize(waterSize, true);
+
             var waterObject = _waterObject.gameObject;
             var spawnPosition = waterObject.transform.position;
             var spawnRotation = waterObject.transform.rotation;
             var parent = waterObject.transform.parent;
-            var waterWidth = _waterObject.MainModule.Width;
+            var waterWidth = waterSize.x;
             var areSineWavesActive = _waterObject.SimulationModule.AreSineWavesActive;
-            var surfaceVertexCount = _waterObject.MeshModule.SurfaceVerticesCount;
 
+            int surfaceVertexCount;
+            if (_waterObject.SimulationModule.IsUsingCustomBoundaries)
+                surfaceVertexCount = 4 + Mathf.RoundToInt(_waterObject.MeshModule.SubdivisionsPerUnit * (_waterObject.SimulationModule.RightCustomBoundary - _waterObject.SimulationModule.LeftCustomBoundary));
+            else
+                surfaceVertexCount = 2 + Mathf.RoundToInt(_waterObject.MeshModule.SubdivisionsPerUnit * waterWidth);
+
+            if (_isConstrained)
+            {
+                if (spawnPosition.x + waterWidth * (_waterObjectCount - 1) + waterWidth * 0.5f > (_constrainedRegionXMax - 0.001f))
+                    spawnPosition.x = _constrainedRegionXMax - waterWidth * (_waterObjectCount - 1) - waterWidth * 0.5f;
+                else if (spawnPosition.x - waterWidth * 0.5f < (_constrainedRegionXMin + 0.001f))
+                    spawnPosition.x = _constrainedRegionXMin + waterWidth * 0.5f;
+                else
+                    spawnPosition.x = _constrainedRegionXMin + waterWidth * 0.5f + waterWidth * Mathf.Round(((spawnPosition.x - _constrainedRegionXMin) / waterWidth));
+            }
+            else spawnPosition.x -= waterWidth;
+
+            _waterObject.MainModule.Position = spawnPosition;
             _waterObject.MainModule.LargeWaterAreaManager = this;
             _leftMostWaterSimulationModule = _waterObject.SimulationModule;
             _leftMostWaterSimulationModule.IsControlledByLargeWaterAreaManager = true;
@@ -218,6 +258,10 @@
                 spawnPosition.x += waterWidth;
 
                 Game2DWater waterObjectClone = Instantiate(waterObject, spawnPosition, spawnRotation, parent).GetComponent<Game2DWater>();
+
+                if (shouldResizeWater)
+                    waterObjectClone.MainModule.SetSize(waterSize, true);
+
                 waterObjectClone.MainModule.LargeWaterAreaManager = this;
 
                 WaterSimulationModule currentSimulationModule = waterObjectClone.SimulationModule;
@@ -237,51 +281,54 @@
 
         private void CheckWaterObjectsPositions()
         {
-            float cameraCurrentXPosition = Camera.transform.position.x;
-            if (Mathf.Approximately(cameraCurrentXPosition, _cameraLastXPosition))
-                return;
+            float halfWaterWidth = _waterObject.MainModule.Width * 0.5f;
 
-            bool isCameraMovingLeftToRight = (cameraCurrentXPosition - _cameraLastXPosition) > 0f;
-            _cameraLastXPosition = cameraCurrentXPosition;
-            
-            if (isCameraMovingLeftToRight)
+            float xMinWater = _leftMostWaterSimulationModule.MainModule.Position.x - halfWaterWidth;
+            float xMaxWater = _rightMostWaterSimulationModule.MainModule.Position.x + halfWaterWidth;
+            float xPosCamera = GetCamera().transform.position.x;
+
+            float safeZoneHalfWidth = (_waterObjectCount - 1) * halfWaterWidth;
+
+            float xMinSafeZone, xMaxSafeZone;
+
+            if (_isConstrained)
             {
-                if(!IsWaterObjectVisibleToCamera(_leftMostWaterSimulationModule.MainModule))
-                {
-                    //moving the leftmost water object to the rightmost position
-                    float waterWidth = _leftMostWaterSimulationModule.MainModule.Width;
-                    Vector3 newPosition = _rightMostWaterSimulationModule.MainModule.Position + new Vector3(waterWidth, 0f, 0f);
-                    _leftMostWaterSimulationModule.MainModule.Position = newPosition;
-                    _leftMostWaterSimulationModule.ResetSimulation();
-                    
-                    UpdateWaterObjectsOrder(newLeftMost: _leftMostWaterSimulationModule.NextWaterSimulationModule, newRightMost: _leftMostWaterSimulationModule);
-                }
+                xMinSafeZone = Mathf.Min(Mathf.Max(xPosCamera - safeZoneHalfWidth, _constrainedRegionXMin), _constrainedRegionXMax) + 0.001f;
+                xMaxSafeZone = Mathf.Max(Mathf.Min(xPosCamera + safeZoneHalfWidth, _constrainedRegionXMax), _constrainedRegionXMin) - 0.001f;
             }
             else
             {
-                if (!IsWaterObjectVisibleToCamera(_rightMostWaterSimulationModule.MainModule))
-                {
-                    //moving the righmost water object to the leftmost position
-                    float waterWidth = _rightMostWaterSimulationModule.MainModule.Width;
-                    Vector3 newPosition = _leftMostWaterSimulationModule.MainModule.Position - new Vector3(waterWidth, 0f, 0f);
-                    _rightMostWaterSimulationModule.MainModule.Position = newPosition;
-                    _rightMostWaterSimulationModule.ResetSimulation();
-
-                    UpdateWaterObjectsOrder(newLeftMost: _rightMostWaterSimulationModule, newRightMost: _rightMostWaterSimulationModule.PreviousWaterSimulationModule);
-                }
-                
+                xMinSafeZone = xPosCamera - safeZoneHalfWidth;
+                xMaxSafeZone = xPosCamera + safeZoneHalfWidth;
             }
+
+            if (xMinWater <= xMinSafeZone && xMaxWater >= xMaxSafeZone)
+                return;
+
+            if (xMinWater > xMinSafeZone)
+                MoveRightMostWaterToLeftMostPosition();
+            else if (xMaxWater < xMaxSafeZone)
+                MoveLeftMostWaterToRightMostPosition();
         }
 
-        private bool IsWaterObjectVisibleToCamera(WaterMainModule waterObject)
+        private void MoveLeftMostWaterToRightMostPosition()
         {
-            float waterHalfWidth = waterObject.Width * 0.5f;
-            float waterXPos = waterObject.Position.x;
+            float waterWidth = _leftMostWaterSimulationModule.MainModule.Width;
+            Vector3 newPosition = _rightMostWaterSimulationModule.MainModule.Position + new Vector3(waterWidth, 0f, 0f);
+            _leftMostWaterSimulationModule.MainModule.Position = newPosition;
+            _leftMostWaterSimulationModule.ResetSimulation();
 
-            float cameraHalfWidth = (Screen.width / (float)Screen.height) * Camera.orthographicSize;
-            float cameraXPos = Camera.transform.position.x;
+            UpdateWaterObjectsOrder(newLeftMost: _leftMostWaterSimulationModule.NextWaterSimulationModule, newRightMost: _leftMostWaterSimulationModule);
+        }
 
-            return Mathf.Abs(waterXPos - cameraXPos) < (waterHalfWidth + cameraHalfWidth);
+        private void MoveRightMostWaterToLeftMostPosition()
+        {
+            float waterWidth = _rightMostWaterSimulationModule.MainModule.Width;
+            Vector3 newPosition = _leftMostWaterSimulationModule.MainModule.Position - new Vector3(waterWidth, 0f, 0f);
+            _rightMostWaterSimulationModule.MainModule.Position = newPosition;
+            _rightMostWaterSimulationModule.ResetSimulation();
+
+            UpdateWaterObjectsOrder(newLeftMost: _rightMostWaterSimulationModule, newRightMost: _rightMostWaterSimulationModule.PreviousWaterSimulationModule);
         }
 
         private void UpdateWaterObjectsOrder(WaterSimulationModule newLeftMost,WaterSimulationModule newRightMost)
@@ -303,14 +350,45 @@
                 _rightMostWaterSimulationModule.SineWavesOffset = _rightMostWaterSimulationModule.PreviousWaterSimulationModule.SineWavesOffset + offset;
             }
         }
+
+        private bool ValidateWaterSize(ref Vector2 waterSize)
+        {
+            float initialWaterWidth = waterSize.x;
+
+            var cam = GetCamera();
+            float camFrustumWidth = cam.aspect * cam.orthographicSize * 2f;
+
+            waterSize.x = Mathf.Max(camFrustumWidth * 0.75f, waterSize.x);
+
+            if (_isConstrained)
+            {
+                float regionWidth = _constrainedRegionXMax - _constrainedRegionXMin;
+                waterSize.x = regionWidth / (Mathf.RoundToInt(regionWidth / waterSize.x));
+            }
+
+            return waterSize.x != initialWaterWidth;
+        }
+
+        private Camera GetCamera()
+        {
+            if (_mainCamera != null)
+                return _mainCamera;
+            else
+                return Camera.main;
+        }
         #endregion
 
         #region Editor Only Methods
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
 
         private void OnValidate()
         {
-            WaterObjectCount = _waterObjectCount;
+            _waterObjectCount = Mathf.Clamp(_waterObjectCount, 2, int.MaxValue);
+
+            if (_constrainedRegionXMin > _constrainedRegionXMax)
+                _constrainedRegionXMin = _constrainedRegionXMax;
+            else if (_constrainedRegionXMax < _constrainedRegionXMin)
+                _constrainedRegionXMax = _constrainedRegionXMin;
 
             //continues to increment frame count even when the editor application is paused
             EditorApplication.update -= IncrementFrameCount;

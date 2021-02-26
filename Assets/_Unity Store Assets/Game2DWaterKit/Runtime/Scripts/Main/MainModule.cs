@@ -25,14 +25,16 @@
         private Vector3 _forwardDirection;
         private Matrix4x4 _worldToLocalMatrix;
         private Matrix4x4 _localToWorldMatrix;
+        protected int _gameobjectLayer;
+        internal event System.Action OnGameobjectLayerChange;
         #endregion
 
 
         #region Properties
         public float Width { get { return _size.x; } }
         public float Height { get { return _size.y; } }
-        public Vector3 Position { get { return _position; } set { _transform.position = value; } }
-        public Quaternion Rotation { get { return _rotation; } set { _transform.rotation = value; } }
+        public Vector3 Position { get { return _position; } set { _transform.position = _position = value; } }
+        public Quaternion Rotation { get { return _rotation; } set { _transform.rotation = _rotation = value; } }
         public Vector3 Scale { get { return _lossyScale; } }
         public Matrix4x4 LocalToWorldMatrix { get { return _localToWorldMatrix; } }
         public Matrix4x4 WorldToLocalMatrix { get { return _worldToLocalMatrix; } }
@@ -42,6 +44,7 @@
         internal Vector3 UpDirection { get { return _upDirection; } }
         internal Vector3 ForwardDirection { get { return _forwardDirection; } }
         internal bool IsVisible { get; set; }
+        internal int GameobjectLayer { get { return _gameobjectLayer; } }
         #endregion
 
         #region Methods
@@ -117,6 +120,13 @@
 
                 if (oldDepth != _position.z && OnDepthChange != null)
                     OnDepthChange.Invoke();
+            }
+
+            if (_transform.gameObject.layer != _gameobjectLayer)
+            {
+                _gameobjectLayer = _transform.gameObject.layer;
+                if (OnGameobjectLayerChange != null)
+                    OnGameobjectLayerChange.Invoke();
             }
         }
 

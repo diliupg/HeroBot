@@ -43,6 +43,8 @@
         [SerializeField] private List<WaterSimulationSineWaveParameters> waterSimulationSineWavesParameters = new List<WaterSimulationSineWaveParameters>();
         [SerializeField] private float maximumdDynamicWaveDisturbance = 1f;
         [SerializeField] private bool shouldClampDynamicWaveDisturbance = false;
+        [SerializeField] private bool canWavesAffectRigidbodies = false;
+        [SerializeField, Range(0f, 2f)] private float wavesStrengthOnRigidbodies = 0.6f;
         #endregion
 
         #region Water Collision Ripples Serialized Variables
@@ -58,6 +60,11 @@
         [FormerlySerializedAs("collisionMinimumDepth"), SerializeField] private float onCollisionRipplesCollisionMinimumDepth = -10f;
         [FormerlySerializedAs("collisionMaximumDepth"), SerializeField] private float onCollisionRipplesCollisionMaximumDepth = 10f;
         [FormerlySerializedAs("collisionRaycastMaxDistance"), SerializeField] private float onCollisionRipplesCollisionRaycastMaxDistance = 0.5f;
+        //On Water Move Collisions Properties
+        [SerializeField] private bool activateOnCollisionOnWaterMoveRipples = false;
+        [SerializeField] private float onCollisionOnWaterMoveRipplesMaximumDisturbance = 0.1f;
+        [SerializeField] private float onCollisionOnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance = 6f;
+        [SerializeField, Range(0f, 1f)] private float onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor = 0.8f;
         //Particle Effect Properties (On Water Enter)
         [FormerlySerializedAs("activateOnCollisionSplashParticleEffect"), SerializeField] private bool onCollisionRipplesActivateOnWaterEnterParticleEffect = false;
         [FormerlySerializedAs("onCollisionSplashParticleEffect"), SerializeField] private ParticleSystem onCollisionRipplesOnWaterEnterParticleEffect = null;
@@ -177,6 +184,7 @@
         [SerializeField] private bool reflectionRenderTextureUseFixedSize = false;
         [SerializeField] private int reflectionRenderTextureFixedSize = 256;
         [SerializeField] private float reflectionZOffset = 0f;
+        [SerializeField] private float reflectionYOffset = 0f;
         //Shared Properties
         [SerializeField, FormerlySerializedAs("sortingLayerID")] private int _renderingModuleSortingLayerID = 0;
         [SerializeField, FormerlySerializedAs("sortingOrder")] private int _renderingModuleSortingOrder = 0;
@@ -296,9 +304,10 @@
 
         protected override void PhysicsUpdate()
         {
-            float deltaTime = Time.fixedDeltaTime;
+            float deltaTime = Time.fixedDeltaTime * Game2DWaterKitObject.TimeScale;
 
             _constantRipplesModule.PhysicsUpdate(deltaTime);
+            _onCollisonRipplesModule.PhysicsUpdate();
 
             if (!_simulationModule.IsControlledByLargeWaterAreaManager)
                 _simulationModule.PhysicsUpdate(deltaTime);
@@ -383,6 +392,7 @@
                     FilterMode = reflectionRenderTextureFilterMode
                 },
                 ReflectionZOffset = reflectionZOffset,
+                ReflectionYOffset = reflectionYOffset,
                 FarClipPlane = _renderingModuleFarClipPlane,
                 RenderPixelLights = _renderingModuleRenderPixelLights,
                 AllowMSAA = _renderingModuleAllowMSAA,
@@ -414,7 +424,9 @@
                 MaximumDynamicWavesDisturbance = maximumdDynamicWaveDisturbance,
                 LimitDynamicWavesDisturbance = shouldClampDynamicWaveDisturbance,
                 AreSineWavesActive = waterSimulationAreSineWavesActive,
-                SineWavesParameters = waterSimulationSineWavesParameters
+                SineWavesParameters = waterSimulationSineWavesParameters,
+                CanWavesAffectRigidbodies = canWavesAffectRigidbodies,
+                WavesStrengthOnRigidbodies = wavesStrengthOnRigidbodies
             };
         }
 
@@ -498,10 +510,14 @@
             {
                 ActivateOnWaterEnterRipples = activateOnCollisionOnWaterEnterRipples,
                 ActivateOnWaterExitRipples = activateOnCollisionOnWaterExitRipples,
+                ActivateOnWaterMoveRipples = activateOnCollisionOnWaterMoveRipples,
                 CollisionIgnoreTriggers = onCollisionRipplesIgnoreTriggers,
                 MinimumDisturbance = onCollisionRipplesMinimumDisturbance,
                 MaximumDisturbance = onCollisionRipplesMaximumDisturbance,
                 VelocityMultiplier = onCollisionRipplesVelocityMultiplier,
+                OnWaterMoveRipplesMaximumDisturbance = onCollisionOnWaterMoveRipplesMaximumDisturbance,
+                OnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance = onCollisionOnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance,
+                OnWaterMoveRipplesDisturbanceSmoothFactor = onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor,
                 CollisionMask = onCollisionRipplesCollisionMask,
                 CollisionMinimumDepth = onCollisionRipplesCollisionMinimumDepth,
                 CollisionMaximumDepth = onCollisionRipplesCollisionMaximumDepth,
@@ -610,11 +626,14 @@
             waterSimulationSineWavesParameters = new List<WaterSimulationSineWaveParameters>();
             maximumdDynamicWaveDisturbance = 1f;
             shouldClampDynamicWaveDisturbance = false;
+            canWavesAffectRigidbodies = false;
+            wavesStrengthOnRigidbodies = 0.6f;
             #endregion
 
             #region Water Collision Ripples Serialized Variables
             activateOnCollisionOnWaterEnterRipples = true;
             activateOnCollisionOnWaterExitRipples = true;
+            activateOnCollisionOnWaterMoveRipples = false;
             onCollisionRipplesIgnoreTriggers = false;
             //Disturbance Properties
             onCollisionRipplesMinimumDisturbance = 0.1f;
@@ -662,6 +681,10 @@
             //Events
             onWaterEnter = new UnityEvent();
             onWaterExit = new UnityEvent();
+            // On Water Move Ripples
+            onCollisionOnWaterMoveRipplesMaximumDisturbance = 0.1f;
+            onCollisionOnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance = 6f;
+            onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor = 0.8f;
             #endregion
 
             #region Water Constant Ripples Serialized Variables
@@ -742,6 +765,7 @@
             reflectionPartiallySubmergedObjectsCullingMask = 0;
             reflectionRenderTextureFilterMode = FilterMode.Bilinear;
             reflectionZOffset = 0f;
+            reflectionYOffset = 0f;
             //Shared Properties
             _renderingModuleSortingLayerID = 0;
             _renderingModuleSortingOrder = 0;

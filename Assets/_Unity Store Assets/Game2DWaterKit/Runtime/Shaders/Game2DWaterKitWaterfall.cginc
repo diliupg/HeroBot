@@ -62,6 +62,8 @@
 #define Is_Waterfall2D_LeftRightEdgesNoise_Enabled defined(Waterfall2D_LeftRightEdgesNoise)
 #define Is_Waterfall2D_Refraction_Enabled defined(Waterfall2D_Refraction)
 #define Is_Waterfall2D_ApplyEmissionColor_Enabled defined(Waterfall2D_ApplyEmissionColor)
+#define Is_Waterfall2D_LeftRightEdgesAbsoluteThicknessAndOffset_Enabled defined(Waterfall2D_LeftRightEdgesAbsoluteThicknessAndOffset)
+#define Is_Waterfall2D_TopBottomEdgesAbsoluteThicknessAndOffset_Enabled defined(Waterfall2D_TopBottomEdgesAbsoluteThicknessAndOffset)
 
 #define Waterfall2D_HasBodyTexture Is_Waterfall2D_BodyTexture_Enabled || Is_Waterfall2D_BodyTextureSheet_Enabled || Is_Waterfall2D_BodyTextureSheetWithLerp_Enabled
 #define Waterfall2D_HasBodySecondTexture Is_Waterfall2D_BodySecondTexture_Enabled || Is_Waterfall2D_BodySecondTextureSheet_Enabled || Is_Waterfall2D_BodySecondTextureSheetWithLerp_Enabled
@@ -72,16 +74,16 @@
 
 #define Waterfall2D_ApplyBodyAlphaCutoff (Waterfall2D_HasBodyTexture || Waterfall2D_HasBodySecondTexture) && Is_Waterfall2D_BodyTextureAlphaCutoff_Enabled
 #define Waterfall2D_ApplyLeftRightEdgesAlphaCutoff (Waterfall2D_HasLeftEdge || Waterfall2D_HasRightEdge) && Is_Waterfall2D_LeftRightEdgesTextureAlphaCutoff_Enabled
+#define Waterfall2D_LeftRightEdgesUseAbsoluteThicknessAndOffset (Waterfall2D_HasLeftEdge || Waterfall2D_HasRightEdge) && Is_Waterfall2D_LeftRightEdgesAbsoluteThicknessAndOffset_Enabled
+#define Waterfall2D_TopBottomEdgesUseAbsoluteThicknessAndOffset (Waterfall2D_HasTopEdge || Waterfall2D_HasBottomEdge) && Is_Waterfall2D_TopBottomEdgesAbsoluteThicknessAndOffset_Enabled
 
-	CBUFFER_START(UnityPerObject)
+
 		#if Is_Waterfall2D_Refraction_Enabled
 		uniform float4x4 _WaterfallMVP;
 		uniform sampler2D _RefractionTexture;
 		#endif
 		uniform float4 _AspectRatio;
-	CBUFFER_END  // UnityPerObject
-
-	CBUFFER_START(UnityPerMaterial)
+		uniform float4 _Size;
 
 	// Refraction Variables
 	#if Is_Waterfall2D_Refraction_Enabled
@@ -142,6 +144,7 @@
 	// Top-Bottom Edges Variables
 	#if Waterfall2D_HasTopEdge || Waterfall2D_HasBottomEdge
 		half4 _TopBottomEdgesThickness;
+		half4 _TopBottomEdgesOffset;
 	#endif
 
 	#if Is_Waterfall2D_TopBottomEdgesSameTexture_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheet_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheetWithLerp_Enabled
@@ -193,6 +196,7 @@
 	// Left-Right Edges Variables
 	#if Waterfall2D_HasLeftEdge || Waterfall2D_HasRightEdge
 		half4 _LeftRightEdgesThickness;
+		half4 _LeftRightEdgesOffset;
 		#if Waterfall2D_ApplyLeftRightEdgesAlphaCutoff
 		half _LeftRightEdgesTextureAlphaCutoff;
 		#endif
@@ -258,13 +262,11 @@
 		sampler2D _NoiseTexture;
 		float4 _NoiseTexture_ST;
 	#endif
-
-	CBUFFER_END // UnityPerMaterial
 		
 	struct Attributes
 	{
 		float4 pos : POSITION;
-		float2 uv : TEXCOORD0;
+		float4 uv : TEXCOORD0;
 
 		#if  defined(LIGHTMAP_ON)
 			float2 lightmapCoord : TEXCOORD1;
@@ -274,7 +276,7 @@
 	struct Varyings
 	{
 		float4 pos : SV_POSITION;
-		float2 uv : TEXCOORD0;
+		float4 uv : TEXCOORD0;
 
 		#if Waterfall2D_HasBodyTexture || Waterfall2D_HasBodySecondTexture
 			#if Waterfall2D_HasBodySecondTexture
@@ -312,27 +314,35 @@
 			#endif
 		#endif
 
-		#if Is_Waterfall2D_LeftRightEdgesNoise_Enabled || Is_Waterfall2D_TopBottomEdgesNoise_Enabled
-			#if Is_Waterfall2D_TopBottomEdgesNoise_Enabled
-				float4 edgesNoiseTextureUV : TEXCOORD6;
+		#if Is_Waterfall2D_LeftRightEdgesNoise_Enabled
+			#if Waterfall2D_HasRightEdge
+				float4 leftRightEdgesNoiseTextureUV : TEXCOORD6;
 			#else
-				float2 edgesNoiseTextureUV : TEXCOORD6;
+				float2 leftRightEdgesNoiseTextureUV : TEXCOORD6;
+			#endif
+		#endif
+				
+		#if Is_Waterfall2D_TopBottomEdgesNoise_Enabled
+			#if Waterfall2D_HasBottomEdge
+				float4 topBottomEdgesNoiseTextureUV : TEXCOORD7;
+			#else
+				float2 topBottomEdgesNoiseTextureUV : TEXCOORD7;
 			#endif
 		#endif
 				
 			#if defined(Game2DWaterKit_SRP_Lit)
-				float2 lightingUV : TEXCOORD7;
+				float2 lightingUV : TEXCOORD8;
 			#else
 				#if defined(LIGHTMAP_ON)
-					float2 lightmapCoord : TEXCOORD7;
+					float2 lightmapCoord : TEXCOORD8;
 				#else
 					#if defined(UNITY_SHOULD_SAMPLE_SH)
-			 			half3 sh : TEXCOORD7;
+			 			half3 sh : TEXCOORD8;
 					#endif
 				#endif
 
 				#if defined(UNITY_PASS_FORWARDBASE) || defined(UNITY_PASS_FORWARDADD)
-  					float3 worldPos : TEXCOORD8;
+  					float3 worldPos : TEXCOORD9;
  				#endif
 			#endif
 
@@ -342,27 +352,25 @@
 	};
 
 	#include "Game2DWaterKit.cginc"
-
+	
 	inline Varyings Waterfall2D_Vert (Attributes v)
 	{
 		Varyings o;
 		UNITY_INITIALIZE_OUTPUT(Varyings, o);
 
 		o.pos = ComputeClipPosition(v.pos);
-		o.uv = v.uv;
 
 		float2 vertexPositionWorldSpace = (mul(unity_ObjectToWorld, v.pos)).xy;
 
 		// Body Texture UV
-
 		#if Waterfall2D_HasBodyTexture || Waterfall2D_HasBodySecondTexture
 			#if Waterfall2D_HasBodyTexture
 				#if Is_Waterfall2D_BodyTextureStretch_Enabled
-					o.bodyTextureUV.xy = v.uv * _BodyTexture_ST.xy + _BodyTexture_ST.zw;
+					o.bodyTextureUV.xy = v.uv.xy * _BodyTexture_ST.xy + _BodyTexture_ST.zw;
 				#elif Is_Waterfall2D_BodyTextureStretchAutoX_Enabled
-					o.bodyTextureUV.xy = v.uv * (_BodyTexture_ST.xy * _AspectRatio.xy) + _BodyTexture_ST.zw;
+					o.bodyTextureUV.xy = v.uv.xy * (_BodyTexture_ST.xy * _AspectRatio.xy) + _BodyTexture_ST.zw;
 				#elif Is_Waterfall2D_BodyTextureStretchAutoY_Enabled
-					o.bodyTextureUV.xy = v.uv * (_BodyTexture_ST.xy * _AspectRatio.zw) + _BodyTexture_ST.zw;
+					o.bodyTextureUV.xy = v.uv.xy * (_BodyTexture_ST.xy * _AspectRatio.zw) + _BodyTexture_ST.zw;
 				#else
 					o.bodyTextureUV.xy = TRANSFORM_TEX(vertexPositionWorldSpace, _BodyTexture);
 				#endif
@@ -372,11 +380,11 @@
 
 			#if Waterfall2D_HasBodySecondTexture
 				#if Is_Waterfall2D_BodySecondTextureStretch_Enabled
-					o.bodyTextureUV.zw = v.uv * _BodySecondTexture_ST.xy + _BodySecondTexture_ST.zw;
+					o.bodyTextureUV.zw = v.uv.xy * _BodySecondTexture_ST.xy + _BodySecondTexture_ST.zw;
 				#elif Is_Waterfall2D_BodySecondTextureStretchAutoX_Enabled
-					o.bodyTextureUV.zw = v.uv * (_BodySecondTexture_ST.xy * _AspectRatio.xy) + _BodySecondTexture_ST.zw;
+					o.bodyTextureUV.zw = v.uv.xy * (_BodySecondTexture_ST.xy * _AspectRatio.xy) + _BodySecondTexture_ST.zw;
 				#elif Is_Waterfall2D_BodySecondTextureStretchAutoY_Enabled
-					o.bodyTextureUV.zw = v.uv * (_BodySecondTexture_ST.xy * _AspectRatio.zw) + _BodySecondTexture_ST.zw;
+					o.bodyTextureUV.zw = v.uv.xy * (_BodySecondTexture_ST.xy * _AspectRatio.zw) + _BodySecondTexture_ST.zw;
 				#else
 					o.bodyTextureUV.zw = TRANSFORM_TEX(vertexPositionWorldSpace, _BodySecondTexture);
 				#endif
@@ -387,14 +395,37 @@
 			#if Is_Waterfall2D_BodyTextureNoise_Enabled
 				#if Waterfall2D_HasBodyTexture
 					o.bodyNoiseTextureUV.xy = TRANSFORM_TEX((o.bodyTextureUV.xy * _BodyNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _BodyNoiseSpeed);
+					#if Is_Waterfall2D_BodyTextureStretch_Enabled || Is_Waterfall2D_BodyTextureStretchAutoX_Enabled || Is_Waterfall2D_BodyTextureStretchAutoY_Enabled
+						o.bodyNoiseTextureUV.x *= v.uv.z;
+					#endif
 				#endif
 				#if Waterfall2D_HasBodySecondTexture
 					o.bodyNoiseTextureUV.zw = TRANSFORM_TEX((o.bodyTextureUV.zw * _BodyNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _BodyNoiseSpeed);
+					#if Is_Waterfall2D_BodySecondTextureStretch_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoX_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoY_Enabled
+						o.bodyNoiseTextureUV.z *= v.uv.z;
+					#endif
 				#endif
 			#endif
 		#endif
+		
+		#if (Waterfall2D_HasBodyTexture) && (Is_Waterfall2D_BodyTextureStretch_Enabled || Is_Waterfall2D_BodyTextureStretchAutoX_Enabled || Is_Waterfall2D_BodyTextureStretchAutoY_Enabled)
+		o.bodyTextureUV.x *= v.uv.z;
+		#endif
+
+		#if (Waterfall2D_HasBodySecondTexture) && (Is_Waterfall2D_BodySecondTextureStretch_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoX_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoY_Enabled)
+		o.bodyTextureUV.z *= v.uv.z;
+		#endif
 
 		// Left-Right Edges Texture UV
+
+		#if Waterfall2D_HasLeftEdge || Waterfall2D_HasRightEdge
+			half4 leftRightEdgesThickness = _LeftRightEdgesThickness;
+
+			#if Waterfall2D_LeftRightEdgesUseAbsoluteThicknessAndOffset
+				leftRightEdgesThickness.xz *= _Size.z;
+				leftRightEdgesThickness.yw *= _Size.x;
+			#endif
+		#endif
 
 		#if Is_Waterfall2D_LeftRightEdgesSameTexture_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheet_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheetWithLerp_Enabled
 			#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled
@@ -402,18 +433,18 @@
 					float lrx = _LeftRightEdgesTexture_ST.x * _AspectRatio.x;
 					o.leftRightEdgesTextureUV.x = v.uv.x * lrx + _LeftRightEdgesTexture_ST.z;
 					o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftRightEdgesTexture_ST.y + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
-					o.leftRightEdgesTextureUV.z = (v.uv.x - 1.0 + _LeftRightEdgesThickness.z) * lrx + _LeftRightEdgesTexture_ST.z;
+					o.leftRightEdgesTextureUV.z = (v.uv.x - 1.0 + leftRightEdgesThickness.z) * lrx + _LeftRightEdgesTexture_ST.z;
 					o.leftRightEdgesTextureUV.w = o.leftRightEdgesTextureUV.y;
 				#elif Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled
 					float lry = v.uv.y * _LeftRightEdgesTexture_ST.y * _AspectRatio.w;
-					o.leftRightEdgesTextureUV.x = v.uv.x * (_LeftRightEdgesTexture_ST.x * _LeftRightEdgesThickness.y) + _LeftRightEdgesTexture_ST.z;
-					o.leftRightEdgesTextureUV.y = (lry * _LeftRightEdgesThickness.y + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
-					o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + _LeftRightEdgesThickness.z) * _LeftRightEdgesThickness.w) * _LeftRightEdgesTexture_ST.x + _LeftRightEdgesTexture_ST.z;
-					o.leftRightEdgesTextureUV.w = (lry * _LeftRightEdgesThickness.w + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
+					o.leftRightEdgesTextureUV.x = v.uv.x * (_LeftRightEdgesTexture_ST.x * leftRightEdgesThickness.y) + _LeftRightEdgesTexture_ST.z;
+					o.leftRightEdgesTextureUV.y = (lry * leftRightEdgesThickness.y + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
+					o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + leftRightEdgesThickness.z) * leftRightEdgesThickness.w) * _LeftRightEdgesTexture_ST.x + _LeftRightEdgesTexture_ST.z;
+					o.leftRightEdgesTextureUV.w = (lry * leftRightEdgesThickness.w + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
 				#else
-					o.leftRightEdgesTextureUV.x = v.uv.x * (_LeftRightEdgesThickness.y * _LeftRightEdgesTexture_ST.x) + _LeftRightEdgesTexture_ST.z;
+					o.leftRightEdgesTextureUV.x = v.uv.x * (leftRightEdgesThickness.y * _LeftRightEdgesTexture_ST.x) + _LeftRightEdgesTexture_ST.z;
 					o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftRightEdgesTexture_ST.y + _LeftRightEdgesTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftRightEdgesTextureScrollingSpeed);
-					o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + _LeftRightEdgesThickness.z) * _LeftRightEdgesThickness.w) * _LeftRightEdgesTexture_ST.x + _LeftRightEdgesTexture_ST.z;
+					o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + leftRightEdgesThickness.z) * leftRightEdgesThickness.w) * _LeftRightEdgesTexture_ST.x + _LeftRightEdgesTexture_ST.z;
 					o.leftRightEdgesTextureUV.w = o.leftRightEdgesTextureUV.y;
 				#endif
 			#else
@@ -435,10 +466,10 @@
 						o.leftRightEdgesTextureUV.x = v.uv.x * (_LeftEdgeTexture_ST.x * _AspectRatio.x) + _LeftEdgeTexture_ST.z;
 						o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftEdgeTexture_ST.y + _LeftEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftEdgeTextureScrollingSpeed);
 					#elif Is_Waterfall2D_LeftEdgeTextureStretchAutoY_Enabled
-						o.leftRightEdgesTextureUV.x = (v.uv.x * _LeftRightEdgesThickness.y) * _LeftEdgeTexture_ST.x + _LeftEdgeTexture_ST.z;
-						o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftEdgeTexture_ST.y * _AspectRatio.w * _LeftRightEdgesThickness.y + _LeftEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftEdgeTextureScrollingSpeed);
+						o.leftRightEdgesTextureUV.x = (v.uv.x * leftRightEdgesThickness.y) * _LeftEdgeTexture_ST.x + _LeftEdgeTexture_ST.z;
+						o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftEdgeTexture_ST.y * _AspectRatio.w * leftRightEdgesThickness.y + _LeftEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftEdgeTextureScrollingSpeed);
 					#else
-						o.leftRightEdgesTextureUV.x = (v.uv.x * _LeftRightEdgesThickness.y) * _LeftEdgeTexture_ST.x + _LeftEdgeTexture_ST.z;
+						o.leftRightEdgesTextureUV.x = (v.uv.x * leftRightEdgesThickness.y) * _LeftEdgeTexture_ST.x + _LeftEdgeTexture_ST.z;
 						o.leftRightEdgesTextureUV.y = (v.uv.y * _LeftEdgeTexture_ST.y + _LeftEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _LeftEdgeTextureScrollingSpeed);
 					#endif
 				#else
@@ -451,13 +482,13 @@
 			#if Is_Waterfall2D_RightEdge_Enabled || Is_Waterfall2D_RightEdgeTextureSheet_Enabled || Is_Waterfall2D_RightEdgeTextureSheetWithLerp_Enabled
 				#if Is_Waterfall2D_RightEdgeTextureStretch_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
 					#if Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled
-						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + _LeftRightEdgesThickness.z)) * (_RightEdgeTexture_ST.x * _AspectRatio.x) + _RightEdgeTexture_ST.z;
+						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + leftRightEdgesThickness.z)) * (_RightEdgeTexture_ST.x * _AspectRatio.x) + _RightEdgeTexture_ST.z;
 						o.leftRightEdgesTextureUV.w = (v.uv.y * _RightEdgeTexture_ST.y + _RightEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _RightEdgeTextureScrollingSpeed);
 					#elif Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
-						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + _LeftRightEdgesThickness.z) * _LeftRightEdgesThickness.w) * _RightEdgeTexture_ST.x + _RightEdgeTexture_ST.z;
-						o.leftRightEdgesTextureUV.w = (v.uv.y * _RightEdgeTexture_ST.y * _AspectRatio.w * _LeftRightEdgesThickness.w + _RightEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _RightEdgeTextureScrollingSpeed);
+						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + leftRightEdgesThickness.z) * leftRightEdgesThickness.w) * _RightEdgeTexture_ST.x + _RightEdgeTexture_ST.z;
+						o.leftRightEdgesTextureUV.w = (v.uv.y * _RightEdgeTexture_ST.y * _AspectRatio.w * leftRightEdgesThickness.w + _RightEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _RightEdgeTextureScrollingSpeed);
 					#else
-						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + _LeftRightEdgesThickness.z) * _LeftRightEdgesThickness.w) * _RightEdgeTexture_ST.x + _RightEdgeTexture_ST.z;
+						o.leftRightEdgesTextureUV.z = ((v.uv.x - 1.0 + leftRightEdgesThickness.z) * leftRightEdgesThickness.w) * _RightEdgeTexture_ST.x + _RightEdgeTexture_ST.z;
 						o.leftRightEdgesTextureUV.w = (v.uv.y * _RightEdgeTexture_ST.y + _RightEdgeTexture_ST.w) + fmod2(_G2DWK_Frame_Time.x * _RightEdgeTextureScrollingSpeed);
 					#endif
 				#else
@@ -469,33 +500,64 @@
 
 		#if Is_Waterfall2D_LeftRightEdgesNoise_Enabled
 			#if Waterfall2D_HasLeftEdge
-				o.edgesNoiseTextureUV.xy = TRANSFORM_TEX((o.leftRightEdgesTextureUV.xy * _LeftRightEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _LeftRightEdgesNoiseSpeed);
-			#elif Waterfall2D_HasRightEdge
-				o.edgesNoiseTextureUV.xy = TRANSFORM_TEX((o.leftRightEdgesTextureUV.zw * _LeftRightEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _LeftRightEdgesNoiseSpeed);
+				o.leftRightEdgesNoiseTextureUV.xy = TRANSFORM_TEX((o.leftRightEdgesTextureUV.xy * _LeftRightEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _LeftRightEdgesNoiseSpeed);
+				#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_LeftEdgeTextureStretch_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoY_Enabled
+					o.leftRightEdgesNoiseTextureUV.x *= v.uv.z;
+				#endif
+			#endif
+
+			#if Waterfall2D_HasRightEdge
+				o.leftRightEdgesNoiseTextureUV.zw = TRANSFORM_TEX((o.leftRightEdgesTextureUV.zw * _LeftRightEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _LeftRightEdgesNoiseSpeed);
+				#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_RightEdgeTextureStretch_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
+					o.leftRightEdgesNoiseTextureUV.z *= v.uv.z;
+				#endif
+			#endif
+		#endif
+		
+		#if Waterfall2D_HasLeftEdge
+			o.leftRightEdgesTextureUV.x -= _LeftRightEdgesOffset.x * _LeftRightEdgesThickness.y;
+			#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_LeftEdgeTextureStretch_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoY_Enabled
+				o.leftRightEdgesTextureUV.x *= v.uv.z;
+			#endif
+		#endif
+		
+		#if Waterfall2D_HasRightEdge
+			o.leftRightEdgesTextureUV.z += _LeftRightEdgesOffset.z * _LeftRightEdgesThickness.w;
+			#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_RightEdgeTextureStretch_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
+				o.leftRightEdgesTextureUV.z *= v.uv.z;
 			#endif
 		#endif
 
 		// Top-Bottom Edges Texture UV
 
+		#if Waterfall2D_HasTopEdge || Waterfall2D_HasBottomEdge
+			half4 topBottomEdgesThickness = _TopBottomEdgesThickness;
+			
+			#if Waterfall2D_TopBottomEdgesUseAbsoluteThicknessAndOffset
+				topBottomEdgesThickness.xz /= v.uv.w;
+				topBottomEdgesThickness.yw = 1.0 / topBottomEdgesThickness.xz;
+			#endif
+		#endif
+
 		#if Is_Waterfall2D_TopBottomEdgesSameTexture_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheet_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheetWithLerp_Enabled
 			#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled
 				#if Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled
 				float tbx = v.uv.x * _TopBottomEdgesTexture_ST.x * _AspectRatio.x;
-				o.topBottomEdgesTextureUV.x = tbx * _TopBottomEdgesThickness.y + _TopBottomEdgesTexture_ST.z;
-				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * (_TopBottomEdgesTexture_ST.y * _TopBottomEdgesThickness.y) + _TopBottomEdgesTexture_ST.w;
-				o.topBottomEdgesTextureUV.z = tbx * _TopBottomEdgesThickness.w + _TopBottomEdgesTexture_ST.z;
-				o.topBottomEdgesTextureUV.w = v.uv.y * (_TopBottomEdgesTexture_ST.y * _TopBottomEdgesThickness.w) + _TopBottomEdgesTexture_ST.w;
+				o.topBottomEdgesTextureUV.x = tbx * topBottomEdgesThickness.y + _TopBottomEdgesTexture_ST.z;
+				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * (_TopBottomEdgesTexture_ST.y * topBottomEdgesThickness.y) + _TopBottomEdgesTexture_ST.w;
+				o.topBottomEdgesTextureUV.z = tbx * topBottomEdgesThickness.w + _TopBottomEdgesTexture_ST.z;
+				o.topBottomEdgesTextureUV.w = v.uv.y * (_TopBottomEdgesTexture_ST.y * topBottomEdgesThickness.w) + _TopBottomEdgesTexture_ST.w;
 				#elif Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled
 				float tby = _TopBottomEdgesTexture_ST.y * _AspectRatio.w;
 				o.topBottomEdgesTextureUV.x = v.uv.x * _TopBottomEdgesTexture_ST.x + _TopBottomEdgesTexture_ST.z;
-				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * tby + _TopBottomEdgesTexture_ST.w;
+				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * tby + _TopBottomEdgesTexture_ST.w;
 				o.topBottomEdgesTextureUV.z = o.topBottomEdgesTextureUV.x;
 				o.topBottomEdgesTextureUV.w = v.uv.y * tby + _TopBottomEdgesTexture_ST.w;
 				#else
 				o.topBottomEdgesTextureUV.x = v.uv.x * _TopBottomEdgesTexture_ST.x + _TopBottomEdgesTexture_ST.z;
-				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * (_TopBottomEdgesTexture_ST.y * _TopBottomEdgesThickness.y) + _TopBottomEdgesTexture_ST.w;
+				o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * (_TopBottomEdgesTexture_ST.y * topBottomEdgesThickness.y) + _TopBottomEdgesTexture_ST.w;
 				o.topBottomEdgesTextureUV.z = o.topBottomEdgesTextureUV.x;
-				o.topBottomEdgesTextureUV.w = v.uv.y * (_TopBottomEdgesTexture_ST.y * _TopBottomEdgesThickness.w) + _TopBottomEdgesTexture_ST.w;
+				o.topBottomEdgesTextureUV.w = v.uv.y * (_TopBottomEdgesTexture_ST.y * topBottomEdgesThickness.w) + _TopBottomEdgesTexture_ST.w;
 				#endif
 			#else
 				o.topBottomEdgesTextureUV.xy = TRANSFORM_TEX(vertexPositionWorldSpace, _TopBottomEdgesTexture);
@@ -512,14 +574,14 @@
 			#if Is_Waterfall2D_TopEdge_Enabled || Is_Waterfall2D_TopEdgeTextureSheet_Enabled || Is_Waterfall2D_TopEdgeTextureSheetWithLerp_Enabled
 				#if Is_Waterfall2D_TopEdgeTextureStretch_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
 					#if Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled
-					o.topBottomEdgesTextureUV.x = v.uv.x * (_TopEdgeTexture_ST.x * _AspectRatio.x * _TopBottomEdgesThickness.y) + _TopEdgeTexture_ST.z;
-					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * _TopBottomEdgesThickness.y) + _TopEdgeTexture_ST.w;
+					o.topBottomEdgesTextureUV.x = v.uv.x * (_TopEdgeTexture_ST.x * _AspectRatio.x * topBottomEdgesThickness.y) + _TopEdgeTexture_ST.z;
+					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * topBottomEdgesThickness.y) + _TopEdgeTexture_ST.w;
 					#elif Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
 					o.topBottomEdgesTextureUV.x = v.uv.x * _TopEdgeTexture_ST.x + _TopEdgeTexture_ST.z;
-					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * _AspectRatio.w) + _TopEdgeTexture_ST.w;
+					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * _AspectRatio.w) + _TopEdgeTexture_ST.w;
 					#else
 					o.topBottomEdgesTextureUV.x = v.uv.x * _TopEdgeTexture_ST.x + _TopEdgeTexture_ST.z;
-					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - _TopBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * _TopBottomEdgesThickness.y) + _TopEdgeTexture_ST.w;
+					o.topBottomEdgesTextureUV.y = (v.uv.y - (1.0 - topBottomEdgesThickness.x)) * (_TopEdgeTexture_ST.y * topBottomEdgesThickness.y) + _TopEdgeTexture_ST.w;
 					#endif
 				#else
 					o.topBottomEdgesTextureUV.xy = TRANSFORM_TEX(vertexPositionWorldSpace, _TopEdgeTexture);
@@ -530,7 +592,7 @@
 			#if Is_Waterfall2D_BottomEdge_Enabled || Is_Waterfall2D_BottomEdgeTextureSheet_Enabled || Is_Waterfall2D_BottomEdgeTextureSheetWithLerp_Enabled
 				#if Is_Waterfall2D_BottomEdgeTextureStretch_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
 					#if Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled
-						float bEdgeThicknessInv = 1.0 * _TopBottomEdgesThickness.w;
+						float bEdgeThicknessInv = 1.0 * topBottomEdgesThickness.w;
 						o.topBottomEdgesTextureUV.z = v.uv.x * (_BottomEdgeTexture_ST.x * _AspectRatio.x * bEdgeThicknessInv);
 						o.topBottomEdgesTextureUV.w = v.uv.y * (_BottomEdgeTexture_ST.y * bEdgeThicknessInv);
 					#elif Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
@@ -538,7 +600,7 @@
 						o.topBottomEdgesTextureUV.w = v.uv.y * _BottomEdgeTexture_ST.y * _AspectRatio.w;
 					#else
 						o.topBottomEdgesTextureUV.z = v.uv.x * _BottomEdgeTexture_ST.x;
-						o.topBottomEdgesTextureUV.w = v.uv.y * _BottomEdgeTexture_ST.y * _TopBottomEdgesThickness.w;
+						o.topBottomEdgesTextureUV.w = v.uv.y * _BottomEdgeTexture_ST.y * topBottomEdgesThickness.w;
 					#endif
 					o.topBottomEdgesTextureUV.zw += _BottomEdgeTexture_ST.zw;
 				#else
@@ -549,12 +611,34 @@
 
 		#if Is_Waterfall2D_TopBottomEdgesNoise_Enabled
 			#if Waterfall2D_HasTopEdge
-				o.edgesNoiseTextureUV.zw = TRANSFORM_TEX((o.topBottomEdgesTextureUV.xy * _TopBottomEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _TopBottomEdgesNoiseSpeed);
-			#elif Waterfall2D_HasBottomEdge
-				o.edgesNoiseTextureUV.zw = TRANSFORM_TEX((o.topBottomEdgesTextureUV.zw * _TopBottomEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _TopBottomEdgesNoiseSpeed);
+				o.topBottomEdgesNoiseTextureUV.xy = TRANSFORM_TEX((o.topBottomEdgesTextureUV.xy * _TopBottomEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _TopBottomEdgesNoiseSpeed);
+				#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_TopEdgeTextureStretch_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
+					o.topBottomEdgesNoiseTextureUV.x *= v.uv.z;
+				#endif
+			#endif
+
+			#if Waterfall2D_HasBottomEdge
+				o.topBottomEdgesNoiseTextureUV.zw = TRANSFORM_TEX((o.topBottomEdgesTextureUV.zw * _TopBottomEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _TopBottomEdgesNoiseSpeed);
+				#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_BottomEdgeTextureStretch_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
+					o.topBottomEdgesNoiseTextureUV.z *= v.uv.z;
+				#endif
 			#endif
 		#endif
-			
+		
+		#if Waterfall2D_HasTopEdge
+			o.topBottomEdgesTextureUV.y += _TopBottomEdgesOffset.x * _TopBottomEdgesThickness.y;
+			#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_TopEdgeTextureStretch_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
+				o.topBottomEdgesTextureUV.x *= v.uv.z;
+			#endif
+		#endif
+		
+		#if Waterfall2D_HasBottomEdge
+			o.topBottomEdgesTextureUV.w -= _TopBottomEdgesOffset.z * _TopBottomEdgesThickness.w;
+			#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_BottomEdgeTextureStretch_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
+				o.topBottomEdgesTextureUV.z *= v.uv.z;
+			#endif
+		#endif
+
 		// Refraction UV
 
 		#if Is_Waterfall2D_Refraction_Enabled
@@ -562,12 +646,19 @@
 			o.refractionUV.xy = (pos.xy / pos.w) * 0.5 + 0.5;
 			o.refractionUV.zw = TRANSFORM_TEX((vertexPositionWorldSpace * _RefractionNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _RefractionNoiseSpeed);
 		#endif
+		
+		o.uv = v.uv;
+		o.uv.x *= v.uv.z;
 
 		return o;
 	}
-			
+
 	inline half4 Waterfall2D_Frag (Varyings i)
 	{
+		float uvzInverse = 1.0 / i.uv.z;
+
+		i.uv.x *= uvzInverse;
+
 		half4 finalColor = 0.0;
 
 		// Applying Refraction
@@ -596,7 +687,14 @@
 
 		// Applying Body First Texture
 		#if Waterfall2D_HasBodyTexture
+			#if Is_Waterfall2D_BodyTextureStretch_Enabled || Is_Waterfall2D_BodyTextureStretchAutoX_Enabled || Is_Waterfall2D_BodyTextureStretchAutoY_Enabled
+				i.bodyTextureUV.x *= uvzInverse;
+			#endif
+
 			#if Is_Waterfall2D_BodyTextureNoise_Enabled
+				#if Is_Waterfall2D_BodyTextureStretch_Enabled || Is_Waterfall2D_BodyTextureStretchAutoX_Enabled || Is_Waterfall2D_BodyTextureStretchAutoY_Enabled
+					i.bodyNoiseTextureUV.x *= uvzInverse;
+				#endif
 				i.bodyTextureUV.xy += (tex2D(_NoiseTexture, i.bodyNoiseTextureUV.xy).a - 0.5) * _BodyNoiseStrength;
 			#endif
 
@@ -620,7 +718,14 @@
 
 		// Applying Body Second Texture
 		#if Waterfall2D_HasBodySecondTexture
+			#if Is_Waterfall2D_BodySecondTextureStretch_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoX_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoY_Enabled
+				i.bodyTextureUV.z *= uvzInverse;
+			#endif
+
 			#if Is_Waterfall2D_BodyTextureNoise_Enabled
+				#if Is_Waterfall2D_BodySecondTextureStretch_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoX_Enabled || Is_Waterfall2D_BodySecondTextureStretchAutoY_Enabled
+					i.bodyNoiseTextureUV.z *= uvzInverse;
+				#endif
 				i.bodyTextureUV.zw += (tex2D(_NoiseTexture, i.bodyNoiseTextureUV.zw).a - 0.5) * _BodyNoiseStrength;
 			#endif
 
@@ -644,10 +749,21 @@
 		
 		// Applying Left Edge Texture
 		#if Waterfall2D_HasLeftEdge
-			if(i.uv.x < _LeftRightEdgesThickness.x)
+			#if Waterfall2D_LeftRightEdgesUseAbsoluteThicknessAndOffset
+			if(i.uv.x > (_LeftRightEdgesOffset.x * _Size.z) && i.uv.x < ((_LeftRightEdgesThickness.x + _LeftRightEdgesOffset.x) * _Size.z))
+			#else
+			if(i.uv.x > _LeftRightEdgesOffset.x && i.uv.x < (_LeftRightEdgesThickness.x + _LeftRightEdgesOffset.x))
+			#endif
 			{
+				#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_LeftEdgeTextureStretch_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoY_Enabled
+					i.leftRightEdgesTextureUV.x *= uvzInverse;
+				#endif
+
 				#if Is_Waterfall2D_LeftRightEdgesNoise_Enabled
-					i.leftRightEdgesTextureUV.xy += (tex2D(_NoiseTexture, i.edgesNoiseTextureUV.xy).g - 0.5) * _LeftRightEdgesNoiseStrength;
+					#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_LeftEdgeTextureStretch_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftEdgeTextureStretchAutoY_Enabled
+						i.leftRightEdgesNoiseTextureUV.x *= uvzInverse;
+					#endif
+					i.leftRightEdgesTextureUV.xy += (tex2D(_NoiseTexture, i.leftRightEdgesNoiseTextureUV.xy).g - 0.5) * _LeftRightEdgesNoiseStrength;
 				#endif
 
 				#if Is_Waterfall2D_LeftRightEdgesSameTexture_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheet_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheetWithLerp_Enabled
@@ -692,13 +808,21 @@
 
 		// Applying Right Edge Texture
 		#if Waterfall2D_HasRightEdge
-			if(i.uv.x > (1.0 - _LeftRightEdgesThickness.z))
+			#if Waterfall2D_LeftRightEdgesUseAbsoluteThicknessAndOffset
+			if(i.uv.x > (1.0 - (_LeftRightEdgesThickness.z + _LeftRightEdgesOffset.z) * _Size.z) && i.uv.x < (1.0 - _LeftRightEdgesOffset.z * _Size.z))
+			#else
+			if(i.uv.x > (1.0 - (_LeftRightEdgesThickness.z + _LeftRightEdgesOffset.z)) && i.uv.x < (1.0 - _LeftRightEdgesOffset.z))
+			#endif
 			{
+				#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_RightEdgeTextureStretch_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
+					i.leftRightEdgesTextureUV.z *= uvzInverse;
+				#endif
+
 				#if Is_Waterfall2D_LeftRightEdgesNoise_Enabled
-					#if Waterfall2D_HasLeftEdge
-						i.edgesNoiseTextureUV.xy = TRANSFORM_TEX((i.leftRightEdgesTextureUV.zw * _LeftRightEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _LeftRightEdgesNoiseSpeed);
+					#if Is_Waterfall2D_LeftRightEdgesTextureStretch_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_LeftRightEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_RightEdgeTextureStretch_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_RightEdgeTextureStretchAutoY_Enabled
+						i.leftRightEdgesNoiseTextureUV.z *= uvzInverse;
 					#endif
-					i.leftRightEdgesTextureUV.zw += (tex2D(_NoiseTexture, i.edgesNoiseTextureUV.xy).g - 0.5) * _LeftRightEdgesNoiseStrength;
+					i.leftRightEdgesTextureUV.zw += (tex2D(_NoiseTexture, i.leftRightEdgesNoiseTextureUV.zw).g - 0.5) * _LeftRightEdgesNoiseStrength;
 				#endif
 
 				#if Is_Waterfall2D_LeftRightEdgesSameTexture_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheet_Enabled || Is_Waterfall2D_LeftRightEdgesSameTextureSheetWithLerp_Enabled
@@ -743,10 +867,21 @@
 		
 		// Applying Top Edge Texture
 		#if Waterfall2D_HasTopEdge
-			if(i.uv.y > (1.0 - _TopBottomEdgesThickness.x))
+			#if Waterfall2D_TopBottomEdgesUseAbsoluteThicknessAndOffset
+			if(i.uv.y > (1.0 - (_TopBottomEdgesThickness.x + _TopBottomEdgesOffset.x)  / i.uv.w) && i.uv.y < (1.0 - _TopBottomEdgesOffset.x / i.uv.w))
+			#else
+			if(i.uv.y > (1.0 - (_TopBottomEdgesThickness.x + _TopBottomEdgesOffset.x)) && i.uv.y < (1.0 - _TopBottomEdgesOffset.x))
+			#endif
 			{
+				#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_TopEdgeTextureStretch_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
+					i.topBottomEdgesTextureUV.x *= uvzInverse;
+				#endif
+
 				#if Is_Waterfall2D_TopBottomEdgesNoise_Enabled
-					i.topBottomEdgesTextureUV.xy += (tex2D(_NoiseTexture, i.edgesNoiseTextureUV.zw).b - 0.5) * _TopBottomEdgesNoiseStrength;
+					#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_TopEdgeTextureStretch_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_TopEdgeTextureStretchAutoY_Enabled
+						i.topBottomEdgesNoiseTextureUV.x *= uvzInverse;
+					#endif
+					i.topBottomEdgesTextureUV.xy += (tex2D(_NoiseTexture, i.topBottomEdgesNoiseTextureUV.xy).b - 0.5) * _TopBottomEdgesNoiseStrength;
 				#endif
 
 				#if Is_Waterfall2D_TopBottomEdgesSameTexture_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheet_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheetWithLerp_Enabled
@@ -783,14 +918,21 @@
 
 		// Applying Bottom Edge Texture
 		#if Waterfall2D_HasBottomEdge
-			if(i.uv.y < _TopBottomEdgesThickness.z)
+			#if Waterfall2D_TopBottomEdgesUseAbsoluteThicknessAndOffset
+			if(i.uv.y > (_TopBottomEdgesOffset.z / i.uv.w) && i.uv.y < ((_TopBottomEdgesThickness.z + _TopBottomEdgesOffset.z) / i.uv.w))
+			#else
+			if(i.uv.y > _TopBottomEdgesOffset.z && i.uv.y < (_TopBottomEdgesThickness.z + _TopBottomEdgesOffset.z))
+			#endif
 			{
+				#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_BottomEdgeTextureStretch_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
+					i.topBottomEdgesTextureUV.z *= uvzInverse;
+				#endif
+
 				#if Is_Waterfall2D_TopBottomEdgesNoise_Enabled
-					#if Waterfall2D_HasTopEdge
-						i.edgesNoiseTextureUV.zw = TRANSFORM_TEX((i.topBottomEdgesTextureUV.zw * _TopBottomEdgesNoiseTiling.xy), _NoiseTexture) + fmod2(_G2DWK_Frame_Time.w * _TopBottomEdgesNoiseSpeed);
+					#if Is_Waterfall2D_TopBottomEdgesTextureStretch_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoX_Enabled || Is_Waterfall2D_TopBottomEdgesTextureStretchAutoY_Enabled || Is_Waterfall2D_BottomEdgeTextureStretch_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoX_Enabled || Is_Waterfall2D_BottomEdgeTextureStretchAutoY_Enabled
+						i.topBottomEdgesNoiseTextureUV.z *= uvzInverse;
 					#endif
-					
-					i.topBottomEdgesTextureUV.zw += (tex2D(_NoiseTexture, i.edgesNoiseTextureUV.zw).b - 0.5) * _TopBottomEdgesNoiseStrength;
+					i.topBottomEdgesTextureUV.zw += (tex2D(_NoiseTexture, i.topBottomEdgesNoiseTextureUV.zw).b - 0.5) * _TopBottomEdgesNoiseStrength;
 				#endif
 
 				#if Is_Waterfall2D_TopBottomEdgesSameTexture_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheet_Enabled || Is_Waterfall2D_TopBottomEdgesSameTextureSheetWithLerp_Enabled

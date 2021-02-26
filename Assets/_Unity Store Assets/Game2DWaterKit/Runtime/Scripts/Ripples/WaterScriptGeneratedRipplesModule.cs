@@ -60,17 +60,18 @@
 
             float leftBoundary = _simulationModule.LeftBoundary;
             float rightBoundary = _simulationModule.RightBoundary;
-            int surfaceVerticesCount = _meshModule.SurfaceVerticesCount;
-            int startIndex = _simulationModule.IsUsingCustomBoundaries ? 1 : 0;
-            int endIndex = _simulationModule.IsUsingCustomBoundaries ? surfaceVerticesCount - 2 : surfaceVerticesCount - 1;
+            int surfaceVertexCount = _meshModule.SurfaceVerticesCount;
+            int leftMostSurfaceVertexIndex = _simulationModule.IsUsingCustomBoundaries ? 1 : 0;
+            int rightMostSurfaceVertexIndex = _simulationModule.IsUsingCustomBoundaries ? surfaceVertexCount - 2 : surfaceVertexCount - 1;
 
             if (xPosition < leftBoundary || xPosition > rightBoundary)
                 return;
 
             float disturbance = (pullWaterDown ? -1f : 1f) * Mathf.Lerp(_minimumDisturbance, _maximumDisturbance, Mathf.Clamp01(disturbanceFactor));
 
-            float delta = (xPosition - leftBoundary) * _meshModule.SubdivisionsPerUnit;
-            int nearestVertexIndex = startIndex + Mathf.RoundToInt(delta);
+            float subdivisionsPerUnit = (surfaceVertexCount - (_simulationModule.IsUsingCustomBoundaries ? 3 : 1)) / (rightBoundary - leftBoundary);
+            float delta = (xPosition - leftBoundary) * subdivisionsPerUnit;
+            int nearestVertexIndex = leftMostSurfaceVertexIndex + Mathf.RoundToInt(delta);
 
             _simulationModule.DisturbSurfaceVertex(nearestVertexIndex, disturbance);
 
@@ -80,15 +81,13 @@
                 float smoothedDisturbance = disturbance * smoothingFactor;
 
                 int previousNearestIndex = nearestVertexIndex - 1;
-                if (previousNearestIndex >= startIndex)
+                if (previousNearestIndex >= leftMostSurfaceVertexIndex)
                     _simulationModule.DisturbSurfaceVertex(previousNearestIndex, smoothedDisturbance);
 
                 int nextNearestIndex = nearestVertexIndex + 1;
-                if (nextNearestIndex <= endIndex)
+                if (nextNearestIndex <= rightMostSurfaceVertexIndex)
                     _simulationModule.DisturbSurfaceVertex(nextNearestIndex, smoothedDisturbance);
             }
-
-            _simulationModule.MarkVelocitiesArrayAsChanged();
 
             Vector3 spawnPosition = _mainModule.TransformPointLocalToWorld(new Vector3(xPosition, _mainModule.Height * 0.5f));
 

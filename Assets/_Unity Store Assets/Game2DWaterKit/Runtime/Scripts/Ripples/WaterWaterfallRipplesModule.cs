@@ -39,7 +39,7 @@
 
             float halfWaterHeight = _mainModule.Height * 0.5f;
 
-            if (leftVertexPos.y > halfWaterHeight || leftVertexPos.y < -halfWaterHeight)
+            if (leftVertexPos.y > halfWaterHeight)
                 return;
 
             int leftVertexIndex;
@@ -106,8 +106,6 @@
                         _simulationModule.DisturbSurfaceVertex(nextNearestIndex, -smoothedDisturbance);
                 }
             }
-
-            _simulationModule.MarkVelocitiesArrayAsChanged();
         }
 
         #endregion

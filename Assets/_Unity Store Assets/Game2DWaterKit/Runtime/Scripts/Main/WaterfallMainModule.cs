@@ -34,6 +34,8 @@
             }
 #endif
             UpdateCachedTransformInformation();
+
+            _gameobjectLayer = _transform.gameObject.layer;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Game2DWaterKit
 {
-    using Game2DWaterKit.Utils;
     using Game2DWaterKit.Rendering.Mask;
     using UnityEngine;
     using UnityEngine.Serialization;
@@ -8,6 +7,12 @@
 
     public abstract class Game2DWaterKitObject : MonoBehaviour
     {
+        /// <summary>
+        /// The scale at which time passes for all water and waterfalls animations and physics simulations.
+        /// Water and waterfalls animations and physics simulations are still affected by Unity Time.timeScale
+        /// </summary>
+        public static float TimeScale = 1f;
+
         [FormerlySerializedAs("waterSize"), SerializeField] protected Vector2 _size = Vector2.one;
         [SerializeField] protected List<MeshMask.ControlPoint> _meshMaskControlPoints = new List<MeshMask.ControlPoint>()
         {

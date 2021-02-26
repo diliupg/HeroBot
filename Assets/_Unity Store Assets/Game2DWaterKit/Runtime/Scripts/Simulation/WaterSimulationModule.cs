@@ -2,7 +2,9 @@
 {
     using Game2DWaterKit.Main;
     using Game2DWaterKit.Mesh;
+    using Game2DWaterKit.AttachedComponents;
     using UnityEngine;
+    using System;
     using System.Collections.Generic;
 
     public class WaterSimulationModule
@@ -12,6 +14,7 @@
         private Game2DWater _waterObject;
         private WaterMainModule _mainModule;
         private WaterMeshModule _meshModule;
+        private WaterAttachedComponentsModule _attachedComponentsModule;
 
         private float _damping;
         private float _stiffness;
@@ -22,6 +25,8 @@
         private bool _isUsingCustomBoundaries;
         private float _maximumdDynamicWavesDisturbance;
         private bool _limitDynamicWavesDisturbance;
+        private bool _canWavesAffectRigidbodies;
+        private float _wavesStrengthOnRigidbodies;
 
         private float _leftCustomBoundary;
         private float _rightCustomBoundary;
@@ -34,6 +39,8 @@
         private bool _areSineWavesActive;
         private List<WaterSimulationSineWaveParameters> _sineWavesParameters;
         private float _sineWavesSimulationElapsedTime;
+        private HashSet<Collider2D> _inWaterColliders = new HashSet<Collider2D>();
+        private Queue<Collider2D> _destroyedCollidersToRemoveFromInWaterCollidersSet = new Queue<Collider2D>();
 
         public WaterSimulationModule(Game2DWater waterObject, WaterSimulationModuleParameters parameters)
         {
@@ -49,6 +56,8 @@
             _limitDynamicWavesDisturbance = parameters.LimitDynamicWavesDisturbance;
             _areSineWavesActive = parameters.AreSineWavesActive;
             _sineWavesParameters = parameters.SineWavesParameters;
+            _canWavesAffectRigidbodies = parameters.CanWavesAffectRigidbodies;
+            _wavesStrengthOnRigidbodies = parameters.WavesStrengthOnRigidbodies;
 
             _stiffnessSquareRoot = Mathf.Sqrt(_stiffness);
             _leftCustomBoundary = Mathf.Min(_firstCustomBoundary, _secondCustomBoundary);
@@ -110,6 +119,8 @@
         public bool LimitDynamicWavesDisturbance { get { return _limitDynamicWavesDisturbance; } set { _limitDynamicWavesDisturbance = value; } }
         public bool AreSineWavesActive { get { return _areSineWavesActive; } set { _areSineWavesActive = value; } }
         public List<WaterSimulationSineWaveParameters> SineWavesParameters { get { return _sineWavesParameters; } set { _sineWavesParameters = value; } }
+        public bool CanWavesAffectRigidbodies { get { return _canWavesAffectRigidbodies; } set { _canWavesAffectRigidbodies = value; } }
+        public float WavesStrengthOnRigidbodies { get { return _wavesStrengthOnRigidbodies; } set { _wavesStrengthOnRigidbodies = value; } }
         internal int SineWavesOffset { get; set; }
         internal WaterMainModule MainModule { get { return _mainModule; } }
         internal float[] DynamicWavesVelocities { get { return _dynamicWavesVelocities; } }
@@ -161,6 +172,7 @@
         {
             _mainModule = _waterObject.MainModule;
             _meshModule = _waterObject.MeshModule;
+            _attachedComponentsModule = _waterObject.AttachedComponentsModule;
 
             ResetSimulation();
             _meshModule.OnRecomputeMesh += ResetSimulation;
@@ -169,7 +181,7 @@
 
         internal void PhysicsUpdate(float deltaTime)
         {
-            bool updateMeshVertiecs = _areSineWavesActive || ShouldUpdateDynamicWavesSimulation;
+            bool updatedSimulation = _areSineWavesActive || ShouldUpdateDynamicWavesSimulation;
 
             if (ShouldUpdateDynamicWavesSimulation)
                 IterateDynamicWavesSimulation(deltaTime);
@@ -177,13 +189,13 @@
             if (_areSineWavesActive)
                 IterateSineWavesSimulation(deltaTime);
 
-            if (updateMeshVertiecs)
+            if (updatedSimulation)
+            {
                 UpdateMeshVertices();
-        }
 
-        internal void MarkVelocitiesArrayAsChanged()
-        {
-            _shouldUpdateDynamicWavesSimulation = true;
+                if (_canWavesAffectRigidbodies)
+                    AffectRigidbodies();
+            }
         }
 
         internal void ResetSimulation()
@@ -225,6 +237,16 @@
                 _dynamicWavesVelocities[surfaceVertexIndex] = Mathf.Clamp(currentVelocity + distubance * _stiffnessSquareRoot, minVelocity, maxVelocity);
             }
             else _dynamicWavesVelocities[surfaceVertexIndex] += distubance * _stiffnessSquareRoot;
+
+            _shouldUpdateDynamicWavesSimulation = true;
+        }
+
+        internal HashSet<Collider2D> GetInWaterColliders()
+        {
+            if (IsControlledByLargeWaterAreaManager)
+                return _mainModule.LargeWaterAreaManager.InWaterColliders;
+            else
+                return _inWaterColliders;
         }
 
         private void IterateDynamicWavesSimulation(float deltaTime)
@@ -271,26 +293,34 @@
 
             _shouldUpdateDynamicWavesSimulation = false;
 
-            for (int i = startSurfaceVertexIndex; i <= endSurfaceVertexIndex; i++)
+            int iterations = 1 + Mathf.FloorToInt(_meshModule.SubdivisionsPerUnit / 11);
+            deltaTime /= iterations;
+
+            for (int iter = 0; iter < iterations; iter++)
             {
-                nextVertexPosition = i + 1 <= endSurfaceVertexIndex ? _dynamicWavesPositions[i + 1] : endSurfaceVertexHeight;
+                for (int i = startSurfaceVertexIndex; i <= endSurfaceVertexIndex; i++)
+                {
+                    nextVertexPosition = i + 1 <= endSurfaceVertexIndex ? _dynamicWavesPositions[i + 1] : endSurfaceVertexHeight;
 
-                float velocity = _dynamicWavesVelocities[i];
-                float restoringForce = _stiffness * (waterPositionOfRest - currentVertexPosition);
-                float dampingForce = -dampingFactor * velocity;
-                float spreadForce = spreadFactor * (previousVertexPosition - currentVertexPosition + nextVertexPosition - currentVertexPosition);
+                    float velocity = _dynamicWavesVelocities[i];
+                    float restoringForce = _stiffness * (waterPositionOfRest - currentVertexPosition);
+                    float dampingForce = -dampingFactor * velocity;
+                    float spreadForce = spreadFactor * (previousVertexPosition - currentVertexPosition + nextVertexPosition - currentVertexPosition);
 
-                previousVertexPosition = currentVertexPosition;
+                    previousVertexPosition = currentVertexPosition;
 
-                velocity += (restoringForce + dampingForce + spreadForce) * deltaTime;
-                currentVertexPosition += velocity * deltaTime;
+                    float forces = restoringForce + dampingForce + spreadForce;
 
-                _dynamicWavesVelocities[i] = velocity;
-                _dynamicWavesPositions[i] = currentVertexPosition;
+                    velocity += forces * deltaTime;
+                    currentVertexPosition += velocity * deltaTime;
 
-                currentVertexPosition = nextVertexPosition;
+                    _dynamicWavesVelocities[i] = velocity;
+                    _dynamicWavesPositions[i] = currentVertexPosition;
 
-                _shouldUpdateDynamicWavesSimulation |= velocity < -updateSimulationMinimumAbsoluteVelocityThreshold || velocity > updateSimulationMinimumAbsoluteVelocityThreshold;
+                    currentVertexPosition = nextVertexPosition;
+
+                    _shouldUpdateDynamicWavesSimulation |= velocity < -updateSimulationMinimumAbsoluteVelocityThreshold || velocity > updateSimulationMinimumAbsoluteVelocityThreshold;
+                }
             }
         }
 
@@ -322,6 +352,86 @@
 
                     _sinesWavesPositions[currentVertexIndex] += currentSineWave.Amplitude * Mathf.Sin((x + currentSineWave.Offset + _sineWavesSimulationElapsedTime * currentSineWave.Velocity) * cst) / imax;
                 }
+            }
+        }
+
+        private void AffectRigidbodies()
+        {
+            var inWaterColliders = GetInWaterColliders();
+
+            if (inWaterColliders.Count > 0)
+            {
+                float waterRestPosition = _mainModule.Height * 0.5f;
+                float waterBuoyancyLevel = _mainModule.Height * (0.5f - _waterObject.AttachedComponentsModule.BuoyancyEffectorSurfaceLevel);
+                float offset = waterRestPosition - waterBuoyancyLevel;
+
+                float leftBoundary = LeftBoundary;
+                int surfaceVertexCount = _meshModule.SurfaceVerticesCount;
+                int leftMostSurfaceVertexIndex = _isUsingCustomBoundaries ? 1 : 0;
+                int rightMostSurfaceVertexIndex = _isUsingCustomBoundaries ? surfaceVertexCount - 2 : surfaceVertexCount - 1;
+                float subdivisionsPerUnit = _meshModule.SurfaceVerticesCount / _mainModule.Width;
+                float cellWidth = 1f / subdivisionsPerUnit;
+
+                float density = _attachedComponentsModule.BuoyancyEffector.density;
+                Vector2 gravity = Physics2D.gravity;
+
+                Vector3[] vertices = _meshModule.Vertices;
+
+                foreach (var collider in inWaterColliders)
+                {
+                    if (collider == null)
+                    {
+                        _destroyedCollidersToRemoveFromInWaterCollidersSet.Enqueue(collider);
+                        continue;
+                    }
+
+                    Bounds colliderBounds = collider.bounds;
+                    Vector2 colliderBoundsCenterWaterSpace = _mainModule.TransformPointWorldToLocal(colliderBounds.center);
+                    Vector2 colliderBoundsExtents = colliderBounds.extents;
+
+                    float yMaxColliderBounds = colliderBoundsCenterWaterSpace.y + colliderBoundsExtents.y;
+                    float yMinColliderBounds = colliderBoundsCenterWaterSpace.y - colliderBoundsExtents.y;
+
+                    if (yMaxColliderBounds > waterBuoyancyLevel)
+                    {
+                        int nearestStartVertexIndex = Mathf.Clamp(Mathf.RoundToInt((colliderBoundsCenterWaterSpace.x - colliderBoundsExtents.x - leftBoundary) * subdivisionsPerUnit), leftMostSurfaceVertexIndex, rightMostSurfaceVertexIndex);
+                        int nearestEndVertexIndex = Mathf.Clamp(Mathf.RoundToInt((colliderBoundsCenterWaterSpace.x + colliderBoundsExtents.x - leftBoundary) * subdivisionsPerUnit), leftMostSurfaceVertexIndex, rightMostSurfaceVertexIndex);
+
+                        Vector2 centroid = Vector2.zero;
+                        float totalArea = 0f;
+
+                        for (int i = nearestStartVertexIndex; i < nearestEndVertexIndex; i++)
+                        {
+                            Vector2 currentSurfaceVertexPosition = vertices[i];
+
+                            currentSurfaceVertexPosition.y -= offset;
+
+                            if (currentSurfaceVertexPosition.y > yMaxColliderBounds)
+                                currentSurfaceVertexPosition.y = yMaxColliderBounds;
+                            else if (currentSurfaceVertexPosition.y < yMinColliderBounds)
+                                currentSurfaceVertexPosition.y = yMinColliderBounds;
+
+                            float cellHeight = currentSurfaceVertexPosition.y - waterBuoyancyLevel;
+
+                            Vector2 cellCenter = currentSurfaceVertexPosition + 0.5f * new Vector2(cellWidth, -cellHeight);
+                            float cellArea = cellHeight * cellWidth;
+
+                            totalArea += cellArea;
+
+                            if (Mathf.Abs(totalArea) > 0f)
+                                centroid += (cellArea / totalArea) * (cellCenter - centroid);
+                        }
+
+                        var attachedRigidbody = collider.attachedRigidbody;
+
+                        Vector2 force = (_wavesStrengthOnRigidbodies * totalArea * density * attachedRigidbody.gravityScale) * -gravity;
+
+                        attachedRigidbody.AddForceAtPosition(force, _mainModule.TransformPointLocalToWorld(centroid));
+                    }
+                }
+
+                while (_destroyedCollidersToRemoveFromInWaterCollidersSet.Count > 0)
+                    inWaterColliders.Remove(_destroyedCollidersToRemoveFromInWaterCollidersSet.Dequeue());
             }
         }
 
@@ -364,6 +474,8 @@
             LimitDynamicWavesDisturbance = parameters.LimitDynamicWavesDisturbance;
             AreSineWavesActive = parameters.AreSineWavesActive;
             SineWavesParameters = parameters.SineWavesParameters;
+            CanWavesAffectRigidbodies = parameters.CanWavesAffectRigidbodies;
+            WavesStrengthOnRigidbodies = parameters.WavesStrengthOnRigidbodies;
 
             if (recomputeMesh)
                 _meshModule.RecomputeMeshData();
@@ -384,6 +496,8 @@
         public bool LimitDynamicWavesDisturbance;
         public bool AreSineWavesActive;
         public List<WaterSimulationSineWaveParameters> SineWavesParameters;
+        public bool CanWavesAffectRigidbodies;
+        public float WavesStrengthOnRigidbodies;
     }
 
     [System.Serializable]

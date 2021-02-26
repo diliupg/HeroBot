@@ -1,6 +1,8 @@
 ﻿namespace Game2DWaterKit.Rendering.Mask
 {
     using Game2DWaterKit.Main;
+    using Game2DWaterKit.Rendering;
+    using Game2DWaterKit.Material;
     using Game2DWaterKit.Utils;
     using UnityEngine;
     using UnityEngine.Rendering;
@@ -12,6 +14,8 @@
         private const float MASK_Z_OFFSET = 0.01f;
 
         private MainModule _mainModule;
+        private RenderingModule _renderingModule;
+        private MaterialModule _materialModule;
 
         private bool _isActive;
         private bool _arePositionAndSizeLocked;
@@ -24,8 +28,6 @@
         private Mesh _mesh;
         private MeshRenderer _maskBefore;
         private MeshRenderer _maskAfter;
-
-        private bool _isInitialized;
         #endregion
 
         #region Properties
@@ -34,7 +36,7 @@
             get { return _isActive; }
             set
             {
-                if (_isInitialized)
+                if (_maskBefore != null)
                 {
                     _maskBefore.gameObject.SetActive(value);
                     _maskAfter.gameObject.SetActive(value);
@@ -61,27 +63,40 @@
         }
 
         #region Methods
-        internal void Initialize(MainModule mainModule)
+        internal void Initialize(MainModule mainModule, RenderingModule renderingModule, MaterialModule materialModule)
         {
             _mainModule = mainModule;
+            _renderingModule = renderingModule;
+            _materialModule = materialModule;
 
             _mesh = new Mesh();
             _mesh.hideFlags = HideFlags.HideAndDontSave;
 
-            _maskBefore = CreateMaskObject(true);
-            _maskAfter = CreateMaskObject(false);
+            _maskBefore = CreateMaskObject(isBeforeMask: true);
+            _maskAfter = CreateMaskObject(isBeforeMask: false);
 
-            ReconstructMesh();
+            SetupMesh();
+
+#if !UNITY_EDITOR
+            SetupMaterials();
 
             _maskBefore.gameObject.SetActive(_isActive);
             _maskAfter.gameObject.SetActive(_isActive);
+#endif
 
-            _isInitialized = true;
+#if UNITY_EDITOR
+            _materialModule.OnRenderQueueChange += UpdateSortingProperties;
+#endif
+
+            _mainModule.OnGameobjectLayerChange += UpdateMaskObjectsLayers;
         }
 
 #if UNITY_EDITOR
         internal void Update()
         {
+            if (_maskBefore.sharedMaterial == null)
+                SetupMaterials();
+
             if (_maskBefore.gameObject.activeSelf != _isActive)
             {
                 _maskBefore.gameObject.SetActive(_isActive);
@@ -114,8 +129,15 @@
             }
         }
 
-        internal void UpdateSortingProperties(int sortingLayer, int orderInLayer, int renderQueue)
+        internal void UpdateSortingProperties()
         {
+            if (_maskBefore.sharedMaterial == null)
+                return;
+
+            var sortingLayer = _renderingModule.SortingLayerID;
+            var orderInLayer = _renderingModule.SortingOrder;
+            var renderQueue = _materialModule.RenderQueue;
+
             _maskBefore.sortingLayerID = _maskAfter.sortingLayerID = sortingLayer;
             // _maskBefore and _maskAfter objects share the same sorting order as the water object
             // so we'll rely on the z-position to determine the correct rendering order (_maskBefore -> water -> _maskAfter)
@@ -133,6 +155,8 @@
         {
             var maskGameObject = new GameObject(_mainModule.Transform.name + (isBeforeMask ? " Before-Mask" : " After-Mask"));
             maskGameObject.hideFlags = HideFlags.HideAndDontSave;
+            maskGameObject.layer = _mainModule.GameobjectLayer;
+            maskGameObject.SetActive(false);
 
             var position = _arePositionAndSizeLocked ? _position : _mainModule.Position;
 
@@ -142,16 +166,32 @@
             maskGameObject.transform.localScale = _arePositionAndSizeLocked ? _size : new Vector3(_mainModule.Width, _mainModule.Height, 1f);
             maskGameObject.transform.rotation = _mainModule.Rotation;
 
+            maskGameObject.AddComponent<MeshFilter>().sharedMesh = _mesh;
+
+            return maskGameObject.AddComponent<MeshRenderer>();
+        }
+
+        private void SetupMaterials()
+        {
+            _maskBefore.sharedMaterial = CreateMaskMaterial(isBeforeMask: true);
+            _maskAfter.sharedMaterial = CreateMaskMaterial(isBeforeMask: false);
+
+            UpdateSortingProperties();
+        }
+
+        private Material CreateMaskMaterial(bool isBeforeMask)
+        {
             var material = new Material(Shader.Find("Hidden/Game2DWaterKit-MeshMask"));
             material.hideFlags = HideFlags.HideAndDontSave;
             material.SetInt("_StencilOperation", (int)(isBeforeMask ? StencilOp.IncrementSaturate : StencilOp.DecrementSaturate));
 
-            maskGameObject.AddComponent<MeshFilter>().sharedMesh = _mesh;
+            return material;
+        }
 
-            var meshRenderer = maskGameObject.AddComponent<MeshRenderer>();
-            meshRenderer.sharedMaterial = material;
-
-            return meshRenderer;
+        private void UpdateMaskObjectsLayers()
+        {
+            _maskBefore.gameObject.layer = _mainModule.GameobjectLayer;
+            _maskAfter.gameObject.layer = _mainModule.GameobjectLayer;
         }
 
         private void DestroyMaskObject(MeshRenderer mask)
@@ -164,7 +204,7 @@
             }
         }
 
-        private void ReconstructMesh()
+        private void SetupMesh()
         {
             if (_controlPoints.Count < 2)
                 return;
@@ -236,7 +276,7 @@
 
             if (!Application.isPlaying)
             {
-                ReconstructMesh();
+                SetupMesh();
 
                 var position = _arePositionAndSizeLocked ? _position : _mainModule.Position;
 

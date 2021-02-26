@@ -24,9 +24,9 @@
 			//, "4096"
 			//, "8192"
 		};
-        private static readonly string[] _lightingModeBuiltinRP = new[] { "Unlit", "Pixel Lit", "Vertex Lit", "Vertex Lit (Only Directional Lights)" };
+        private static readonly string[] _shaderTypesBuiltinRP = new[] { "Unlit", "Pixel Lit", "Vertex Lit", "Vertex Lit (Only Directional Lights)" };
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
-        private static readonly string[] _lightingModeSRP = new[] { "Unlit", "Lit (2D Renderer)" };
+        private static readonly string[] _shaderTypesSRP = new[] { "Unlit", "Lit (2D Renderer)" };
 #endif
         private static readonly string[] _renderQueueOptions = new[] { "Geometry (2000)", "Transparent (3000)" };
         private static readonly string[] _colorModeOptions = new[] { "Solid Color", "Gradient Color" };
@@ -80,6 +80,14 @@
 
             EditorGUI.BeginChangeCheck();
 
+            BeginBoxGroup(true);
+#if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
+            DrawShaderTypeOptionsSRP();
+#else
+            DrawShaderTypeOptionsBuiltinRP();
+#endif
+            EndBoxGroup();
+
             DrawPropertiesGroup("Rendering Options", DrawRenderingOptions);
             DrawMaterialProperties();
             if(FindProperty("_NoiseTexture", _materialProperties).textureValue != null)
@@ -129,14 +137,6 @@
 
         private void DrawRenderingOptions()
         {
-            // Lighting Mode
-
-#if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
-            DrawLightingModeOptionsSRP();
-#else
-            DrawLightingModeOptionsBuiltinRP();
-#endif
-
             // Material Render Queue
 
             var renderQueuePopupIndex = _material.renderQueue == 2000 ? 0 : 1;
@@ -149,6 +149,9 @@
 
             var spriteMaskInteractionProperty = FindProperty("_SpriteMaskInteraction", _materialProperties);
             var spriteMaskInteractionRefProperty = FindProperty("_SpriteMaskInteractionRef", _materialProperties);
+
+            if (spriteMaskInteractionProperty.floatValue == 0)
+                spriteMaskInteractionProperty.floatValue = 8;
 
             var rect = EditorGUILayout.GetControlRect();
 
@@ -173,7 +176,7 @@
             DrawShaderKeywordPropertyToggle(EditorGUILayout.GetControlRect(), applyTintColorOnTopOfTextureKeywordState, "Apply Tint Color(s) On Top Of Texture(s)", true);
         }
 
-        private void DrawLightingModeOptionsBuiltinRP()
+        private void DrawShaderTypeOptionsBuiltinRP()
         {
             var shaderName = _material.shader.name;
 
@@ -195,7 +198,7 @@
             else
             {
                 EditorGUI.BeginChangeCheck();
-                current = EditorGUILayout.Popup("Lighting Mode", current, _lightingModeBuiltinRP);
+                current = EditorGUILayout.Popup("Shader Type", current, _shaderTypesBuiltinRP);
                 if (EditorGUI.EndChangeCheck())
                 {
                     string newShaderName;
@@ -224,7 +227,7 @@
         }
 
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
-        private void DrawLightingModeOptionsSRP()
+        private void DrawShaderTypeOptionsSRP()
         {
             var shaderName = _material.shader.name;
 
@@ -255,7 +258,7 @@
             else
             {
                 EditorGUI.BeginChangeCheck();
-                current = EditorGUILayout.Popup("Lighting Mode", current, _lightingModeSRP);
+                current = EditorGUILayout.Popup("Shader Type", current, _shaderTypesSRP);
                 if (EditorGUI.EndChangeCheck())
                     _material.shader = Shader.Find(string.Format("Game2DWaterKit/{0}/{1}/{2}", renderPipelineName, current == 0 ? "Unlit" : "Lit", _isWaterfallShader ? "Waterfall" : "Water"));
             }

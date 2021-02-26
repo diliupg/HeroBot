@@ -160,12 +160,52 @@
             EndPropertiesSubGroup();
 
             BeginPropertiesSubGroup("Color Properties");
+
+            EditorGUILayout.LabelField("Surface", EditorStyles.miniBoldLabel);
             DrawColorProperties("_SurfaceColor");
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Outlines", EditorStyles.miniBoldLabel);
+            DrawEdgeLineProperties("Top", "Top Edge");
+            DrawEdgeLineProperties("SurfaceLevel", "Surface Level");
+            if (isFakePerspectiveKeywordStateProperty.floatValue == 1f)
+                DrawEdgeLineProperties("SubmergeLevel", "Submerge Level");
+
             EndPropertiesSubGroup();
 
             BeginPropertiesSubGroup("Texture Properties");
             DrawTextureProperties("_SurfaceTexture", 2);
             EndPropertiesSubGroup();
+        }
+
+        private void DrawEdgeLineProperties(string edgeName, string label)
+        {
+            var rect = EditorGUILayout.GetControlRect();
+            var rectXMax = rect.xMax;
+
+            var shaderKeywordEnabledProperty = FindProperty("_Water2D_Is" + edgeName + "EdgeLineEnabled", _materialProperties);
+            var lineThicknessProperty = FindProperty("_" + edgeName + "EdgeLineThickness", _materialProperties);
+            var lineColorProperty = FindProperty("_" + edgeName + "EdgeLineColor", _materialProperties);
+
+            // toggle
+            rect.xMax = rect.xMin + 114f;
+            EditorGUI.BeginChangeCheck();
+            EditorGUIUtility.labelWidth = 90f;
+            var isEnabled = EditorGUI.ToggleLeft(rect, Game2DWaterKitInspector.Game2DWaterKitStyles.GetTempLabel(label), shaderKeywordEnabledProperty.floatValue == 1f);
+            if (EditorGUI.EndChangeCheck())
+                shaderKeywordEnabledProperty.floatValue = isEnabled ? 1f : 0f;
+
+            // thickness
+            rect.xMin = rect.xMax + 3f;
+            rect.xMax = rectXMax - 65f;
+            _materialEditor.ShaderProperty(rect, lineThicknessProperty, string.Empty);
+
+            // color
+            rect.xMin = rect.xMax + 3f;
+            rect.xMax = rectXMax;
+            EditorGUI.BeginChangeCheck();
+            var color = EditorGUI.ColorField(rect, lineColorProperty.colorValue);
+            if (EditorGUI.EndChangeCheck())
+                lineColorProperty.colorValue = color;
         }
 
         private void DrawRefractionProperties()
@@ -291,6 +331,14 @@
             //Water Fake Perspective
             bool isFakePerspectiveEnabled = isSurfaceEnabled && (material.GetFloat("_Water2D_IsFakePerspectiveEnabled") == 1.0f);
             SetKeywordState(material, "Water2D_FakePerspective", isFakePerspectiveEnabled);
+
+            //Outlines Keywords
+            bool isTopEdgeLineEnabled = material.GetFloat("_Water2D_IsTopEdgeLineEnabled") == 1f;
+            bool isSurfaceLevelEdgeLineEnabled = material.GetFloat("_Water2D_IsSurfaceLevelEdgeLineEnabled") == 1f;
+            bool isSubmergeLevelEdgeLineEnabled = material.GetFloat("_Water2D_IsSubmergeLevelEdgeLineEnabled") == 1f;
+            SetKeywordState(material, "Water2D_TopEdgeLine", isSurfaceEnabled && isTopEdgeLineEnabled);
+            SetKeywordState(material, "Water2D_SurfaceLevelEdgeLine", isSurfaceEnabled && isSurfaceLevelEdgeLineEnabled);
+            SetKeywordState(material, "Water2D_SubmergeLevelEdgeLine", isSurfaceEnabled && isFakePerspectiveEnabled && isSubmergeLevelEdgeLineEnabled);
 
             //Lighting keywords
             SetKeywordState(material, "Water2D_ApplyEmissionColor", material.GetFloat("_Water2D_IsEmissionColorEnabled") == 1.0f);

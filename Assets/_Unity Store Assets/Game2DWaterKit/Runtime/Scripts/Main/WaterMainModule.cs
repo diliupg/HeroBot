@@ -22,12 +22,6 @@
 
         #region Methods
 
-        [System.Obsolete("Please use SetSize(Vector2, bool) instead.")]
-        public void SetWaterSize(Vector2 newWaterSize, bool recomputeMesh = false)
-        {
-            SetSize(newWaterSize, recomputeMesh);
-        }
-
         internal void Initialize()
         {
             _materialModule = _waterObject.MaterialModule;
@@ -43,6 +37,30 @@
             }
 #endif
             UpdateCachedTransformInformation();
+
+            _gameobjectLayer = _transform.gameObject.layer;
+        }
+
+        public float GetWaterHeightAtSpcificPoint(float xPosition)
+        {
+            var meshModule = _waterObject.MeshModule;
+            var simulationModule = _waterObject.SimulationModule;
+            var mainModule = _waterObject.MainModule;
+
+            int surfaceVertexCount = meshModule.SurfaceVerticesCount;
+            int leftMostSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? 1 : 0;
+            int rightMostSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? surfaceVertexCount - 2 : surfaceVertexCount - 1;
+            float subdivisionsPerUnit = meshModule.SurfaceVerticesCount / mainModule.Width;
+
+            int nearestSurfaceVertexIndex = Mathf.Clamp(Mathf.RoundToInt((mainModule.TransformPointWorldToLocal(new Vector3(xPosition, 0f)).x - simulationModule.LeftBoundary) * subdivisionsPerUnit), leftMostSurfaceVertexIndex, rightMostSurfaceVertexIndex);
+
+            return meshModule.Vertices[nearestSurfaceVertexIndex].y + mainModule.Height * 0.5f;
+        }
+
+        [System.Obsolete("Please use SetSize(Vector2, bool) instead.")]
+        public void SetWaterSize(Vector2 newWaterSize, bool recomputeMesh = false)
+        {
+            SetSize(newWaterSize, recomputeMesh);
         }
 
         #endregion

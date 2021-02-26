@@ -1,27 +1,16 @@
 ﻿namespace Game2DWaterKit.Animation
 {
-    using Game2DWaterKit.Main;
     using Game2DWaterKit.Simulation;
     using Game2DWaterKit.Mesh;
     using UnityEngine;
 
-    public class WaterAnimationModule
+    public class WaterAnimationModule : AnimationModule
     {
         private Game2DWater _waterObject;
 
-        private WaterMainModule _mainModule;
         private WaterSimulationModule _simulationModule;
         private WaterMeshModule _meshModule;
 
-        private bool _isAnimatingWaterSize;
-        private Vector2 _animationTargetSize;
-        private Vector2 _animationInitialSize;
-        private WaterAnimationConstraint _animationConstraints;
-        private WaterAnimationWrapMode _animationWrapMode;
-        private float _animationDuration;
-        private float _animationElapsedTime;
-
-        private Vector2 _lastWaterSize;
         private float _lastLeftCustomBoundary;
         private float _lastRightCustomBoundary;
 
@@ -34,18 +23,7 @@
 
         public void AnimateWaterSize(Vector2 targetSize, float duration, WaterAnimationConstraint constraint, WaterAnimationWrapMode wrapMode = WaterAnimationWrapMode.Once)
         {
-            if (targetSize.x <= 0f)
-                targetSize.x = 0.001f;
-            if (targetSize.y <= 0f)
-                targetSize.y = 0.001f;
-
-            _animationTargetSize = targetSize;
-            _animationInitialSize = _mainModule.WaterSize;
-            _animationDuration = Mathf.Clamp(duration,0.001f,float.MaxValue);
-            _animationConstraints = constraint;
-            _animationWrapMode = wrapMode;
-            _animationElapsedTime = 0f;
-            _isAnimatingWaterSize = true;
+            AnimateSize(targetSize, duration, constraint, wrapMode);
         }
 
         internal void Initialze()
@@ -58,46 +36,9 @@
             ResetCachedVariables();
         }
 
-        internal void Update()
+        internal override void Update()
         {
-            Vector2 waterSize = _mainModule.WaterSize;
-
-            if (_isAnimatingWaterSize)
-            {
-                _animationElapsedTime += Time.deltaTime;
-                float t = _animationElapsedTime / _animationDuration;
-                waterSize.x = Mathf.SmoothStep(_animationInitialSize.x, _animationTargetSize.x, t);
-                waterSize.y = Mathf.SmoothStep(_animationInitialSize.y, _animationTargetSize.y, t);
-
-                const float threshold = 0.005f;
-                _isAnimatingWaterSize = (Mathf.Abs(waterSize.y - _animationTargetSize.y) > threshold) || (Mathf.Abs(waterSize.x - _animationTargetSize.x) > threshold);
-
-                if (!_isAnimatingWaterSize)
-                {
-                    switch (_animationWrapMode)
-                    {
-                        case WaterAnimationWrapMode.Once:
-                            break;
-                        case WaterAnimationWrapMode.Loop:
-                            _isAnimatingWaterSize = true;
-                            waterSize = _animationInitialSize;
-                            break;
-                        case WaterAnimationWrapMode.PingPong:
-                            _isAnimatingWaterSize = true;
-                            waterSize = _animationTargetSize;
-                            _animationTargetSize = _animationInitialSize;
-                            _animationInitialSize = waterSize;
-                            break;
-                    }
-
-                    _animationElapsedTime = 0f;
-                }
-
-                ApplyAnimationConstraints(waterSize);
-            }
-
-            if (waterSize != _lastWaterSize)
-                UpdateWaterSize(waterSize);
+            base.Update();
 
             if (_simulationModule.IsUsingCustomBoundaries && (_simulationModule.LeftCustomBoundary != _lastLeftCustomBoundary || _simulationModule.RightCustomBoundary != _lastRightCustomBoundary))
                 UpdateMeshCustomBoundaries();
@@ -112,48 +53,14 @@
             _simulationModule.SecondCustomBoundary = secondCustomBoundary;
         }
 
-        private void ApplyAnimationConstraints(Vector2 newSize)
-        {
-            float xFactor = 0f;
-            float yFactor = 0f;
-
-            bool hasBottomConstraint = HasConstraintDefined(WaterAnimationConstraint.Bottom);
-            bool hasVerticalConstraint = hasBottomConstraint || HasConstraintDefined(WaterAnimationConstraint.Top);
-            if (hasVerticalConstraint)
-            {
-                yFactor = hasBottomConstraint ? 1f : -1f;
-            }
-            
-            bool hasLeftConstraint = HasConstraintDefined(WaterAnimationConstraint.Left);
-            bool hasHorizontalConstraint = hasLeftConstraint || HasConstraintDefined(WaterAnimationConstraint.Right);
-            if (hasHorizontalConstraint)
-            {
-                xFactor = hasLeftConstraint ? 1f : -1f;
-            }
-
-            // Calculating new water position = currentPosition ± deltaChange * 0.5f
-            // we're working here in local space so the current water position is always equal to (0,0)
-            // the newPosition = ± deltaChange * 0.5f
-            // ± : the sign depends on the defined constraints
-            float x = ((newSize.x - _lastWaterSize.x) * 0.5f) * xFactor;
-            float y = ((newSize.y - _lastWaterSize.y) * 0.5f) * yFactor;
-
-            _mainModule.Position = _mainModule.TransformPointLocalToWorld(new Vector3(x, y));
-        }
-
-        private bool HasConstraintDefined(WaterAnimationConstraint constraint)
-        {
-            return (_animationConstraints & constraint) == constraint;
-        }
-
-        private void UpdateWaterSize(Vector2 newWaterSize)
+        protected override void UpdateSize(Vector2 newWaterSize)
         {
             int surfaceVerticesCount = _meshModule.SurfaceVerticesCount;
             var vertices = _meshModule.Vertices;
 
             if (_simulationModule.IsUsingCustomBoundaries)
             {
-                if(newWaterSize.x != _lastWaterSize.x)
+                if(newWaterSize.x != _lastSize.x)
                 {
                     int firstSurfaceVertexIndex = 0; //topLeft
                     int lastSurfaceVertexIndex = surfaceVerticesCount - 1; //topRight
@@ -166,9 +73,9 @@
                     vertices[lastSurfaceVertexIndex].x = vertices[lastBottomVertexIndex].x = halfWidth;
                 }
 
-                if(newWaterSize.y != _lastWaterSize.y)
+                if(newWaterSize.y != _lastSize.y)
                 {
-                    float halfDeltaHeight = (newWaterSize.y - _lastWaterSize.y) * 0.5f;
+                    float halfDeltaHeight = (newWaterSize.y - _lastSize.y) * 0.5f;
                     for (int surfaceVertexIndex = 0; surfaceVertexIndex < surfaceVerticesCount; surfaceVertexIndex++)
                     {
                         int bottomVertexIndex = surfaceVertexIndex + surfaceVerticesCount;
@@ -180,7 +87,7 @@
             }
             else
             {
-                float halfDeltaHeight = (newWaterSize.y - _lastWaterSize.y) * 0.5f;
+                float halfDeltaHeight = (newWaterSize.y - _lastSize.y) * 0.5f;
                 float columnWidth = newWaterSize.x / (surfaceVerticesCount - 1);
 
                 float xPos = -newWaterSize.x * 0.5f;
@@ -199,7 +106,7 @@
             _mainModule.SetSize(newWaterSize);
             _meshModule.UpdateMeshData();
 
-            _lastWaterSize = newWaterSize;
+            _lastSize = newWaterSize;
         }
 
         private void UpdateMeshCustomBoundaries()
@@ -227,32 +134,11 @@
 
         private void ResetCachedVariables()
         {
-            _lastWaterSize = _mainModule.WaterSize;
+            _lastSize = new Vector2(_mainModule.Width, _mainModule.Height);
             _lastLeftCustomBoundary = _simulationModule.LeftCustomBoundary;
             _lastRightCustomBoundary = _simulationModule.RightCustomBoundary;
         }
 
         #endregion
-    }
-
-    [System.Flags]
-    public enum WaterAnimationConstraint
-    {
-        None = 0,
-        Top = 1 << 0,
-        Bottom = 1 << 1,
-        Left = 1 << 2,
-        Right = 1 << 3,
-        TopLeft = Top | Left,
-        TopRight = Top | Right,
-        BottomLeft = Bottom | Left,
-        BottomRight = Bottom | Right
-    }
-
-    public enum WaterAnimationWrapMode
-    {
-        Once,
-        Loop,
-        PingPong
     }
 }

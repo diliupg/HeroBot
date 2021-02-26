@@ -53,7 +53,7 @@
 
         #region Methods
 
-        internal void UpdateArea(SimpleFixedSizeList<Vector2> points, WaterRenderingCameraFrustum cameraFrustum, bool isFullyContainedInWaterBox, bool computePixelSize, float zFar, bool renderRefraction = true, bool renderReflection = false, float reflectionZOffset = 0f, float reflectionAxis = 0f, float reflectionFrustumHeightScalingFactor = 1f)
+        internal void UpdateArea(SimpleFixedSizeList<Vector2> points, WaterRenderingCameraFrustum cameraFrustum, bool isFullyContainedInWaterBox, bool computePixelSize, float zFar, bool renderRefraction = true, bool renderReflection = false, float reflectionYOffset = 0f, float reflectionZOffset = 0f, float reflectionAxis = 0f, float reflectionFrustumHeightScalingFactor = 1f)
         {
             IsValid = true;
 
@@ -61,7 +61,7 @@
 
             if (isFullyContainedInWaterBox && currentCamera.orthographic && !cameraFrustum.IsIsometric)
             {
-                MatchToCurrentCameraOrthographicViewingFrustum(cameraFrustum, computePixelSize, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor);
+                MatchToCurrentCameraOrthographicViewingFrustum(cameraFrustum, computePixelSize, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor, reflectionYOffset);
                 return;
             }
 
@@ -92,17 +92,17 @@
             if (currentCamera.orthographic)
             {
                 if (cameraFrustum.IsIsometric)
-                    ComputeIsometricViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor);
+                    ComputeIsometricViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor, reflectionYOffset);
                 else
-                    ComputeOrthographicViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor);
+                    ComputeOrthographicViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor, reflectionYOffset);
 
                 return;
             }
 
-            ComputePerspectiveViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor, isFullyContainedInWaterBox);
+            ComputePerspectiveViewingFrustum(cameraFrustum, computePixelSize, boundingBoxMin, boundingBoxMax, zFar, renderRefraction, renderReflection, reflectionAxis, reflectionZOffset, reflectionFrustumHeightScalingFactor, isFullyContainedInWaterBox, reflectionYOffset);
         }
 
-        private void ComputeOrthographicViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor)
+        private void ComputeOrthographicViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor, float reflectionYOffset)
         {
             var wnrBoundingBoxMin = _mainModule.TransformPointLocalToWorldNoRotation(boundingBoxMin);
             var wnrBoundingBoxMax = _mainModule.TransformPointLocalToWorldNoRotation(boundingBoxMax);
@@ -121,7 +121,7 @@
                     return;
             }
 
-            var boundingBoxCenter = (boundingBoxMin + boundingBoxMax) * 0.5f;
+            Vector3 boundingBoxCenter = new Vector3((boundingBoxMin.x + boundingBoxMax.x) * 0.5f, (boundingBoxMin.y + boundingBoxMax.y) * 0.5f, renderingCameraFrustum.Position.z);
             float halfFrustumWidth = frustumWidth * 0.5f;
             float halfFrustumHeight = frustumHeight * 0.5f;
 
@@ -132,12 +132,12 @@
                 RefractionProperties.Position = _mainModule.TransformPointLocalToWorld(boundingBoxCenter);
                 RefractionProperties.Rotation = rotation;
                 RefractionProperties.ProjectionMatrix = Matrix4x4.Ortho(-halfFrustumWidth, halfFrustumWidth, -halfFrustumHeight, halfFrustumHeight, NEAR_CLIP_PLANE_OFFSET, zFar);
-                RefractionProperties.NearClipPlane = NEAR_CLIP_PLANE_OFFSET;
+                RefractionProperties.NearClipPlane = renderingCameraFrustum.CurrentCamera.nearClipPlane;
             }
 
             if (renderReflection)
             {
-                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(new Vector2(boundingBoxCenter.x, 2f * reflectionAxis - boundingBoxCenter.y));
+                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(new Vector2(boundingBoxCenter.x, 2f * reflectionAxis - boundingBoxCenter.y)) + Vector3.up * reflectionYOffset;
                 ReflectionProperties.Rotation = rotation;
 
                 if (!renderRefraction || reflectionFrustumHeightScalingFactor != 1f || reflectionZOffset != 0f)
@@ -157,7 +157,7 @@
             FrustumTopEdgeLocalSpace = boundingBoxMax.y;
         }
 
-        private void MatchToCurrentCameraOrthographicViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor)
+        private void MatchToCurrentCameraOrthographicViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor, float reflectionYOffset)
         {
             Camera currentCamera = renderingCameraFrustum.CurrentCamera;
 
@@ -174,19 +174,18 @@
             }
 
             Vector3 lCurrentRenderingCameraPosition = renderingCameraFrustum.Position;
-            lCurrentRenderingCameraPosition.z = 0f;
 
             if (renderRefraction)
             {
                 RefractionProperties.Position = _mainModule.TransformPointLocalToWorld(lCurrentRenderingCameraPosition);
                 RefractionProperties.Rotation = Quaternion.Euler(0f, 0f, renderingCameraFrustum.Rotation.z + _mainModule.ZRotation);
                 RefractionProperties.ProjectionMatrix = Matrix4x4.Ortho(-halfFrustumWidth, halfFrustumWidth, -halfFrustumHeight, halfFrustumHeight, NEAR_CLIP_PLANE_OFFSET, zFar);
-                RefractionProperties.NearClipPlane = NEAR_CLIP_PLANE_OFFSET;
+                RefractionProperties.NearClipPlane = currentCamera.nearClipPlane;
             }
 
             if (renderReflection)
             {
-                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(new Vector3(lCurrentRenderingCameraPosition.x, 2f * reflectionAxis - lCurrentRenderingCameraPosition.y));
+                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(new Vector3(lCurrentRenderingCameraPosition.x, 2f * reflectionAxis - lCurrentRenderingCameraPosition.y)) + Vector3.up * reflectionYOffset;
                 ReflectionProperties.Rotation = Quaternion.Euler(0f, 0f, -renderingCameraFrustum.Rotation.z + _mainModule.ZRotation);
 
                 if (!renderRefraction || reflectionFrustumHeightScalingFactor != 1f || reflectionZOffset != 0f)
@@ -206,7 +205,7 @@
             FrustumTopEdgeLocalSpace = lCurrentRenderingCameraPosition.y + halfFrustumHeight;
         }
 
-        private void ComputeIsometricViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor)
+        private void ComputeIsometricViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor, float reflectionYOffset)
         {
             var currentCamera = renderingCameraFrustum.CurrentCamera;
 
@@ -261,7 +260,7 @@
                 rotationEulerAngles.x *= -1f;
                 rotationEulerAngles.z = -rotationEulerAngles.z + _mainModule.ZRotation;
 
-                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(lPosition);
+                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(lPosition) + Vector3.up * reflectionYOffset;
                 ReflectionProperties.Rotation = Quaternion.Euler(rotationEulerAngles);
                 ReflectionProperties.ProjectionMatrix = ComputeObliqueOrthographicMatrix(frustumWidth, frustumHeight, nearClipPlane, farClipPlane, ReflectionProperties.Position, ReflectionProperties.Rotation, _mainModule.Position, _mainModule.ForwardDirection, reflectionZOffset + NEAR_CLIP_PLANE_OFFSET, reflectionFrustumHeightScalingFactor);
                 ReflectionProperties.NearClipPlane = nearClipPlane + reflectionZOffset + NEAR_CLIP_PLANE_OFFSET;
@@ -276,7 +275,7 @@
             FrustumTopEdgeLocalSpace = boundingBoxMax.y;
         }
 
-        private void ComputePerspectiveViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor, bool isFullyContainedInWaterBox)
+        private void ComputePerspectiveViewingFrustum(WaterRenderingCameraFrustum renderingCameraFrustum, bool computePixelSize, Vector2 boundingBoxMin, Vector2 boundingBoxMax, float zFar, bool renderRefraction, bool renderReflection, float reflectionAxis, float reflectionZOffset, float reflectionFrustumHeightScalingFactor, bool isFullyContainedInWaterBox, float reflectionYOffset)
         {
             var wnrBoundingBoxMin = _mainModule.TransformPointLocalToWorldNoRotation(boundingBoxMin);
             var wnrBoundingBoxMax = _mainModule.TransformPointLocalToWorldNoRotation(boundingBoxMax);
@@ -338,7 +337,7 @@
             {
                 lCurrentRenderingCameraPosition.y = 2f * reflectionAxis - lCurrentRenderingCameraPosition.y;
 
-                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(lCurrentRenderingCameraPosition);
+                ReflectionProperties.Position = _mainModule.TransformPointLocalToWorld(lCurrentRenderingCameraPosition) + Vector3.up * reflectionYOffset;
                 ReflectionProperties.Rotation = rotation;
 
                 float reflectionFrustumTop;

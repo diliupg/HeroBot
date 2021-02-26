@@ -16,7 +16,7 @@
         private static bool _previewCustomBoundaries;
         private static bool _constantRipplesEditSourcesPositionsInSceneView;
 
-        private static RippleType _simulationActiveRippleType;
+        private static WaveToPreviewType _simulationActiveRippleType;
         private static float _collisionRipplesSimulationRegionMin = -0.05f;
         private static float _collisionRipplesSimulationRegionMax = 0.05f;
         private static float _scriptGeneratedRipplesSimulationPosition = 0f;
@@ -29,7 +29,6 @@
         System.Action<float>[] _constantRipplesModulePhysicsUpdateDelegates;
         System.Action<float>[] _simulationModulePhysicsUpdateDelegates;
         System.Action[] _simulationModuleResetSimulationDelegates;
-        System.Action[] _simulationModuleMarkVelocitiesArrayAsChangedDelegates;
         System.Action<int, float>[] _simulationModuleDisturbSurfaceVertexDelegates;
         System.Action[] _meshModuleUpdateMeshDelegates;
 
@@ -42,7 +41,6 @@
             _constantRipplesModulePhysicsUpdateDelegates = new System.Action<float>[targetCount];
             _simulationModulePhysicsUpdateDelegates = new System.Action<float>[targetCount];
             _simulationModuleResetSimulationDelegates = new System.Action[targetCount];
-            _simulationModuleMarkVelocitiesArrayAsChangedDelegates = new System.Action[targetCount];
             _simulationModuleDisturbSurfaceVertexDelegates = new System.Action<int, float>[targetCount];
             _meshModuleUpdateMeshDelegates = new System.Action[targetCount];
 
@@ -56,7 +54,6 @@
                 _constantRipplesModulePhysicsUpdateDelegates[i] = CreateDelegate<Ripples.WaterConstantRipplesModule, float>(constantRipplesModule, "PhysicsUpdate");
                 _simulationModulePhysicsUpdateDelegates[i] = CreateDelegate<Simulation.WaterSimulationModule, float>(simulationModule, "PhysicsUpdate");
                 _simulationModuleResetSimulationDelegates[i] = CreateDelegate<Simulation.WaterSimulationModule>(simulationModule, "ResetSimulation");
-                _simulationModuleMarkVelocitiesArrayAsChangedDelegates[i] = CreateDelegate<Simulation.WaterSimulationModule>(simulationModule, "MarkVelocitiesArrayAsChanged");
                 _simulationModuleDisturbSurfaceVertexDelegates[i] = CreateDelegate<Simulation.WaterSimulationModule, int, float>(simulationModule, "DisturbSurfaceVertex");
                 _meshModuleUpdateMeshDelegates[i] = CreateDelegate<Mesh.WaterMeshModule>(meshModule, "UpdateMesh");
             }
@@ -121,10 +118,10 @@
             if (_constantRipplesEditSourcesPositionsInSceneView)
                 DrawConstantRipplesSourcesPositionsAddRemoveHandles(waterObject);
 
-            if (_isInSimulationMode && !_isSimulationModeOwnedByWaterfallEditor && _simulationActiveRippleType == RippleType.OnCollisionRipples)
+            if (_isInSimulationMode && !_isSimulationModeOwnedByWaterfallEditor && _simulationActiveRippleType == WaveToPreviewType.DynamicWavesOnCollisionRipples)
                 DrawOnCollisionRipplesSimulationRegionBoundaries(waterObject);
 
-            if (_isInSimulationMode && !_isSimulationModeOwnedByWaterfallEditor && _simulationActiveRippleType == RippleType.ScriptGeneratedRipples)
+            if (_isInSimulationMode && !_isSimulationModeOwnedByWaterfallEditor && _simulationActiveRippleType == WaveToPreviewType.DynamicWavesScriptGeneratedRipples)
                 DrawScriptGeneratedRipplesSimulationPositionMarker(waterObject);
         }
 
@@ -208,7 +205,7 @@
                 if (surfaceLevelLocationProperty.enumValueIndex == 0)
                 {
                     var surfaceLevelProperty = serializedObject.FindProperty("buoyancyEffectorSurfaceLevel");
-                    DrawProperty(surfaceLevelProperty, Game2DWaterKitStyles.BuoyancyEffectorSurfaceLevelPropertyLabel);
+                    DrawProperty(surfaceLevelProperty, Game2DWaterKitStyles.BuoyancyEffectorSurfaceLevelPropertyLabel, false, true);
                 }
                 if(surfaceLevelLocationProperty.enumValueIndex > 1)
                 {
@@ -223,6 +220,14 @@
                 EditorGUI.EndDisabledGroup();
 
                 EndPropertiesGroup();
+
+                BeginPropertiesGroup();
+                var canRipplesAffectRigidbodiesProperty = serializedObject.FindProperty("canWavesAffectRigidbodies");
+                DrawPropertyLeftToggle(canRipplesAffectRigidbodiesProperty, Game2DWaterKitStyles.CanWavesAffectRigidbodies);
+                EditorGUI.BeginDisabledGroup(!canRipplesAffectRigidbodiesProperty.boolValue);
+                DrawProperty("wavesStrengthOnRigidbodies", Game2DWaterKitStyles.WavesStrengthOnRigidbodiesLabel, false, true);
+                EditorGUI.EndDisabledGroup();
+                EndPropertiesGroup();
             }
 
             if (!_isWaterSimulationModeActive)
@@ -232,33 +237,32 @@
             }
             else
             {
-                DrawPropertiesGroup(DrawSimulationDynamicWavesProperties, false, "Dynamic Waves");
-
-                if (DrawPropertiesFadeGroup("Sine Waves", DrawSineWavesProperties, false, true, true, serializedObject.FindProperty("waterSimulationAreSineWavesActive")))
-                    RestartSimulationPreview();
+                if (_simulationActiveRippleType == WaveToPreviewType.SineWaves)
+                {
+                    if (DrawPropertiesGroup(DrawSineWavesProperties, false, "Sine Waves", serializedObject.FindProperty("waterSimulationAreSineWavesActive")))
+                        RestartSimulationPreview();
+                }
+                else DrawSimulationDynamicWavesProperties();
             }
         }
 
         private void DrawSimulationDynamicWavesProperties()
         {
-            if (_isWaterSimulationModeActive)
-                DrawPropertiesFadeGroup("Wave Properties", DrawWaveProperties, false, true, true);
-            else
-                DrawPropertiesGroup(DrawWaveProperties, false, "Wave Properties");
+            DrawPropertiesGroup(DrawWaveProperties, false, "Wave Properties");
 
             if (!_isWaterSimulationModeActive)
                 DrawPropertiesFadeGroup("On-Collision Ripples Properties", DrawOnCollisionRipplesProperties, false, true, true);
-            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == RippleType.OnCollisionRipples)
-                DrawPropertiesGroup(DrawOnCollisionRipplesProperties, false, "On-Collision Ripples Properties");
+            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == WaveToPreviewType.DynamicWavesOnCollisionRipples)
+                DrawOnCollisionRipplesProperties();
 
             if (!_isWaterSimulationModeActive)
                 DrawPropertiesFadeGroup("Constant Ripples Properties", DrawConstantRipplesProperties, false, true, true, groupToggleProperty: serializedObject.FindProperty("activateConstantRipples"));
-            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == RippleType.ConstantRipples)
+            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == WaveToPreviewType.DynamicWavesConstantRipples)
                 DrawPropertiesGroup(DrawConstantRipplesProperties, false, "Constant Ripples Properties", groupToggleProperty: serializedObject.FindProperty("activateConstantRipples"));
 
             if (!_isWaterSimulationModeActive)
                 DrawPropertiesFadeGroup("Script-Generated Ripples Properties", DrawScriptGeneratedRipplesProperties, false, true, true);
-            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == RippleType.ScriptGeneratedRipples)
+            else if (_isWaterSimulationModeActive && _simulationActiveRippleType == WaveToPreviewType.DynamicWavesScriptGeneratedRipples)
                 DrawPropertiesGroup(DrawScriptGeneratedRipplesProperties, false, "Script-Generated Ripples Properties");
         }
 
@@ -281,13 +285,12 @@
         private void DrawSimulationPreviewActiveRipplesTypeSelectionProperties()
         {
             EditorGUI.BeginChangeCheck();
-            var typeOfRippleToPreviewLabel = Game2DWaterKitStyles.SimulationModeTypeOfRippleToPreviewPropertyLabel;
-            SetEditorGUIUtilityLabelWidth(typeOfRippleToPreviewLabel.WidthRegular, false);
-            _simulationActiveRippleType = (RippleType)EditorGUILayout.Popup(typeOfRippleToPreviewLabel.Content.text, (int)_simulationActiveRippleType, Game2DWaterKitStyles.RipplesTypes);
+            EditorGUIUtility.labelWidth = 109f;
+            _simulationActiveRippleType = (WaveToPreviewType)EditorGUILayout.Popup("Wave To Preview:", (int)_simulationActiveRippleType, Game2DWaterKitStyles.WavesToPreviewType);
             if (EditorGUI.EndChangeCheck())
                 Game2DWaterKitSimulationPreviewMode.Restart();
 
-            if (_simulationActiveRippleType == RippleType.OnCollisionRipples)
+            if (_simulationActiveRippleType == WaveToPreviewType.DynamicWavesOnCollisionRipples)
             {
                 BeginPropertiesGroup();
                 var regionLabel = Game2DWaterKitStyles.SimulationModeOnCollisionRipplesRegionPropertyLabel;
@@ -296,7 +299,7 @@
                 EditorGUILayout.HelpBox(Game2DWaterKitStyles.SimulationModeOnCollisionRipplesRegionPropertyLabel.Content.tooltip, MessageType.Info);
                 EndPropertiesGroup();
             }
-            else if (_simulationActiveRippleType == RippleType.ScriptGeneratedRipples)
+            else if (_simulationActiveRippleType == WaveToPreviewType.DynamicWavesScriptGeneratedRipples)
             {
                 BeginPropertiesGroup();
                 var positionLabel = Game2DWaterKitStyles.SimulationModeScriptGeneratedRipplesSourcePositionropertyLabel;
@@ -363,16 +366,63 @@
 
         private void DrawOnCollisionRipplesProperties()
         {
-            if (!_isWaterSimulationModeActive)
-                DrawPropertiesGroup(DrawOnCollisionRipplesCollisionProperties, false, "Collision Properties");
+            var activateOnCollisionOnWaterEnterRipplesProperty = serializedObject.FindProperty("activateOnCollisionOnWaterEnterRipples");
+            var activateOnCollisionOnWaterExitRipplesProperty = serializedObject.FindProperty("activateOnCollisionOnWaterExitRipples");
 
-            DrawPropertiesGroup(DrawOnCollisionRipplesDisturbanceProperties, false, "Disturbance Properties");
-            
             if (!_isWaterSimulationModeActive)
             {
-                DrawPropertiesFadeGroup("On-Water-Enter Ripples Properties#OnCollisionRipples", DrawOnCollisionRipplesOnWaterEnterRipplesProperties, false, true, true, groupToggleProperty: serializedObject.FindProperty("activateOnCollisionOnWaterEnterRipples"));
-                DrawPropertiesFadeGroup("On-Water-Exit Ripples Properties#OnCollisionRipples", DrawOnCollisionRipplesOnWaterExitRipplesProperties, false, true, true, groupToggleProperty: serializedObject.FindProperty("activateOnCollisionOnWaterExitRipples"));
+                var activateOnCollisionOnWaterMoveRipplesProperty = serializedObject.FindProperty("activateOnCollisionOnWaterMoveRipples");
+
+                BeginPropertiesGroup(false, "When To Create Ripples?");
+                DrawPropertyLeftToggle(activateOnCollisionOnWaterEnterRipplesProperty, Game2DWaterKitStyles.ActivateOnCollisionOnWaterEnterRipples);
+                DrawPropertyLeftToggle(activateOnCollisionOnWaterExitRipplesProperty, Game2DWaterKitStyles.ActivateOnCollisionOnWaterExitRipples);
+                DrawPropertyLeftToggle(activateOnCollisionOnWaterMoveRipplesProperty, Game2DWaterKitStyles.ActivateOnCollisionOnWaterMoveRipples);
+                EndPropertiesGroup();
+
+                DrawPropertiesGroup(DrawOnCollisionRipplesCollisionProperties, false, "Collision Properties");
+
+                EditorGUI.BeginDisabledGroup(!(activateOnCollisionOnWaterEnterRipplesProperty.boolValue || activateOnCollisionOnWaterExitRipplesProperty.boolValue));
+                DrawPropertiesFadeGroup("On-Water-Enter/Exit Ripples Properties", () => DrawOnCollisionRipplesOnWaterEnterExitProperties(activateOnCollisionOnWaterEnterRipplesProperty, activateOnCollisionOnWaterExitRipplesProperty), false, true, true);
+                EditorGUI.EndDisabledGroup();
+
+                EditorGUI.BeginDisabledGroup(!activateOnCollisionOnWaterMoveRipplesProperty.boolValue);
+                DrawPropertiesFadeGroup("On-Water-Move Ripples Properties", DrawOnCollisionRipplesOnWaterMoveRipplesProperties, false, true, true);
+                EditorGUI.EndDisabledGroup();
             }
+            else DrawPropertiesGroup(() => DrawOnCollisionRipplesOnWaterEnterExitProperties(activateOnCollisionOnWaterEnterRipplesProperty, activateOnCollisionOnWaterExitRipplesProperty), false, "On-Water-Enter/Exit Ripples Properties");
+        }
+
+        private void DrawOnCollisionRipplesOnWaterEnterExitProperties(SerializedProperty activateOnCollisionOnWaterEnterRipples, SerializedProperty activateOnCollisionOnWaterExitRipples)
+        {
+            if (!_isWaterSimulationModeActive)
+            {
+                DrawPropertiesGroup(DrawOnCollisionRipplesDisturbanceProperties, false, "Disturbance Properties");
+
+                EditorGUI.BeginDisabledGroup(!activateOnCollisionOnWaterEnterRipples.boolValue);
+                DrawPropertiesGroup(DrawOnCollisionRipplesOnWaterEnterRipplesProperties, false, "On-Water-Enter Ripples Properties");
+                EditorGUI.EndDisabledGroup();
+
+                EditorGUI.BeginDisabledGroup(!activateOnCollisionOnWaterExitRipples.boolValue);
+                DrawPropertiesGroup(DrawOnCollisionRipplesOnWaterExitRipplesProperties, false, "On-Water-Exit Ripples Properties");
+                EditorGUI.EndDisabledGroup();
+
+                string msg = "There's another event, OnWaterEnterExit, that you can subscribe to in code: Game2DWaterKit.Ripples.WaterCollisionRipplesModule.OnWaterEnterExit(Game2DWater waterObject, Collider2D collider, bool isColliderEnteringWater)";
+
+                EditorGUILayout.HelpBox(msg, MessageType.Info);
+            }
+            else DrawOnCollisionRipplesDisturbanceProperties();
+        }
+
+        private void DrawOnCollisionRipplesOnWaterMoveRipplesProperties()
+        {
+            DrawProperty("onCollisionOnWaterMoveRipplesMaximumDisturbance", Game2DWaterKitStyles.OnCollisionRipplesOnWaterMoveMaximumDisturbancePropertyLabel);
+
+            EditorGUI.indentLevel++;
+            DrawProperty("onCollisionOnWaterMoveRipplesMinimumVelocityToCauseMaximumDisturbance", Game2DWaterKitStyles.OnCollisionRipplesOnWaterMoveMinimumVelocityPropertyLabel);
+            EditorGUILayout.HelpBox("The \"Minimum Velocity\" property defines the minimum velocity that a rigidbody moving in water should have to cause the \"Maximum Disturbance\" to the water surface.", MessageType.Info);
+            EditorGUI.indentLevel--;
+
+            DrawProperty("onCollisionOnWaterMoveRipplesDisturbanceSmoothFactor", Game2DWaterKitStyles.OnCollisionRipplesOnWaterMoveSmoothFactorPropertyLabel);
         }
 
         private void DrawOnCollisionRipplesDisturbanceProperties()
@@ -408,9 +458,9 @@
             {
                 // Maximum Disturbance Minimum Velocity Property
                 var rect = EditorGUILayout.GetControlRect();
-                var label = EditorGUI.BeginProperty(rect, Game2DWaterKitStyles.OnCollisionRipplesMinimumVelocityPropertyLabel.Content, velocityMultiplierProperty);
+                var label = EditorGUI.BeginProperty(rect, Game2DWaterKitStyles.OnCollisionRipplesOnWaterEnterExitMinimumVelocityPropertyLabel.Content, velocityMultiplierProperty);
                 EditorGUI.BeginChangeCheck();
-                SetEditorGUIUtilityLabelWidth(velocityMultiplierProperty, Game2DWaterKitStyles.OnCollisionRipplesMinimumVelocityPropertyLabel);
+                SetEditorGUIUtilityLabelWidth(velocityMultiplierProperty, Game2DWaterKitStyles.OnCollisionRipplesOnWaterEnterExitMinimumVelocityPropertyLabel);
                 maximumDisturbanceMinimumVelocity = EditorGUI.DelayedFloatField(rect, label, maximumDisturbanceMinimumVelocity);
                 if (EditorGUI.EndChangeCheck() && maximumDisturbanceMinimumVelocity != 0f)
                 {
@@ -767,6 +817,7 @@
             EndPropertiesGroup();
 
             BeginPropertiesGroup(false, "View Frustum Properties");
+            DrawProperty("reflectionYOffset", Game2DWaterKitStyles.ReflectionYOffsetPropertyLabel);
             DrawProperty("reflectionZOffset", Game2DWaterKitStyles.ReflectionZOffsetPropertyLabel);
             DrawReflectionViewingFrustumHeightPropertiesGroup(hasFakePerspective);
             EndPropertiesGroup();
@@ -832,7 +883,6 @@
                 EditorGUILayout.Space();
                 EditorGUILayout.LabelField("Height Scaling Factors", EditorStyles.boldLabel);
 
-                Game2DWaterKitStyles.MinimumLabelWidth = 165f;
                 _previewPartiallySubmergedObjectsReflectionFrustum = DrawPropertyWithPreviewButton(serializedObject.FindProperty("reflectionPartiallySubmergedObjectsViewingFrustumHeightScalingFactor"), Game2DWaterKitStyles.ReflectionPartiallySubmergedObjectsViewingFrustumHeightScalingFactorPropertyLabel, _previewPartiallySubmergedObjectsReflectionFrustum, isUsingValidShader);
             }
 
@@ -850,11 +900,11 @@
 
         protected override void IterateSimulationPreview()
         {
+            float deltaTime = Game2DWaterKitSimulationPreviewMode.TimeStep;
+
             for (int i = 0, imax = targets.Length; i < imax; i++)
             {
-                float deltaTime = Game2DWaterKitSimulationPreviewMode.TimeStep;
-
-                if (_simulationActiveRippleType == RippleType.ConstantRipples)
+                if (_simulationActiveRippleType == WaveToPreviewType.DynamicWavesConstantRipples)
                     _constantRipplesModulePhysicsUpdateDelegates[i](deltaTime);
 
                 _simulationModulePhysicsUpdateDelegates[i](deltaTime);
@@ -879,35 +929,36 @@
             {
                 var waterObject = targets[i] as Game2DWater;
 
+                var mainModule = waterObject.MainModule;
                 var meshModule = waterObject.MeshModule;
                 var simulationModule = waterObject.SimulationModule;
 
                 Vector3[] vertices = meshModule.Vertices;
 
+                float leftBoundary = simulationModule.LeftBoundary;
+                float rightBoundary = simulationModule.RightBoundary;
+
                 int surfaceVerticesCount = meshModule.SurfaceVerticesCount;
-                int subdivisionsPerUnit = meshModule.SubdivisionsPerUnit;
+                float subdivisionsPerUnit = (surfaceVerticesCount - (simulationModule.IsUsingCustomBoundaries ? 3 : 1)) / (rightBoundary - leftBoundary);
 
-                Vector2 size = waterObject.MainModule.WaterSize;
-                float leftBoundary = _collisionRipplesSimulationRegionMin * size.x;
-                float rightBoundary = _collisionRipplesSimulationRegionMax * size.x;
-                float center = (leftBoundary + rightBoundary) * 0.5f;
+                Vector2 size = mainModule.WaterSize;
+                float xMinSimulationRegion = _collisionRipplesSimulationRegionMin * size.x;
+                float xMaxSimulationRegion = _collisionRipplesSimulationRegionMax * size.x;
+                float center = (xMinSimulationRegion + xMaxSimulationRegion) * 0.5f;
 
-                int firstSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? 1 : 0;
-                int lastSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? surfaceVerticesCount - 2 : surfaceVerticesCount - 1;
-                float firstSurfaceVertexPosition = vertices[firstSurfaceVertexIndex].x;
-                int startIndex = Mathf.Clamp(Mathf.RoundToInt((leftBoundary - firstSurfaceVertexPosition) * subdivisionsPerUnit), firstSurfaceVertexIndex, lastSurfaceVertexIndex);
-                int endIndex = Mathf.Clamp(Mathf.RoundToInt((rightBoundary - firstSurfaceVertexPosition) * subdivisionsPerUnit), firstSurfaceVertexIndex, lastSurfaceVertexIndex);
+                int leftMostSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? 1 : 0;
+                int rightMostSurfaceVertexIndex = simulationModule.IsUsingCustomBoundaries ? surfaceVerticesCount - 2 : surfaceVerticesCount - 1;
+                int startIndex = Mathf.Clamp(Mathf.RoundToInt((xMinSimulationRegion - leftBoundary) * subdivisionsPerUnit), leftMostSurfaceVertexIndex, rightMostSurfaceVertexIndex);
+                int endIndex = Mathf.Clamp(Mathf.RoundToInt((xMaxSimulationRegion - leftBoundary) * subdivisionsPerUnit), leftMostSurfaceVertexIndex, rightMostSurfaceVertexIndex);
 
                 for (int surfaceVertexIndex = startIndex; surfaceVertexIndex <= endIndex; surfaceVertexIndex++)
                 {
                     float x = vertices[surfaceVertexIndex].x;
 
-                    float factor = 1.0f - Mathf.Abs(x - center) / (rightBoundary - center);
+                    float factor = 1.0f - Mathf.Abs(x - center) / (xMaxSimulationRegion - center);
 
                     _simulationModuleDisturbSurfaceVertexDelegates[i](surfaceVertexIndex, -disturbance * factor);
                 }
-
-                _simulationModuleMarkVelocitiesArrayAsChangedDelegates[i]();
             }
 
             Game2DWaterKitSimulationPreviewMode.Start();
@@ -937,15 +988,13 @@
             List<float> ripplesSourcesPositions = waterObject.ConstantRipplesModule.SourcePositions;
             List<int> ripplesSourcesIndices = new List<int>(ripplesSourcesPositions.Count);
             Vector3[] meshVerticesPositions = waterObject.MeshModule.Vertices;
-            int surfaceVerticesCount = waterObject.MeshModule.SurfaceVerticesCount;
+            int surfaceVertexCount = waterObject.MeshModule.SurfaceVerticesCount;
 
             Vector2 halfWaterSize = waterObject.MainModule.WaterSize * 0.5f;
 
-            float leftmostBoundary = waterObject.SimulationModule.LeftBoundary;
-            float rightmostBoundary = waterObject.SimulationModule.RightBoundary;
-            float activeSurfaceArea = rightmostBoundary - leftmostBoundary;
-            int activeSurfaceAreaVerticesCount = waterObject.SimulationModule.IsUsingCustomBoundaries ? surfaceVerticesCount - 3 : surfaceVerticesCount - 1;
-            float columnWdth = activeSurfaceArea / activeSurfaceAreaVerticesCount;
+            float leftBoundary = waterObject.SimulationModule.LeftBoundary;
+            float rightBoundary = waterObject.SimulationModule.RightBoundary;
+            float subdivisionsPerUnit = (waterObject.SimulationModule.IsUsingCustomBoundaries ? surfaceVertexCount - 3 : surfaceVertexCount - 1) / (rightBoundary - leftBoundary);
 
             int indexOffset, start, end;
 
@@ -953,13 +1002,13 @@
             {
                 indexOffset = 1;
                 start = 1;
-                end = surfaceVerticesCount - 2;
+                end = surfaceVertexCount - 2;
             }
             else
             {
                 indexOffset = 0;
                 start = 0;
-                end = surfaceVerticesCount - 1;
+                end = surfaceVertexCount - 1;
             }
 
             bool changeMade = false;
@@ -976,7 +1025,7 @@
                 for (int i = 0, maxi = ripplesSourcesPositions.Count; i < maxi; i++)
                 {
                     float xPosition = ripplesSourcesPositions[i];
-                    if (xPosition < leftmostBoundary || xPosition > rightmostBoundary)
+                    if (xPosition < leftBoundary || xPosition > rightBoundary)
                     {
                         Handles.color = Game2DWaterKitStyles.ConstantRipplesSourcesColorRemove;
                         if (Handles.Button(new Vector3(xPosition, halfWaterSize.y), handlesRotation, handlesSize, handlesSize, handlesCap))
@@ -989,7 +1038,7 @@
                     }
                     else
                     {
-                        int nearestIndex = Mathf.RoundToInt((xPosition - leftmostBoundary) / columnWdth) + indexOffset;
+                        int nearestIndex = Mathf.RoundToInt((xPosition - leftBoundary) * subdivisionsPerUnit) + indexOffset;
                         ripplesSourcesIndices.Add(nearestIndex);
                     }
                 }
@@ -1039,20 +1088,13 @@
             {
                 Undo.RecordObject(waterObject, "editing water ripple source position");
                 if (addNewSource)
-                {
                     ripplesSourcesPositions.Add(meshVerticesPositions[index].x);
-                }
                 else
-                {
                     ripplesSourcesPositions.RemoveAt(index);
-                }
 
                 EditorUtility.SetDirty(waterObject);
 
-                if (Application.isPlaying)
-                {
-                    waterObject.ConstantRipplesModule.SourcePositions = ripplesSourcesPositions;
-                }
+                waterObject.ConstantRipplesModule.SourcePositions = ripplesSourcesPositions;
             }
         }
 
@@ -1148,10 +1190,12 @@
 
             Vector2 waterSize = waterObject.MainModule.WaterSize;
 
-            var waterMaterial = waterObject.GetComponent<MeshRenderer>().sharedMaterial;
+            var waterMaterial = waterObject.MaterialModule.Material;
 
-            if (waterMaterial == null)
+            if (waterMaterial == null || !waterObject.MaterialModule.IsReflectionEnabled)
                 return;
+
+            var offset = new Vector2(0f, waterObject.RenderingModule.ReflectionYOffset);
 
             using (new Handles.DrawingScope(waterObject.transform.localToWorldMatrix))
             {
@@ -1168,14 +1212,14 @@
                     Vector2 size = new Vector2(waterSize.x, 0.5f * (surfaceSubmergeLevel - surfaceLevel) * (1f + scalingFactor));
 
                     if (partiallySubmergedObjects)
-                        DrawRectInSceneView(bottomLeft, size, Color.red);
+                        DrawRectInSceneView(bottomLeft + offset, size, Color.red);
 
                     if (nonPartiallySubmergedObjects)
                     {
                         bottomLeft.y = waterSize.y * 0.5f;
                         scalingFactor = waterObject.RenderingModule.Reflection.ViewingFrustumHeightScalingFactor;
                         size.y = 0.5f * (waterSize.y * 0.5f - surfaceLevel) * (1f + scalingFactor);
-                        DrawRectInSceneView(bottomLeft, size, Color.green);
+                        DrawRectInSceneView(bottomLeft + offset, size, Color.green);
                     }
                 }
                 else
@@ -1183,7 +1227,7 @@
                     float scalingFactor = waterObject.RenderingModule.Reflection.ViewingFrustumHeightScalingFactor;
                     Vector2 position = new Vector2(-0.5f * waterSize.x, 0.5f * waterSize.y);
                     Vector2 size = new Vector2(waterSize.x, 0.5f * waterSize.y * (1f + scalingFactor));
-                    DrawRectInSceneView(position, size, Color.green);
+                    DrawRectInSceneView(position + offset, size, Color.green);
                 }
             }
 
@@ -1227,11 +1271,12 @@
         }
         #endregion
 
-        private enum RippleType
+        private enum WaveToPreviewType
         {
-            OnCollisionRipples = 0,
-            ConstantRipples = 1,
-            ScriptGeneratedRipples = 2
+            DynamicWavesOnCollisionRipples = 0,
+            DynamicWavesConstantRipples = 1,
+            DynamicWavesScriptGeneratedRipples = 2,
+            SineWaves = 3
         };
 
         [CustomPropertyDrawer(typeof(Simulation.WaterSimulationSineWaveParameters))]

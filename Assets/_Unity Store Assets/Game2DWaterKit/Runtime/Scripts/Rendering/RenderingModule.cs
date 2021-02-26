@@ -17,6 +17,7 @@
         private static List<RenderingModule> _renderingModulesList = new List<RenderingModule>();
         private static RenderingCameraInformation _renderingCameraInformation = new RenderingCameraInformation();
         private static int _timeID = Shader.PropertyToID("_G2DWK_Frame_Time");
+        private static float _elapsedTime = 0f;
 
         protected MainModule _mainModule;
         protected MeshModule _meshModule;
@@ -57,7 +58,7 @@
                     _sortingLayerID = value;
                     _meshModule.MeshRenderer.sortingLayerID = _sortingLayerID;
                     ResortRenderingModulesList();
-                    UpdateMeshMaskSortingProperties();
+                    _meshMask.UpdateSortingProperties();
                 }
             }
         }
@@ -71,7 +72,7 @@
                     _sortingOrder = value;
                     _meshModule.MeshRenderer.sortingOrder = _sortingOrder;
                     ResortRenderingModulesList();
-                    UpdateMeshMaskSortingProperties();
+                    _meshMask.UpdateSortingProperties();
                 }
             }
         }
@@ -90,12 +91,7 @@
             _meshModule.MeshRenderer.sortingOrder = _sortingOrder;
             _meshModule.MeshRenderer.sortingLayerID = _sortingLayerID;
 
-            _meshMask.Initialize(_mainModule);
-            UpdateMeshMaskSortingProperties();
-
-#if UNITY_EDITOR
-            _materialModule.OnRenderQueueChange += UpdateMeshMaskSortingProperties;
-#endif
+            _meshMask.Initialize(_mainModule, this, _materialModule);
         }
 
 #if UNITY_EDITOR
@@ -105,10 +101,9 @@
         }
 #endif
 
-        protected void SetupRefractionMask()
+        protected void SetupRefractionMask(Vector3 position)
         {
-            var transform = _mainModule.Transform;
-            _refractionMask.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            _refractionMask.transform.SetPositionAndRotation(position, _mainModule.Rotation);
             _refractionMask.SetupRenderingProperties(_materialModule.RenderQueue, _sortingLayerID, _sortingOrder);
         }
 
@@ -130,20 +125,16 @@
                 RemoveFromRenderingModulesList(this);
         }
 
-        private void UpdateMeshMaskSortingProperties()
-        {
-            _meshMask.UpdateSortingProperties(_sortingLayerID, _sortingOrder, _materialModule.RenderQueue);
-        }
-
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
+        private static System.Action<UnityEngine.Rendering.ScriptableRenderContext, Camera> _renderObjectsDelegate = new System.Action<UnityEngine.Rendering.ScriptableRenderContext, Camera>(RenderObjects);
         private static void OnBeginFrameRendering(UnityEngine.Rendering.ScriptableRenderContext context, Camera[] cameras)
         {
-            UnityEngine.Rendering.RenderPipelineManager.beginCameraRendering += RenderObjects;
+            UnityEngine.Rendering.RenderPipelineManager.beginCameraRendering += _renderObjectsDelegate;
 
         }
         private static void OnEndFrameRendering(UnityEngine.Rendering.ScriptableRenderContext context, Camera[] cameras)
         {
-            UnityEngine.Rendering.RenderPipelineManager.beginCameraRendering -= RenderObjects;
+            UnityEngine.Rendering.RenderPipelineManager.beginCameraRendering -= _renderObjectsDelegate;
         }
 
         private static void RenderObjects(UnityEngine.Rendering.ScriptableRenderContext context, Camera currentCamera)
@@ -258,10 +249,12 @@
         // Called in LateUpdate (Just before starting to render the current frame)
         private static void OnFrameUpdate()
         {
+            _elapsedTime += Time.deltaTime * Game2DWaterKitObject.TimeScale;
+
 #if UNITY_EDITOR
-            float currentTime = Application.isPlaying ? Time.time : Time.realtimeSinceStartup;
+            float currentTime = (Application.isPlaying ? _elapsedTime : Time.realtimeSinceStartup);
 #else
-            float currentTime = Time.time;
+            float currentTime = _elapsedTime;
 #endif
             Shader.SetGlobalVector(_timeID, new Vector4(currentTime * 0.05f, currentTime, currentTime * 2f, currentTime * 3f));
         }

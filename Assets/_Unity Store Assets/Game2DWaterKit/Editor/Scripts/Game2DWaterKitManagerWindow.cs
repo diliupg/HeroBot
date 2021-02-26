@@ -251,22 +251,22 @@
             detailsRect.xMax -= 5f;
             detailsRect.yMin += 5f;
             detailsRect.height = EditorGUIUtility.singleLineHeight;
-            GUI.Label(detailsRect, "Game 2D Water Kit v1.4.3", EditorStyles.boldLabel);
+            GUI.Label(detailsRect, "Game 2D Water Kit v1.4.8", EditorStyles.boldLabel);
             detailsRect.y += EditorGUIUtility.singleLineHeight - 3f;
-            GUI.Label(detailsRect, "www.game2dwaterkit.haydeludos.com", EditorStyles.miniBoldLabel);
+            GUI.Label(detailsRect, "haydeludos.github.io/Game2DWaterKit-Documentation", EditorStyles.miniBoldLabel);
             EditorGUI.DrawRect(new Rect(detailsRect.x, detailsRect.y + EditorGUIUtility.singleLineHeight, detailsRect.width, 1f), EditorStyles.label.normal.textColor);
             detailsRect.y += EditorGUIUtility.singleLineHeight + 7f;
             if (GUI.Button(detailsRect, "Asset Website"))
-                Application.OpenURL("https://game2dwaterkit.haydeludos.com/");
+                Application.OpenURL("https://haydeludos.github.io/Game2DWaterKit-Documentation/");
             detailsRect.y += EditorGUIUtility.singleLineHeight + 3f;
             if (GUI.Button(detailsRect, "Getting Started Guide"))
-                Application.OpenURL("https://game2dwaterkit.haydeludos.com/#getting-started");
+                Application.OpenURL("https://haydeludos.github.io/Game2DWaterKit-Documentation/#getting-started");
             detailsRect.y += EditorGUIUtility.singleLineHeight + 3f;
             if (GUI.Button(detailsRect, "Contact Publisher"))
-                Application.OpenURL("https://game2dwaterkit.haydeludos.com/contact/");
+                Application.OpenURL("https://haydeludos.github.io/Game2DWaterKit-Documentation/contact/");
             detailsRect.y += EditorGUIUtility.singleLineHeight + 3f;
-            if (GUI.Button(detailsRect, "Rate/Review Asset")) 
-                AssetStore.Open("content/118057");
+            if (GUI.Button(detailsRect, "Rate/Review Asset"))
+                Application.OpenURL("https://assetstore.unity.com/packages/slug/118057#reviews");
         }
 
         private void DrawEditorPreferences()

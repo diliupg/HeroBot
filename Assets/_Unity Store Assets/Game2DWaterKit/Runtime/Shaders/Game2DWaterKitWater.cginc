@@ -32,12 +32,15 @@
 #define Is_Water2D_ApplyEmissionColor_Enabled defined(Water2D_ApplyEmissionColor)
 #define Is_Water2D_ApplyTintColorBeforeTexture_Enabled defined(Water2D_ApplyTintColorBeforeTexture)
 
+#define Is_Water2D_TopEdgeLine_Enabled defined(Water2D_Surface) && defined(Water2D_TopEdgeLine)
+#define Is_Water2D_SurfaceLevelEdgeLine_Enabled defined(Water2D_Surface) && defined(Water2D_SurfaceLevelEdgeLine)
+#define Is_Water2D_SubmergeLevelEdgeLine_Enabled defined(Water2D_Surface) && defined(Water2D_FakePerspective) && defined(Water2D_SubmergeLevelEdgeLine)
+
 #define Water2D_HasWaterTextureSheet Is_Water2D_WaterTextureSheet_Enabled || Is_Water2D_WaterTextureSheetWithLerp_Enabled
 #define Water2D_HasWaterTexture  Is_Water2D_WaterTexture_Enabled || Water2D_HasWaterTextureSheet
 #define Water2D_HasSurfaceTextureSheet Is_Water2D_SurfaceTextureSheet_Enabled || Is_Water2D_SurfaceTextureSheetWithLerp_Enabled
 #define Water2D_HasSurfaceTexture Is_Water2D_Surface_Enabled && (Is_Water2D_SurfaceTexture_Enabled || Water2D_HasSurfaceTextureSheet)
 
-			CBUFFER_START(UnityPerObject)
 				#if Is_Water2D_Refraction_Enabled || Is_Water2D_Reflection_Enabled || Is_Water2D_FakePerspective_Enabled
 					#if Is_Water2D_Refraction_Enabled
 						uniform sampler2D _RefractionTexture;
@@ -62,9 +65,7 @@
 				#endif
 				uniform float4 _AspectRatio;
 				uniform float4 _Size;
-			CBUFFER_END // UnityPerObject
 
-			CBUFFER_START(UnityPerMaterial)
 				#if Is_Water2D_Refraction_Enabled 
 					half _RefractionNoiseSpeed;
 					half _RefractionNoiseStrength;
@@ -112,8 +113,23 @@
 						#endif
 					#endif
 
+					#if Is_Water2D_TopEdgeLine_Enabled
+						half4 _TopEdgeLineColor;
+						half _TopEdgeLineThickness;
+					#endif
+
+					#if Is_Water2D_SurfaceLevelEdgeLine_Enabled
+						half4 _SurfaceLevelEdgeLineColor;
+						half _SurfaceLevelEdgeLineThickness;
+					#endif
+
 					#if Is_Water2D_FakePerspective_Enabled
 						half _SubmergeLevel;
+						
+						#if Is_Water2D_SubmergeLevelEdgeLine_Enabled
+							half _SubmergeLevelEdgeLineThickness;
+							half4 _SubmergeLevelEdgeLineColor;
+						#endif
 					#endif
 				#endif
 
@@ -159,7 +175,6 @@
 					float4 _NoiseTexture_ST;
 				#endif
 
-			CBUFFER_END // UnityPerMaterial
 				
 			struct Attributes
 			{
@@ -173,7 +188,7 @@
 			struct Varyings
 			{
 				float4 pos : SV_POSITION;
-				float3 uv : TEXCOORD0;
+				float2 uv : TEXCOORD0;
 
 				#if Is_Water2D_Refraction_Enabled || Is_Water2D_Reflection_Enabled || Is_Water2D_FakePerspective_Enabled
 					float2 refractionReflectionUV : TEXCOORD1;
@@ -236,8 +251,7 @@
 				
 				o.pos = ComputeClipPosition(v.pos);
 
-				o.uv.xy = v.uv;
-				o.uv.z = v.pos;
+				o.uv = v.uv;
 
 				#if Is_Water2D_Refraction_Enabled || Is_Water2D_Reflection_Enabled || Is_Water2D_FakePerspective_Enabled
 					float4 pos = mul(_WaterMVP,v.pos);
@@ -325,17 +339,19 @@
 			#if Is_Water2D_Reflection_Enabled && (Is_Water2D_ReflectionFadeLinear_Enabled || Is_Water2D_ReflectionFadeExponentialTwo_Enabled || Is_Water2D_ReflectionFadeExponentialThree_Enabled || Is_Water2D_ReflectionFadeExponentialFour_Enabled)
 			inline half4 FadeReflectionColor(half4 color, half fadeFactor)
 			{
+				half fade;
+
 				#if Is_Water2D_ReflectionFadeLinear_Enabled
-					color.a *= fadeFactor;
+					fade = fadeFactor;
 				#elif Is_Water2D_ReflectionFadeExponentialTwo_Enabled
-					color.a *= fadeFactor * fadeFactor;
+					fade = fadeFactor * fadeFactor;
 				#elif Is_Water2D_ReflectionFadeExponentialThree_Enabled
-					color.a *= fadeFactor * fadeFactor * fadeFactor;
+					fade = fadeFactor * fadeFactor * fadeFactor;
 				#elif Is_Water2D_ReflectionFadeExponentialFour_Enabled
-					color.a *= fadeFactor * fadeFactor * fadeFactor * fadeFactor;
+					fade = fadeFactor * fadeFactor * fadeFactor * fadeFactor;
 				#endif
 
-				return color;
+				return color * fade;
 			}
 			#endif
 
@@ -380,6 +396,7 @@
 						if (isBelowSubmergeLevel) {
 							refractionColorPartiallySubmergedObjects = tex2D(_RefractionTexturePartiallySubmergedObjects, float2(i.refractionReflectionUV.xy + refractionDistortion));
 							refractionColor.rgb += refractionColorPartiallySubmergedObjects.rgb - refractionColor.rgb * refractionColorPartiallySubmergedObjects.a;
+							refractionColor.a = saturate(refractionColor.a + refractionColorPartiallySubmergedObjects.a);
 						}
 						else {
 							refractionColorPartiallySubmergedObjects = tex2D(_RefractionTexturePartiallySubmergedObjects, i.refractionReflectionUV.xy);
@@ -410,8 +427,8 @@
 								reflectionColorPartiallySubmergedObjects = FadeReflectionColor(reflectionColorPartiallySubmergedObjects, reflectionPartiallySubmergedObjectsCoordY);
 								#endif
 
-								reflectionColor.rgb = lerp(reflectionColor.rgb, reflectionColorPartiallySubmergedObjects.rgb, reflectionColorPartiallySubmergedObjects.a);
-								reflectionColor.a = reflectionColorPartiallySubmergedObjects.a + (1.0 - reflectionColorPartiallySubmergedObjects.a) * reflectionColor.a;
+								reflectionColor.rgb += reflectionColorPartiallySubmergedObjects.rgb - reflectionColor.rgb * reflectionColorPartiallySubmergedObjects.a;
+								reflectionColor.a = saturate(reflectionColor.a + reflectionColorPartiallySubmergedObjects.a);
 							}
 						}
 					#else
@@ -510,8 +527,9 @@
 					#if Is_Water2D_FakePerspective_Enabled
 							if(isSurface){
 					#endif
-								reflectionColor.a *= step(i.reflectionUV.z, _ReflectionLowerLimit) * _ReflectionVisibility;
-								finalColor = MixColors(finalColor, reflectionColor);
+						reflectionColor *= step(i.reflectionUV.z, _ReflectionLowerLimit) * _ReflectionVisibility;
+						finalColor.rgb += reflectionColor.rgb - finalColor.rgb * reflectionColor.a;
+						finalColor.a = saturate(finalColor.a + reflectionColor.a);
 					#if Is_Water2D_FakePerspective_Enabled
 							}
 					#endif
@@ -535,7 +553,13 @@
 					finalColor = MixColors(finalColor, tintColor);
 				#endif
 
-				// Applying Partially Submerged Objects Render-Texture Color
+				// Applying Top Edge Outline Color
+				#if Is_Water2D_Surface_Enabled && Is_Water2D_TopEdgeLine_Enabled
+					float topEdgeLineThickness = _TopEdgeLineThickness * _Size.w;
+					finalColor = MixColors(finalColor, _TopEdgeLineColor * ((1 - i.uv.y) < topEdgeLineThickness ? 1 : 0));
+				#endif
+
+				// Applying Partially Submerged Objects Render-Texture Color && Submerge Level Outline
 				#if Is_Water2D_FakePerspective_Enabled
 					#if defined(Game2DWaterKit_Unlit) || defined(Game2DWaterKit_SRP_Unlit)
 						if (!isBelowSubmergeLevel) {
@@ -548,18 +572,36 @@
 					#endif
 
 					#if defined(Game2DWaterKit_SRP_Lit)
-						frontColor.rgb = refractionColorPartiallySubmergedObjects.rgb; //out parameter
-						frontColor.a = refractionColorPartiallySubmergedObjects.a * (isBelowSubmergeLevel ? 0.0 : 1.0); //out parameter
+						frontColor = refractionColorPartiallySubmergedObjects * (isBelowSubmergeLevel ? 0.0 : 1.0); //out parameter
 					#elif !defined(Game2DWaterKit_SRP_Unlit)
 						#if defined(Game2DWaterKit_PixelLit_Add)
 							frontColorOpacity = refractionColorPartiallySubmergedObjects.a * (isBelowSubmergeLevel ? 0.0 : 1.0); //out parameter
 						#elif !defined(Game2DWaterKit_Unlit)
-							frontColor.rgb = refractionColorPartiallySubmergedObjects.rgb; //out parameter
-							frontColor.a = refractionColorPartiallySubmergedObjects.a * (isBelowSubmergeLevel ? 0.0 : 1.0); //out parameter
+							frontColor = refractionColorPartiallySubmergedObjects * (isBelowSubmergeLevel ? 0.0 : 1.0); //out parameter
+						#endif
+					#endif
+					
+					#if Is_Water2D_SubmergeLevelEdgeLine_Enabled
+						float submergeLevelEdgeLineThickness = _SubmergeLevelEdgeLineThickness * _Size.w * 0.5;
+						half4 submergeLevelEdgeLineColor = _SubmergeLevelEdgeLineColor * (abs(submergeLevel - i.uv.y + submergeLevelEdgeLineThickness) < submergeLevelEdgeLineThickness ? 1 : 0);
+						submergeLevelEdgeLineColor.a *= refractionColorPartiallySubmergedObjects.a;
+
+						#if defined(Game2DWaterKit_SRP_Unlit) || defined(Game2DWaterKit_Unlit)
+							finalColor = MixColors(finalColor,  submergeLevelEdgeLineColor);
+						#elif !defined(Game2DWaterKit_PixelLit_Add)
+							frontColor.rgb = lerp(frontColor.rgb, submergeLevelEdgeLineColor.rgb, submergeLevelEdgeLineColor.a); //out parameter
 						#endif
 					#endif
 				#endif
-				
+
+				// Applying Surface Level
+				#if Is_Water2D_Surface_Enabled && Is_Water2D_SurfaceLevelEdgeLine_Enabled
+					float surfaceLevelEdgeLineThickness = _SurfaceLevelEdgeLineThickness * _Size.w * 0.5;
+					finalColor = MixColors(finalColor, _SurfaceLevelEdgeLineColor * (abs(surfaceLevel - i.uv.y) < surfaceLevelEdgeLineThickness ? 1 : 0));
+				#endif
+
+				// END NEW
+
 				#if !Is_Water2D_Refraction_Enabled
 				finalColor.rgb /= finalColor.a;
 				#endif

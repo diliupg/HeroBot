@@ -17,6 +17,8 @@
         private System.Action[][] _meshModuleUpdateMeshDelegates;
         private bool _updateSimulationModeDelegates;
 
+        private static string[] _edgesNames = new[] { "Top Edge", "Bottom Edge" };
+
         protected override void Initiliaze()
         {
             InitializeSimulationModeDelegates();
@@ -26,7 +28,10 @@
         {
             _isWaterfallSimulationModeActive = _isInSimulationMode && _isSimulationModeOwnedByWaterfallEditor;
 
-            DrawPropertiesGroup(DrawSizeProperty, true);
+            BeginPropertiesGroup(true);
+            DrawSizeProperty();
+            DrawTopBottomEdgesRelativeLength();
+            EndPropertiesGroup();
 
             if (!_isEditingMeshMask)
             {
@@ -42,6 +47,34 @@
         }
 
         protected override void DrawSceneView() {}
+
+        private void DrawTopBottomEdgesRelativeLength()
+        {
+            var topBottomEdgesRelativeWidthProperty = serializedObject.FindProperty("_meshModuleTopBottomEdgesRelativeLength");
+
+            var isTopEdgeSelected = topBottomEdgesRelativeWidthProperty.vector2Value.y == 1f;
+            var relativeWidth = topBottomEdgesRelativeWidthProperty.vector2Value.x;
+
+            EditorGUI.BeginChangeCheck();
+
+            var rect = EditorGUILayout.GetControlRect();
+            var xMax = rect.xMax;
+
+            rect.xMax = rect.xMin + 110f;
+            EditorGUIUtility.labelWidth = 90f;
+            EditorGUI.LabelField(rect, "Relative Length Of");
+
+            rect.xMin = rect.xMax + 3f;
+            rect.xMax = rect.xMin + 95f;
+            isTopEdgeSelected = EditorGUI.Popup(rect, isTopEdgeSelected ? 0 : 1, _edgesNames) == 0;
+
+            rect.xMin = rect.xMax + 3f;
+            rect.xMax = xMax;
+            relativeWidth = EditorGUI.Slider(rect, relativeWidth, 0f, 1f);
+
+            if (EditorGUI.EndChangeCheck())
+                topBottomEdgesRelativeWidthProperty.vector2Value = new Vector2(relativeWidth, isTopEdgeSelected ? 1f : 0f);
+        }
 
         private void DrawRefractionProperties()
         {

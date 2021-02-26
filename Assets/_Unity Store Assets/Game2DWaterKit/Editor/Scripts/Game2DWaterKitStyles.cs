@@ -44,12 +44,20 @@
             public static Game2DWaterKitPropertyLabel WaveSecondCustomBoundaryPropertyLabel;
             public static Game2DWaterKitPropertyLabel BuoyancyEffectorSurfaceLevelPropertyLabel;
             public static Game2DWaterKitPropertyLabel BuoyancyEffectorSurfaceLevelLocationPropertyLabel;
+            public static Game2DWaterKitPropertyLabel CanWavesAffectRigidbodies;
+            public static Game2DWaterKitPropertyLabel WavesStrengthOnRigidbodiesLabel;
+            public static Game2DWaterKitPropertyLabel ActivateOnCollisionOnWaterEnterRipples;
+            public static Game2DWaterKitPropertyLabel ActivateOnCollisionOnWaterExitRipples;
+            public static Game2DWaterKitPropertyLabel ActivateOnCollisionOnWaterMoveRipples;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesRaycastMaskPropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesMatchBoxColliderTopEdgePropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesRaycastMinimumDepthPropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesRaycastMaximumDepthPropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesRaycastMaximumDistancePropertyLabel;
-            public static Game2DWaterKitPropertyLabel OnCollisionRipplesMinimumVelocityPropertyLabel;
+            public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterEnterExitMinimumVelocityPropertyLabel;
+            public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterMoveMinimumVelocityPropertyLabel;
+            public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterMoveSmoothFactorPropertyLabel;
+            public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterMoveMaximumDisturbancePropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesIgnoreTriggersPropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterEnterEventPropertyLabel;
             public static Game2DWaterKitPropertyLabel OnCollisionRipplesOnWaterExitEventPropertyLabel;
@@ -89,6 +97,7 @@
             public static Game2DWaterKitPropertyLabel ReflectionOtherObjectsViewingFrustumHeightScalingFactorPropertyLabel;
             public static Game2DWaterKitPropertyLabel ReflectionViewingFrustumHeightScalingFactorPropertyLabel;
             public static Game2DWaterKitPropertyLabel ReflectionZOffsetPropertyLabel;
+            public static Game2DWaterKitPropertyLabel ReflectionYOffsetPropertyLabel;
             public static Game2DWaterKitPropertyLabel RenderTextureFixedSizePropertyLabel;
             public static Game2DWaterKitPropertyLabel RenderTextureResizingFactorPropertyLabel;
             public static Game2DWaterKitPropertyLabel RenderTextureUseFixedSizePropertyLabel;
@@ -117,7 +126,6 @@
             public static Game2DWaterKitPropertyLabel SimulationModeTimeStepPropertyLabel;
             public static Game2DWaterKitPropertyLabel SimulationModeOnCollisionRipplesRegionPropertyLabel;
             public static Game2DWaterKitPropertyLabel SimulationModeScriptGeneratedRipplesSourcePositionropertyLabel;
-            public static Game2DWaterKitPropertyLabel SimulationModeTypeOfRippleToPreviewPropertyLabel;
             #endregion
 
             #region Messages
@@ -161,9 +169,9 @@
 
             #region Misc
             public static float MinimumLabelWidth = 150f;
-            public static readonly string[] RipplesTypes = new[] { "On Collision Ripples", "Constant Ripples", "Script-Genrated Ripples" };
+            public static readonly string[] WavesToPreviewType = new[] { "Dynamic Waves - On Collision Ripples", "Dynamic Waves - Constant Ripples", "Dynamic Waves - Script-Genrated Ripples", "Sine Waves"};
             public static readonly string NewPrefabWorkflowMessage = "As of Unity 2018.3, disconnecting (unlinking) and relinking a Prefab instance are no longer supported. Alternatively, you can now unpack a Prefab instance if you want to entirely remove its link to its Prefab asset and thus be able to restructure the resulting plain GameObject as you please.";
-            public static readonly string SimulationModuleWavePropertiesMessage = "These properties are shared between all ripples types";
+            public static readonly string SimulationModuleWavePropertiesMessage = "These properties are shared between all types of ripples.";
             private static readonly GUIContent _tempLabel = new GUIContent();
             #endregion
 
@@ -211,16 +219,24 @@
                 WaveSecondCustomBoundaryPropertyLabel = CreatePropertyLabel("Second Boundary", "The location of the second boundary.");
                 BuoyancyEffectorSurfaceLevelPropertyLabel = CreatePropertyLabel("Buoyancy Level", "Sets the surface location of the buoyancy fluid. When an object is above this line, no buoyancy forces are applied. When an object is intersecting or completely below this line, buoyancy forces are applied.");
                 BuoyancyEffectorSurfaceLevelLocationPropertyLabel = CreatePropertyLabel("Match Buoyancy Level To", null);
+                CanWavesAffectRigidbodies = CreatePropertyLabel("Waves Can Affect Rigidbodies", "Controls whether or not floating rigidbodies follow the undulations of water.");
+                WavesStrengthOnRigidbodiesLabel = CreatePropertyLabel("Strength", "Controls the strength of the force to apply to rigidbodies floating on water.");
 
+                ActivateOnCollisionOnWaterEnterRipples = CreatePropertyLabel("A Rigidbody Enters The Water", null);
+                ActivateOnCollisionOnWaterExitRipples = CreatePropertyLabel("A Rigidbody Exits The Water", null);
+                ActivateOnCollisionOnWaterMoveRipples = CreatePropertyLabel("A Rigidbody Moves In Water", null);
                 OnCollisionRipplesRaycastMaskPropertyLabel = CreatePropertyLabel("Collision Mask", "Only objects on these layers will disturb the water’s surface and will trigger the OnWaterEnter and the OnWaterExit events when they get into or out of the water.");
                 OnCollisionRipplesRaycastMinimumDepthPropertyLabel = CreatePropertyLabel("Minimum Depth", "Only objects with Z coordinate (depth) greater than or equal to this value will disturb the water’s surface.");
                 OnCollisionRipplesRaycastMaximumDepthPropertyLabel = CreatePropertyLabel("Maximum Depth", "Only objects with Z coordinate (depth) less than or equal to this value will disturb the water’s surface.");
                 OnCollisionRipplesRaycastMaximumDistancePropertyLabel = CreatePropertyLabel("Maximum Distance", "The maximum distance from the water's surface over which to check for collisions (Default: 0.5)");
-                OnCollisionRipplesMinimumVelocityPropertyLabel = CreatePropertyLabel("Minimum Velocity", "Sets the minimum velocity that a rigidbody falling into water should have to cause the maximum disturbance to the water's surface.");
+                OnCollisionRipplesOnWaterEnterExitMinimumVelocityPropertyLabel = CreatePropertyLabel("Minimum Velocity", "Sets the minimum velocity that a rigidbody falling into water should have to cause the maximum disturbance to the water's surface.");
                 OnCollisionRipplesIgnoreTriggersPropertyLabel = CreatePropertyLabel("Ignore Triggers", "Controls whether or not a collider that is marked as \"Is Trigger\" can disturb the water’s surface and trigger the OnWaterEnter and the OnWaterExit events when it gets into or out of the water.");
                 OnCollisionRipplesOnWaterEnterEventPropertyLabel = CreatePropertyLabel("On Water Enter", "Event that is triggered when a rigidbody falls into water.");
                 OnCollisionRipplesOnWaterExitEventPropertyLabel = CreatePropertyLabel("On Water Exit", "Event that is triggered when a rigidbody gets out of the water.");
                 OnCollisionRipplesMatchBoxColliderTopEdgePropertyLabel = CreatePropertyLabel("Match Box Collider's Top Edge To", null);
+                OnCollisionRipplesOnWaterMoveMaximumDisturbancePropertyLabel = CreatePropertyLabel("Maximum Disturbance", "Sets the maximum displacement of the water’s surface.");
+                OnCollisionRipplesOnWaterMoveSmoothFactorPropertyLabel = CreatePropertyLabel("Smoothing Factor", "The relative amount of disturbance to apply to neighbor surface vertices to create a smoother ripple.");
+                OnCollisionRipplesOnWaterMoveMinimumVelocityPropertyLabel = CreatePropertyLabel("Minimum Velocity", "Sets the minimum velocity that a rigidbody moving in water should have to cause the maximum disturbance to the water's surface.");
 
                 ScriptGeneratedRipplesDisturbanceFactorPropertyLabel = CreatePropertyLabel("Disturbance Factor", "Range: [0..1]: The disturbance is linearly interpolated between the minimum disturbance and the maximum disturbance by this factor.");
 
@@ -263,6 +279,7 @@
                 ReflectionOtherObjectsViewingFrustumHeightScalingFactorPropertyLabel = CreatePropertyLabel("Other Objects", "Sets how much to scale the reflection camera viewing frustum height when rendering other objects (all objects specified in ‘Objects to render’ layers except those specified in ‘Partially Submerged Objects’ layers). The default viewing frustum height for the reflection camera is equal to the surface thickness.");
                 ReflectionViewingFrustumHeightScalingFactorPropertyLabel = CreatePropertyLabel("Height Scaling Factor", "Sets how much to scale the reflection camera viewing frustum height.");
                 ReflectionZOffsetPropertyLabel = CreatePropertyLabel("Z-Offset", "Controls where to start rendering the reflection relative to the water object z-position.");
+                ReflectionYOffsetPropertyLabel = CreatePropertyLabel("Y-Offset", "Controls how much to offset the position of the reflection camera along the y-axis.");
 
                 RenderTextureFixedSizePropertyLabel = CreatePropertyLabel("Size", "Sets the render texture size.");
                 RenderTextureResizingFactorPropertyLabel = CreatePropertyLabel("Resizing Factor", "Specifies how much the RenderTexture is resized. The \"normal\" (before resizing) RenderTexture size is equal to the water visible area size");
@@ -290,9 +307,8 @@
 
                 SimulationModeTargetFrameratePropertyLabel = CreatePropertyLabel("Target Framerate", "Sets the target number of simulation iterations per second.");
                 SimulationModeTimeStepPropertyLabel = CreatePropertyLabel("Timestep", "The interval in seconds at which the simulation updates.");
-                SimulationModeOnCollisionRipplesRegionPropertyLabel = CreatePropertyLabel("Region", "Specifies the region where to simulate collision forces. You would change the region size to approximetely match the size of the rigidbody you want to simulate.");
+                SimulationModeOnCollisionRipplesRegionPropertyLabel = CreatePropertyLabel("Region", "Specifies the region where to simulate collision forces.");
                 SimulationModeScriptGeneratedRipplesSourcePositionropertyLabel = CreatePropertyLabel("Position", "Sets the position where to create the ripple.");
-                SimulationModeTypeOfRippleToPreviewPropertyLabel = CreatePropertyLabel("Type of ripple to preview.", null);
                 #endregion
 
                 IsInitialized = true;

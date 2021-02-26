@@ -189,8 +189,6 @@
 
                 _currentInterval = _randomizeTimeInterval ? Random.Range(_minimumTimeInterval, _maximumTimeInterval) : _timeInterval;
                 _elapsedTime = 0f;
-
-                _simulationModule.MarkVelocitiesArrayAsChanged();
             }
         }
 
@@ -209,9 +207,9 @@
         private void RandomizeIndices()
         {
             _ripplesSourcesIndices.Clear();
-            int surfaceVerticesCount = _meshModule.SurfaceVerticesCount;
+            int surfaceVertexCount = _meshModule.SurfaceVerticesCount;
             int startIndex = _simulationModule.IsUsingCustomBoundaries ? 1 : 0;
-            int endIndex = _simulationModule.IsUsingCustomBoundaries ? surfaceVerticesCount - 1 : surfaceVerticesCount;
+            int endIndex = _simulationModule.IsUsingCustomBoundaries ? surfaceVertexCount - 1 : surfaceVertexCount;
 
             for (int i = 0; i < _randomRipplesSourceCount; i++)
             {
@@ -228,10 +226,9 @@
 
             float leftBoundary = _simulationModule.LeftBoundary;
             float rightBoundary = _simulationModule.RightBoundary;
-            float activeSurface = rightBoundary - leftBoundary;
-            int activeSurfaceVerticesCount = _meshModule.SurfaceVerticesCount - (_simulationModule.IsUsingCustomBoundaries ? 2 : 0);
-            float xStep = activeSurface / (activeSurfaceVerticesCount - 1);
-            int indexOffset = _simulationModule.IsUsingCustomBoundaries ? 1 : 0;
+            int surfaceVertexCount = _meshModule.SurfaceVerticesCount - (_simulationModule.IsUsingCustomBoundaries ? 2 : 0);
+            float subdivisionsPerUnit = (surfaceVertexCount - (_simulationModule.IsUsingCustomBoundaries ? 3 : 1)) / (rightBoundary - leftBoundary);
+            int leftMostSurfaceVertexIndex = _simulationModule.IsUsingCustomBoundaries ? 1 : 0;
 
             for (int i = 0, maxi = _sourcePositions.Count; i < maxi; i++)
             {
@@ -239,7 +236,7 @@
                 if (xPosition < leftBoundary || xPosition > rightBoundary)
                     continue;
 
-                int nearestIndex = indexOffset + Mathf.RoundToInt((xPosition - leftBoundary) / xStep);
+                int nearestIndex = leftMostSurfaceVertexIndex + Mathf.RoundToInt((xPosition - leftBoundary) * subdivisionsPerUnit);
 
                 if (!_allowDuplicateRipplesSourcePositions && _ripplesSourcesIndices.Contains(nearestIndex))
                     continue;

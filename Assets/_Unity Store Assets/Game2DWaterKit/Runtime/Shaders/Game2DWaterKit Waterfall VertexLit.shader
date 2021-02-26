@@ -61,6 +61,7 @@
 		
 		// Shared Top-Botom Edges Properties
 		_TopBottomEdgesThickness ("Top-Bottom Edges Thickness", vector) = (0.2,5,0.2,5)
+		_TopBottomEdgesOffset ("Top-Bottom Edges Offset", vector) = (0,0,0,0)
 		_TopBottomEdgesTexture ("Top-Bottom Edges Texture", 2D) = "white" {}
 		_TopBottomEdgesTextureTilingParameters("Top-Bottom Edges Texture Tiling Mode Properties" , vector) = (0,0,0,0)
 		_TopBottomEdgesTextureFlipParameters("Top-Bottom Edges Texture Flip" , vector) = (0,0,0,0)
@@ -103,6 +104,7 @@
 
 		// Shared Left-Right Edges Properties
 		_LeftRightEdgesThickness ("Left-Right Edges Thickness", vector) = (0.2,5,0.2,5)
+		_LeftRightEdgesOffset ("Left-Right Edges Offset", vector) = (0,0,0,0)
 		_LeftRightEdgesTexture ("Left-Right Edges Texture", 2D) = "white" {}
 		_LeftRightEdgesTextureTilingParameters("Left-Right Edges Texture Tiling Mode Properties" , vector) = (0,0,0,0)
 		_LeftRightEdgesTextureScrollingSpeed("Left-Right Edges Texture Scrolling Speed", float) = 1.0
@@ -160,6 +162,7 @@
 		_Waterfall2D_IsLeftRightEdgesTextureSheetEnabled("Left-Right Edges Texture - Is A Texture Sheet Toggle", float) = 0
 		_Waterfall2D_IsLeftRightEdgesTextureSheetWithLerpEnabled("Left-Right Edges Texture Sheet - Lerp Toggle", float) = 0
 		_Waterfall2D_IsLeftRightEdgesTextureAlphaCutoffEnabled("Left-Right Edges Texture Alpha Cutoff Toggle", float) = 0
+		_Waterfall2D_IsLeftRightEdgesAbsoluteThicknessAndOffsetEnabled("Left-Right Edges Absolute Thickness And Offset", float) = 0
 
 		// Top-Bottom Edges
 		_Waterfall2D_IsTopEdgeEnabled ("Top Edge Toggle", float) = 0
@@ -175,16 +178,17 @@
 		_Waterfall2D_IsTopBottomEdgesUseSameTextureEnabled("Top-Bottom Edges Use Same Texture Toggle", float) = 0
 		_Waterfall2D_IsTopBottomEdgesTextureSheetEnabled("Top-Bottom Edges Texture - Is A Texture Sheet Toggle", float) = 0
 		_Waterfall2D_IsTopBottomEdgesTextureSheetWithLerpEnabled("Top-Bottom Edges Texture Sheet - Lerp Toggle", float) = 0
+		_Waterfall2D_IsTopBottomEdgesAbsoluteThicknessAndOffsetEnabled("Top-Bottom Edges Absolute Thickness And Offset", float) = 0
 
 		// Refraction
 		_Waterfall2D_IsRefractionEnabled ("Refraction Effect Toggle", float) = 0
 
 		// Emission
 		_Waterfall2D_IsEmissionColorEnabled("Emission Toggle", float) = 0
-
+		
 		// Sprite Mask (Stencil) Options
-		[Enum(None,0,Visible Inside Mask,4,Visible Outside Mask,5)] _SpriteMaskInteraction ("Sprite Mask Interaction", float) = 0
-		_SpriteMaskInteractionRef ("Sprite Mask Interaction Ref", float) = 1
+		[Enum(None,8,Visible Inside Mask,4,Visible Outside Mask,5)] _SpriteMaskInteraction("Sprite Mask Interaction", float) = 8
+		_SpriteMaskInteractionRef("Sprite Mask Interaction Ref", float) = 1
 
 		_Waterfall2D_IsApplyTintColorOnTopOfTextureEnabled("Apply Tint Color On Top Of Texture Toggle", float) = 0.0
 
@@ -201,7 +205,7 @@
 
 		Stencil
 		{
-			Ref 1
+			Ref [_SpriteMaskInteractionRef]
 			Comp [_SpriteMaskInteraction]
 		}
 		
@@ -240,6 +244,7 @@
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesFlipTopEdgeY Waterfall2D_TopBottomEdgesFlipBottomEdgeY
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesTextureStretch Waterfall2D_TopBottomEdgesTextureStretchAutoX Waterfall2D_TopBottomEdgesTextureStretchAutoY
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesNoise
+			#pragma shader_feature _ Waterfall2D_TopBottomEdgesAbsoluteThicknessAndOffset
 			// Left-Right Edges shader features
 			#pragma shader_feature _ Waterfall2D_LeftEdge Waterfall2D_LeftEdgeTextureSheet Waterfall2D_LeftEdgeTextureSheetWithLerp
 			#pragma shader_feature _ Waterfall2D_LeftEdgeTextureStretch Waterfall2D_LeftEdgeTextureStretchAutoX Waterfall2D_LeftEdgeTextureStretchAutoY
@@ -250,6 +255,7 @@
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesTextureStretch Waterfall2D_LeftRightEdgesTextureStretchAutoX Waterfall2D_LeftRightEdgesTextureStretchAutoY
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesTextureAlphaCutoff
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesNoise
+			#pragma shader_feature _ Waterfall2D_LeftRightEdgesAbsoluteThicknessAndOffset
 			// Refraction
 			#pragma multi_compile _ Waterfall2D_Refraction
 			// Emission
@@ -313,6 +319,7 @@
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesFlipTopEdgeY Waterfall2D_TopBottomEdgesFlipBottomEdgeY
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesTextureStretch Waterfall2D_TopBottomEdgesTextureStretchAutoX Waterfall2D_TopBottomEdgesTextureStretchAutoY
 			#pragma shader_feature _ Waterfall2D_TopBottomEdgesNoise
+			#pragma shader_feature _ Waterfall2D_TopBottomEdgesAbsoluteThicknessAndOffset
 			// Left-Right Edges shader features
 			#pragma shader_feature _ Waterfall2D_LeftEdge Waterfall2D_LeftEdgeTextureSheet Waterfall2D_LeftEdgeTextureSheetWithLerp
 			#pragma shader_feature _ Waterfall2D_LeftEdgeTextureStretch Waterfall2D_LeftEdgeTextureStretchAutoX Waterfall2D_LeftEdgeTextureStretchAutoY
@@ -323,6 +330,7 @@
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesTextureStretch Waterfall2D_LeftRightEdgesTextureStretchAutoX Waterfall2D_LeftRightEdgesTextureStretchAutoY
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesTextureAlphaCutoff
 			#pragma shader_feature _ Waterfall2D_LeftRightEdgesNoise
+			#pragma shader_feature _ Waterfall2D_LeftRightEdgesAbsoluteThicknessAndOffset
 			// Refraction
 			#pragma multi_compile _ Waterfall2D_Refraction
 			// Emission

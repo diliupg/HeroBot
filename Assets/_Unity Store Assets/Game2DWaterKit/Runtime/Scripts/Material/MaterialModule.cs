@@ -74,18 +74,15 @@
             if (!_isInitialized)
                 return;
 
-            var scale = _mainModule.Scale;
-
-            float width = _mainModule.Width * scale.x;
-            float height = _mainModule.Height * scale.y;
-
-            float halfWidth = width * 0.5f;
-            float halfHeight = height * 0.5f;
+            float halfWidth = _mainModule.Width * 0.5f;
+            float halfHeight = _mainModule.Height * 0.5f;
 
             Vector2 min = _mainModule.TransformPointLocalToWorldNoRotation(new Vector3(-halfWidth, -halfHeight));
             Vector2 max = _mainModule.TransformPointLocalToWorldNoRotation(new Vector3(halfWidth, halfHeight));
 
             float aspect = (max.x - min.x) / (max.y - min.y);
+            float width = max.x - min.x;
+            float height = max.y - min.y;
 
             _materialPropertyBlock.SetVector(_aspectRatioID, new Vector4(aspect, 1f, 1f, 1f / aspect));
             _materialPropertyBlock.SetVector(_sizeID, new Vector4(width, height, 1f / width, 1f / height));
