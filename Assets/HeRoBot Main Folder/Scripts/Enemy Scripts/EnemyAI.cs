@@ -78,7 +78,7 @@ public class EnemyAI : MonoBehaviour, IDamageble
         moveToTarget = left;
         directionLR = -1f; //normal is facing left
 
-        Health = 8;
+        Health = 1;
 
         isAlive = true;
 

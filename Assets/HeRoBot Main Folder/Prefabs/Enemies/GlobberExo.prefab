@@ -408,7 +408,7 @@ MonoBehaviour:
   startTimeBetweenShots: 2
   addForce: 9
   jumpDelay: 2.2
-  health: 6
+  health: 1
   damagePlayer: 12
   walkEnabled: 0
   jumpEnabled: 0
