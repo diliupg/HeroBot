@@ -41,6 +41,8 @@
 #define Water2D_HasSurfaceTextureSheet Is_Water2D_SurfaceTextureSheet_Enabled || Is_Water2D_SurfaceTextureSheetWithLerp_Enabled
 #define Water2D_HasSurfaceTexture Is_Water2D_Surface_Enabled && (Is_Water2D_SurfaceTexture_Enabled || Water2D_HasSurfaceTextureSheet)
 
+#define Is_Water2D_SmoothLines_Enabled defined(Water2D_SmoothLines)
+
 				#if Is_Water2D_Refraction_Enabled || Is_Water2D_Reflection_Enabled || Is_Water2D_FakePerspective_Enabled
 					#if Is_Water2D_Refraction_Enabled
 						uniform sampler2D _RefractionTexture;
@@ -367,6 +369,10 @@
 			{
 				half4 finalColor = 0;
 				
+				#if Is_Water2D_SmoothLines_Enabled
+					float d_uv = fwidth(i.uv.y) * 1.35;
+				#endif
+
 				#if Is_Water2D_Surface_Enabled
 					#if Is_Water2D_SurfaceHasAbsoluteThickness_Enabled
 						float surfaceLevel = (_Size.y - _SurfaceLevel) * _Size.w;
@@ -440,79 +446,106 @@
 					#endif
 				#endif
 
-				#if Water2D_HasWaterTexture || Water2D_HasSurfaceTexture
-					half4 textureSampledColor = 0;
-				#endif
-
 				// Sampling Water Surface Texture
 				#if Water2D_HasSurfaceTexture
-					if(isSurface){
-						#if Is_Water2D_SurfaceNoise_Enabled
-							i.surfaceTextureUV.xy += (tex2D(_NoiseTexture,i.surfaceTextureUV.zw).b - 0.5) * _SurfaceNoiseStrength;
-						#endif
+					half4 surfaceTextureSampledColor = 0;
+					#if Is_Water2D_SurfaceNoise_Enabled
+						i.surfaceTextureUV.xy += (tex2D(_NoiseTexture,i.surfaceTextureUV.zw).b - 0.5) * _SurfaceNoiseStrength;
+					#endif
 
-						#if Water2D_HasSurfaceTextureSheet
-							#if Is_Water2D_SurfaceTextureSheetWithLerp_Enabled
-							textureSampledColor = SampleTextureSheetLerp(_SurfaceTexture, i.surfaceTextureUV.xy);
-							#else
-							textureSampledColor = SampleTextureSheet(_SurfaceTexture, i.surfaceTextureUV.xy);
-							#endif
+					#if Water2D_HasSurfaceTextureSheet
+						#if Is_Water2D_SurfaceTextureSheetWithLerp_Enabled
+						surfaceTextureSampledColor = SampleTextureSheetLerp(_SurfaceTexture, i.surfaceTextureUV.xy);
 						#else
-							textureSampledColor = tex2D(_SurfaceTexture,i.surfaceTextureUV.xy);
+						surfaceTextureSampledColor = SampleTextureSheet(_SurfaceTexture, i.surfaceTextureUV.xy);
 						#endif
+					#else
+						surfaceTextureSampledColor = tex2D(_SurfaceTexture,i.surfaceTextureUV.xy);
+					#endif
 
-						textureSampledColor.a *= _SurfaceTextureOpacity;
-					}
+					surfaceTextureSampledColor.a *= _SurfaceTextureOpacity * (isSurface ? 1.0 : 0.0);
 				#endif
 
 				// Sampling Water Body Texture
 				#if Water2D_HasWaterTexture
-					#if Is_Water2D_Surface_Enabled
-						if(!isSurface){
+					half4 bodyTextureSampledColor = 0;
+					#if Is_Water2D_WaterNoise_Enabled
+						i.waterTextureUV.xy += (tex2D(_NoiseTexture,i.waterTextureUV.zw).a - 0.5) * _WaterNoiseStrength;
 					#endif
-							#if Is_Water2D_WaterNoise_Enabled
-								i.waterTextureUV.xy += (tex2D(_NoiseTexture,i.waterTextureUV.zw).a - 0.5) * _WaterNoiseStrength;
-							#endif
 
-							#if Water2D_HasWaterTextureSheet
-								#if Is_Water2D_WaterTextureSheetWithLerp_Enabled
-								textureSampledColor = SampleTextureSheetLerp(_WaterTexture, i.waterTextureUV.xy);
-								#else
-								textureSampledColor = SampleTextureSheet(_WaterTexture, i.waterTextureUV.xy);
-								#endif
-							#else
-								textureSampledColor = tex2D(_WaterTexture,i.waterTextureUV.xy);
-							#endif
+					#if Water2D_HasWaterTextureSheet
+						#if Is_Water2D_WaterTextureSheetWithLerp_Enabled
+						bodyTextureSampledColor = SampleTextureSheetLerp(_WaterTexture, i.waterTextureUV.xy);
+						#else
+						bodyTextureSampledColor = SampleTextureSheet(_WaterTexture, i.waterTextureUV.xy);
+						#endif
+					#else
+						bodyTextureSampledColor = tex2D(_WaterTexture,i.waterTextureUV.xy);
+					#endif
 
-							textureSampledColor.a *= _WaterTextureOpacity;
 					#if Is_Water2D_Surface_Enabled
-						}
+						bodyTextureSampledColor.a *= _WaterTextureOpacity * (isSurface ? 0.0 : 1.0);
+					#else
+						bodyTextureSampledColor.a *= _WaterTextureOpacity;
 					#endif
 				#endif
-				
-				// Tint Color
+
+				// texture sampled color
+				#if (Water2D_HasWaterTexture) || (Water2D_HasSurfaceTexture)
+					half4 textureSampledColor = 0;
+
+					#if !(Water2D_HasWaterTexture)
+						textureSampledColor = surfaceTextureSampledColor;
+						#if Is_Water2D_SmoothLines_Enabled
+							textureSampledColor.a *= smoothstep(surfaceLevel, surfaceLevel + d_uv, i.uv.y);
+						#endif
+					#endif
+					#if !(Water2D_HasSurfaceTexture)
+						textureSampledColor = bodyTextureSampledColor;
+						#if Is_Water2D_Surface_Enabled && Is_Water2D_SmoothLines_Enabled
+							textureSampledColor.a *= 1.0 - smoothstep(surfaceLevel - d_uv, surfaceLevel, i.uv.y);
+						#endif
+					#endif
+					#if (Water2D_HasSurfaceTexture) && (Water2D_HasWaterTexture)
+						#if Is_Water2D_SmoothLines_Enabled
+						textureSampledColor = lerp(bodyTextureSampledColor, surfaceTextureSampledColor, smoothstep(surfaceLevel - d_uv, surfaceLevel + d_uv, i.uv.y));
+						#else
+						textureSampledColor = isSurface ? surfaceTextureSampledColor : bodyTextureSampledColor;
+						#endif
+					#endif
+				#endif
+
+				// Sampling Tint Color
 				half4 tintColor = 0;
+				// surface tint color
 				#if Is_Water2D_Surface_Enabled
-					if(isSurface)
-					{
-						#if Is_Water2D_SurfaceColorGradient_Enabled
-							tintColor = _SurfaceColorGradientEnd + saturate((i.uv.y - surfaceLevel) / (1.0 - surfaceLevel) + _SurfaceColorGradientOffset) * (_SurfaceColorGradientStart - _SurfaceColorGradientEnd);
-						#else
-							tintColor = _SurfaceColor;
-						#endif
-					}else{
+					half4 surfaceTintColor = 0;
+					#if Is_Water2D_SurfaceColorGradient_Enabled
+						surfaceTintColor = _SurfaceColorGradientEnd + saturate((i.uv.y - surfaceLevel) / (1.0 - surfaceLevel) + _SurfaceColorGradientOffset) * (_SurfaceColorGradientStart - _SurfaceColorGradientEnd);
+					#else
+						surfaceTintColor = _SurfaceColor;
+					#endif
 				#endif
-						#if Is_Water2D_ColorGradient_Enabled
-							#if defined (Water2D_Surface)
-								tintColor = _WaterColorGradientEnd + saturate((i.uv.y / surfaceLevel) + _WaterColorGradientOffset) * (_WaterColorGradientStart - _WaterColorGradientEnd);
-							#else
-								tintColor = _WaterColorGradientEnd + saturate(i.uv.y + _WaterColorGradientOffset) * (_WaterColorGradientStart - _WaterColorGradientEnd);
-							#endif
-						#else
-							tintColor = _WaterColor;
-						#endif
+				// body tint color
+				half4 bodyTintColor = 0;
+				#if Is_Water2D_ColorGradient_Enabled
+					#if defined (Water2D_Surface)
+						bodyTintColor = _WaterColorGradientEnd + saturate((i.uv.y / surfaceLevel) + _WaterColorGradientOffset) * (_WaterColorGradientStart - _WaterColorGradientEnd);
+					#else
+						bodyTintColor = _WaterColorGradientEnd + saturate(i.uv.y + _WaterColorGradientOffset) * (_WaterColorGradientStart - _WaterColorGradientEnd);
+					#endif
+				#else
+					bodyTintColor = _WaterColor;
+				#endif
+				// tint color
 				#if Is_Water2D_Surface_Enabled
-					}
+					#if Is_Water2D_SmoothLines_Enabled
+						tintColor = lerp(bodyTintColor, surfaceTintColor, smoothstep(surfaceLevel - d_uv, surfaceLevel + d_uv, i.uv.y));
+					#else
+						tintColor = isSurface ? surfaceTintColor : bodyTintColor;
+					#endif
+				#else
+					tintColor = bodyTintColor;
 				#endif
 
 				// Applying Colors
@@ -556,13 +589,20 @@
 				// Applying Top Edge Outline Color
 				#if Is_Water2D_Surface_Enabled && Is_Water2D_TopEdgeLine_Enabled
 					float topEdgeLineThickness = _TopEdgeLineThickness * _Size.w;
-					finalColor = MixColors(finalColor, _TopEdgeLineColor * ((1 - i.uv.y) < topEdgeLineThickness ? 1 : 0));
+					half4 topEdgeLineColor = _TopEdgeLineColor * ((1 - i.uv.y) < topEdgeLineThickness ? 1 : 0);
+					#if Is_Water2D_SmoothLines_Enabled
+					topEdgeLineColor.a *= smoothstep(1.0 - topEdgeLineThickness, 1.0 - topEdgeLineThickness + d_uv, i.uv.y);
+					#endif
+					finalColor = MixColors(finalColor, topEdgeLineColor);
 				#endif
 
 				// Applying Partially Submerged Objects Render-Texture Color && Submerge Level Outline
 				#if Is_Water2D_FakePerspective_Enabled
 					#if defined(Game2DWaterKit_Unlit) || defined(Game2DWaterKit_SRP_Unlit)
 						if (!isBelowSubmergeLevel) {
+							#if Is_Water2D_SmoothLines_Enabled
+							refractionColorPartiallySubmergedObjects.a *= smoothstep(submergeLevel, submergeLevel + d_uv, i.uv.y);
+							#endif
 							#if Is_Water2D_Refraction_Enabled
 								finalColor.rgb += refractionColorPartiallySubmergedObjects.rgb - finalColor.rgb * refractionColorPartiallySubmergedObjects.a;
 							#else
@@ -582,9 +622,12 @@
 					#endif
 					
 					#if Is_Water2D_SubmergeLevelEdgeLine_Enabled
-						float submergeLevelEdgeLineThickness = _SubmergeLevelEdgeLineThickness * _Size.w * 0.5;
-						half4 submergeLevelEdgeLineColor = _SubmergeLevelEdgeLineColor * (abs(submergeLevel - i.uv.y + submergeLevelEdgeLineThickness) < submergeLevelEdgeLineThickness ? 1 : 0);
+						float submergeLevelEdgeLineThickness = _SubmergeLevelEdgeLineThickness * _Size.w;
+						half4 submergeLevelEdgeLineColor = _SubmergeLevelEdgeLineColor * (i.uv.y - submergeLevel < submergeLevelEdgeLineThickness ? 1 : 0);
 						submergeLevelEdgeLineColor.a *= refractionColorPartiallySubmergedObjects.a;
+						#if Is_Water2D_SmoothLines_Enabled
+						submergeLevelEdgeLineColor.a *= 1.0 - smoothstep(submergeLevel + submergeLevelEdgeLineThickness - d_uv, submergeLevel + submergeLevelEdgeLineThickness, i.uv.y);
+						#endif
 
 						#if defined(Game2DWaterKit_SRP_Unlit) || defined(Game2DWaterKit_Unlit)
 							finalColor = MixColors(finalColor,  submergeLevelEdgeLineColor);
@@ -597,13 +640,22 @@
 				// Applying Surface Level
 				#if Is_Water2D_Surface_Enabled && Is_Water2D_SurfaceLevelEdgeLine_Enabled
 					float surfaceLevelEdgeLineThickness = _SurfaceLevelEdgeLineThickness * _Size.w * 0.5;
-					finalColor = MixColors(finalColor, _SurfaceLevelEdgeLineColor * (abs(surfaceLevel - i.uv.y) < surfaceLevelEdgeLineThickness ? 1 : 0));
+					half4 surfaceLevelEdgeLineColor = _SurfaceLevelEdgeLineColor * (abs(surfaceLevel - i.uv.y) < surfaceLevelEdgeLineThickness ? 1 : 0);
+					#if Is_Water2D_SmoothLines_Enabled
+					surfaceLevelEdgeLineColor.a *= 1.0 - smoothstep(surfaceLevel + surfaceLevelEdgeLineThickness - d_uv, surfaceLevel + surfaceLevelEdgeLineThickness, i.uv.y);
+					surfaceLevelEdgeLineColor.a *= smoothstep(surfaceLevel - surfaceLevelEdgeLineThickness, surfaceLevel - surfaceLevelEdgeLineThickness + d_uv, i.uv.y);
+					#endif
+					finalColor = MixColors(finalColor, surfaceLevelEdgeLineColor);
 				#endif
 
 				// END NEW
 
 				#if !Is_Water2D_Refraction_Enabled
 				finalColor.rgb /= finalColor.a;
+				#endif
+
+				#if Is_Water2D_SmoothLines_Enabled
+				finalColor.a *= 1.0 - smoothstep(1.0 - d_uv, 1.0, i.uv.y);
 				#endif
 
 				return finalColor;

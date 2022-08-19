@@ -273,6 +273,9 @@
             bool applyTintOnTopOfTexture = material.GetFloat("_Water2D_IsApplyTintColorOnTopOfTextureEnabled") == 1f;
             SetKeywordState(material, "Water2D_ApplyTintColorBeforeTexture", !applyTintOnTopOfTexture);
 
+            bool smoothLines = material.GetFloat("_Water2D_IsSmoothLinesEnabled") == 1f;
+            SetKeywordState(material, "Water2D_SmoothLines", smoothLines);
+
             //Water Body Keywords
             bool hasWaterBodyTexture = material.GetTexture("_WaterTexture") != null;
             bool isWaterBodyTextureSheetEnabled = material.GetFloat("_Water2D_IsWaterTextureSheetEnabled") == 1.0f;

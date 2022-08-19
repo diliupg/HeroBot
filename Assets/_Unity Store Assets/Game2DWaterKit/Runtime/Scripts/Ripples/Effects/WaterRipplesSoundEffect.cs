@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using UnityEngine;
+    using UnityEngine.Audio;
 
     public class WaterRipplesSoundEffect
     {
@@ -17,6 +18,7 @@
         private float _maximumAudioPitch;
         private float _minimumAudioPitch;
         private float _audioVolume;
+        private AudioMixerGroup _output;
 
         private Transform _poolRoot;
         private List<AudioSource> _pool;
@@ -36,6 +38,7 @@
             _audioVolume = parameters.AudioVolume;
             _poolSize = parameters.PoolSize;
             _canExpandPool = parameters.CanExpandPool;
+            _output = parameters.output;
 
             _poolRootParent = poolParent;
 
@@ -47,13 +50,14 @@
         public bool IsActive { get { return _isActive; } set { SetActive(value); } }
         private bool IsPoolCreated { get { return _poolRoot != null; } }
         public AudioClip AudioClip { get { return _audioClip; } set { ChangeAudioClip(value); } }
+        public float AudioVolume { get { return _audioVolume; } set { ChangeAudioVolume(Mathf.Clamp01(value)); } }
         public bool CanExpandPool { get { return _canExpandPool; } set { _canExpandPool = value; } }
         public int PoolSize { get { return _poolSize; } set { _poolSize = Mathf.Clamp(value, 0, int.MaxValue); } }
         public float AudioPitch { get { return _audioPitch; } set { _audioPitch = Mathf.Clamp(value, -3f, 3f); } }
         public float MaximumAudioPitch { get { return _maximumAudioPitch; } set { _maximumAudioPitch = Mathf.Clamp(value, -3f, 3f); } }
         public float MinimumAudioPitch { get { return _minimumAudioPitch; } set { _minimumAudioPitch = Mathf.Clamp(value, -3f, 3f); } }
         public bool IsUsingConstantAudioPitch { get { return _isUsingConstantAudioPitch; } set { _isUsingConstantAudioPitch = value; } }
-        public float AudioVolume { get { return _audioVolume; } set { _audioVolume = Mathf.Clamp01(value); } }
+        public AudioMixerGroup Output { get { return _output; } set { _output = value; } }
         #endregion
 
         #region Methods
@@ -92,8 +96,8 @@
             AudioSource newlyActivatedAudioSource = _pool[_nextAudioSourceToActivateIndex];
             newlyActivatedAudioSource.transform.position = position;
             newlyActivatedAudioSource.gameObject.SetActive(true);
-            newlyActivatedAudioSource.volume = _audioVolume;
-            newlyActivatedAudioSource.pitch = _isUsingConstantAudioPitch ? _audioPitch : Mathf.Lerp(_minimumAudioPitch, _maximumAudioPitch, 1f - disturbanceFactor); ;
+            newlyActivatedAudioSource.pitch = _isUsingConstantAudioPitch ? _audioPitch : Mathf.Lerp(_minimumAudioPitch, _maximumAudioPitch, 1f - disturbanceFactor);
+            newlyActivatedAudioSource.outputAudioMixerGroup = _output;
             newlyActivatedAudioSource.Play();
 
             _activeAudioSourcesCount++;
@@ -178,6 +182,24 @@
                 CreatePool();
         }
 
+        private void ChangeAudioVolume(float audioVolume)
+        {
+            if (_audioVolume == audioVolume)
+                return;
+
+            _audioVolume = audioVolume;
+
+            if (IsPoolCreated)
+            {
+                for (int i = 0; i < _poolSize; i++)
+                {
+                    _pool[i].volume = _audioVolume;
+                }
+            }
+            else if (_isActive)
+                CreatePool();
+        }
+
         private AudioSource CreateNewAudioSource()
         {
             GameObject audioSourceGameObject = new GameObject("Sound Effect");
@@ -186,6 +208,7 @@
 
             AudioSource audioSource = audioSourceGameObject.AddComponent<AudioSource>();
             audioSource.clip = _audioClip;
+            audioSource.volume = _audioVolume;
             return audioSource;
         }
 
@@ -195,15 +218,16 @@
         #if UNITY_EDITOR
         public void Validate(WaterRipplesSoundEffectParameters parameters)
         {
+            PoolSize = parameters.PoolSize;
+            CanExpandPool = parameters.CanExpandPool;
+            IsActive = parameters.IsActive;
+            AudioClip = parameters.AudioClip;
+            AudioVolume = parameters.AudioVolume;
+            Output = parameters.output;
             IsUsingConstantAudioPitch = parameters.UseConstantAudioPitch;
             AudioPitch = parameters.AudioPitch;
             MinimumAudioPitch = parameters.MinimumAudioPitch;
             MaximumAudioPitch = parameters.MaximumAudioPitch;
-            AudioVolume = parameters.AudioVolume;
-            CanExpandPool = parameters.CanExpandPool;
-            AudioClip = parameters.AudioClip;
-            PoolSize = parameters.PoolSize;
-            IsActive = parameters.IsActive;
         }
         #endif
         #endregion
@@ -220,6 +244,7 @@
         public float AudioVolume;
         public bool CanExpandPool;
         public int PoolSize;
+        public AudioMixerGroup output;
     }
 
 }

@@ -26,8 +26,6 @@
             _meshMask = _waterfallObject.RenderingModule.MeshMask;
 
 #if UNITY_EDITOR
-            //IsWaterVisible property is set in OnBecameVisible and OnBecameInvisible unity callbacks
-            //which are not called in edit mode. So we'll assume that the water is always visible in edit mode
             if (!Application.isPlaying)
             {
                 IsVisible = true;

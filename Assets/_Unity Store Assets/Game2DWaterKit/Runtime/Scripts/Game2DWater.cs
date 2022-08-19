@@ -14,6 +14,7 @@
     using Game2DWaterKit.Simulation;
     using Game2DWaterKit.Main;
     using Game2DWaterKit.Utils;
+    using UnityEngine.Audio;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -82,6 +83,7 @@
         [SerializeField, Range(0f, 1f)] private float onCollisionRipplesOnWaterEnterAudioVolume = 1.0f;
         [SerializeField] private int onCollisionRipplesOnWaterEnterSoundEffectPoolSize = 10;
         [SerializeField] private bool onCollisionRipplesOnWaterEnterSoundEffectPoolExpandIfNecessary = true;
+        [SerializeField] private AudioMixerGroup onCollisionRipplesOnWaterEnterSoundEffectOutput = null;
         //Particle Effect Properties (On Water Exit)
         [SerializeField] private bool onCollisionRipplesActivateOnWaterExitParticleEffect = false;
         [SerializeField] private ParticleSystem onCollisionRipplesOnWaterExitParticleEffect = null;
@@ -99,6 +101,7 @@
         [SerializeField, Range(0f, 1f)] private float onCollisionRipplesOnWaterExitAudioVolume = 1.0f;
         [SerializeField] private int onCollisionRipplesOnWaterExitSoundEffectPoolSize = 10;
         [SerializeField] private bool onCollisionRipplesOnWaterExitSoundEffectPoolExpandIfNecessary = true;
+        [SerializeField] private AudioMixerGroup onCollisionRipplesOnWaterExitSoundEffectOutput = null;
         //Events
         [SerializeField] private UnityEvent onWaterEnter = new UnityEvent();
         [SerializeField] private UnityEvent onWaterExit = new UnityEvent();
@@ -134,6 +137,7 @@
         [SerializeField] private int constantRipplesSoundEffectPoolSize = 10;
         [SerializeField] private bool constantRipplesSoundEffectPoolExpandIfNecessary = true;
         [SerializeField, Range(0f, 1f)] private float constantRipplesAudioVolume = 1.0f;
+        [SerializeField] private AudioMixerGroup constantRipplesSoundEffectOutput = null;
         //Particle Effect Properties
         [FormerlySerializedAs("activateConstantSplashParticleEffect"), SerializeField] private bool constantRipplesActivateParticleEffect = false;
         [FormerlySerializedAs("constantSplashParticleEffect"), SerializeField] private ParticleSystem constantRipplesParticleEffect = null;
@@ -157,6 +161,7 @@
         [SerializeField, Range(0f, 1f)] private float scriptGeneratedRipplesAudioVolume = 1.0f;
         [SerializeField] private int scriptGeneratedRipplesSoundEffectPoolSize = 10;
         [SerializeField] private bool scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary = true;
+        [SerializeField] private AudioMixerGroup scriptGeneratedRipplesSoundEffectOutput = null;
         //Particle Effect Properties
         [SerializeField] private bool scriptGeneratedRipplesActivateParticleEffect = false;
         [SerializeField] private ParticleSystem scriptGeneratedRipplesParticleEffect = null;
@@ -188,7 +193,7 @@
         //Shared Properties
         [SerializeField, FormerlySerializedAs("sortingLayerID")] private int _renderingModuleSortingLayerID = 0;
         [SerializeField, FormerlySerializedAs("sortingOrder")] private int _renderingModuleSortingOrder = 0;
-        [SerializeField, FormerlySerializedAs("farClipPlane")] private float _renderingModuleFarClipPlane = 100f;
+        [SerializeField, FormerlySerializedAs("farClipPlane")] private float _renderingModuleFarClipPlane = 1000f;
         [SerializeField, FormerlySerializedAs("renderPixelLights")] private bool _renderingModuleRenderPixelLights = true;
         [SerializeField, FormerlySerializedAs("allowMSAA")] private bool _renderingModuleAllowMSAA = false;
         [SerializeField, FormerlySerializedAs("allowHDR")] private bool _renderingModuleAllowHDR = false;
@@ -277,11 +282,6 @@
             _renderingModule.SetActive(false);
         }
 
-        protected override void SetObjectVisibilityState(bool isVisible)
-        {
-            _mainModule.IsVisible = isVisible;
-        }
-
         protected override void RegularUpdate()
         {
             if (_attachedComponentsModule.HasAnimatorAttached)
@@ -297,9 +297,7 @@
             _meshModule.Update();
             _attachedComponentsModule.Update();
 
-#if UNITY_EDITOR
             _renderingModule.Update();
-#endif
         }
 
         protected override void PhysicsUpdate()
@@ -446,7 +444,8 @@
                     MaximumAudioPitch = scriptGeneratedRipplesMaximumAudioPitch,
                     AudioVolume = scriptGeneratedRipplesAudioVolume,
                     PoolSize = scriptGeneratedRipplesSoundEffectPoolSize,
-                    CanExpandPool = scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary
+                    CanExpandPool = scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary,
+                    output = scriptGeneratedRipplesSoundEffectOutput
                 },
                 ParticleEffectParameters = new WaterRipplesParticleEffectParameters
                 {
@@ -490,7 +489,8 @@
                     MaximumAudioPitch = constantRipplesMaximumAudioPitch,
                     AudioVolume = constantRipplesAudioVolume,
                     PoolSize = constantRipplesSoundEffectPoolSize,
-                    CanExpandPool = constantRipplesSoundEffectPoolExpandIfNecessary
+                    CanExpandPool = constantRipplesSoundEffectPoolExpandIfNecessary,
+                    output = constantRipplesSoundEffectOutput
                 },
                 ParticleEffectParameters = new WaterRipplesParticleEffectParameters
                 {
@@ -534,7 +534,8 @@
                     MaximumAudioPitch = onCollisionRipplesOnWaterEnterMaximumAudioPitch,
                     AudioVolume = onCollisionRipplesOnWaterEnterAudioVolume,
                     PoolSize = onCollisionRipplesOnWaterEnterSoundEffectPoolSize,
-                    CanExpandPool = onCollisionRipplesOnWaterEnterSoundEffectPoolExpandIfNecessary
+                    CanExpandPool = onCollisionRipplesOnWaterEnterSoundEffectPoolExpandIfNecessary,
+                    output = onCollisionRipplesOnWaterEnterSoundEffectOutput
                 },
                 WaterEnterParticleEffectParameters = new WaterRipplesParticleEffectParameters
                 {
@@ -555,7 +556,8 @@
                     MaximumAudioPitch = onCollisionRipplesOnWaterExitMaximumAudioPitch,
                     AudioVolume = onCollisionRipplesOnWaterExitAudioVolume,
                     PoolSize = onCollisionRipplesOnWaterExitSoundEffectPoolSize,
-                    CanExpandPool = onCollisionRipplesOnWaterExitSoundEffectPoolExpandIfNecessary
+                    CanExpandPool = onCollisionRipplesOnWaterExitSoundEffectPoolExpandIfNecessary,
+                    output = onCollisionRipplesOnWaterExitSoundEffectOutput
                 },
                 WaterExitParticleEffectParameters = new WaterRipplesParticleEffectParameters
                 {
@@ -661,6 +663,7 @@
             onCollisionRipplesOnWaterEnterAudioVolume = 1.0f;
             onCollisionRipplesOnWaterEnterSoundEffectPoolSize = 10;
             onCollisionRipplesOnWaterEnterSoundEffectPoolExpandIfNecessary = true;
+            onCollisionRipplesOnWaterEnterSoundEffectOutput = null;
             //Particle Effect Properties (On Water Exit)
             onCollisionRipplesActivateOnWaterExitParticleEffect = false;
             onCollisionRipplesOnWaterExitParticleEffect = null;
@@ -678,6 +681,7 @@
             onCollisionRipplesOnWaterExitAudioVolume = 1.0f;
             onCollisionRipplesOnWaterExitSoundEffectPoolSize = 10;
             onCollisionRipplesOnWaterExitSoundEffectPoolExpandIfNecessary = true;
+            onCollisionRipplesOnWaterExitSoundEffectOutput = null;
             //Events
             onWaterEnter = new UnityEvent();
             onWaterExit = new UnityEvent();
@@ -717,6 +721,7 @@
             constantRipplesSoundEffectPoolSize = 10;
             constantRipplesSoundEffectPoolExpandIfNecessary = true;
             constantRipplesAudioVolume = 1.0f;
+            constantRipplesSoundEffectOutput = null;
             //Particle Effect Properties
             constantRipplesActivateParticleEffect = false;
             constantRipplesParticleEffect = null;
@@ -740,6 +745,7 @@
             scriptGeneratedRipplesAudioVolume = 1.0f;
             scriptGeneratedRipplesSoundEffectPoolSize = 10;
             scriptGeneratedRipplesSoundEffectPoolExpandIfNecessary = true;
+            scriptGeneratedRipplesSoundEffectOutput = null;
             //Particle Effect Properties
             scriptGeneratedRipplesActivateParticleEffect = false;
             scriptGeneratedRipplesParticleEffect = null;

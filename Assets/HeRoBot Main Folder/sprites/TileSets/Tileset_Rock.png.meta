@@ -303,6 +303,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -313,7 +314,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -334,6 +335,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -2366,6 +2369,100 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_Rock_9: -5327614557411806717
+      Tileset_Rock_91: 2881390937599278527
+      Tileset_Rock_77: 2963535416106773653
+      Tileset_Rock_49: 9014984621033769298
+      Tileset_Rock_76: -6205359130275229208
+      Tileset_Rock_24: -2650049084385433434
+      Tileset_Rock_73: 35790039568463836
+      Tileset_Rock_18: -736525966773305393
+      Tileset_Rock_30: 4525455252243599443
+      Tileset_Rock_74: -8017974694738316740
+      Tileset_Rock_33: 3451215374646067528
+      Tileset_Rock_36: 4371372029245245187
+      Tileset_Rock_0: 7197018730638329641
+      Tileset_Rock_61: 7893285175351184835
+      Tileset_Rock_84: -8901378919242279016
+      Tileset_Rock_70: 6628352902854561024
+      Tileset_Rock_88: 6792190363569701454
+      Tileset_Rock_7: -5009844667929492159
+      Tileset_Rock_75: 4382022699280883404
+      Tileset_Rock_86: -8832862327859591105
+      Tileset_Rock_83: -1717693291576336142
+      Tileset_Rock_53: 9138543138222021413
+      Tileset_Rock_89: 8452676171803321352
+      Tileset_Rock_48: 5021844284459487065
+      Tileset_Rock_3: 4642596664606366474
+      Tileset_Rock_43: 6872042894073840705
+      Tileset_Rock_34: -8131397669384341970
+      Tileset_Rock_72: 1554606994757033865
+      Tileset_Rock_52: 6263709515831981876
+      Tileset_Rock_54: 5658244735937066567
+      Tileset_Rock_64: 4120619912300398203
+      Tileset_Rock_65: 4244232976144696723
+      Tileset_Rock_20: 2473542045744272918
+      Tileset_Rock_14: -8769595707326716387
+      Tileset_Rock_11: -5206460828241014077
+      Tileset_Rock_50: -6970512315949968315
+      Tileset_Rock_78: -5416677568737782941
+      Tileset_Rock_12: -6462995320613586128
+      Tileset_Rock_31: 4521316684339931352
+      Tileset_Rock_41: 4567846115450447288
+      Tileset_Rock_25: 977829601178819517
+      Tileset_Rock_35: 4329301277587620543
+      Tileset_Rock_79: 5684905537242697037
+      Tileset_Rock_58: 6873760802794207831
+      Tileset_Rock_22: 2020715919784203938
+      Tileset_Rock_26: -6960322992257696645
+      Tileset_Rock_44: 1691280406047780591
+      Tileset_Rock_37: -8928254797410886188
+      Tileset_Rock_66: 5265033128582774233
+      Tileset_Rock_2: 5369352020714696814
+      Tileset_Rock_62: -7564953325875045876
+      Tileset_Rock_82: 6219765114713181934
+      Tileset_Rock_55: -7423528076169682739
+      Tileset_Rock_40: 3041983073396620406
+      Tileset_Rock_13: -5967406956353499443
+      Tileset_Rock_6: -6950628394294211545
+      Tileset_Rock_56: -1976577035896948746
+      Tileset_Rock_23: -549895772356826891
+      Tileset_Rock_8: 2135172386871339081
+      Tileset_Rock_42: 7253528602287734837
+      Tileset_Rock_63: 6783166328952953498
+      Tileset_Rock_51: 366094211992538998
+      Tileset_Rock_17: -8071486042261491625
+      Tileset_Rock_38: -2989763991693824607
+      Tileset_Rock_68: 2929108369063990264
+      Tileset_Rock_80: 1743257538554705729
+      Tileset_Rock_5: -8773064391629015442
+      Tileset_Rock_85: 715904371116395946
+      Tileset_Rock_67: 5111609084081939272
+      Tileset_Rock_81: 2129435159507333345
+      Tileset_Rock_46: -7621336703071591513
+      Tileset_Rock_19: -6566064310493091901
+      Tileset_Rock_60: 8261993350104017706
+      Tileset_Rock_90: -9132068671261755340
+      Tileset_Rock_28: -7122809911181543247
+      Tileset_Rock_29: 3300265548776024661
+      Tileset_Rock_39: 5824859664173662039
+      Tileset_Rock_21: -9004706831712201877
+      Tileset_Rock_59: -3517618058030937047
+      Tileset_Rock_10: 8615444882941624499
+      Tileset_Rock_71: -6168808877090841950
+      Tileset_Rock_92: -707814546208566099
+      Tileset_Rock_16: 8163827241535742674
+      Tileset_Rock_1: 5278823070919881930
+      Tileset_Rock_57: 5583692823259211482
+      Tileset_Rock_4: 4054551079399652464
+      Tileset_Rock_69: -2723283405025545367
+      Tileset_Rock_45: -1908960422844364225
+      Tileset_Rock_27: 1016869922077876575
+      Tileset_Rock_32: 5939229603474235694
+      Tileset_Rock_87: -1832031403373896470
+      Tileset_Rock_47: -2697646282907011749
+      Tileset_Rock_15: 1820754085983637697
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

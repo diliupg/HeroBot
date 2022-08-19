@@ -43,7 +43,6 @@
         public abstract void InitializeModules();
         protected abstract void ActivateObjectRendering();
         protected abstract void DeactivateObjectRendering();
-        protected abstract void SetObjectVisibilityState(bool isVisible);
         protected abstract void Cleanup();
         protected abstract void RegularUpdate();
         protected abstract void PhysicsUpdate();
@@ -83,16 +82,6 @@
             if (!Application.isPlaying)
                 OnDestroy();
 #endif
-        }
-
-        private void OnBecameVisible()
-        {
-            SetObjectVisibilityState(true);
-        }
-
-        private void OnBecameInvisible()
-        {
-            SetObjectVisibilityState(false);
         }
 
         private void LateUpdate()

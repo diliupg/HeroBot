@@ -106,6 +106,7 @@
 		[HideInInspector] _Water2D_IsSurfaceColorGradientEnabled ("Surface Color Mode",float) = 0.0
 		[HideInInspector] _Water2D_IsEmissionColorEnabled("Emission Toggle",float) = 0.0
 		[HideInInspector] _Water2D_IsApplyTintColorOnTopOfTextureEnabled("Apply Tint Color On Top Of Texture Toggle", float) = 1.0
+		[HideInInspector] _Water2D_IsSmoothLinesEnabled("Smooth Lines", float) = 0.0
 		[HideInInspector] _Water2D_IsTopEdgeLineEnabled("Has Top Edge Line", float) = 0.0
 		[HideInInspector] _Water2D_IsSurfaceLevelEdgeLineEnabled("Has Surface Level Edge Line", float) = 0.0
 		[HideInInspector] _Water2D_IsSubmergeLevelEdgeLineEnabled("Has Submerge Level Edge Line", float) = 0.0
@@ -152,6 +153,7 @@
 			#pragma shader_feature Water2D_Surface
 			#pragma shader_feature Water2D_SurfaceHasAbsoluteThickness
 			#pragma shader_feature Water2D_SurfaceColorGradient
+			#pragma shader_feature Water2D_SmoothLines
 			#pragma shader_feature _ Water2D_SurfaceTexture Water2D_SurfaceTextureSheet Water2D_SurfaceTextureSheetWithLerp
 			#pragma shader_feature _ Water2D_SurfaceTextureScroll
 			#pragma shader_feature _ Water2D_SurfaceTextureStretch Water2D_SurfaceTextureStretchAutoX Water2D_SurfaceTextureStretchAutoY

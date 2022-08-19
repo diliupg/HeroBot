@@ -273,9 +273,6 @@
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_2 __
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_3 __
 		
-			#define Game2DWaterKit_SRP_Lit
-
-			#include "../Game2DWaterKitWaterfall.cginc"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/LightingUtility.hlsl"
 
 			#if USE_SHAPE_LIGHT_TYPE_0
@@ -293,6 +290,9 @@
 			#if USE_SHAPE_LIGHT_TYPE_3
 			SHAPE_LIGHT(3)
 			#endif
+			
+			#define Game2DWaterKit_SRP_Lit
+			#include "../Game2DWaterKitWaterfall.cginc"
 
 			Varyings vert (Attributes v)
 			{
@@ -303,8 +303,6 @@
 
 				return o;
 			}
-
-			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/CombinedShapeLightShared.hlsl"
 
 			half4 frag (Varyings i) : SV_Target
 			{

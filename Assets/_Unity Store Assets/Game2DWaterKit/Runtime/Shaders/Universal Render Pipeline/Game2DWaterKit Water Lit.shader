@@ -106,6 +106,7 @@
 		[HideInInspector] _Water2D_IsSurfaceColorGradientEnabled ("Surface Color Mode",float) = 0.0
 		[HideInInspector] _Water2D_IsEmissionColorEnabled("Emission Toggle",float) = 0.0
 		[HideInInspector] _Water2D_IsApplyTintColorOnTopOfTextureEnabled("Apply Tint Color On Top Of Texture Toggle", float) = 1.0
+		[HideInInspector] _Water2D_IsSmoothLinesEnabled("Smooth Lines", float) = 0.0
 		[HideInInspector] _Water2D_IsTopEdgeLineEnabled("Has Top Edge Line", float) = 0.0
 		[HideInInspector] _Water2D_IsSurfaceLevelEdgeLineEnabled("Has Surface Level Edge Line", float) = 0.0
 		[HideInInspector] _Water2D_IsSubmergeLevelEdgeLineEnabled("Has Submerge Level Edge Line", float) = 0.0
@@ -127,6 +128,7 @@
 	#pragma shader_feature_local Water2D_Surface
 	#pragma shader_feature_local Water2D_SurfaceHasAbsoluteThickness
 	#pragma shader_feature_local Water2D_SurfaceColorGradient
+	#pragma shader_feature_local Water2D_SmoothLines
 	#pragma shader_feature_local _ Water2D_SurfaceTexture Water2D_SurfaceTextureSheet Water2D_SurfaceTextureSheetWithLerp
 	#pragma shader_feature_local _ Water2D_SurfaceTextureScroll
 	#pragma shader_feature_local _ Water2D_SurfaceTextureStretch Water2D_SurfaceTextureStretchAutoX Water2D_SurfaceTextureStretchAutoY
@@ -173,9 +175,6 @@
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_2 __
 			#pragma multi_compile USE_SHAPE_LIGHT_TYPE_3 __
 		
-			#define Game2DWaterKit_SRP_Lit
-
-			#include "../Game2DWaterKitWater.cginc"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/LightingUtility.hlsl"
 
 			#if USE_SHAPE_LIGHT_TYPE_0
@@ -193,6 +192,9 @@
 			#if USE_SHAPE_LIGHT_TYPE_3
 			SHAPE_LIGHT(3)
 			#endif
+			
+			#define Game2DWaterKit_SRP_Lit
+			#include "../Game2DWaterKitWater.cginc"
 
 			Varyings vert (Attributes v)
 			{
@@ -203,8 +205,6 @@
 
 				return o;
 			}
-
-			#include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/CombinedShapeLightShared.hlsl"
 
 			half4 frag (Varyings i) : SV_Target
 			{

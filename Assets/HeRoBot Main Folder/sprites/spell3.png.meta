@@ -99,6 +99,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -109,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -130,6 +131,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -734,6 +737,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      spell3_20: 2225243392894828177
+      spell3_23: 7591318278474219920
+      spell3_13: 6102970778852453247
+      spell3_17: 1790067721600368404
+      spell3_9: 1646127956881990086
+      spell3_21: -2686127333212790268
+      spell3_8: -8088061951256039491
+      spell3_12: 8771139207252985242
+      spell3_15: 722024446489692186
+      spell3_22: 741232387516197506
+      spell3_3: 5601237817945463096
+      spell3_16: -8840620493371706376
+      spell3_10: 27280052687872377
+      spell3_18: 4081072712505122728
+      spell3_4: -175692759343045747
+      spell3_6: -6042451754440056991
+      spell3_14: 8729495382245156735
+      spell3_2: 5394496307450748033
+      spell3_0: 7790041106026298628
+      spell3_7: -2493747234617660825
+      spell3_1: 973501738391415552
+      spell3_24: -7698973495224858290
+      spell3_11: -3588457566237004440
+      spell3_5: -8240386539823617855
+      spell3_19: 453787304922759204
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

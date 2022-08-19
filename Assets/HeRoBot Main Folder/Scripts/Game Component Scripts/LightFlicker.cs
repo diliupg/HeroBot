@@ -1,7 +1,7 @@
 ﻿// This script causes the light component of a child object to flicker in a realistic
 // fashion. This is used on the wall torches. Since this script is slightly expensive
 // and purely cosmetic, it will only run on non-mobile platforms
-using UnityEngine.Experimental.Rendering.Universal;
+
 using UnityEngine;
 
 public class LightFlicker : MonoBehaviour
@@ -9,7 +9,7 @@ public class LightFlicker : MonoBehaviour
 	public float amount;	//The amount of light flicker
 	public float speed;		//The speed of the flicker
 
-	Light2D localLight;		//Reference to the light component
+	UnityEngine.Rendering.Universal.Light2D localLight;		//Reference to the light component
 	float intensity;		//The collective intensity of the light component
 	float offset;			//An offset so all flickers are different
 
@@ -24,7 +24,7 @@ public class LightFlicker : MonoBehaviour
 	void Start()
 	{
 		//Get a reference to the Light component on the child game object
-		localLight = GetComponentInChildren<Light2D>();
+		localLight = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
 
 		//Record the intensity and pick a random seed number to start
 		intensity = localLight.intensity;

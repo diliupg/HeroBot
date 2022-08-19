@@ -90,7 +90,7 @@ TextureImporter:
       213: 8432091383434089425
     second: Skeleton_Idle_28
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -110,6 +110,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -120,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -141,9 +143,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -827,6 +833,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Skeleton_Idle_13: 5085919891148241624
+      Skeleton_Idle_14: -1595841296523368303
+      Skeleton_Idle_20: 7277578121240579801
+      Skeleton_Idle_0: 8488328654572304352
+      Skeleton_Idle_8: 2676318219495429717
+      Skeleton_Idle_17: -4062534944093287385
+      Skeleton_Idle_7: 2697517506866962995
+      Skeleton_Idle_27: -8722554030914099318
+      Skeleton_Idle_25: -6991495308753009702
+      Skeleton_Idle_26: 1563788413419366110
+      Skeleton_Idle_23: 1311522127516010043
+      Skeleton_Idle_18: -3887038088314839463
+      Skeleton_Idle_11: -4214323086006587610
+      Skeleton_Idle_15: -1847167111143412942
+      Skeleton_Idle_5: 5978591873814285882
+      Skeleton_Idle_10: 8400359375924378236
+      Skeleton_Idle_4: 8271520994771697968
+      Skeleton_Idle_21: -6791385889332444573
+      Skeleton_Idle_16: 8512195950661516566
+      Skeleton_Idle_2: 2240755264892537048
+      Skeleton_Idle_19: 2076181961319369395
+      Skeleton_Idle_28: 8432091383434089425
+      Skeleton_Idle_9: 6094941995225229456
+      Skeleton_Idle_1: 3789744679490320462
+      Skeleton_Idle_22: -3691904571589228901
+      Skeleton_Idle_12: 8333105682740153441
+      Skeleton_Idle_24: 8362586166583545227
+      Skeleton_Idle_3: 2034087598805426463
+      Skeleton_Idle_6: 2975933473413373919
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

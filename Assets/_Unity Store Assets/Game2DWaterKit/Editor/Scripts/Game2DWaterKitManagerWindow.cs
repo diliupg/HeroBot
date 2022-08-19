@@ -251,7 +251,7 @@
             detailsRect.xMax -= 5f;
             detailsRect.yMin += 5f;
             detailsRect.height = EditorGUIUtility.singleLineHeight;
-            GUI.Label(detailsRect, "Game 2D Water Kit v1.4.8", EditorStyles.boldLabel);
+            GUI.Label(detailsRect, "Game 2D Water Kit v1.4.8 (b14.05.22)", EditorStyles.boldLabel);
             detailsRect.y += EditorGUIUtility.singleLineHeight - 3f;
             GUI.Label(detailsRect, "haydeludos.github.io/Game2DWaterKit-Documentation", EditorStyles.miniBoldLabel);
             EditorGUI.DrawRect(new Rect(detailsRect.x, detailsRect.y + EditorGUIUtility.singleLineHeight, detailsRect.width, 1f), EditorStyles.label.normal.textColor);

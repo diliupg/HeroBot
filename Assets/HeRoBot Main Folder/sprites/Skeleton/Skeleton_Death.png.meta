@@ -144,7 +144,7 @@ TextureImporter:
       213: -267646633469350393
     second: Skeleton_Death_46
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -164,6 +164,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -174,7 +176,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -195,9 +197,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1259,6 +1265,54 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Skeleton_Death_4: 7143198583629916187
+      Skeleton_Death_23: 164156867892913271
+      Skeleton_Death_25: 2012602693034454903
+      Skeleton_Death_32: 6812082103300818593
+      Skeleton_Death_39: 2525880714361677553
+      Skeleton_Death_45: -8146393184115134431
+      Skeleton_Death_36: 3714794278541954467
+      Skeleton_Death_41: 5111012610120564637
+      Skeleton_Death_44: 6122839605389571945
+      Skeleton_Death_2: 8399632352712144361
+      Skeleton_Death_29: 6882065475752470859
+      Skeleton_Death_19: 2940165696647241389
+      Skeleton_Death_31: 494461241944847664
+      Skeleton_Death_42: -7123612548235805249
+      Skeleton_Death_46: -267646633469350393
+      Skeleton_Death_15: 5038993531319807059
+      Skeleton_Death_17: 591279906191712281
+      Skeleton_Death_21: 4531320108413528935
+      Skeleton_Death_20: 8876280987202074832
+      Skeleton_Death_9: 433881838764600398
+      Skeleton_Death_13: 3784175965711464083
+      Skeleton_Death_5: 4093069291906818420
+      Skeleton_Death_8: -4364805071773268704
+      Skeleton_Death_14: 1441630063793206863
+      Skeleton_Death_38: 2997216043594876412
+      Skeleton_Death_33: 7527398254520649872
+      Skeleton_Death_1: -3134359789022687535
+      Skeleton_Death_11: 6312416658848005102
+      Skeleton_Death_12: 7671488446778878373
+      Skeleton_Death_3: -2072202752667699138
+      Skeleton_Death_28: -7655043421379859533
+      Skeleton_Death_34: 6534950770289696110
+      Skeleton_Death_27: 7620207984435240295
+      Skeleton_Death_16: -8319524400531132557
+      Skeleton_Death_40: -6326368272545437157
+      Skeleton_Death_0: 8610279347594985942
+      Skeleton_Death_6: -8972746190156843420
+      Skeleton_Death_24: -8014640931857091414
+      Skeleton_Death_10: -8995135756743772325
+      Skeleton_Death_26: 7036734156383091984
+      Skeleton_Death_30: 6778689170193994835
+      Skeleton_Death_18: 2578556795105759312
+      Skeleton_Death_22: 8705138925080262034
+      Skeleton_Death_7: 801443696008414755
+      Skeleton_Death_43: 7094337691882841653
+      Skeleton_Death_35: -2585985538791079424
+      Skeleton_Death_37: 3517674557266023323
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

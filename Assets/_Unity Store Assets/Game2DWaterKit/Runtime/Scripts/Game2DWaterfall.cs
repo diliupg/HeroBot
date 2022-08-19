@@ -31,7 +31,7 @@
 
         [SerializeField] private int _renderingModuleSortingLayerID = 0;
         [SerializeField] private int _renderingModuleSortingOrder = 0;
-        [SerializeField] private float _renderingModuleFarClipPlane = 100f;
+        [SerializeField] private float _renderingModuleFarClipPlane = 1000f;
         [SerializeField] private bool _renderingModuleAllowMSAA = false;
         [SerializeField] private bool _renderingModuleAllowHDR = false;
         [SerializeField] private bool _renderingModuleRenderPixelLights = true;
@@ -100,11 +100,6 @@
             _renderingModule.SetActive(false);
         }
 
-        protected override void SetObjectVisibilityState(bool isVisible)
-        {
-            _mainModule.IsVisible = isVisible;
-        }
-
         protected override void RegularUpdate()
         {
             if (_attachedComponentsModule.HasAnimatorAttached)
@@ -114,9 +109,7 @@
             _mainModule.Update();
             _meshModule.Update();
 
-#if UNITY_EDITOR
             _renderingModule.Update();
-#endif
         }
 
         protected override void PhysicsUpdate()

@@ -191,7 +191,7 @@
 		_SpriteMaskInteractionRef("Sprite Mask Interaction Ref", float) = 1
 
 		_Waterfall2D_IsApplyTintColorOnTopOfTextureEnabled("Apply Tint Color On Top Of Texture Toggle", float) = 0.0
-
+		
 		[HideInInspector] _SrcBlend("__src", float) = 5
 		[HideInInspector] _DstBlend("__dst", float) = 10
 		[HideInInspector] _ZWrite("__zw", float) = 0

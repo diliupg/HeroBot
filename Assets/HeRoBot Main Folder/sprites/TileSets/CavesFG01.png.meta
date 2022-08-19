@@ -75,6 +75,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -85,7 +86,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -106,6 +107,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -191,7 +194,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 362804d68cfc41dd0800000000000000
-      internalID: -2516157832059911581
+      internalID: 891881669335443869
       vertices: []
       indices: 
       edges: []
@@ -521,6 +524,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      CavesFG01_7: 237178595158131825
+      CavesFG01_9: 8782483393532304821
+      CavesFG01_5: 2579739988692894394
+      CavesFG01_13: -6437522397299867030
+      CavesFG01_11: -1317500945738816656
+      CavesFG01_10: 4647882236425188579
+      CavesFG01_0: 891881669335443869
+      CavesFG01_3: -6311235721394512818
+      CavesFG01_12: 153816912918458082
+      CavesFG01_8: -9102822624931828009
+      CavesFG01_2: 525578086201859489
+      CavesFG01_14: 1688727552704265348
+      CavesFG01_15: -6756666184903330074
+      CavesFG01_1: -1401308051614289294
+      CavesFG01_4: -3341750248607547966
+      CavesFG01_6: 5909628549220128466
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

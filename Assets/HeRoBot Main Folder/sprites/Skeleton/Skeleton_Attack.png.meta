@@ -96,7 +96,7 @@ TextureImporter:
       213: 2861820383803384817
     second: Skeleton_Attack_30
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -116,6 +116,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -126,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -147,9 +149,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -875,6 +881,38 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Skeleton_Attack_14: 6057659227426624618
+      Skeleton_Attack_25: -3200830984726412979
+      Skeleton_Attack_2: 5374936872560645210
+      Skeleton_Attack_11: -3115140441847709555
+      Skeleton_Attack_27: -7361875955536326412
+      Skeleton_Attack_28: -2327966366237890152
+      Skeleton_Attack_20: -2024219427986524552
+      Skeleton_Attack_30: 2861820383803384817
+      Skeleton_Attack_7: -7049450497556206644
+      Skeleton_Attack_10: -5224370241317367402
+      Skeleton_Attack_15: -5812108378345882512
+      Skeleton_Attack_18: -7455061393110673026
+      Skeleton_Attack_3: -5799585484308707375
+      Skeleton_Attack_5: 3317778627300228566
+      Skeleton_Attack_9: 4887612240251634235
+      Skeleton_Attack_8: -7527875019862153025
+      Skeleton_Attack_22: -352590075136631470
+      Skeleton_Attack_26: 2187088641754613680
+      Skeleton_Attack_21: 5734441679816763401
+      Skeleton_Attack_16: 1265583201203300593
+      Skeleton_Attack_24: 918060094992042229
+      Skeleton_Attack_6: 3574055037946763860
+      Skeleton_Attack_13: -1793886208224267176
+      Skeleton_Attack_17: -147651447181196817
+      Skeleton_Attack_29: 3862224314714193991
+      Skeleton_Attack_23: 2304843862569483323
+      Skeleton_Attack_4: 4528416531530387699
+      Skeleton_Attack_19: 846456741682320707
+      Skeleton_Attack_0: -4931541286253664743
+      Skeleton_Attack_12: -6117074778043539960
+      Skeleton_Attack_1: 6703666654972841543
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

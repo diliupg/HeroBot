@@ -79,7 +79,7 @@
         public MeshMask MeshMask { get { return _meshMask; } }
         #endregion
 
-        internal abstract bool Setup(RenderingCameraInformation renderingCameraInformation);
+        internal abstract bool IsVisibleToRenderingCamera(RenderingCameraInformation renderingCameraInformation);
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
         internal abstract void Render(UnityEngine.Rendering.ScriptableRenderContext context, RenderingCameraInformation renderingCameraInformation);
 #else
@@ -94,12 +94,14 @@
             _meshMask.Initialize(_mainModule, this, _materialModule);
         }
 
-#if UNITY_EDITOR
         internal void Update()
         {
+#if UNITY_EDITOR
             _meshMask.Update();
-        }
 #endif
+
+            _mainModule.IsVisible = false;
+        }
 
         protected void SetupRefractionMask(Vector3 position)
         {
@@ -130,7 +132,6 @@
         private static void OnBeginFrameRendering(UnityEngine.Rendering.ScriptableRenderContext context, Camera[] cameras)
         {
             UnityEngine.Rendering.RenderPipelineManager.beginCameraRendering += _renderObjectsDelegate;
-
         }
         private static void OnEndFrameRendering(UnityEngine.Rendering.ScriptableRenderContext context, Camera[] cameras)
         {
@@ -160,9 +161,11 @@
             {
                 var currentRenderingModule = _renderingModulesList[i];
 
-                bool isValid = currentRenderingModule.Setup(_renderingCameraInformation);
+                bool isVisible = currentRenderingModule.IsVisibleToRenderingCamera(_renderingCameraInformation);
 
-                if (isValid)
+                currentRenderingModule._mainModule.IsVisible |= isVisible;
+
+                if (isVisible)
                 {
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
                     currentRenderingModule.Render(context, _renderingCameraInformation);
@@ -198,7 +201,7 @@
             renderingModule._materialModule.OnRenderQueueChange += ResortRenderingModulesList;
 #endif
 
-            if(_renderingModulesList.Count == 1)
+            if (_renderingModulesList.Count == 1)
             {
 #if GAME_2D_WATER_KIT_LWRP || GAME_2D_WATER_KIT_URP
             UnityEngine.Rendering.RenderPipelineManager.beginFrameRendering += OnBeginFrameRendering;
@@ -239,10 +242,10 @@
 
         private static void OnAllWaterKitObjectsDestroyed()
         {
-            if(_g2dwCamera != null)
+            if (_g2dwCamera != null)
                 WaterUtility.SafeDestroyObject(_g2dwCamera.gameObject);
 
-            if(_refractionMask != null)
+            if (_refractionMask != null)
                 WaterUtility.SafeDestroyObject(_refractionMask.gameObject);
         }
 

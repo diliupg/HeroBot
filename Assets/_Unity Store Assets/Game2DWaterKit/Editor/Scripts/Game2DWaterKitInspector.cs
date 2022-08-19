@@ -196,7 +196,11 @@
             bool showPrefabUtility = !_isMultiEditing && !_isInspectingPrefab;
 
 #if UNITY_2018_3_OR_NEWER
+#if UNITY_2021_2_OR_NEWER
+            showPrefabUtility &= UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null;
+#else
             showPrefabUtility &= UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null;
+#endif
 #endif
 
             if (showPrefabUtility)
@@ -1130,15 +1134,15 @@
                 }
             }
 #if UNITY_2018_3_OR_NEWER
-                    /*
-                    As of Unity 2018.3, disconnecting (unlinking) and relinking a Prefab instance are no longer supported.
-                    Alternatively, we can now unpack a Prefab instance if we want to entirely remove its link to its Prefab asset 
-                    and thus be able to restructure the resulting plain GameObject as we please.
-                    */
-                    if (isPrefabInstance)
-                    {
-                        EditorGUILayout.HelpBox(Game2DWaterKitStyles.NewPrefabWorkflowMessage, MessageType.Info);
-                    }
+            /*
+            As of Unity 2018.3, disconnecting (unlinking) and relinking a Prefab instance are no longer supported.
+            Alternatively, we can now unpack a Prefab instance if we want to entirely remove its link to its Prefab asset 
+            and thus be able to restructure the resulting plain GameObject as we please.
+            */
+            if (isPrefabInstance)
+            {
+                EditorGUILayout.HelpBox(Game2DWaterKitStyles.NewPrefabWorkflowMessage, MessageType.Info);
+            }
 #else
             if (isPrefabInstance)
             {

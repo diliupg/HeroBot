@@ -189,7 +189,7 @@ TextureImporter:
       213: -3424697697552739997
     second: Skeleton_Walk_61
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -209,6 +209,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -217,9 +219,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 1
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -240,9 +242,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -968,6 +974,38 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Skeleton_Walk_4: 7539542233003775106
+      Skeleton_Walk_13: -9037573260236932452
+      Skeleton_Walk_19: 7851619777761843019
+      Skeleton_Walk_8: -5230364189807224312
+      Skeleton_Walk_10: -4605814848101980731
+      Skeleton_Walk_29: 5613760706552423140
+      Skeleton_Walk_3: 3051669912371892857
+      Skeleton_Walk_15: -2912437625697117803
+      Skeleton_Walk_12: 8692563756825760236
+      Skeleton_Walk_21: 5855665620572299662
+      Skeleton_Walk_9: -7604424623187386792
+      Skeleton_Walk_7: 1567333206898370016
+      Skeleton_Walk_1: -5704084491819767634
+      Skeleton_Walk_20: -2934781789717785400
+      Skeleton_Walk_5: 2788143195985776107
+      Skeleton_Walk_14: -7575817433160994043
+      Skeleton_Walk_28: -136082852067201258
+      Skeleton_Walk_24: -184337762459208976
+      Skeleton_Walk_11: 3054016435070849357
+      Skeleton_Walk_25: -3056997353700562576
+      Skeleton_Walk_17: -5155047694645659318
+      Skeleton_Walk_18: -7322861660517539977
+      Skeleton_Walk_16: -5076198240145737685
+      Skeleton_Walk_22: -3662796298595138364
+      Skeleton_Walk_0: -319509429510461966
+      Skeleton_Walk_27: 5509692646289707257
+      Skeleton_Walk_30: -1691254075720358911
+      Skeleton_Walk_2: 8477824621842717129
+      Skeleton_Walk_6: -119383558338234881
+      Skeleton_Walk_23: -1580847463026132010
+      Skeleton_Walk_26: -5625391705269467084
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -147,7 +147,7 @@ TextureImporter:
       213: 4951448176367139778
     second: Column_Arches_47
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -167,6 +167,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -175,9 +177,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -198,9 +200,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -1259,6 +1265,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Column_Arches_32: -6523524433788097510
+      Column_Arches_46: -3042118003012833947
+      Column_Arches_35: 3894515645193368692
+      Column_Arches_18: 5456472059302254919
+      Column_Arches_38: -5276221507727653039
+      Column_Arches_40: 8894055299741549980
+      Column_Arches_36: -220854004802775767
+      Column_Arches_5: -2150251091989689055
+      Column_Arches_16: -1143412577751540889
+      Column_Arches_22: -5970362660051781006
+      Column_Arches_25: -8578436382558382314
+      Column_Arches_15: -1283305180887265043
+      Column_Arches_23: -3887769287930938435
+      Column_Arches_29: -6986078174185425489
+      Column_Arches_31: -1479624407056910566
+      Column_Arches_39: 7035670431164086885
+      Column_Arches_42: -8142235470252891721
+      Column_Arches_26: -7362697868292115989
+      Column_Arches_28: -727455601028777085
+      Column_Arches_7: 5214807613224821358
+      Column_Arches_30: -8923722807899237952
+      Column_Arches_20: 973063250063440858
+      Column_Arches_45: -4726455770478004485
+      Column_Arches_27: -1202983686447076936
+      Column_Arches_4: -7052102819795601388
+      Column_Arches_1: 8807763043373730344
+      Column_Arches_21: 9136286131893154765
+      Column_Arches_37: -835510235056621184
+      Column_Arches_2: -3893597896034504518
+      Column_Arches_6: 581761381030939815
+      Column_Arches_34: 3314321366391005296
+      Column_Arches_44: 3212733173058764700
+      Column_Arches_12: 1079041529763536651
+      Column_Arches_41: 3334278094877832402
+      Column_Arches_24: 8423760218634795194
+      Column_Arches_33: -2221478089465189240
+      Column_Arches_9: 3343387850881847038
+      Column_Arches_17: 2621719419025542815
+      Column_Arches_47: 4951448176367139778
+      Column_Arches_3: -4070234946724725220
+      Column_Arches_8: -6403828000780820444
+      Column_Arches_14: -4640804315649805708
+      Column_Arches_0: -5238692744163157825
+      Column_Arches_11: 7024944404239895098
+      Column_Arches_43: 8323911072722405799
+      Column_Arches_13: 7516311354847425339
+      Column_Arches_10: -6770270993707005618
+      Column_Arches_19: -5389276299378150045
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

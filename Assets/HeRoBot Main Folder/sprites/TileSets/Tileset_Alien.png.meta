@@ -3246,6 +3246,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -3256,7 +3257,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -3277,6 +3278,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -4952,6 +4955,83 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tileset_Alien_39: 3756294307631442025
+      Tileset_Alien_20: -2598131594449684673
+      Tileset_Alien_32: -8583836338956295290
+      Tileset_Alien_19: -8483892234634461875
+      Tileset_Alien_14: 8278719032781226460
+      Tileset_Alien_42: -3439027046702763185
+      Tileset_Alien_68: 6035905616747312605
+      Tileset_Alien_55: 8627108150194212670
+      Tileset_Alien_23: 2896956183854728763
+      Tileset_Alien_0: 524821947972033870
+      Tileset_Alien_53: -174893584829571152
+      Tileset_Alien_12: -1315827137776760743
+      Tileset_Alien_24: 6874263929423716055
+      Tileset_Alien_59: -2373893563453724712
+      Tileset_Alien_2: 6974901291786546068
+      Tileset_Alien_57: 8188415763337408427
+      Tileset_Alien_47: 8306293881278906872
+      Tileset_Alien_56: 1271928298444358537
+      Tileset_Alien_64: -2652010149181691198
+      Tileset_Alien_51: 1308960041412021089
+      Tileset_Alien_58: 5869142424016504835
+      Tileset_Alien_33: 2852228520474163905
+      Tileset_Alien_28: 1208632266765730734
+      Tileset_Alien_73: -9152187320591553376
+      Tileset_Alien_71: -1490660533502900
+      Tileset_Alien_11: 3816709944097028644
+      Tileset_Alien_3: -5826667481450408789
+      Tileset_Alien_41: -8154940798108925325
+      Tileset_Alien_38: 1443118957158981571
+      Tileset_Alien_45: 8781108204610103733
+      Tileset_Alien_29: 8392741065434745811
+      Tileset_Alien_1: 3897077216172194956
+      Tileset_Alien_4: 6904893754319368552
+      Tileset_Alien_9: 3641426507716973751
+      Tileset_Alien_22: 1867792488537698413
+      Tileset_Alien_30: 5445760079405165295
+      Tileset_Alien_54: -4310069188078153863
+      Tileset_Alien_25: 3276082979713327595
+      Tileset_Alien_61: -5653739215513309679
+      Tileset_Alien_6: 4152227981264826660
+      Tileset_Alien_66: 5259031948156710386
+      Tileset_Alien_16: 2851004514612505022
+      Tileset_Alien_74: 3314504737433377218
+      Tileset_Alien_17: 2663367669417634403
+      Tileset_Alien_72: 655773371446613736
+      Tileset_Alien_67: 57033094806672596
+      Tileset_Alien_5: -4473185833830576613
+      Tileset_Alien_48: -6075965004263062555
+      Tileset_Alien_52: 1668651346023982585
+      Tileset_Alien_60: -2012385453130936333
+      Tileset_Alien_69: 8505053802338617441
+      Tileset_Alien_49: 7901565829042843059
+      Tileset_Alien_8: -3736052778439095976
+      Tileset_Alien_36: -3667727034855772830
+      Tileset_Alien_70: -1989667179684802380
+      Tileset_Alien_7: 4927878376754318369
+      Tileset_Alien_35: 5037986390798707875
+      Tileset_Alien_34: -2308618340830011338
+      Tileset_Alien_40: -2745608685102817829
+      Tileset_Alien_65: 3234324400350023745
+      Tileset_Alien_63: -76983226656623548
+      Tileset_Alien_10: 7258291225682414066
+      Tileset_Alien_15: 5450210627084387131
+      Tileset_Alien_27: 8397737011801039842
+      Tileset_Alien_44: -3150097044690040886
+      Tileset_Alien_50: 8574485404426642110
+      Tileset_Alien_43: 3942563024673219905
+      Tileset_Alien_75: 6135941950090676139
+      Tileset_Alien_13: 6929422577167118878
+      Tileset_Alien_31: -3132363377459523291
+      Tileset_Alien_46: 2304230017601441439
+      Tileset_Alien_62: 6028179928263315456
+      Tileset_Alien_26: 7804433287770927728
+      Tileset_Alien_37: -5021204220401021828
+      Tileset_Alien_18: -4769739582497940950
+      Tileset_Alien_21: -8376907993917350393
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

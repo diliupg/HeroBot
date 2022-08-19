@@ -685,6 +685,7 @@
                 }
             }
 
+            DrawProperty(fullName + "SoundEffectOutput", Game2DWaterKitStyles.SoundEffectOutputPropertyLabel);
             DrawProperty(fullName + "SoundEffectPoolSize", Game2DWaterKitStyles.SoundEffectPoolSizePropertyLabel);
             DrawProperty(fullName + "SoundEffectPoolExpandIfNecessary", Game2DWaterKitStyles.SoundEffectPoolCanExpandPropertyLabel);
             DrawProperty(fullName + "AudioVolume", Game2DWaterKitStyles.SoundEffectVolumePropertyLabel);

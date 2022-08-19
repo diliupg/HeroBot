@@ -11,8 +11,6 @@
     public class MeshMask
     {
         #region Variables
-        private const float MASK_Z_OFFSET = 0.01f;
-
         private MainModule _mainModule;
         private RenderingModule _renderingModule;
         private MaterialModule _materialModule;
@@ -121,8 +119,8 @@
 
                 _maskBefore.transform.localScale = size;
                 _maskAfter.transform.localScale = size;
-                _maskBefore.transform.position = position + Vector3.forward * MASK_Z_OFFSET;
-                _maskAfter.transform.position = position + Vector3.back * MASK_Z_OFFSET;
+                _maskBefore.transform.position = position;
+                _maskAfter.transform.position = position;
 
                 _position = position;
                 _size = size;
@@ -139,9 +137,8 @@
             var renderQueue = _materialModule.RenderQueue;
 
             _maskBefore.sortingLayerID = _maskAfter.sortingLayerID = sortingLayer;
-            // _maskBefore and _maskAfter objects share the same sorting order as the water object
-            // so we'll rely on the z-position to determine the correct rendering order (_maskBefore -> water -> _maskAfter)
-            _maskBefore.sortingOrder = _maskAfter.sortingOrder = orderInLayer;
+            _maskBefore.sortingOrder = orderInLayer - 1;
+            _maskAfter.sortingOrder = orderInLayer + 1;
             _maskBefore.sharedMaterial.renderQueue = _maskAfter.sharedMaterial.renderQueue = renderQueue;
         }
 
@@ -156,13 +153,10 @@
             var maskGameObject = new GameObject(_mainModule.Transform.name + (isBeforeMask ? " Before-Mask" : " After-Mask"));
             maskGameObject.hideFlags = HideFlags.HideAndDontSave;
             maskGameObject.layer = _mainModule.GameobjectLayer;
+
             maskGameObject.SetActive(false);
 
-            var position = _arePositionAndSizeLocked ? _position : _mainModule.Position;
-
-            position += Vector3.forward * (isBeforeMask ? MASK_Z_OFFSET : -MASK_Z_OFFSET);
-
-            maskGameObject.transform.position = position;
+            maskGameObject.transform.position = _arePositionAndSizeLocked ? _position : _mainModule.Position;
             maskGameObject.transform.localScale = _arePositionAndSizeLocked ? _size : new Vector3(_mainModule.Width, _mainModule.Height, 1f);
             maskGameObject.transform.rotation = _mainModule.Rotation;
 
@@ -280,8 +274,8 @@
 
                 var position = _arePositionAndSizeLocked ? _position : _mainModule.Position;
 
-                _maskBefore.transform.position = position + Vector3.forward * MASK_Z_OFFSET;
-                _maskAfter.transform.position = position + Vector3.back * MASK_Z_OFFSET;
+                _maskBefore.transform.position = position;
+                _maskAfter.transform.position = position;
 
                 _maskBefore.transform.localScale = _maskAfter.transform.localScale = _arePositionAndSizeLocked ? _size : new Vector3(_mainModule.Width, _mainModule.Height, 1f);
             }

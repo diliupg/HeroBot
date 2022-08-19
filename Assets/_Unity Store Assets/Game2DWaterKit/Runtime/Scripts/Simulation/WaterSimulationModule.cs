@@ -219,10 +219,12 @@
             for (int i = 0, imax = _dynamicWavesVelocities.Length; i < imax; i++)
             {
                 _dynamicWavesVelocities[i] = 0f;
-
                 _sinesWavesPositions[i] = 0f;
-                vertices[i].y = _dynamicWavesPositions[i] = waterPositionOfRest;
+                _dynamicWavesPositions[i] = 0f;
+
+                vertices[i].y = waterPositionOfRest;
             }
+
             _meshModule.UpdateMeshData();
         }
 
@@ -285,7 +287,6 @@
 
             float dampingFactor = _damping * 2f * _stiffnessSquareRoot;
             float spreadFactor = _spread * _meshModule.SubdivisionsPerUnit;
-            float waterPositionOfRest = _mainModule.Height * 0.5f;
 
             float currentVertexPosition = _dynamicWavesPositions[startSurfaceVertexIndex];
             float previousVertexPosition = firstSurfaceVertexHeight;
@@ -303,7 +304,7 @@
                     nextVertexPosition = i + 1 <= endSurfaceVertexIndex ? _dynamicWavesPositions[i + 1] : endSurfaceVertexHeight;
 
                     float velocity = _dynamicWavesVelocities[i];
-                    float restoringForce = _stiffness * (waterPositionOfRest - currentVertexPosition);
+                    float restoringForce = -_stiffness * currentVertexPosition;
                     float dampingForce = -dampingFactor * velocity;
                     float spreadForce = spreadFactor * (previousVertexPosition - currentVertexPosition + nextVertexPosition - currentVertexPosition);
 
@@ -439,11 +440,12 @@
         {
             var vertices = _meshModule.Vertices;
 
+            float waterRestPosition = MainModule.Height * 0.5f;
             float heighestPoint = float.MinValue;
 
             for (int i = 0, imax = _dynamicWavesVelocities.Length; i < imax; i++)
             {
-                var vertexHeight = _dynamicWavesPositions[i] + _sinesWavesPositions[i];
+                var vertexHeight = waterRestPosition + _dynamicWavesPositions[i] + _sinesWavesPositions[i];
 
                 vertices[i].y = vertexHeight;
 

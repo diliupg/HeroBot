@@ -90,7 +90,7 @@
 
             DrawPropertiesGroup("Rendering Options", DrawRenderingOptions);
             DrawMaterialProperties();
-            if(FindProperty("_NoiseTexture", _materialProperties).textureValue != null)
+            if (FindProperty("_NoiseTexture", _materialProperties).textureValue != null)
                 DrawPropertiesGroup("Noise Texture Settings", DrawNoiseTextureSettings);
             DrawNoiseTextureMissingAssetWarning();
 
@@ -174,6 +174,12 @@
 
             var applyTintColorOnTopOfTextureKeywordState = FindProperty(_shaderKeywordsPrefix + "ApplyTintColorOnTopOfTextureEnabled", _materialProperties);
             DrawShaderKeywordPropertyToggle(EditorGUILayout.GetControlRect(), applyTintColorOnTopOfTextureKeywordState, "Apply Tint Color(s) On Top Of Texture(s)", true);
+
+            if (!_isWaterfallShader)
+            {
+                var smoothLinesKeywordState = FindProperty(_shaderKeywordsPrefix + "SmoothLinesEnabled", _materialProperties);
+                DrawShaderKeywordPropertyToggle(EditorGUILayout.GetControlRect(), smoothLinesKeywordState, "Smooth Water Surface And Lines", true);
+            }
         }
 
         private void DrawShaderTypeOptionsBuiltinRP()
@@ -721,7 +727,7 @@
             int textuerSelectedSizeIndex = ArrayUtility.IndexOf(_noiseTextureSizeOptions, noiseTextureSize.ToString());
             EditorGUI.BeginChangeCheck();
             textuerSelectedSizeIndex = EditorGUILayout.Popup("Size", textuerSelectedSizeIndex, _noiseTextureSizeOptions);
-            if(EditorGUI.EndChangeCheck())
+            if (EditorGUI.EndChangeCheck())
                 GenerateNoiseTexture(int.Parse(_noiseTextureSizeOptions[textuerSelectedSizeIndex]));
 
 #if UNITY_2017_1_OR_NEWER
@@ -777,7 +783,7 @@
             EditorGUIUtility.labelWidth = 80f;
             EditorGUI.BeginChangeCheck();
             bool isTilingModeSetToStretch = EditorGUILayout.Popup("Tiling Mode", (int)textureTilingParameters.x, new[] { "Repeat", "Stretch" }) == 1;
-            if(EditorGUI.EndChangeCheck() && isTilingModeSetToStretch != (textureTilingParameters.x == 1f))
+            if (EditorGUI.EndChangeCheck() && isTilingModeSetToStretch != (textureTilingParameters.x == 1f))
             {
                 scaleOffset.x = 1f / scaleOffset.x;
                 scaleOffset.y = 1f / scaleOffset.y;
@@ -884,7 +890,7 @@
 
                 textureTilingParameters.x = isTilingModeSetToStretch ? 1f : 0f;
                 textureTilingParameters.y = keepAspect ? 1f : 0f;
-                if(keepAspect)
+                if (keepAspect)
                     textureTilingParameters.z = autoX ? 1f : 0f;
 
                 textureTilingParametersProperty.vectorValue = textureTilingParameters;
@@ -905,8 +911,13 @@
             if (_noiseTexturePreviews[channelIndex] == null)
                 _noiseTexturePreviews[channelIndex] = new Texture2D(noiseTextureSize, noiseTextureSize, TextureFormat.ARGB32, false, true);
 
+#if UNITY_2021_2_OR_NEWER
+            if (_noiseTexturePreviews[channelIndex].width != noiseTextureSize)
+                _noiseTexturePreviews[channelIndex].Reinitialize(noiseTextureSize, noiseTextureSize);
+#else
             if (_noiseTexturePreviews[channelIndex].width != noiseTextureSize)
                 _noiseTexturePreviews[channelIndex].Resize(noiseTextureSize, noiseTextureSize);
+#endif
 
             var previewTex = _noiseTexturePreviews[channelIndex];
 
@@ -974,7 +985,11 @@
 
             if (size != -1 && noiseTextureSize != size)
             {
+#if UNITY_2021_2_OR_NEWER
+                noiseTexture.Reinitialize(size, size, TextureFormat.ARGB32, false);
+#else
                 noiseTexture.Resize(size, size, TextureFormat.ARGB32, false);
+#endif
                 noiseTextureSize = size;
             }
 

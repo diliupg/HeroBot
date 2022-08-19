@@ -39,17 +39,14 @@
             base.Initialize();
         }
 
-        internal override bool Setup(RenderingCameraInformation renderingCameraInformation)
+        internal override bool IsVisibleToRenderingCamera(RenderingCameraInformation renderingCameraInformation)
         {
-            bool isValidWaterfallSize = _mainModule.Width > 0f && _mainModule.Height > 0f;
-            if (!isValidWaterfallSize)
+            var renderingCameraCullingMask = renderingCameraInformation.CurrentCamera.cullingMask;
+            if (renderingCameraCullingMask != (renderingCameraCullingMask | (1 << _mainModule.GameobjectLayer)))
                 return false;
 
-            var materialModule = _materialModule as WaterfallMaterialModule;
-
-            bool renderRefraction = materialModule.IsRefractionEnabled;
-
-            if (!renderRefraction)
+            bool isValidWaterfallSize = _mainModule.Width > 0f && _mainModule.Height > 0f;
+            if (!isValidWaterfallSize)
                 return false;
 
             _renderingCameraFrustum.Setup(renderingCameraInformation);
@@ -74,6 +71,11 @@
         internal override void Render(RenderingCameraInformation renderingCameraInformation)
 #endif
         {
+            var materialModule = _materialModule as WaterfallMaterialModule;
+
+            if (!materialModule.IsRefractionEnabled)
+                return;
+
             ComputeVisibleAreas(_meshModule.BoundsLocalSpace);
 
 #if !GAME_2D_WATER_KIT_LWRP && !GAME_2D_WATER_KIT_URP
@@ -104,7 +106,6 @@
             Refraction.Render(_g2dwCamera, _visibleArea, backgroundColor, _allowHDR, _allowMSAA);
 #endif
 
-            var materialModule = _materialModule as WaterfallMaterialModule;
             materialModule.SetRefractionRenderTexture(Refraction.RenderTexture);
 
             _refractionMask.SetActive(false);

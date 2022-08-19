@@ -86,6 +86,7 @@
             public static Game2DWaterKitPropertyLabel SoundEffectMinimumPitchPropertyLabel;
             public static Game2DWaterKitPropertyLabel SoundEffectMaximumPitchPropertyLabel;
             public static Game2DWaterKitPropertyLabel SoundEffectVolumePropertyLabel;
+            public static Game2DWaterKitPropertyLabel SoundEffectOutputPropertyLabel;
             public static Game2DWaterKitPropertyLabel ParticleEffectParticleSystemPropertyLabel;
             public static Game2DWaterKitPropertyLabel ParticleEffectPoolSizePropertyLabel;
             public static Game2DWaterKitPropertyLabel ParticleEffectPoolCanExpandPropertyLabel;
@@ -258,6 +259,7 @@
                 SoundEffectMinimumPitchPropertyLabel = CreatePropertyLabel("Minimum Pitch", "Sets the audio clip’s minimum playback speed. (when ‘Constant Pitch’ is toggled off)");
                 SoundEffectMaximumPitchPropertyLabel = CreatePropertyLabel("Maximum Pitch", "Sets the audio clip’s maximum playback speed. (when constant pitch is toggled off)");
                 SoundEffectVolumePropertyLabel = CreatePropertyLabel("Volume", "Sets the audio clip’s volume.");
+                SoundEffectOutputPropertyLabel = CreatePropertyLabel("Output", "Sets the target group to which the AudioSource should route its signal");
 
                 ParticleEffectParticleSystemPropertyLabel = CreatePropertyLabel("Particle System", "Sets the particle effect system to play.");
                 ParticleEffectPoolSizePropertyLabel = CreatePropertyLabel("Pool Size", "Sets the number of particle system objects that will be created and pooled when the game starts.");

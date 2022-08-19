@@ -65,31 +65,15 @@
             base.Initialize();
         }
 
-        internal override bool Setup(RenderingCameraInformation renderingCameraInformation)
+        internal override bool IsVisibleToRenderingCamera(RenderingCameraInformation renderingCameraInformation)
         {
+            var renderingCameraCullingMask = renderingCameraInformation.CurrentCamera.cullingMask;
+            if (renderingCameraCullingMask != (renderingCameraCullingMask | (1 << _mainModule.GameobjectLayer)))
+                return false;
+
             bool isValidWaterSize = _mainModule.Width > 0f && _mainModule.Height > 0f;
             if (!isValidWaterSize)
                 return false;
-
-            var materialModule = _materialModule as WaterMaterialModule;
-
-            bool renderRefraction = materialModule.IsRefractionEnabled;
-            bool renderReflection = materialModule.IsReflectionEnabled;
-            bool fakePerspective = materialModule.IsFakePerspectiveEnabled;
-
-            if (!(renderReflection || renderRefraction || fakePerspective))
-                return false;
-
-            var mainModule = _mainModule as WaterMainModule;
-
-            var largeWaterAreaManager = mainModule.LargeWaterAreaManager;
-            bool isConnectedToLargeWaterArea = largeWaterAreaManager != null;
-
-            if (isConnectedToLargeWaterArea && largeWaterAreaManager.HasAlreadyRenderedCurrentFrame(renderingCameraInformation.CurrentCamera))
-            {
-                GetCurrentFrameRenderInformationFromLargeWaterAreaManager(largeWaterAreaManager, renderRefraction, renderReflection, fakePerspective);
-                return false;
-            }
 
             _renderingCameraFrustum.Setup(renderingCameraInformation);
 
@@ -119,10 +103,19 @@
             bool renderReflection = materialModule.IsReflectionEnabled;
             bool fakePerspective = materialModule.IsFakePerspectiveEnabled;
 
+            if (!(renderReflection || renderRefraction || fakePerspective))
+                return;
+
             var mainModule = _mainModule as WaterMainModule;
 
             var largeWaterAreaManager = mainModule.LargeWaterAreaManager;
             bool isConnectedToLargeWaterArea = largeWaterAreaManager != null;
+
+            if (isConnectedToLargeWaterArea && largeWaterAreaManager.HasAlreadyRenderedCurrentFrame(renderingCameraInformation.CurrentCamera))
+            {
+                GetCurrentFrameRenderInformationFromLargeWaterAreaManager(largeWaterAreaManager, renderRefraction, renderReflection, fakePerspective);
+                return;
+            }
 
             ComputeVisibleAreas(!isConnectedToLargeWaterArea ? _meshModule.BoundsLocalSpace : largeWaterAreaManager.GetWaterObjectsBoundsRelativeToSpecifiedWaterObject(mainModule));
 

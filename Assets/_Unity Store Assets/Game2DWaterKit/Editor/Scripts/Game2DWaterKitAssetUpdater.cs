@@ -35,7 +35,7 @@ public class Game2DWaterKitAssetUpdater
 
     private static void OnImportPackageCompleted(string packageName)
     {
-        if (packageName != "Game 2D Water Kit")
+        if (packageName != "Game 2D Water Kit" && packageName != "Game2DWaterKit")
             return;
 
         bool isBuiltinRenderPipeline;

@@ -201,6 +201,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -211,7 +212,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 0
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -232,6 +233,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -1526,6 +1529,66 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Black_Cavern_2_36: -8937398861344984497
+      Black_Cavern_2_1: -5018304978137694349
+      Black_Cavern_2_48: 9205390339257619037
+      Black_Cavern_2_7: 779464374832665320
+      Black_Cavern_2_46: 5991865336653292661
+      Black_Cavern_2_23: 4646620096511631893
+      Black_Cavern_2_49: -9166359541835206739
+      Black_Cavern_2_26: 3958692068941002139
+      Black_Cavern_2_11: -1927603405852341243
+      Black_Cavern_2_47: -3935612339006206619
+      Black_Cavern_2_30: -2045094931119525246
+      Black_Cavern_2_20: -2863233070372355550
+      Black_Cavern_2_16: -5857038443446448200
+      Black_Cavern_2_27: -366027621411717578
+      Black_Cavern_2_35: 925873033232313370
+      Black_Cavern_2_25: 6372388290688691649
+      Black_Cavern_2_33: -758587054641505056
+      Black_Cavern_2_19: -3153655834476717565
+      Black_Cavern_2_0: -7540424373210603374
+      Black_Cavern_2_8: -3362975239387982853
+      Black_Cavern_2_56: 3903667190510966476
+      Black_Cavern_2_28: -2166775679822674709
+      Black_Cavern_2_53: -7741507572197439426
+      Black_Cavern_2_24: 455961326701779588
+      Black_Cavern_2_44: -8071350981594357772
+      Black_Cavern_2_55: -7910378778915439395
+      Black_Cavern_2_42: 175781639876113287
+      Black_Cavern_2_10: -714013826762375331
+      Black_Cavern_2_15: 2699133889581330514
+      Black_Cavern_2_29: 4158152822093568698
+      Black_Cavern_2_43: -1173679065625151736
+      Black_Cavern_2_4: -6265793708075237870
+      Black_Cavern_2_41: -7615732130741139937
+      Black_Cavern_2_31: 2834466999358633309
+      Black_Cavern_2_51: 8706853474490934578
+      Black_Cavern_2_5: 9199622667024701150
+      Black_Cavern_2_34: -6645113465604108325
+      Black_Cavern_2_40: 159345550382829920
+      Black_Cavern_2_2: -5585079127616860542
+      Black_Cavern_2_39: -5032512428775474435
+      Black_Cavern_2_50: 5087548093166404925
+      Black_Cavern_2_58: -4324603819338424492
+      Black_Cavern_2_9: -6004313105943613357
+      Black_Cavern_2_37: -824687921909442273
+      Black_Cavern_2_54: 7981486296181359544
+      Black_Cavern_2_3: 8890600920806976301
+      Black_Cavern_2_22: -7752680391052080930
+      Black_Cavern_2_32: 2305882874918129600
+      Black_Cavern_2_57: 4704904437757268570
+      Black_Cavern_2_52: -1591880081540551327
+      Black_Cavern_2_13: -7797293104891672761
+      Black_Cavern_2_17: 3701171778827143627
+      Black_Cavern_2_45: -7491453382784347934
+      Black_Cavern_2_21: -9154126122114058370
+      Black_Cavern_2_6: 3427464074048245987
+      Black_Cavern_2_18: -1534272070284871473
+      Black_Cavern_2_12: -5048389283231757212
+      Black_Cavern_2_14: 1004654635141998964
+      Black_Cavern_2_38: -3859901903498871631
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

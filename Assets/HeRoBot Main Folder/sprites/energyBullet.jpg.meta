@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -226,7 +227,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 2
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 0
@@ -247,6 +248,8 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
@@ -1670,6 +1673,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      energyBullet_6: -2667684566113623493
+      energyBullet_33: -1203802778008827959
+      energyBullet_41: -6450227789110225687
+      energyBullet_54: 8540692728753208454
+      energyBullet_2: 6270488770742402107
+      energyBullet_11: -3624826204954113947
+      energyBullet_7: -826457352480306888
+      energyBullet_47: -3479125844725726983
+      energyBullet_16: -1631905551050361167
+      energyBullet_49: -5759483402062513858
+      energyBullet_35: -2195303737749923439
+      energyBullet_21: -4542486006052844276
+      energyBullet_30: -8290981010668383201
+      energyBullet_37: -5516378638141872624
+      energyBullet_13: -6568646217986719317
+      energyBullet_0: -4952535016763605460
+      energyBullet_56: -3692217757002011062
+      energyBullet_55: 848373382119940535
+      energyBullet_18: 2024563144743652241
+      energyBullet_24: -3754911797055285058
+      energyBullet_51: -4035376107134371381
+      energyBullet_58: -4050374451013063152
+      energyBullet_46: -6980675133711185591
+      energyBullet_39: -888308798600364979
+      energyBullet_50: -6323702653616163599
+      energyBullet_25: 6496063861146517951
+      energyBullet_63: -5621084891548613412
+      energyBullet_48: 2840292738620468942
+      energyBullet_12: -5392328920887486196
+      energyBullet_26: -5552886265659582103
+      energyBullet_19: -8672756568998359190
+      energyBullet_45: 6500751466792904526
+      energyBullet_31: -4118470403059050878
+      energyBullet_57: 4059126585633432764
+      energyBullet_10: -2409674598670139140
+      energyBullet_61: -3736689018396823607
+      energyBullet_5: 7803547663757142764
+      energyBullet_43: 8722682720065955858
+      energyBullet_8: -9057666488950141867
+      energyBullet_22: -263672292926511720
+      energyBullet_60: 6440602746325349678
+      energyBullet_17: 668169157140408570
+      energyBullet_23: 1553936888095098290
+      energyBullet_28: -500673451065738219
+      energyBullet_52: -6416027990636820333
+      energyBullet_44: -2716538041911901842
+      energyBullet_15: -3691045899997064968
+      energyBullet_38: 6671929390090757861
+      energyBullet_27: -8664089266040908028
+      energyBullet_9: -7062496405728285957
+      energyBullet_20: 5332417021253426548
+      energyBullet_14: 360609775781871691
+      energyBullet_34: 1525617392306230182
+      energyBullet_4: 8876514901427717086
+      energyBullet_40: -4898910644028185917
+      energyBullet_62: 7184069199651268232
+      energyBullet_3: 5022794180878628060
+      energyBullet_32: -5057845388674617903
+      energyBullet_59: 7430291829123914428
+      energyBullet_36: 5701044083607071778
+      energyBullet_53: 7971624445710083722
+      energyBullet_42: 3437296057010885373
+      energyBullet_1: -6452333929791455280
+      energyBullet_29: 6835795508019062091
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
